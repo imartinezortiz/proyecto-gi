@@ -15,8 +15,8 @@
 		
 	
 	<!-- Enables the Spring MVC @Service and @Repository programming model -->
-	<context:component-scan base-package="ucm.fdi.tfg.users.business.boundary"/>
-	<context:component-scan base-package="ucm.fdi.tfg.users.business.repository"/>
+	<context:component-scan base-package="ucm.fdi.tfg.users.business"/>
+
 	
 	
 		
