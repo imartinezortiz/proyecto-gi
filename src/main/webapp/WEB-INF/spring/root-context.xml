@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- Enables Spring's context configuration using annotations  -->
+	<context:annotation-config />
+	
+	<!-- Enables the Spring MVC @Service and @Repository programming model -->
+	<context:component-scan base-package="ucm.fdi.tfg.users.business"></context:component-scan>
+	
 		
 </beans>
+
+
+
+

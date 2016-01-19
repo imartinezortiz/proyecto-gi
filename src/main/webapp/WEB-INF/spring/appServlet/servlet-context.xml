@@ -11,6 +11,10 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	
+	<!-- Enables Spring's context configuration using annotations  -->
+	<context:annotation-config />
+	
 	<context:component-scan base-package="ucm.fdi.tfg.users.web"></context:component-scan>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
@@ -33,7 +37,7 @@
     </beans:bean> 
   
 	
-	<context:component-scan base-package="ucm.fdi.tfg" />
+	
 	
 	
 	
