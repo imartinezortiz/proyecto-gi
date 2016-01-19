@@ -11,9 +11,10 @@ import ucm.fdi.tfg.users.business.entity.UserRole;
 public class UserRepository {
 	
 	
-	private ArrayList<User> userList;
+	 ArrayList<User> userList;
 	
 	public UserRepository(){
+		userList = new ArrayList<User>();
 		User u = new User("david","fdi");
 		u.addRole(new UserRole("ROLE_ADMIN"));
 		userList.add(u);
