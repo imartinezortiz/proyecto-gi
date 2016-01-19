@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xsi:schemaLocation=
+	"http://www.springframework.org/schema/beans
 	 http://www.springframework.org/schema/beans/spring-beans.xsd
 	 http://www.springframework.org/schema/context
      http://www.springframework.org/schema/context/spring-context.xsd">
@@ -14,7 +15,9 @@
 		
 	
 	<!-- Enables the Spring MVC @Service and @Repository programming model -->
-	<context:component-scan base-package="ucm.fdi.tfg.users.business"></context:component-scan>
+	<context:component-scan base-package="ucm.fdi.tfg.users.business.boundary"/>
+	<context:component-scan base-package="ucm.fdi.tfg.users.business.repository"/>
+	
 	
 		
 </beans>

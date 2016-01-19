@@ -8,7 +8,7 @@ import ucm.fdi.tfg.users.business.boundary.UserManager;
 @Controller
 public class UserController {
 	
-	private UserManager userManager;
+	 UserManager userManager;
 	
 	@Autowired
 	public UserController(UserManager userManager)
