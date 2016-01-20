@@ -9,14 +9,18 @@
 	<h1>Login / Registro </h1>
 	<br></br><br></br>
 	
-<form action="#" th:action="@{/doLogin}" method="POST"> >
-  <label > Username:</label>
-  <input type="text" name="name"/>  
-  <br></br><br></br>
-  <label > Password:</label>
-  <input type="password" name="password"/>
-   <br></br><br></br>
-  <input type="submit" value="Entrar" />  
+<form action="#"  th:action="@{/login}" th:object="${User}" method="POST">
+<div>
+ <label> Username:</label>
+ <input type="text" name="username" />
+ </div>  
+ <br />
+ <br />
+ <label > Password:</label>
+ <input  type="password"  name="password" />  
+ <br />
+ <br />
+ <input type="submit" value="Entrar" />  
 </form>
 	
 	

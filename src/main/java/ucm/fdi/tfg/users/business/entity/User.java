@@ -11,7 +11,7 @@ public class User implements UserDetails, CredentialsContainer {
 
 	
 	private static final long serialVersionUID = 1L;
-	private String name;
+	private String username;
 	private String password;
 
 	private Collection<UserRole> roles;
@@ -31,17 +31,17 @@ public class User implements UserDetails, CredentialsContainer {
 	
 	public User (String name, String password)
 	{
-		this.name = name;
+		this.username = name;
 		this.password = password;
 		this.enabled = true;
 		this.roles = new ArrayList<UserRole>();
 	}
 
 	public String getName() {
-		return name;
+		return username;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.username = name;
 	}
 	public String getPassword() {
 		return password;
@@ -67,7 +67,7 @@ public class User implements UserDetails, CredentialsContainer {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return name;
+		return username;
 	}
 	
 	public void addRole(UserRole role) {
@@ -112,7 +112,7 @@ public class User implements UserDetails, CredentialsContainer {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -125,10 +125,10 @@ public class User implements UserDetails, CredentialsContainer {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (username == null) {
+			if (other.username != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
