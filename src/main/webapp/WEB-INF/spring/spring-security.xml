@@ -23,21 +23,33 @@
 		<intercept-url pattern="/logout" access="isAuthenticated()" />
 		<intercept-url pattern="/doLogout" access="isAuthenticated()" />
 		<intercept-url pattern="/" access="permitAll" />
-
+		
 
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		
 		<form-login login-processing-url="/doLogin" login-page="/home"
 			username-parameter="username" password-parameter="password"
-			default-target-url="/" authentication-failure-url="/login?auth=error" />
+			default-target-url="/bienvenido" authentication-failure-url="/login?auth=error" />
 		<logout logout-url="/doLogout" logout-success-url="/"  />				
 	</http>
 
+	 <!--  	 
 	<authentication-manager>
-		<authentication-provider user-service-ref="userManager">
-			<password-encoder ref="passwordEncoder" />
+		<authentication-provider>
+		<user-service>
+			<user name="rico" password="rico" authorities="ROLE_USER" />
+			<user name="bob" password="bobspassword" authorities="ROLE_USER" />
+		</user-service>			
 		</authentication-provider>
 	</authentication-manager>
+	
+	 -->
+	
+	<authentication-manager>
+		<authentication-provider user-service-ref="userManager">
+		</authentication-provider>
+	</authentication-manager>
+	
 	
 	<beans:bean id="passwordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

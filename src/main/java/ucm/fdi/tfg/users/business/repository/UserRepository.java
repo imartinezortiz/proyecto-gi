@@ -12,13 +12,14 @@ public class UserRepository {
 	
 	
 	 ArrayList<User> userList;
-	 
+	
 	 
 	
 	public UserRepository(){
 		userList = new ArrayList<User>();
 		User u = new User("david","fdi");
 		u.addRole(new UserRole("ROLE_ADMIN"));
+		u.addRole(new UserRole("ROLE_USER"));
 		userList.add(u);
 		
 	}
@@ -27,9 +28,9 @@ public class UserRepository {
 		userList.add(user);
 	}
 	
-	public User findByUsername(String name){
+	public User findByUsername(String username){
 		for(User u : userList){
-			if (u.getName() == name)
+			if (u.getName().equals(username))
 				return u;
 		}
 		return null;
