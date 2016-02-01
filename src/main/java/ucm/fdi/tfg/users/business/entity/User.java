@@ -27,6 +27,7 @@ public class User implements UserDetails, CredentialsContainer {
 	
 	public User(){
 		this.roles = new ArrayList<UserRole>();
+		this.enabled = true;
 	}
 	
 
@@ -117,7 +118,7 @@ public class User implements UserDetails, CredentialsContainer {
 
 	@Override
 	public void eraseCredentials() {
-		this.password = null;
+		//this.password = null;
 		
 	}
 

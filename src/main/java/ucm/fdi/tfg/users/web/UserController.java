@@ -65,7 +65,7 @@ public class UserController {
 
 	}
 	
-	// Entra por aqui, cuando hay un error en el loguin.
+	// Entra por aqui, cuando hay un error en el login.
 	  @RequestMapping("/login")
 	  public String login() {
 	    return "error";
