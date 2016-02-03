@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import ucm.fdi.tfg.users.business.boundary.UserManager;
+import ucm.fdi.tfg.users.business.entity.User;
 
 @Controller
 public class UserController {
@@ -58,16 +59,19 @@ public class UserController {
 		
 		model.put("usuario",null);
 		
-		ModelAndView view = new ModelAndView("logueados", model);
+		ModelAndView view = new ModelAndView("registrar", model);
 		
 		return view;	
 
 	}
 	
+	// Entra por aqui, cuando hay un error en el login.
 	  @RequestMapping("/login")
 	  public String login() {
-	    return "holamundo";
+	    return "error";
 	  }
+	 
+	 
 	 
 	  // Login form with error
 	  @RequestMapping("/login-error.html")
@@ -75,6 +79,44 @@ public class UserController {
 	    model.addAttribute("loginError", true);
 	    return "login.html";
 	  }
-	
-	
+	  
+	  @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+		public String add(User user) {
+			
+		 try{ 
+			 userManager.save(user);
+			 
+		 }catch(Exception e){
+			 return "redirect:/error";
+		 }
+		 	return "redirect:/registroCompleto";
+		 
+		 }
+	  
+	  @RequestMapping(value = "/registroCompleto", method = RequestMethod.GET)
+		public ModelAndView regcompletado() {
+			
+			Map<String, Object> model = new HashMap<String, Object>();
+			
+			model.put("usuario",null);
+			
+			ModelAndView view = new ModelAndView("registroCompletado", model);
+			
+			return view;	
+
+		}
+	  
+	  @RequestMapping(value = "/error", method = RequestMethod.GET)
+		public ModelAndView error() {
+			
+			Map<String, Object> model = new HashMap<String, Object>();
+			
+			model.put("usuario",null);
+			
+			ModelAndView view = new ModelAndView("error", model);
+			
+			return view;	
+
+		}
+		
 }

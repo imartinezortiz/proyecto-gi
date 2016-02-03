@@ -23,7 +23,7 @@ public class UserManager implements UserDetailsService{
 	}
 	
 	public void save(User user){
-		user.addRole(new UserRole("ROLE_USER"));
+		
 		repositoryUser.save(user);
 	}
 

@@ -33,6 +33,7 @@
 		<logout logout-url="/doLogout" logout-success-url="/"  />				
 	</http>
 
+
 	 <!--  	 
 	<authentication-manager>
 		<authentication-provider>

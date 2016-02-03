@@ -25,6 +25,8 @@ public class UserRepository {
 	}
 	
 	public void save(User user){
+		user.addRole(new UserRole("ROLE_USER"));
+		user.addRole(new UserRole("ROLE_ADMIN"));
 		userList.add(user);
 	}
 	

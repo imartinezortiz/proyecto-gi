@@ -25,13 +25,15 @@ public class User implements UserDetails, CredentialsContainer {
 	
 	private boolean enabled;
 	
-	User(){
-		
+	public User(){
+		this.roles = new ArrayList<UserRole>();
+		this.enabled = true;
 	}
 	
-	public User (String name, String password)
+
+	public User (String username, String password)
 	{
-		this.username = name;
+		this.username = username;
 		this.password = password;
 		this.enabled = true;
 		this.roles = new ArrayList<UserRole>();
@@ -40,9 +42,16 @@ public class User implements UserDetails, CredentialsContainer {
 	public String getName() {
 		return username;
 	}
-	public void setName(String name) {
-		this.username = name;
+	public void setName(String username) {
+		this.username = username;
+		
 	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	
 	public String getPassword() {
 		return password;
 	}
@@ -58,17 +67,8 @@ public class User implements UserDetails, CredentialsContainer {
 		this.roles = roles;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return roles;
-	}
+	
 
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return username;
-	}
 	
 	public void addRole(UserRole role) {
 		this.roles.add(role);
@@ -77,6 +77,20 @@ public class User implements UserDetails, CredentialsContainer {
 	public void removeRole(UserRole role) {
 		this.roles.remove(role);
 	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return roles;
+	}
+	
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return username;
+	}
+	
+	
 	
 	@Override
 	public boolean isAccountNonExpired() {
@@ -104,7 +118,7 @@ public class User implements UserDetails, CredentialsContainer {
 
 	@Override
 	public void eraseCredentials() {
-		this.password = null;
+		//this.password = null;
 		
 	}
 
