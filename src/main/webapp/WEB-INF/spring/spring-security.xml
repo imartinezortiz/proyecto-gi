@@ -21,7 +21,7 @@
 	 <http auto-config="true" use-expressions="true">
 	<!-- <http auto-config="true" create-session="always"> -->
 		<!-- Requisito de acceso a cada URL -->
-		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/loginError" access="permitAll" />
 		<intercept-url pattern="/doLogin" access="permitAll" />
 		<intercept-url pattern="/logout" access="isAuthenticated()" />
 		<intercept-url pattern="/doLogout" access="isAuthenticated()" />
@@ -31,7 +31,7 @@
 		<!-- 	FALTA que la url de añadir usuario tenga requisito ROLE_ADMIN -->
 		
 		<!-- /doLogin y /doLogout son propias de SpringSecurity -->
-		<form-login login-processing-url="/doLogin" login-page="/login"
+		<form-login login-processing-url="/doLogin" login-page="/"
 			username-parameter="username" password-parameter="password"
 			default-target-url="/bienvenido" authentication-failure-url="/loginError?auth=error" />
 			<!-- Si hay error al hacer login mapea "/loginError" desde el Controller. A partir de aqui es variable "?auth=error" -->
