@@ -38,19 +38,7 @@ public class UserController {
 		return view;	
 
 	}
-	/*
-	@RequestMapping(value = "/bienvenido", method = RequestMethod.GET)
-	public ModelAndView prueba(User user) {
-		
-		Map<String, Object> model = new HashMap<String, Object>();
-		
-		model.put("usuario",userManager.loadUserByUsername(user.getName()));
-		
-		ModelAndView view = new ModelAndView("logueados", model);
-		
-		return view;	
-
-	}*/
+	
 	
 	@RequestMapping(value = "/bienvenido", method = RequestMethod.GET)
 	public ModelAndView prueba() {
@@ -66,19 +54,13 @@ public class UserController {
 	}
 	
 	// Entra por aqui, cuando hay un error en el login.
-	  @RequestMapping("/login")
+	  @RequestMapping("/loginError")
 	  public String login() {
 	    return "error";
 	  }
 	 
-	 
-	 
-	  // Login form with error
-	  @RequestMapping("/login-error.html")
-	  public String loginError(Model model) {
-	    model.addAttribute("loginError", true);
-	    return "login.html";
-	  }
+	
+	  
 	  
 	  @RequestMapping(value = "/addUser", method = RequestMethod.POST)
 		public String add(User user) {
@@ -106,6 +88,17 @@ public class UserController {
 
 		}
 	  
+	  /*
+		 
+	  // Login form with error
+	  @RequestMapping("/login-error.html")
+	  public String loginError(Model model) {
+	    model.addAttribute("loginError", true);
+	    return "login.html";
+	  }
+	  */
+	  
+	  /*
 	  @RequestMapping(value = "/error", method = RequestMethod.GET)
 		public ModelAndView error() {
 			
@@ -118,5 +111,19 @@ public class UserController {
 			return view;	
 
 		}
+		*/
+	  /*
+		@RequestMapping(value = "/bienvenido", method = RequestMethod.GET)
+		public ModelAndView prueba(User user) {
+			
+			Map<String, Object> model = new HashMap<String, Object>();
+			
+			model.put("usuario",userManager.loadUserByUsername(user.getName()));
+			
+			ModelAndView view = new ModelAndView("logueados", model);
+			
+			return view;	
+
+		}*/
 		
 }
