@@ -25,7 +25,7 @@ public class UserController {
 		this.userManager = userManager;
 	}
 	
-	//Para mostrar los usuarios en Home
+	//Por aqui entra la aplicacion
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
 		

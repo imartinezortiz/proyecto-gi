@@ -27,7 +27,7 @@
 
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		
-		<form-login login-processing-url="/doLogin" login-page="/home"
+		<form-login login-processing-url="/doLogin" login-page="/"
 			username-parameter="username" password-parameter="password"
 			default-target-url="/bienvenido" authentication-failure-url="/login?auth=error" />
 		<logout logout-url="/doLogout" logout-success-url="/"  />				

@@ -29,7 +29,7 @@ public class UserManager implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-				
+		//Aqui tenemos que devolver una copia		
 		UserDetails user = repositoryUser.findByUsername(username);		
 		if (user == null) {
 			throw new UsernameNotFoundException(String.format("User %s not found", username));
