@@ -15,21 +15,26 @@
 
 	<global-method-security pre-post-annotations="enabled" />
 
+	<!-- Excluir resources (como css)de SpringSecurity   -->
+	<http pattern="/resources/**" security="none" />
 
 	 <http auto-config="true" use-expressions="true">
 	<!-- <http auto-config="true" create-session="always"> -->
+		<!-- Requisito de acceso a cada URL -->
 		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/doLogin" access="permitAll" />
 		<intercept-url pattern="/logout" access="isAuthenticated()" />
 		<intercept-url pattern="/doLogout" access="isAuthenticated()" />
 		<intercept-url pattern="/" access="permitAll" />
-		
-
+			
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+		<!-- 	FALTA que la url de añadir usuario tenga requisito ROLE_ADMIN -->
 		
-		<form-login login-processing-url="/doLogin" login-page="/"
+		<!-- /doLogin y /doLogout son propias de SpringSecurity -->
+		<form-login login-processing-url="/doLogin" login-page="/login"
 			username-parameter="username" password-parameter="password"
-			default-target-url="/bienvenido" authentication-failure-url="/login?auth=error" />
+			default-target-url="/bienvenido" authentication-failure-url="/loginError?auth=error" />
+			<!-- Si hay error al hacer login mapea "/loginError" desde el Controller. A partir de aqui es variable "?auth=error" -->
 		<logout logout-url="/doLogout" logout-success-url="/"  />				
 	</http>
 
