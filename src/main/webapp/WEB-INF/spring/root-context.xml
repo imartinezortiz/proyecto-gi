@@ -1,21 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation=
-	"http://www.springframework.org/schema/beans
-	 http://www.springframework.org/schema/beans/spring-beans.xsd
-	 http://www.springframework.org/schema/context
-     http://www.springframework.org/schema/context/spring-context.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- Enables Spring's context configuration using annotations  -->
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- Enables Spring's context configuration using annotations -->
 	<context:annotation-config />
-	
-		
-	
+
 	<!-- Enables the Spring MVC @Service and @Repository programming model -->
 	<context:component-scan base-package="ucm.fdi.tfg.users.business"/>
+	
+<!-- org.thymeleaf.templateresolver.ServletContextTemplateResolver -->	
+ <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+  <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+  <property name="url"
+   value="jdbc:mysql://localhost:3306/gesinvdb" />
+  <property name="username" value="david" />
+  <property name="password" value="david123" />
+ </bean>
+ 
+  <!-- Hibernate + EntityManagerFactory configuration -->
+
+ <bean id="jpaVendorAdapter"
+  class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+ <bean id="entityManagerFactory"
+  class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+  <property name="dataSource" ref="dataSource" />
+  <property name="packagesToScan">
+   <array>
+    <value>ucm.fdi.tfg.users.business.entity</value>
+   </array>
+  </property> 
+  <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>  
+  <property name="jpaProperties">
+  <props>
+    <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+    <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+    <prop key="hibernate.show_sql">true</prop>
+   </props>
+  </property>
+ </bean>
+ 
+
+ <!-- Spring Platform's TransactionManager configuration -->
+
+ <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+  p:entityManagerFactory-ref="entityManagerFactory" />
+
+ <!-- Enables the use of @Transactional and configures Spring to create class 
+  based proxies instead of JDK Proxy, that only supports the creation of interface 
+  proxies -->
+ <tx:annotation-driven transaction-manager="transactionManager"
+  mode="proxy" proxy-target-class="true" />
 
 	
 	
