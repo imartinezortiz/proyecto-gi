@@ -2,13 +2,19 @@ package ucm.fdi.tfg.users.business.entity;
 
 
 
+import javax.persistence.Basic;
+import javax.persistence.Embeddable;
+import javax.persistence.Table;
+
 import org.springframework.security.core.GrantedAuthority;
 
-
+@Embeddable
+@Table(name="USER_ROLES")
 public class UserRole implements  GrantedAuthority {
 
 
 	private static final long serialVersionUID = 1L;
+	@Basic
 	private String role;
 	
 	UserRole() {

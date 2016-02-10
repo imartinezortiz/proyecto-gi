@@ -3,19 +3,39 @@ package ucm.fdi.tfg.users.business.entity;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class User implements UserDetails, CredentialsContainer {
 
+@Entity
+@Table(name="Users")
+public class User implements UserDetails, CredentialsContainer {
 	
+
 	private static final long serialVersionUID = 1L;
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	int id;
 	private String username;
 	private String password;
-
-	private Collection<UserRole> roles;
 	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="USER_ROLES", joinColumns=@JoinColumn(name="users"),  uniqueConstraints=@UniqueConstraint(columnNames={"users", "role"}))
+	private Collection<UserRole> roles;
 	
 	private boolean accountExpired;
 	
@@ -28,6 +48,9 @@ public class User implements UserDetails, CredentialsContainer {
 	public User(){
 		this.roles = new ArrayList<UserRole>();
 		this.enabled = true;
+		this.accountExpired = false;
+		this.accountLocked = false;
+		this.credentialsExpired = false;
 	}
 	
 
@@ -36,6 +59,9 @@ public class User implements UserDetails, CredentialsContainer {
 		this.username = username;
 		this.password = password;
 		this.enabled = true;
+		this.accountExpired = false;
+		this.accountLocked = false;
+		this.credentialsExpired = false;
 		this.roles = new ArrayList<UserRole>();
 	}
 

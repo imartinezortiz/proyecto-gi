@@ -1,5 +1,7 @@
 package ucm.fdi.tfg.users.business.boundary;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,10 +10,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import ucm.fdi.tfg.users.business.entity.User;
-import ucm.fdi.tfg.users.business.entity.UserRole;
 import ucm.fdi.tfg.users.business.repository.UserRepository;
 
 @Service
+@Transactional
 public class UserManager implements UserDetailsService{
 	
 	UserRepository repositoryUser;
