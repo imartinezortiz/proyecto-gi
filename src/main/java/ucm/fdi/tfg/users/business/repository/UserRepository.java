@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -33,7 +34,7 @@ public class UserRepository {
 	public void save(User user){
 		user.addRole(new UserRole("ROLE_USER"));
 		user.addRole(new UserRole("ROLE_ADMIN"));
-		userList.add(user);
+		//userList.add(user);
 		em.merge(user);
 	}
 	
@@ -43,8 +44,14 @@ public class UserRepository {
 				return u;
 		}
 		return null */
-		User u = em.find(User.class, username);
-		return u;
+		
+		//No funciona con find
+		//User u = em.find(User.class, username);
+			User us = new User("hola","adios");
+		  Query query = em.createQuery("SELECT u FROM User u where u.username=" +username);
+		  em.persist(us);
+		  User u =  (User) query.getSingleResult();
+		  return u;
 		
 		
 		
