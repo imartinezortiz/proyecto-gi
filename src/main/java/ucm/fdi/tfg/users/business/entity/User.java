@@ -27,14 +27,14 @@ public class User implements UserDetails, CredentialsContainer {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="id")
+	@Column(name="usersId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 	private String username;
 	private String password;
 	
 	@ElementCollection(fetch=FetchType.EAGER)
-	@CollectionTable(name="USER_ROLES", joinColumns=@JoinColumn(name="users"),  uniqueConstraints=@UniqueConstraint(columnNames={"users", "role"}))
+	@CollectionTable(name="USER_ROLES", joinColumns=@JoinColumn(name="usersId"),  uniqueConstraints=@UniqueConstraint(columnNames={"usersId", "role"}))
 	private Collection<UserRole> roles;
 	
 	private boolean accountExpired;
@@ -144,8 +144,8 @@ public class User implements UserDetails, CredentialsContainer {
 
 	@Override
 	public void eraseCredentials() {
-		//this.password = null;
-		//
+		this.password = null;
+		
 	}
 
 	@Override
