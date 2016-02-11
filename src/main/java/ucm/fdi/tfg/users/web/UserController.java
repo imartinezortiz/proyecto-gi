@@ -56,10 +56,7 @@ public class UserController {
 	  @RequestMapping("/loginError")
 	  public String login() {
 	    return "error";
-	  }
-	 
-	
-	  
+	  }  
 	  
 	  @RequestMapping(value = "/addUser", method = RequestMethod.POST)
 		public String add(User user) {

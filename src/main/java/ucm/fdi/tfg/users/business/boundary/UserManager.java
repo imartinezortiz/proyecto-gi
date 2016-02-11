@@ -30,7 +30,7 @@ public class UserManager implements UserDetailsService{
 	}
 	
 	public void save(User user){
-		//Hasheamos aqui el password
+		//Hasheamos aqui el password	
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.addRole(new UserRole("ROLE_USER"));
 		user.addRole(new UserRole("ROLE_ADMIN"));

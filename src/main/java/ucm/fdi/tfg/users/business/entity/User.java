@@ -28,7 +28,7 @@ public class User implements UserDetails, CredentialsContainer {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="usersId")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	int id;
 	private String username;
 	private String password;

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
-@Embeddable
+@Embeddable // es atributo de un Entity ()
 @Table(name="USER_ROLES")
 public class UserRole implements  GrantedAuthority {
 
