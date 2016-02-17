@@ -18,7 +18,7 @@ import ucm.fdi.tfg.users.business.repository.UserRepository;
 public class UserManager implements UserDetailsService{
 	
 	UserRepository repositoryUser;
-	//Habr· que aÒadir el passwordEncoder para que no se vea en la BBDD
+	//Habr√° que a√±adir el passwordEncoder para que no se vea en la BBDD
 	
 
 	private PasswordEncoder passwordEncoder;

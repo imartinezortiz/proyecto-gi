@@ -1,6 +1,8 @@
 package ucm.fdi.tfg.users.business.repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -30,9 +32,10 @@ public class UserRepository {
 		  //Como solo quiero un objeto, uso getsingleresult
 		  try{
 			   u = (User) query.getSingleResult();
-		  }catch(Exception e){
+		  }catch(NoResultException | NonUniqueResultException e ){
 			  return null;
 		  }
+		  
 		 
 		 // Find solo funciona pasandole un entero (por id)
 		 // User u = em.find(User.class, 1);
