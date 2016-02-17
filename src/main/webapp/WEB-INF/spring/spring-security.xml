@@ -25,10 +25,13 @@
 		<intercept-url pattern="/doLogin" access="permitAll" />
 		<intercept-url pattern="/logout" access="isAuthenticated()" />
 		<intercept-url pattern="/doLogout" access="isAuthenticated()" />
+		<intercept-url pattern="/bienvenido" access="isAuthenticated" />
 		<intercept-url pattern="/" access="permitAll" />
-			
+	
+		<intercept-url pattern="/bienvenido" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
-		<!-- 	FALTA que la url de añadir usuario tenga requisito ROLE_ADMIN -->
+		
+		
 		
 		<!-- /doLogin y /doLogout son propias de SpringSecurity -->
 		<form-login login-processing-url="/doLogin" login-page="/"
