@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,9 +43,9 @@ public class UserController {
 	@RequestMapping(value = "/bienvenido", method = RequestMethod.GET)
 	public ModelAndView prueba() {
 		
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, String> model = new HashMap<String, String>();
 		
-		model.put("usuario",null);
+		model.put("usuario",SecurityContextHolder.getContext().getAuthentication().getName());
 		
 		ModelAndView view = new ModelAndView("registrar", model);
 		

@@ -26,10 +26,13 @@ public class UserRepository {
 		
 		  Query query = em.createQuery("SELECT u FROM User u where u.username= :username");
 		  query.setParameter("username",username);
-		  
+		  User u;
 		  //Como solo quiero un objeto, uso getsingleresult
-		  User u = (User) query.getSingleResult();
-		
+		  try{
+			   u = (User) query.getSingleResult();
+		  }catch(Exception e){
+			  return null;
+		  }
 		 
 		 // Find solo funciona pasandole un entero (por id)
 		 // User u = em.find(User.class, 1);
