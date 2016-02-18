@@ -52,6 +52,7 @@
                                 <input type="submit" class="btn btn-lg btn-success btn-block" value="Login"/>
                                
                             </fieldset>
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         </form>
                     </div>
                 </div>
