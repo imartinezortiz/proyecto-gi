@@ -25,8 +25,9 @@ public class Pago {
 	@Id
 	@Column(name="pagoId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	int id;
+	long id;
 	
+	private int numOrden;
 	private String proyecto;	
 	private int numContabilidad;
 	
@@ -44,8 +45,9 @@ public class Pago {
 		//this.gastos = new ArrayList<Gasto>();
 	}
 	
-	public Pago (String proyecto, int numContabilidad, String investigadorPrincipal)
+	public Pago (int numOrden, String proyecto, int numContabilidad, String investigadorPrincipal)
 	{
+		this.numOrden = numOrden;
 		this.proyecto = proyecto;
 		this.numContabilidad = numContabilidad;
 		this.investigadorPrincipal = investigadorPrincipal;
