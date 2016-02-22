@@ -25,6 +25,7 @@ public class UserController {
 		this.userManager = userManager;
 	}
 	
+	/*
 	//Por aqui entra la aplicacion
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
@@ -38,7 +39,7 @@ public class UserController {
 		return view;	
 
 	}
-	
+	*/
 	
 	@RequestMapping(value = "/bienvenido", method = RequestMethod.GET)
 	public ModelAndView prueba() {
