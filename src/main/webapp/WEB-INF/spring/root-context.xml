@@ -17,6 +17,7 @@
 
 	<!-- Enables the Spring MVC @Service and @Repository programming model -->
 	<context:component-scan base-package="ucm.fdi.tfg.users.business"/>
+	<context:component-scan base-package="ucm.fdi.tfg.pagos.business"/>
 	
 <!-- org.thymeleaf.templateresolver.ServletContextTemplateResolver -->	
  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
@@ -37,6 +38,7 @@
   <property name="packagesToScan">
    <array>
     <value>ucm.fdi.tfg.users.business.entity</value>
+    <value>ucm.fdi.tfg.pagos.business.entity</value>
    </array>
   </property> 
   <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>  
@@ -63,8 +65,6 @@
  <tx:annotation-driven transaction-manager="transactionManager"
   mode="proxy" proxy-target-class="true" />
 
-	
-	
 		
 </beans>
 
