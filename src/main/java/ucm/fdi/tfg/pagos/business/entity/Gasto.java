@@ -25,7 +25,6 @@ public class Gasto {
 		this.importe = importe;
 	}	
 	
-	public Gasto(){
-		
+	public Gasto(){		
 	}
 }
