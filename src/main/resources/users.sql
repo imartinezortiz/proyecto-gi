@@ -2,3 +2,6 @@ INSERT INTO Users (usersId, username, password, enabled, accountExpired, account
 INSERT INTO USER_ROLES (usersId, role) VALUES(1, 'ROLE_USER');
 INSERT INTO USER_ROLES (usersId, role) VALUES(1, 'ROLE_ADMIN');
 
+INSERT INTO PAGOS (pagoId, proyecto, numContabilidad, investigadorPrincipal) VALUES (0, 'TFG', 123456789, 'IVAN');
+INSERT INTO PAGO_GASTOS (pagoId, numFactura, provedor, importe)	VALUES (1, '11', 'P1', '5.0');
+
