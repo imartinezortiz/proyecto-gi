@@ -1,5 +1,7 @@
 package ucm.fdi.tfg.pagos.business.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
@@ -15,9 +17,9 @@ public class Gasto {
 	private String provedor;
 	
 	@Basic
-	private double importe;
+	private BigDecimal importe;
 	
-	public Gasto(String numFactura,String provedor, double importe ){
+	public Gasto(String numFactura,String provedor, BigDecimal importe ){
 		this.numFactura = numFactura;
 		this.provedor = provedor;
 		this.importe = importe;
