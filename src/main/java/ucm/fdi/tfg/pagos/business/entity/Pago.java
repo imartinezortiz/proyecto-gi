@@ -1,11 +1,6 @@
 package ucm.fdi.tfg.pagos.business.entity;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
-
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -47,12 +42,42 @@ public class Pago {
 	
 	public Pago (int numOrden, String proyecto, int numContabilidad, String investigadorPrincipal)
 	{
+				
 		this.numOrden = numOrden;
-		this.proyecto = proyecto;
-		this.numContabilidad = numContabilidad;
-		this.investigadorPrincipal = investigadorPrincipal;
+		this.setProyecto(proyecto);
+		this.setNumContabilidad(numContabilidad);
+		this.setInvestigadorPrincipal(investigadorPrincipal);
 		//this.fecha = fecha;		
 		//this.gastos = new ArrayList<Gasto>();		
+	}
+
+	
+	public void setNumOrden(int numOrden) {
+		this.numOrden = numOrden;
+	}
+
+	public String getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(String proyecto) {
+		this.proyecto = proyecto;
+	}
+
+	public int getNumContabilidad() {
+		return numContabilidad;
+	}
+
+	public void setNumContabilidad(int numContabilidad) {
+		this.numContabilidad = numContabilidad;
+	}
+
+	public String getInvestigadorPrincipal() {
+		return investigadorPrincipal;
+	}
+
+	public void setInvestigadorPrincipal(String investigadorPrincipal) {
+		this.investigadorPrincipal = investigadorPrincipal;
 	}
 	
 }
