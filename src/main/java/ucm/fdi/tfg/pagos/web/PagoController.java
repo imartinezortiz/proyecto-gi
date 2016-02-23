@@ -21,7 +21,8 @@ public class PagoController {
 	public PagoController (PagoManager pagoManager){
 		this.pagoManager = pagoManager;
 	}
-		
+	
+	
 	//Por aqui entra la aplicacion
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
@@ -35,6 +36,7 @@ public class PagoController {
 		return view;
 	}
 	
+	
 	//Por aqui entra la aplicacion
 	@RequestMapping(value = "/addPago", method = RequestMethod.POST)
 	public String addPago(Pago pago){
@@ -46,6 +48,19 @@ public class PagoController {
 		 }
 		
 		return "redirect:/registroCompleto";
+	}
+	
+	@RequestMapping(value = "/registroCompleto", method = RequestMethod.GET)
+	public ModelAndView regcompletado() {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		model.put("usuario",null);
+		
+		ModelAndView view = new ModelAndView("registroCompletado", model);
+		
+		return view;	
+
 	}
 	
 	
