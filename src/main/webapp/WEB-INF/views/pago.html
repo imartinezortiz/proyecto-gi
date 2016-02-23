@@ -2,56 +2,65 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-<meta charset="ISO-8859-1"/>
+<meta charset="ISO-8859-1" />
 
 <script>
-function appendText() {
-             // Create text with DOM
-     var numFactura=$('<div class="col-md-2"><input type="text" placeholder="Nº Factura" class="form-control col-md-2"/></div>');
-     var concepto=$('<div class="col-md-7"><input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"/></div>')
-     var importe=$('<div class="col-md-2"><input type="text" placeholder="Importe" class="form-control col-md-2"/></div>');
-     $('#formularioGastos').append(numFactura); 
-     $('#formularioGastos').append(concepto); 
-     $('#formularioGastos').append(importe); 
+	function appendText() {
+		// Create text with DOM
+		var numFactura = $('<div class="col-md-2"><input type="text" placeholder="Nº Factura" class="form-control col-md-2"/></div>');
+		var concepto = $('<div class="col-md-7"><input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"/></div>')
+		var importe = $('<div class="col-md-2"><input type="text" placeholder="Importe" class="form-control col-md-2"/></div>');
+		$('#formularioGastos').append(numFactura);
+		$('#formularioGastos').append(concepto);
+		$('#formularioGastos').append(importe);
 
-             
-    
-}
+	}
 </script>
 
 <!-- Bootstrap Core CSS -->
-    <link type="text/css" href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"
-    data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
+<link type="text/css"
+	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
 
-    
+
 <title>Orden de pagos</title>
 </head>
 <body class="container">
-<div id="formularioGastos">
-<div id ="nuevoGasto" class="row">
-  <div class="col-md-2">
-    <input type="text" placeholder="Nº Factura" class="form-control"/>
-  </div>
-  <div class="col-md-7">
-    <input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"/>
-  </div>
-  <div class="col-md-2">
-    <input type="text" placeholder="Importe" class="form-control"/>
-  </div>
-  
-   <div class="col-md-1">
-    <button onclick="appendText()" class="btn btn-success">+</button>
-  </div>
-  
-</div>
+	<div id="formularioGastos">
+		<div id="nuevoGasto" class="row">
+			<div class="col-md-2">
+				<input type="text" placeholder="Nº Factura" class="form-control" />
+			</div>
+			<div class="col-md-7">
+				<input type="text"
+					placeholder="Proveedor,concepto y partida presupuestaria"
+					class="form-control" />
+			</div>
+			<div class="col-md-2">
+				<input type="text" placeholder="Importe" class="form-control" />
+			</div>
 
-</div>
+			<div class="col-md-1">
+				<button onclick="appendText()" class="btn btn-success">+</button>
+			</div>
 
 
-<!-- jQuery -->
-<script src="../../resources/bower_components/jquery/dist/jquery.min.js"
-	data-th-src="@{resources/bower_components/jquery/dist/jquery.min.js}">
-</script>
+
+		</div>
+	</div>
+	<input type="submit" class="btn btn-lg btn-success btn-block"
+		value="Guardar" />
+
+
+
+
+	<!-- jQuery -->
+	<script
+		src="../../resources/bower_components/jquery/dist/jquery.min.js"
+		data-th-src="@{resources/bower_components/jquery/dist/jquery.min.js}">
+		
+	</script>
 
 
 </body>
