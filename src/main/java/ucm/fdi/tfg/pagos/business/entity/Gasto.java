@@ -14,14 +14,14 @@ public class Gasto {
 	private String numFactura;
 	
 	@Basic
-	private String provedor;
+	private String proveedor;
 	
 	@Basic
 	private BigDecimal importe;
 	
 	public Gasto(String numFactura,String provedor, BigDecimal importe ){
 		this.numFactura = numFactura;
-		this.provedor = provedor;
+		this.proveedor = provedor;
 		this.importe = importe;
 	}	
 	
