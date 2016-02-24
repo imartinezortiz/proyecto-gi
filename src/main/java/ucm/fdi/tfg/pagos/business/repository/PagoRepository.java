@@ -1,13 +1,20 @@
 package ucm.fdi.tfg.pagos.business.repository;
 
+import java.util.Collection;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
+
+import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.users.business.entity.User;
 
@@ -23,6 +30,7 @@ public class PagoRepository {
 	
 	
 	public Pago findByNumOrden (int numOrden){
+		// from ...(nombreClase)
 		Query query = em.createQuery("SELECT p FROM Pago p where p.numOrden= :numOrden");
 		query.setParameter("numOrden",numOrden);
 		Pago p;
@@ -35,6 +43,15 @@ public class PagoRepository {
 		  
 		return p;
 	}
+
+	/*
+
+	public Collection<Gasto> getAllGastos() {
+		
+		
+	}
+
+	*/
 	
 	
 }

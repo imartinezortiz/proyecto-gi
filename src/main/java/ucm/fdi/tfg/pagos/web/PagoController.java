@@ -1,5 +1,8 @@
 package ucm.fdi.tfg.pagos.web;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ucm.fdi.tfg.pagos.business.boundary.PagoManager;
+import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 
 @Controller
@@ -29,7 +33,13 @@ public class PagoController {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		model.put("usuario", null);
+		Gasto gasto = new Gasto ("numFactura","provedor",new BigDecimal(2.3));		
+				
+		Collection<Gasto> gastos = new ArrayList<Gasto>();
+		
+        gastos.add(gasto);
+       
+		model.put("gastos", gastos);
 		
 		ModelAndView view = new ModelAndView("PagoCabecera", model);
 		
@@ -62,6 +72,10 @@ public class PagoController {
 		return view;	
 
 	}
+	
+	
+	
+	
 	
 	
 		
