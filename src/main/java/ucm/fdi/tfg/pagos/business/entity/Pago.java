@@ -1,6 +1,9 @@
 package ucm.fdi.tfg.pagos.business.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
+
+
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -37,7 +40,7 @@ public class Pago {
 	
 	public Pago()
 	{
-		//this.gastos = new ArrayList<Gasto>();
+		this.gastos = new ArrayList<Gasto>();
 	}
 	
 	public Pago (int numOrden, String proyecto, int numContabilidad, String investigadorPrincipal)
@@ -48,7 +51,7 @@ public class Pago {
 		this.setNumContabilidad(numContabilidad);
 		this.setInvestigadorPrincipal(investigadorPrincipal);
 		//this.fecha = fecha;		
-		//this.gastos = new ArrayList<Gasto>();		
+		this.gastos = new ArrayList<Gasto>();		
 	}
 
 	

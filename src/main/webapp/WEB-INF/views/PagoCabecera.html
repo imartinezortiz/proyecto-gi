@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1"/>
+<meta charset="ISO-8859-1" />
 
-	<script>
+<script>
 function appendText() {
              // Create text with DOM
      var numFactura=$('<div class="col-md-2"><input type="text" placeholder="Nº Factura" class="form-control col-md-2"/></div>');
@@ -16,113 +16,143 @@ function appendText() {
 }
 </script>
 
-  <!-- Bootstrap Core CSS -->
-    <link type="text/css" href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"
-    data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
+<!-- Bootstrap Core CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
 
-    <!-- MetisMenu CSS -->
-    <link type="text/css" href="../../resources/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"
-     data-th-href="@{/resources/bower_components/metisMenu/dist/metisMenu.min.css}" />
+<!-- MetisMenu CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/metisMenu/dist/metisMenu.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/metisMenu/dist/metisMenu.min.css}" />
 
-    <!-- Custom CSS -->
-    <link type="text/css" href="../../resources/dist/css/sb-admin-2.css" rel="stylesheet"
-			data-th-href="@{/resources/dist/css/sb-admin-2.css}" />
-			
-    <!-- Custom Fonts -->
-    <link href="../../resources/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"
-		data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
+<!-- Custom CSS -->
+<link type="text/css" href="../../resources/dist/css/sb-admin-2.css"
+	rel="stylesheet" data-th-href="@{/resources/dist/css/sb-admin-2.css}" />
 
-    <title>PAGOS</title>    
- </head>   
+<!-- Custom Fonts -->
+<link
+	href="../../resources/bower_components/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css"
+	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
+
+<title>PAGOS</title>
+</head>
 
 <body class="container">
-	
-        <div class="row">
-            <div class="col-md-14 col-md-offset-1">
-            <h2>Orden de Pago </h2>
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Introduzca valores Pago</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" action="#"  th:action="@{/addPago}" th:object="${Pago}" method="POST">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="NumOrden" name="numOrden" type="text" />
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="NumContabilidad" name="numContabilidad" type="text"  />
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Proyecto" name="proyecto" type="text"  />
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="InvestigadorPrincipal" name="investigadorPrincipal" type="text"  />
-                                </div>
 
+	<div class="row">
+		<div class="col-md-14 col-md-offset-1">
+			<h2>Orden de Pago</h2>
+			<div class="login-panel panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Introduzca valores Pago</h3>
+				</div>
+				<div class="panel-body">
+					<form role="form" action="#" th:action="@{/addPago}"
+						th:object="${Pago}" method="POST">
+						<fieldset>
+							<div class="form-group">
+								<input class="form-control" placeholder="NumOrden"
+									name="numOrden" type="text" />
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="NumContabilidad"
+									name="numContabilidad" type="text" />
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Proyecto"
+									name="proyecto" type="text" />
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="InvestigadorPrincipal"
+									name="investigadorPrincipal" type="text" />
+							</div>
+							
+							<table>
+								
+								<tbody>
+									<tr th:each="gasto,gastoStat : *{this}">
+										<td>
+											<input type="text" class="form-control" placeholder="Nº Factura" th:field="*{gastos[__${gastoStat.index}__].numFactura}" />
+										</td>
+										<td>
+											<input type="text" class="form-control" placeholder="Proveedor,concepto y partida presupuestaria" th:field="*{gastos[__${gastoStat.index}__].proveedores}" />
+										</td>
+										<td>
+											<input type="text" class="form-control" placeholder="Importe" th:field="*{gastos[__${gastoStat.index}__].importe}" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
 
-							<div id="formularioGastos">
+							<!-- 		<div id="formularioGastos">
 								<div id="nuevoGasto" class="row">
 									<div class="col-md-2">
-										<input type="text" placeholder="Nº Factura"
-											class="form-control" />
+   										 	<tr th:each="row,rowStat : *{rows}">
+												<input type="text" placeholder="Nº Factura" th:field="*{gasto{__${gastoStat.index}__.numFactura}" class="form-control" />
 									</div>
 									<div class="col-md-7">
-										<input type="text"
-											placeholder="Proveedor,concepto y partida presupuestaria"
+										<input type="text" placeholder="Proveedor,concepto y partida presupuestaria" th:field="*{gasto{__${rowStat.index}__.proveedor}"
 											class="form-control" />
 									</div>
 									<div class="col-md-2">
-										<input type="text" placeholder="Importe" class="form-control" />
+										<input type="text" placeholder="Importe" class="form-control" th:field="*{gasto{__${rowStat.index}__.importe}"/>
 									</div>
 
 									<div class="col-md-1">
 										<button onclick="appendText()" class="btn btn-success">+</button>
 									</div>
-
+							
 								</div>
 
 							</div>
 
 
-
+ -->
 							<br></br>
 
 							<!-- Change this to a button or input when using this as a form -->
-                             <input type="submit" class="btn btn-lg btn-success btn-block" value="Add Pago"/>
-                               
-                            </fieldset>
-                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+							<input type="submit" class="btn btn-lg btn-success btn-block"
+								value="Add Pago" />
+
+						</fieldset>
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
 	<!-- jQuery -->
-    <script src="../../resources/bower_components/jquery/dist/jquery.min.js"
-    	data-th-src="@{resources/bower_components/jquery/dist/jquery.min.js}">
+	<script
+		src="../../resources/bower_components/jquery/dist/jquery.min.js"
+		data-th-src="@{resources/bower_components/jquery/dist/jquery.min.js}">
     </script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../resources/bower_components/bootstrap/dist/js/bootstrap.min.js"
-    	data-th-src="@{resources/bower_components/bootstrap/dist/js/bootstrap.min.js}">
+	<!-- Bootstrap Core JavaScript -->
+	<script
+		src="../../resources/bower_components/bootstrap/dist/js/bootstrap.min.js"
+		data-th-src="@{resources/bower_components/bootstrap/dist/js/bootstrap.min.js}">
     </script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../resources/bower_components/metisMenu/dist/metisMenu.min.js"
-    	data-th-src="@{resources/bower_components/metisMenu/dist/metisMenu.min.js}">
+	<!-- Metis Menu Plugin JavaScript -->
+	<script
+		src="../../resources/bower_components/metisMenu/dist/metisMenu.min.js"
+		data-th-src="@{resources/bower_components/metisMenu/dist/metisMenu.min.js}">
     </script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../../resources/dist/js/sb-admin-2.js"
-    	data-th-src="@{resources/dist/js/sb-admin-2.js}">
+	<!-- Custom Theme JavaScript -->
+	<script src="../../resources/dist/js/sb-admin-2.js"
+		data-th-src="@{resources/dist/js/sb-admin-2.js}">
     </script>
 
 </body>
 
 </html>
-	
-	
+

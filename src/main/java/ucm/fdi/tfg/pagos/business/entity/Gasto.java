@@ -27,4 +27,28 @@ public class Gasto {
 	
 	public Gasto(){		
 	}
+
+	public String getNumFactura() {
+		return numFactura;
+	}
+
+	public void setNumFactura(String numFactura) {
+		this.numFactura = numFactura;
+	}
+
+	public String getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
+
+	public BigDecimal getImporte() {
+		return importe;
+	}
+
+	public void setImporte(BigDecimal importe) {
+		this.importe = importe;
+	}
 }
