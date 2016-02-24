@@ -71,10 +71,12 @@ function appendText() {
 									name="investigadorPrincipal" type="text" />
 							</div>
 							
+			
+							<div>
+							
 							<table>
-								
 								<tbody>
-									<tr th:each="gasto,gastoStat : *{this}">
+									<tr th:each="gasto,gastoStat : *{gastos}">
 										<td>
 											<input type="text" class="form-control" placeholder="Nº Factura" th:field="*{gastos[__${gastoStat.index}__].numFactura}" />
 										</td>
@@ -87,31 +89,10 @@ function appendText() {
 									</tr>
 								</tbody>
 							</table>
-
-							<!-- 		<div id="formularioGastos">
-								<div id="nuevoGasto" class="row">
-									<div class="col-md-2">
-   										 	<tr th:each="row,rowStat : *{rows}">
-												<input type="text" placeholder="Nº Factura" th:field="*{gasto{__${gastoStat.index}__.numFactura}" class="form-control" />
-									</div>
-									<div class="col-md-7">
-										<input type="text" placeholder="Proveedor,concepto y partida presupuestaria" th:field="*{gasto{__${rowStat.index}__.proveedor}"
-											class="form-control" />
-									</div>
-									<div class="col-md-2">
-										<input type="text" placeholder="Importe" class="form-control" th:field="*{gasto{__${rowStat.index}__.importe}"/>
-									</div>
-
-									<div class="col-md-1">
-										<button onclick="appendText()" class="btn btn-success">+</button>
-									</div>
-							
-								</div>
-
 							</div>
+							
 
-
- -->
+				
 							<br></br>
 
 							<!-- Change this to a button or input when using this as a form -->
@@ -155,4 +136,30 @@ function appendText() {
 </body>
 
 </html>
+
+
+			<!-- 		<div id="formularioGastos">
+								<div id="nuevoGasto" class="row">
+									<div class="col-md-2">
+   										 	<tr th:each="row,rowStat : *{rows}">
+												<input type="text" placeholder="Nº Factura" th:field="*{gasto{__${gastoStat.index}__.numFactura}" class="form-control" />
+									</div>
+									<div class="col-md-7">
+										<input type="text" placeholder="Proveedor,concepto y partida presupuestaria" th:field="*{gasto{__${rowStat.index}__.proveedor}"
+											class="form-control" />
+									</div>
+									<div class="col-md-2">
+										<input type="text" placeholder="Importe" class="form-control" th:field="*{gasto{__${rowStat.index}__.importe}"/>
+									</div>
+
+									<div class="col-md-1">
+										<button onclick="appendText()" class="btn btn-success">+</button>
+									</div>
+							
+								</div>
+
+							</div>
+
+
+ -->
 
