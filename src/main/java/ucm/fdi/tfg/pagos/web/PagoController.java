@@ -33,7 +33,6 @@ public class PagoController {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		model.put("usuario", null);
 		Pago pago = new Pago();
 		pago.getGastos().add(new Gasto("0001", "Hola", BigDecimal.ONE));
 		model.put("pago", pago);
@@ -43,7 +42,9 @@ public class PagoController {
 	}
 	
 	
-	//Por aqui entra la aplicacion
+	//Por aqui entra la aplicacion.
+	//Igual que en thymeleaf le decimos mediante th:object el objeto q mandamos,  
+	//en spring mediante ModelAttribute le decimos el tipo de objeto que le llega.
 	@RequestMapping(value = "/addPago", method = RequestMethod.POST)
 	public String addPago(@ModelAttribute Pago pago, BindingResult errors){
 		System.out.println("AÑADIENDO PAGO");
@@ -52,7 +53,6 @@ public class PagoController {
 		}catch(Exception e){
 			 return "redirect:/error";
 		 }
-		
 		return "redirect:/registroCompleto";
 	}
 	
