@@ -4,15 +4,18 @@
 <meta charset="ISO-8859-1" />
 
 <script>
+
 function appendText() {
              // Create text with DOM
-     var numFactura=$('<div class="col-md-2"><input type="text" placeholder="Nº Factura" class="form-control col-md-2"/></div>');
-     var concepto=$('<div class="col-md-7"><input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"/></div>')
-     var importe=$('<div class="col-md-2"><input type="text" placeholder="Importe" class="form-control col-md-2"/></div>');
-     $('#formularioGastos').append(numFactura); 
-     $('#formularioGastos').append(concepto); 
-     $('#formularioGastos').append(importe);             
-    
+     var count = $('#gastos').length;
+     var nuevoGasto= $('<tr></tr>');
+     var numFactura=$('<td><input type="text" placeholder="Nº Factura" class="form-control col-md-2"/></td>').attr('name', 'gastos['+count+'].numFactura');
+     var concepto=$('<td><input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"/></td>').attr('name', 'gastos['+count+'].proveedor');
+     var importe=$('<td><input type="text" placeholder="Importe" class="form-control col-md-2"/></td>').attr('name', 'gastos['+count+'].importe');
+     $(nuevoGasto).append(numFactura); 
+     $(nuevoGasto).append(concepto); 
+     $(nuevoGasto).append(importe);             
+	$('#gastos').append(nuevoGasto);
 }
 </script>
 
@@ -52,7 +55,7 @@ function appendText() {
 				</div>
 				<div class="panel-body">
 					<form role="form" action="#" th:action="@{/addPago}"
-						th:object="${Pago}" method="POST">
+						th:object="${pago}" method="POST">
 						<fieldset>
 							<div class="form-group">
 								<input class="form-control" placeholder="NumOrden"
@@ -75,17 +78,20 @@ function appendText() {
 							<div>
 							
 							<table>
-								<tbody>
+								<tbody id="gastos">
 									<tr th:each="gasto,gastoStat : *{gastos}">
 										<td>
 											<input type="text" class="form-control" placeholder="Nº Factura" th:field="*{gastos[__${gastoStat.index}__].numFactura}" />
 										</td>
 										<td>
-											<input type="text" class="form-control" placeholder="Proveedor,concepto y partida presupuestaria" th:field="*{gastos[__${gastoStat.index}__].proveedores}" />
+											<input type="text" class="form-control" placeholder="Proveedor,concepto y partida presupuestaria" th:field="*{gastos[__${gastoStat.index}__].proveedor}" />
 										</td>
 										<td>
 											<input type="text" class="form-control" placeholder="Importe" th:field="*{gastos[__${gastoStat.index}__].importe}" />
 										</td>
+													<td class="col-md-1">
+				<button onclick="appendText()" class="btn btn-success" type="button">+</button>
+			</td>
 									</tr>
 								</tbody>
 							</table>

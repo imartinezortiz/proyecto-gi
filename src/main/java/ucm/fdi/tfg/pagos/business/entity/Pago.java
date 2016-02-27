@@ -82,5 +82,15 @@ public class Pago {
 	public void setInvestigadorPrincipal(String investigadorPrincipal) {
 		this.investigadorPrincipal = investigadorPrincipal;
 	}
+
+	public Collection<Gasto> getGastos() {
+		return gastos;
+	}
+
+	public void setGastos(Collection<Gasto> gastos) {
+		this.gastos = gastos;
+	}
+	
+	
 	
 }
