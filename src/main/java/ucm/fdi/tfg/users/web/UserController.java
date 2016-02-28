@@ -24,8 +24,7 @@ public class UserController {
 	{
 		this.userManager = userManager;
 	}
-	/*
-	
+		
 	//Por aqui entra la aplicacion
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
@@ -40,7 +39,7 @@ public class UserController {
 
 	}
 	
-	
+	// Redirecciona al menu despues de hacer login
 	@RequestMapping(value = "/bienvenido", method = RequestMethod.GET)
 	public ModelAndView prueba() {
 		
@@ -48,7 +47,7 @@ public class UserController {
 		
 		model.put("usuario",SecurityContextHolder.getContext().getAuthentication().getName());
 		
-		ModelAndView view = new ModelAndView("registrar", model);
+		ModelAndView view = new ModelAndView("Menu", model);
 		
 		return view;	
 
@@ -60,6 +59,20 @@ public class UserController {
 	    return "error";
 	  }  
 	  
+	 //Pagina de usuarios 
+	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
+	public ModelAndView usuarios() {
+
+		Map<String, String> model = new HashMap<String, String>();
+
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+
+		ModelAndView view = new ModelAndView("registrar", model);
+
+		return view;
+
+	}
+
 	  @RequestMapping(value = "/addUser", method = RequestMethod.POST)
 		public String add(User user) {
 			
@@ -86,7 +99,7 @@ public class UserController {
 
 		}
 	  
-	  */
+	  
 	  
 	  /*
 		 
