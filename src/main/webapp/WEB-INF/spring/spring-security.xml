@@ -29,6 +29,10 @@
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/addPago" access="permitAll" />
 		<intercept-url pattern="/registroCompleto" access="permitAll" />
+		<intercept-url pattern="/usuarios" access="isAuthenticated()" />
+		<intercept-url pattern="/pagos" access="isAuthenticated()" />
+		
+		
 		
 	
 		<intercept-url pattern="/bienvenido" access="hasRole('ROLE_ADMIN')" />
