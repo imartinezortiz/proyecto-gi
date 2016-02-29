@@ -26,7 +26,7 @@ public class UserController {
 	}
 		
 	//Por aqui entra la aplicacion
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home() {
 		
 		Map<String, Object> model = new HashMap<String, Object>();

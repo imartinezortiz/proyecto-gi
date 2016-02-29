@@ -25,12 +25,14 @@
 		<intercept-url pattern="/doLogin" access="permitAll" />
 		<intercept-url pattern="/logout" access="isAuthenticated()" />
 		<intercept-url pattern="/doLogout" access="isAuthenticated()" />
-		<intercept-url pattern="/bienvenido" access="isAuthenticated" />
+		<intercept-url pattern="/bienvenido" access="isAuthenticated()" />
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/addPago" access="permitAll" />
 		<intercept-url pattern="/registroCompleto" access="permitAll" />
 		<intercept-url pattern="/usuarios" access="isAuthenticated()" />
 		<intercept-url pattern="/pagos" access="isAuthenticated()" />
+		<intercept-url pattern="/home" access="permitAll" />
+		
 		
 		
 		
