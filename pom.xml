@@ -196,6 +196,15 @@
 			<version>2.6.2</version>
 		</dependency>
 		
+		<!-- -->
+		<!-- Javax validation -->
+		<!-- -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.1.0.Final</version>
+		</dependency>
+		
 			<!-- Apache Commons DBCP  esta dependencia es para el Pool de Conexiones.-->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
