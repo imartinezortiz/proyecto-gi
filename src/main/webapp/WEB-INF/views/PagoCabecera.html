@@ -7,15 +7,29 @@
 
 function appendText() {
              // Create text with DOM
-     var count = $('#gastos').length;
+     
+             
+     var count = gastos.children.length;
      var nuevoGasto= $('<tr></tr>');
-     var numFactura=$('<td><input type="text" placeholder="Nº Factura" class="form-control col-md-2"/></td>').attr('name', 'gastos['+count+'].numFactura');
-     var concepto=$('<td><input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"/></td>').attr('name', 'gastos['+count+'].proveedor');
-     var importe=$('<td><input type="text" placeholder="Importe" class="form-control col-md-2"/></td>').attr('name', 'gastos['+count+'].importe');
-     $(nuevoGasto).append(numFactura); 
-     $(nuevoGasto).append(concepto); 
-     $(nuevoGasto).append(importe);             
-	$('#gastos').append(nuevoGasto);
+     var auxnumFactura = $('<td></td>');
+     var auxconcepto = $('<td></td>');
+     var auximporte = $('<td></td>');
+     
+     var numFactura=$('<input type="text" placeholder="Nº Factura" class="form-control col-md-2"/>').attr('name', 'gastos['+count+'].numFactura');
+     var concepto=$('<input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"/>').attr('name', 'gastos['+count+'].proveedor');
+     var importe=$('<input type="text" placeholder="Importe" class="form-control col-md-2"/>').attr('name', 'gastos['+count+'].importe');
+     
+    
+     $(auxnumFactura).append(numFactura);
+     $(auxconcepto).append(concepto);
+     $(auximporte).append(importe);
+     
+     $(nuevoGasto).append(auxnumFactura); 
+     $(nuevoGasto).append(auxconcepto); 
+     $(nuevoGasto).append(auximporte);             
+	 $('#gastos').append(nuevoGasto);
+
+	 
 }
 </script>
 
@@ -48,7 +62,7 @@ function appendText() {
 
 	<div class="row">
 		<div class="col-md-14 col-md-offset-1">
-			<h2>Orden de Pago</h2>
+			<h1>Orden de Pago</h1>
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Introduzca valores Pago</h3>
@@ -89,9 +103,10 @@ function appendText() {
 										<td>
 											<input type="text" class="form-control" placeholder="Importe" th:field="*{gastos[__${gastoStat.index}__].importe}" />
 										</td>
-													<td class="col-md-1">
-				<button onclick="appendText()" class="btn btn-success" type="button">+</button>
-			</td>
+										<td class="col-md-1">
+											<button onclick="appendText()" class="btn btn-success" type="button">+</button>
+										</td>
+										
 									</tr>
 								</tbody>
 							</table>

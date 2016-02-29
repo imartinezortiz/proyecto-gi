@@ -36,7 +36,8 @@ public class PagoController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		
 		Pago pago = new Pago();
-		pago.getGastos().add(new Gasto("0001", "Hola", BigDecimal.ONE));
+		Gasto g =new Gasto(null,null,null);
+		pago.getGastos().add(g);
 		model.put("pago", pago);
 
 		ModelAndView view = new ModelAndView("PagoCabecera", model);
