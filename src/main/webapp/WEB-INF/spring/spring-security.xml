@@ -32,6 +32,7 @@
 		<intercept-url pattern="/usuarios" access="isAuthenticated()" />
 		<intercept-url pattern="/pagos" access="isAuthenticated()" />
 		<intercept-url pattern="/home" access="permitAll" />
+		<intercept-url pattern="/pruebas" access="permitAll" />
 		
 		
 		

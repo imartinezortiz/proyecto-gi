@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+
+<!-- Bootstrap Core CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
+
+<!-- MetisMenu CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/metisMenu/dist/metisMenu.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/metisMenu/dist/metisMenu.min.css}" />
+
+<!-- Custom CSS -->
+<link type="text/css" href="../../resources/dist/css/sb-admin-2.css"
+	rel="stylesheet" data-th-href="@{/resources/dist/css/sb-admin-2.css}" />
+
+<!-- Custom Fonts -->
+<link
+	href="../../resources/bower_components/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css"
+	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
+
+<script type="text/javascript">
+	$(function() {
+		$('#datetimepicker1').datetimepicker();
+	});
+</script>
+
+<title>Inventario</title>
+</head>
+<body class="container">
+
+	<div class="row">
+		<div class="col-md-12 col-md-offset-1">
+			<h1>INFORMACIÓN PARA INVENTARIAR ACTIVOS FIJOS</h1>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title">Introduzca valores Inventario</p>
+				</div>
+				<div class="panel-body">
+					<form role="form" action="#" th:action="@{/bienvenido}"  method="POST">
+						<div class="form-group">
+							<input class="form-control" placeholder="Nº CONTABILIDAD"
+								name="numContabilidad" type="text" />
+						</div>
+						
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<p class="panel-title">Datos Investigador Principal</p>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<input class="form-control" placeholder="Nombre"
+										name="investigadorPrincipal.nombre" type="text" />
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="Apellidos"
+										name="investigadorPrincipal.apellidos" type="text" />
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="Departamento"
+										name="investigadorPrincipal.departamento" type="text" />
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="CENTRO AL QUE ESTÁ ADSCRITO EL INVESTIGADOR"
+										name="investigadorPrincipal.centro" type="text" />
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<p class="panel-title">Activo</p>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>DESCRIPCIÓN DEL BIEN A INVENTARIAR:</label>
+									<textarea class="form-control" rows="3"></textarea>
+								</div>
+								<div class="form-group">
+									<label>CENTRO EN EL QUE SE EMPLAZARÁ EL BIEN::</label>
+									<textarea class="form-control" rows="3"></textarea>
+								</div>
+								<div class="form-group">
+									<label>AUTORIZACIÓN DEL GERENTE DEL CENTRO (si se necesita instalación o afecta a la infraestructura del Centro):</label>
+									<textarea class="form-control" rows="3"></textarea>
+								</div>
+								<div class="form-group">
+									<div class='input-group date' id='datetimepicker1'>
+										<input type='text' class="form-control" /> <span
+											class="input-group-addon"> <span
+											class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>OBSERVACIONES:</label>
+									<textarea class="form-control" rows="3"></textarea>
+								</div>
+																
+								<input type="date" />
+								
+							</div>
+							
+						</div>
+
+						<br></br>
+
+						<!-- Change this to a button or input when using this as a form -->
+						<input type="submit" class="btn btn-lg btn-success btn-block"
+							value="Añadir Inventario" /> <input type="hidden"
+							th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- jQuery -->
+	<script
+		src="../../resources/bower_components/jquery/dist/jquery.min.js"
+		data-th-src="@{resources/bower_components/jquery/dist/jquery.min.js}">
+		
+	</script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script
+		src="../../resources/bower_components/bootstrap/dist/js/bootstrap.min.js"
+		data-th-src="@{resources/bower_components/bootstrap/dist/js/bootstrap.min.js}">
+		
+	</script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script
+		src="../../resources/bower_components/metisMenu/dist/metisMenu.min.js"
+		data-th-src="@{resources/bower_components/metisMenu/dist/metisMenu.min.js}">
+		
+	</script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="../../resources/dist/js/sb-admin-2.js"
+		data-th-src="@{resources/dist/js/sb-admin-2.js}">
+		
+	</script>
+</body>
+</html>
