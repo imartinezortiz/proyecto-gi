@@ -9,9 +9,9 @@
 
 		var count = gastos.children.length;
 		var nuevoGasto = $('<tr></tr>');
-		var auxnumFactura = $('<td></td>');
-		var auxconcepto = $('<td></td>');
-		var auximporte = $('<td></td>');
+		var auxnumFactura = $('<td class="col-md-2"></td>');
+		var auxconcepto = $('<td class="col-md-8"></td>');
+		var auximporte = $('<td class="col-md-2"></td>');
 
 		var numFactura = $(
 				'<input type="text" placeholder="Nº Factura" class="form-control col-md-2"/>')
@@ -112,9 +112,6 @@
 										</div>
 									</div>
 
-
-
-					
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<p class="panel-title">Gastos</p>
@@ -123,16 +120,15 @@
 									<table>
 										<tbody id="gastos">
 											<tr th:each="gasto,gastoStat : *{gastos}">
-												<td><input type="text" class="form-control"
-													placeholder="Nº Factura"
+												<td class="col-md-2">
+													<input type="text" class="form-control" placeholder="Nº Factura"
 													th:field="*{gastos[__${gastoStat.index}__].numFactura}" /></td>
-												<td><input type="text" class="form-control"
-													placeholder="Proveedor,concepto y partida presupuestaria"
+												<td class="col-md-8">
+													<input type="text" class="form-control" placeholder="Proveedor,concepto y partida presupuestaria"
 													th:field="*{gastos[__${gastoStat.index}__].proveedor}" /></td>
-												<td><input type="text" class="form-control"
-													placeholder="Importe"
-													th:field="*{gastos[__${gastoStat.index}__].importe}" /></td>
-												<td class="col-md-1">
+												<td class="col-md-2">
+													<input type="text" class="form-control" placeholder="Importe" th:field="*{gastos[__${gastoStat.index}__].importe}" /></td>
+												<td class="col-md-2">
 													<button onclick="appendText()" class="btn btn-success"
 														type="button">+</button>
 												</td>
