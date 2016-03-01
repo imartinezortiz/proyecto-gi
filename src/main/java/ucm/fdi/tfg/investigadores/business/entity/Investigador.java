@@ -1,13 +1,18 @@
 package ucm.fdi.tfg.investigadores.business.entity;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
+
+
 
 
 @Entity
@@ -24,9 +29,10 @@ public class Investigador {
 	private String departamento;
 	private String centro;
 	private String telefono;	
+
 	
-	@Email
-	private String email;
+//	@Email
+//	private String email;
 	
 	public Investigador(){
 		
@@ -82,13 +88,13 @@ public class Investigador {
 		this.telefono = telefono;
 	}
 
-	public String getEmail() {
+	/*public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	*/
 
 }

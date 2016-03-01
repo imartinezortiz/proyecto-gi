@@ -1,5 +1,6 @@
 package ucm.fdi.tfg.pagos.business.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -13,8 +14,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import ucm.fdi.tfg.investigadores.business.entity.Investigador;
 
 @Entity
 @Table(name="PAGOS")
@@ -28,10 +32,12 @@ public class Pago {
 	private int numOrden;
 	private String proyecto;	
 	private int numContabilidad;
+	//private LocalDate fecha;
 	
-	//private Date fecha;	//hay que ver que formato le damos	
 	
-	private String investigadorPrincipal; //Habrá que crear una entidad investigador 
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="investigadorId")
+	private Investigador investigadorPrincipal;
 		
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PAGO_GASTOS", joinColumns=@JoinColumn(name="pagoId"),  uniqueConstraints=@UniqueConstraint(columnNames={"pagoId", "numFactura"}))
@@ -43,15 +49,15 @@ public class Pago {
 		this.gastos = new ArrayList<Gasto>();
 	}
 	
-	public Pago (int numOrden, String proyecto, int numContabilidad, String investigadorPrincipal)
+	public Pago (int numOrden,String proyecto, int numContabilidad, Investigador investigadorPrincipal)
 	{
 				
 		this.numOrden = numOrden;
-		this.setProyecto(proyecto);
-		this.setNumContabilidad(numContabilidad);
-		this.setInvestigadorPrincipal(investigadorPrincipal);
-		//this.fecha = fecha;		
-		this.gastos = new ArrayList<Gasto>();		
+		//this.fecha = fecha;
+		this.proyecto = proyecto;
+		this.numContabilidad = numContabilidad;
+		this.investigadorPrincipal = investigadorPrincipal;
+		this.gastos = new ArrayList<Gasto>();	
 	}
 
 	
@@ -75,11 +81,11 @@ public class Pago {
 		this.numContabilidad = numContabilidad;
 	}
 
-	public String getInvestigadorPrincipal() {
+	public Investigador getInvestigadorPrincipal() {
 		return investigadorPrincipal;
 	}
 
-	public void setInvestigadorPrincipal(String investigadorPrincipal) {
+	public void setInvestigadorPrincipal(Investigador investigadorPrincipal) {
 		this.investigadorPrincipal = investigadorPrincipal;
 	}
 

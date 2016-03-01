@@ -9,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import ucm.fdi.tfg.pagos.business.entity.Gasto;
+
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.pagos.business.repository.PagoRepository;
-import ucm.fdi.tfg.users.business.entity.User;
-import ucm.fdi.tfg.users.business.entity.UserRole;
+
 
 @Service
 @Transactional
