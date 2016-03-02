@@ -1,13 +1,10 @@
 package ucm.fdi.tfg.pagos.web;
 
-import java.math.BigDecimal;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,6 +19,7 @@ import ucm.fdi.tfg.pagos.business.entity.Pago;
 
 @Controller
 public class PagoController {
+	private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
 	
 	PagoManager pagoManager;
 	
@@ -40,7 +38,7 @@ public class PagoController {
 		pago.getGastos().add(g);
 		model.put("pago", pago);
 
-		ModelAndView view = new ModelAndView("PagoCabecera", model);
+		ModelAndView view = new ModelAndView("pagos/PagoCabecera", model);
 		
 		return view;
 	}
@@ -61,6 +59,7 @@ public class PagoController {
 				
 				pagoManager.save(pago);		 
 			}catch(Exception e){
+				logger.error("Error añadiendo pago", e);
 				return "redirect:/errorPago";
 		 }
 		return "redirect:/registroCompleto";

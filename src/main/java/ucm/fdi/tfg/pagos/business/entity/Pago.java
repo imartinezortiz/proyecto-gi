@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -27,7 +27,7 @@ public class Pago {
 	@Id
 	@Column(name="pagoId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	int id;
+	Long id;
 	
 	private int numOrden;
 	private String proyecto;	
@@ -36,7 +36,6 @@ public class Pago {
 	
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="investigadorId")
 	private Investigador investigadorPrincipal;
 		
 	@ElementCollection(fetch=FetchType.EAGER)
