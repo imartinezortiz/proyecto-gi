@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-<meta charset="ISO-8859-1" />
+<meta charset="UTF-8" />
 
 <script>
 	function appendText() {
 		// Create text with DOM
-		var numFactura = $('<div class="col-md-2"><input type="text" placeholder="Nº Factura" class="form-control col-md-2"/></div>');
+		var numFactura = $('<div class="col-md-2"><input type="text" placeholder="NÂº Factura" class="form-control col-md-2"/></div>');
 		var concepto = $('<div class="col-md-7"><input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"/></div>')
 		var importe = $('<div class="col-md-2"><input type="text" placeholder="Importe" class="form-control col-md-2"/></div>');
 		$('#formularioGastos').append(numFactura);
@@ -30,7 +30,7 @@
 	<div id="formularioGastos">
 		<div id="nuevoGasto" class="row">
 			<div class="col-md-2">
-				<input type="text" placeholder="Nº Factura" class="form-control" />
+				<input type="text" placeholder="NÂº Factura" class="form-control" />
 			</div>
 			<div class="col-md-7">
 				<input type="text"

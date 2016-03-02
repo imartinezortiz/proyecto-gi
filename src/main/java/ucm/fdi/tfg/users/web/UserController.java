@@ -45,7 +45,7 @@ public class UserController {
 		
 		Map<String, String> model = new HashMap<String, String>();
 		
-		model.put("usuario",SecurityContextHolder.getContext().getAuthentication().getName());
+		model.put("usuario",null);
 		
 		ModelAndView view = new ModelAndView("Menu", model);
 		
@@ -85,6 +85,15 @@ public class UserController {
 		 	return "redirect:/registroCompleto";
 		 
 		 }
+	  
+	  @RequestMapping(value = "/bienvenido", method = RequestMethod.POST)
+			public String aMenu() {
+				
+			 
+				 return "redirect:/bienvenido";
+	
+			 }
+		  
 	  
 	  @RequestMapping(value = "/registroCompleto", method = RequestMethod.GET)
 		public ModelAndView regcompletado() {
