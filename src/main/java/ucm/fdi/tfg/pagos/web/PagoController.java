@@ -52,13 +52,29 @@ public class PagoController {
 	@RequestMapping(value = "/addPago", method = RequestMethod.POST)
 	public String addPago(@ModelAttribute Pago pago, BindingResult errors){
 		System.out.println("AÑADIENDO PAGO");
-		try{ 
-		 pagoManager.save(pago);		 
-		}catch(Exception e){
-			 return "redirect:/error";
+		
+		if(errors.hasErrors()){
+			return "redirect:/errorPago";
+		}
+		else{
+			try{ 
+				pagoManager.save(pago);		 
+			}catch(Exception e){
+				return "redirect:/errorPago";
 		 }
 		return "redirect:/registroCompleto";
+		}		
 	}
+	
+	@RequestMapping(value = "/errorPago", method = RequestMethod.GET)
+	public ModelAndView errores() {
 		
+		Map<String, Object> model = new HashMap<String, Object>();
 
+		model.put("null", null);
+
+		ModelAndView view = new ModelAndView("error", model);
+		
+		return view;
+	}
 }

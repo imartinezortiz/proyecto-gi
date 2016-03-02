@@ -27,7 +27,7 @@ public class Pago {
 	@Id
 	@Column(name="pagoId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	long id;
+	int id;
 	
 	private int numOrden;
 	private String proyecto;	

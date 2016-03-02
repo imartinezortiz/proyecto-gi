@@ -22,7 +22,7 @@ public class Investigador {
 	@Id
 	@Column(name="investigadorId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	long id;
+	int id;
 	
 	private String nombre;
 	private String apellidos;
@@ -37,16 +37,7 @@ public class Investigador {
 	public Investigador(){
 		
 	}
-	
 
-	public long getId() {
-		return id;
-	}
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getNombre() {
 		return nombre;
