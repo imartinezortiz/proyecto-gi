@@ -58,6 +58,7 @@ public class PagoController {
 		}
 		else{
 			try{ 
+				
 				pagoManager.save(pago);		 
 			}catch(Exception e){
 				return "redirect:/errorPago";

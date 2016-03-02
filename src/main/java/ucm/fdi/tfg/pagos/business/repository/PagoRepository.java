@@ -13,7 +13,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-
+import ucm.fdi.tfg.investigadores.business.entity.Investigador;
 import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.users.business.entity.User;
@@ -24,7 +24,12 @@ public class PagoRepository {
 	@PersistenceContext
 	private EntityManager em; 
 	
+	
 	public void save(Pago pago){
+	
+		//Preguntar a Ivan que hacer con el metodo getReference, 
+		//ya que ese método te genera un obj, mediante un id..y aqui el problema esq no tenemos id 
+		
 		em.merge(pago);
 	}
 	

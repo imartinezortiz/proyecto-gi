@@ -23,6 +23,7 @@ public class PagoManager {
 	 @Autowired
 	 public PagoManager (PagoRepository pagos){
 		 this.repositoryPago = pagos;
+		 
 	 }
 	 
 	 public void save(Pago pago){	
