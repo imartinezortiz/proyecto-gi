@@ -38,7 +38,7 @@ public class PagoController {
 		pago.getGastos().add(g);
 		model.put("pago", pago);
 
-		ModelAndView view = new ModelAndView("pagos/PagoCabecera", model);
+		ModelAndView view = new ModelAndView("pagos/pago", model);
 		
 		return view;
 	}

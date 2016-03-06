@@ -47,7 +47,7 @@ public class UserController {
 		
 		model.put("usuario",null);
 		
-		ModelAndView view = new ModelAndView("Menu", model);
+		ModelAndView view = new ModelAndView("menu", model);
 		
 		return view;	
 
