@@ -28,6 +28,5 @@ public class HomeController {
 			ModelAndView view = new ModelAndView("inventarios", model);
 			
 			return view;	
-
 		}
 }
