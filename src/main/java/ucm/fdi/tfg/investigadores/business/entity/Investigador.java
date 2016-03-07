@@ -3,6 +3,7 @@ package ucm.fdi.tfg.investigadores.business.entity;
 
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
+
+import ucm.fdi.tfg.investigadores.business.boundary.Persona;
 
 
 
@@ -22,41 +25,28 @@ public class Investigador {
 	@Id
 	@Column(name="investigadorId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	Long id;
+	Long id;	
 	
-	private String nombre;
-	private String apellidos;
 	private String departamento;
 	private String centro;
-	private String telefono;	
-
 	
-//	@Email
-//	private String email;
+	
+	private Persona persona;
 	
 	public Investigador(){
 		
 	}
+	
+	public Investigador(Persona persona, String departamento, String centro ){
+		this.persona = persona;
+		this.departamento = departamento;
+		this.centro = centro;
+	}
 
 	public Long getId(){
 		return id;
-	}
+	}	
 	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellidos() {
-		return apellidos;
-	}
-
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
 
 	public String getDepartamento() {
 		return departamento;
@@ -74,21 +64,6 @@ public class Investigador {
 		this.centro = centro;
 	}
 
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	/*public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	*/
+	
 
 }

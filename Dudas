@@ -2,3 +2,7 @@ DUDAS:
 	Añadir vistas en carpetas (tocado servlet-context, linea:47) 
 	
 	Implementar de springDataJPA
+	
+	En los controladores GET, si no queremos devolver nada solo redireccionar, que hacemos?
+	
+	añadir tiempo de compilacion de Tomcat
