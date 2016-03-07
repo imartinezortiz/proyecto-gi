@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ucm.fdi.tfg.administradores.business.boundary.AdministradorManager;
 import ucm.fdi.tfg.gestores.business.boundary.GestorManager;
 import ucm.fdi.tfg.investigadores.business.entity.Investigador;
 
@@ -17,10 +18,12 @@ import ucm.fdi.tfg.investigadores.business.entity.Investigador;
 public class GestorController {
 	
 	GestorManager gestorManager;
+	AdministradorManager administradorManager;
 	
 	@Autowired
-	public GestorController(GestorManager gestorManager){
+	public GestorController(GestorManager gestorManager,AdministradorManager administradorManager){
 		this.gestorManager = gestorManager;
+		this.administradorManager = administradorManager;
 	}
 	
 	@RequestMapping(value = "/gestor", method = RequestMethod.GET)
@@ -38,9 +41,9 @@ public class GestorController {
 	@RequestMapping(value = "/añadirProyecto", method = RequestMethod.GET)
 	public ModelAndView añadirProyecto() {
 		
-		Map<String, List<Investigador>> model = new HashMap<String, List<Investigador>>();
+		Map<String, Object> model = new HashMap<String, Object>();
 		
-		model.put("investigadores",gestorManager.getAllInvestigadores());
+		model.put("investigadores",administradorManager.findAll());
 		
 		ModelAndView view = new ModelAndView("proyecto", model);
 		

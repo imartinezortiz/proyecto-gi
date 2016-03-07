@@ -2,6 +2,8 @@ package ucm.fdi.tfg.administradores.business.boundary;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,10 @@ public class AdministradorManager {
 		Investigador inv = new Investigador (p,nuevoInvestigadorDTO.getDepartamento(), nuevoInvestigadorDTO.getCentro());		
 		
 		this.administradorRepository.save(inv);
+	}
+	
+	public List<Investigador> findAll(){
+		return administradorRepository.findAll();
 	}
 
 }
