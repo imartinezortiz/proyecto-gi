@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <!-- Bootstrap Core CSS -->
 <link type="text/css"
 	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
@@ -25,33 +25,56 @@
 	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
 <title>Añadir Investigador</title>
 </head>
-<body>
-
+<body class="container">
+	 <h1>Añadir Investigador </h1>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<p class="panel-title">Datos Investigador</p>
 		</div>
 		<div class="panel-body">
-			<div class="form-group">
-				<input class="form-control" placeholder="Nombre"
-					name="investigadorPrincipal.nombre" type="text" />
-			</div>
-			<div class="form-group">
-				<input class="form-control" placeholder="Apellidos"
-					name="investigadorPrincipal.apellidos" type="text" />
-			</div>
-			<div class="form-group">
-				<input class="form-control" placeholder="Departamento"
-					name="investigadorPrincipal.departamento" type="text" />
-			</div>
-			<div class="form-group">
-				<input class="form-control" placeholder="Centro"
-					name="investigadorPrincipal.centro" type="text" />
-			</div>
-			<div class="form-group">
-				<input class="form-control" placeholder="Teléfono"
-					name="investigadorPrincipal.telefono" type="text" />
-			</div>
+			<form role="form" action="#" th:action="@{/addInvestigador}"
+				th:object="${NuevoInvestigadorDTO}" method="POST">
+				<fieldset>
+					<div class="form-group">
+						<input class="form-control" placeholder="Nombre" name="nombre"
+							type="text" />
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="Apellidos"
+							name="apellidos" type="text" />
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="Telefono" name="telefono"
+							type="text" />
+					</div>					
+					<div class="form-group">
+						<input class="form-control" placeholder="Email"
+							name="email" type="email" />
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="Departamento"
+							name="departamento" type="text" />
+					</div>
+					
+					<div class="form-group">
+						<input class="form-control" placeholder="Centro" name="centro"
+							type="text" />
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="Password" name="password"
+							type="password" />
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="Repita Password"
+							name="nuevaPassword" type="password" />
+					</div>
+					<!-- Change this to a button or input when using this as a form -->
+					<input type="submit" class="btn btn-lg btn-success btn-block"
+						value="Añadir Investigador" />
+				</fieldset>
+				<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}" />
+			</form>
 		</div>
 	</div>
 

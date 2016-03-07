@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ucm.fdi.tfg.investigadores.business.boundary.InvestigadorManager;
+import ucm.fdi.tfg.investigadores.business.boundary.NuevoInvestigadorDTO;
 
 @Controller
 public class InvestigadorController {
@@ -22,17 +23,11 @@ public class InvestigadorController {
 		this.investigadorManager = investigadorManager;
 	}
 		
-	@RequestMapping(value = "/altaInvestigador", method = RequestMethod.GET)
-	public ModelAndView altaInvestigador() {
-		
-		Map<String, Object> model = new HashMap<String, Object>();
-		
-		model.put("usuario", null);
-		
-		ModelAndView view = new ModelAndView("investigador", model);
-		
-		return view;	
+	
 
-	}
+	
+	
+	
+	
 	
 }
