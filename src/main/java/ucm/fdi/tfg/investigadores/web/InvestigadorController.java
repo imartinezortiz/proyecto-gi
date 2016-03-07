@@ -29,7 +29,7 @@ public class InvestigadorController {
 		
 		model.put("usuario", null);
 		
-		ModelAndView view = new ModelAndView("home", model);
+		ModelAndView view = new ModelAndView("investigador", model);
 		
 		return view;	
 

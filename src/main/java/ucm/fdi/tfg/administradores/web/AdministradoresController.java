@@ -28,7 +28,7 @@ public class AdministradoresController {
 		
 		model.put("usuario", null);
 		
-		ModelAndView view = new ModelAndView("administrador", model);
+		ModelAndView view = new ModelAndView("menuAdmin", model);
 		
 		return view;	
 
