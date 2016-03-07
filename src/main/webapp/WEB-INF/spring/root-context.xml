@@ -44,6 +44,8 @@
     <value>ucm.fdi.tfg.pagos.business.entity</value>
     <value>ucm.fdi.tfg.investigadores.business.entity</value>
      <value>ucm.fdi.tfg.administradores.business.entity</value>
+     <value>ucm.fdi.tfg.gestores.business.entity</value>
+      <value>ucm.fdi.tfg.proyecto.business.entity</value>
    </array>
   </property> 
   <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>  

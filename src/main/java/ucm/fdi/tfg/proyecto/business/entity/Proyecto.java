@@ -6,10 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import ucm.fdi.tfg.investigadores.business.entity.Investigador;
 
 @Entity
+@Table(name="Proyectos")
 public class Proyecto {
 	
 	@Id

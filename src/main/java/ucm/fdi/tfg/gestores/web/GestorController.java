@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ucm.fdi.tfg.administradores.business.boundary.AdministradorManager;
 import ucm.fdi.tfg.gestores.business.boundary.GestorManager;
 import ucm.fdi.tfg.investigadores.business.entity.Investigador;
+import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Controller
 public class GestorController {
@@ -50,6 +51,11 @@ public class GestorController {
 		return view;	
 	}
 	
+	@RequestMapping(value = "/añadirProyecto", method = RequestMethod.POST)
+	public String añadirProyectoPost(Proyecto proyecto) {
+		gestorManager.saveProyect(proyecto);
+		return "redirect:/añadirProyecto";
+	}
 	
 
 }

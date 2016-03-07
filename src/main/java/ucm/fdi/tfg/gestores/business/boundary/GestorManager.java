@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ucm.fdi.tfg.gestores.business.repository.GestorRepository;
 import ucm.fdi.tfg.investigadores.business.entity.Investigador;
+import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Service
 @Transactional
@@ -20,8 +21,8 @@ public class GestorManager {
 		this.gestorRepository = gestorRepository;
 	}
 	
-	public List<Investigador> getAllInvestigadores(){
-		return null;
+	public void saveProyect(Proyecto proyecto){
+		gestorRepository.saveProyect(proyecto);
 		
 	}
 	
