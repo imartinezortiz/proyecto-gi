@@ -20,6 +20,7 @@
 	<context:component-scan base-package="ucm.fdi.tfg.pagos.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.investigadores.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.administradores.business"/>
+	<context:component-scan base-package="ucm.fdi.tfg.gestores.business"/>
 	
 <!-- org.thymeleaf.templateresolver.ServletContextTemplateResolver -->	
  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 

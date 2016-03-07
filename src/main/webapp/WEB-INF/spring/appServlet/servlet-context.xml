@@ -25,6 +25,7 @@
 	<context:component-scan base-package="ucm.fdi.tfg.pagos.web"></context:component-scan>
 	<context:component-scan base-package="ucm.fdi.tfg.investigadores.web"></context:component-scan>
 	<context:component-scan base-package="ucm.fdi.tfg.administradores.web"></context:component-scan>
+	<context:component-scan base-package="ucm.fdi.tfg.gestores.web"></context:component-scan>
 	
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->

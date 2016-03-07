@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+
+<!-- Bootstrap Core CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
+
+<!-- MetisMenu CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/metisMenu/dist/metisMenu.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/metisMenu/dist/metisMenu.min.css}" />
+
+<!-- Custom CSS -->
+<link type="text/css" href="../../resources/dist/css/sb-admin-2.css"
+	rel="stylesheet" data-th-href="@{/resources/dist/css/sb-admin-2.css}" />
+
+<!-- Custom Fonts -->
+<link
+	href="../../resources/bower_components/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css"
+	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
+<title>Añadir Investigador</title>
+</head>
+<body class="container">
+<form role="form" action="#" th:action="@{/añadirProyecto}" th:object="${Proyecto}" method="POST">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p class="panel-title">Datos Proyecto</p>
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<input class="form-control" placeholder="Referencia"
+					name="referencia" type="text" />
+			</div>
+			<div class="form-group">
+				<input class="form-control" placeholder="Título"
+					name="titulo" type="text" />
+			</div>
+			<div class="form-group">
+					<select th:field="*{investigador}">
+						<option th:each="investigador : ${investigadores}" th:value="${investigador}"
+							th:text="${investigador.user.name}">Investigadores</option>
+					</select>
+				</div>
+			<div class="form-group">
+				<input class="form-control" placeholder="Nº Contabilidad"
+					name="numContabilidad" type="text" />
+			</div>
+			<input type="submit" class="btn btn-lg btn-success btn-block" value="Crear Proyecto"/>
+		</div>
+	</div>
+	 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+	</form>
+
+</body>
+</html>
+
+
