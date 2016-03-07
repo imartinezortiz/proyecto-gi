@@ -44,9 +44,9 @@
 			<div class="form-group">
 					<select th:field="*{investigador}">
 						<option th:each="investigador : ${investigadores}" th:value="${investigador}"
-							th:text="${investigador.user.name}">Investigadores</option>
+							th:text="${investigador.user.username}">Investigadores</option>
 					</select>
-				</div>
+			</div>
 			<div class="form-group">
 				<input class="form-control" placeholder="Nº Contabilidad"
 					name="numContabilidad" type="text" />
