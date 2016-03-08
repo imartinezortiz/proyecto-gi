@@ -27,7 +27,7 @@
 <title>Añadir Investigador</title>
 </head>
 <body class="container">
-<form role="form" action="#" th:action="@{/añadirProyecto}" th:object="${Proyecto}" method="POST">
+<form role="form" action="#" th:action="@{/añadirProyecto}" th:object="${NuevoProyectoDTO}" method="POST">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<p class="panel-title">Datos Proyecto</p>
@@ -42,8 +42,8 @@
 					name="titulo" type="text" />
 			</div>
 			<div class="form-group">
-					<select name="investigador">
-						<option th:each="investigador : ${investigadores}" th:value="${investigador}"
+					<select name="investigadorId">
+						<option th:each="investigador : ${investigadores}" th:value="${investigador.id}"
 							th:text="${investigador.persona.nombre}">Investigadores</option>
 					</select>
 			</div>
