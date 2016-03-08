@@ -15,7 +15,7 @@ import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 @Service
 @Transactional
 public class GestorManager {
-	
+
 	GestorRepository gestorRepository;
 	AdministradorRepository administradorRepository;
 	
@@ -34,6 +34,22 @@ public class GestorManager {
 		proyecto.setInvestigador(inv);
 		gestorRepository.saveProyect(proyecto);
 		
+	}
+	
+	public GestorRepository getGestorRepository() {
+		return gestorRepository;
+	}
+
+	public void setGestorRepository(GestorRepository gestorRepository) {
+		this.gestorRepository = gestorRepository;
+	}
+
+	public AdministradorRepository getAdministradorRepository() {
+		return administradorRepository;
+	}
+
+	public void setAdministradorRepository(AdministradorRepository administradorRepository) {
+		this.administradorRepository = administradorRepository;
 	}
 	
 

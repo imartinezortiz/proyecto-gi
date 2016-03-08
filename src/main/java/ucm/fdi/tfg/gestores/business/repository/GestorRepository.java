@@ -20,8 +20,14 @@ public class GestorRepository {
 	@PersistenceContext
 	private EntityManager em; 
 
+	public EntityManager getEm() {
+		return em;
+	}
+
 	public void saveProyect(Proyecto proyecto) {
 		em.merge(proyecto);
 	}
+	
+	 
 
 }

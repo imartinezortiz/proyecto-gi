@@ -28,7 +28,7 @@ public class InvestigadorRepository {
 	
 	
 	//Aqui, cuando arreglemos el login, tendremos q modificar el método, y solo devolver los 
-	//proyectos asignados al investigador que esté logueado. De omento muestra todos de prueba.
+	//proyectos asignados al investigador que esté logueado. De momento muestra todos de prueba.
 	
 	public List<Proyecto> getAllProyects() {
 		CriteriaBuilder cb = em.getCriteriaBuilder();

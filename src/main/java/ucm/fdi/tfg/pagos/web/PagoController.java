@@ -9,36 +9,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ucm.fdi.tfg.gestores.business.boundary.GestorManager;
 import ucm.fdi.tfg.pagos.business.boundary.PagoManager;
 import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
+import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Controller
 public class PagoController {
 	private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
 	
 	PagoManager pagoManager;
+	GestorManager gestorManager;
 	
 	@Autowired
-	public PagoController (PagoManager pagoManager){
+	public PagoController (PagoManager pagoManager,GestorManager gestorManager){
 		this.pagoManager = pagoManager;
+		this.gestorManager = gestorManager;
 	}
 		
-	@RequestMapping(value = "/pagos", method = RequestMethod.GET)
-	public ModelAndView home() {
+	@RequestMapping(value = "/proyecto/{idProyecto}/menu/pagos", method = RequestMethod.GET)
+	public ModelAndView pagoform(@PathVariable(value="idProyecto") Long idProyecto) {
+		
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
 		Pago pago = new Pago();
+		//Cogemos el proyecto  que vamos a pintar en el Pago
+		Proyecto proyecto = gestorManager.getGestorRepository().getEm().find(Proyecto.class, idProyecto);
+		
 		Gasto g =new Gasto(null,null,null);
 		pago.getGastos().add(g);
+		
+		pago.setNumContabilidad(proyecto.getNumContabilidad());
+		pago.setProyecto(proyecto.getTitulo());
+		
 		model.put("pago", pago);
 
-		ModelAndView view = new ModelAndView("pagos/pago", model);
+		ModelAndView view = new ModelAndView("pagos/pagoForm", model);
 		
 		return view;
 	}

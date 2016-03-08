@@ -1,10 +1,10 @@
 package ucm.fdi.tfg.pagos.business.entity;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -29,13 +29,13 @@ public class Pago {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	Long id;
 	
-	private int numOrden;
+	private String numOrden;
 	private String proyecto;	
-	private int numContabilidad;
+	private String numContabilidad;
 	//private LocalDate fecha;
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Investigador investigadorPrincipal;
 		
 	@ElementCollection(fetch=FetchType.EAGER)
@@ -48,7 +48,7 @@ public class Pago {
 		this.gastos = new ArrayList<Gasto>();
 	}
 	
-	public Pago (int numOrden,String proyecto, int numContabilidad, Investigador investigadorPrincipal)
+	public Pago (String numOrden,String proyecto, String numContabilidad, Investigador investigadorPrincipal)
 	{
 				
 		this.numOrden = numOrden;
@@ -60,7 +60,7 @@ public class Pago {
 	}
 
 	
-	public void setNumOrden(int numOrden) {
+	public void setNumOrden(String numOrden) {
 		this.numOrden = numOrden;
 	}
 
@@ -72,11 +72,11 @@ public class Pago {
 		this.proyecto = proyecto;
 	}
 
-	public int getNumContabilidad() {
+	public String getNumContabilidad() {
 		return numContabilidad;
 	}
 
-	public void setNumContabilidad(int numContabilidad) {
+	public void setNumContabilidad(String numContabilidad) {
 		this.numContabilidad = numContabilidad;
 	}
 
