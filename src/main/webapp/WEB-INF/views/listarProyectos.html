@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+ <!-- Bootstrap Core CSS -->
+    <link type="text/css" href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"
+    data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
+<title>Proyectos</title>
+</head>
+<body class="container">
+
+
+<div class="alert alert-info text-center"> PROYECTOS </div>
+
+
+<table class="table table-hover">
+<thead>
+<tr>
+	<th class="">Proyectos</th>
+</tr>
+</thead>
+<tbody>
+
+<tr th:each="proyecto : ${proyectos}">
+   <td> <a th:href="@{'/proyecto/{id}' (id=${proyecto.id})}" th:text="${proyecto.referencia} + '  --     ' + ${proyecto.titulo}"></a></td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

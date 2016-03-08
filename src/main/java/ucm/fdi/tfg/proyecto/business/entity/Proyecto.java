@@ -28,6 +28,10 @@ public class Proyecto {
 	public Proyecto(){
 	
 	}
+	
+	public Long getId(){
+		return this.id;
+	}
 
 	public String getReferencia() {
 		return referencia;
