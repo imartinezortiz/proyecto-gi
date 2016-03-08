@@ -22,7 +22,6 @@ public class GestorRepository {
 
 	public void saveProyect(Proyecto proyecto) {
 		em.merge(proyecto);
-		
 	}
 
 }

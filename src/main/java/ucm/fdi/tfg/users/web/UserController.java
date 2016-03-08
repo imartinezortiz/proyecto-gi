@@ -70,7 +70,6 @@ public class UserController {
 		ModelAndView view = new ModelAndView("registrar", model);
 
 		return view;
-
 	}
 
 	  @RequestMapping(value = "/addUser", method = RequestMethod.POST)
@@ -83,7 +82,6 @@ public class UserController {
 			 return "redirect:/error";
 		 }
 		 	return "redirect:/registroCompleto";
-		 
 		 }
 	  
 	  @RequestMapping(value = "/bienvenido", method = RequestMethod.POST)

@@ -18,6 +18,8 @@ public class AdministradorRepository {
 	@PersistenceContext
 	private EntityManager em; 
 	
+	
+
 	List<Investigador> listaInvestigadores;
 	
 	public void save (Investigador investigador){
@@ -35,6 +37,14 @@ public class AdministradorRepository {
 
 		return this.listaInvestigadores;
 		
+	}
+	
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
 	}
 
 }
