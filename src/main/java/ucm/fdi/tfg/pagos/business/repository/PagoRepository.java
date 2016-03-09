@@ -13,9 +13,9 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-import ucm.fdi.tfg.investigadores.business.entity.Investigador;
 import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
+import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
 
 @Repository
