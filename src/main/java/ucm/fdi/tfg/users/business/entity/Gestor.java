@@ -1,4 +1,4 @@
-package ucm.fdi.tfg.gestores.business.entity;
+package ucm.fdi.tfg.users.business.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

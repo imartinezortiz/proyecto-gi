@@ -19,43 +19,42 @@ import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 @Entity
-@Table(name="Users")
+@Table(name = "Users")
 public class User implements UserDetails, CredentialsContainer {
-	
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(name="usersId")
-	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	int id;
+	@Column(name = "usersId")
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // va incrementando id
+	private Long id;
+	
 	private String username;
 	private String password;
-	
-	@ElementCollection(fetch=FetchType.EAGER)
-	@CollectionTable(name="USER_ROLES", joinColumns=@JoinColumn(name="usersId"),  uniqueConstraints=@UniqueConstraint(columnNames={"usersId", "role"}))
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "USER_ROLES", joinColumns = @JoinColumn(name = "usersId"), uniqueConstraints = @UniqueConstraint(columnNames = {
+			"usersId", "role" }))
 	private Collection<UserRole> roles;
-	
+
 	private boolean accountExpired;
-	
+
 	private boolean accountLocked;
-	
+
 	private boolean credentialsExpired;
-	
+
 	private boolean enabled;
-	
-	public User(){
+
+	public User() {
 		this.roles = new ArrayList<UserRole>();
 		this.enabled = true;
 		this.accountExpired = false;
 		this.accountLocked = false;
 		this.credentialsExpired = false;
 	}
-	
 
-	public User (String username, String password)
-	{
+	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 		this.enabled = true;
@@ -65,26 +64,31 @@ public class User implements UserDetails, CredentialsContainer {
 		this.roles = new ArrayList<UserRole>();
 	}
 
+	public Long getId() {
+		return this.id;
+	}
+	
 	public String getName() {
 		return username;
 	}
+
 	public void setName(String username) {
 		this.username = username;
-		
+
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public Collection<UserRole> getRoles() {
 		return roles;
 	}
@@ -93,31 +97,26 @@ public class User implements UserDetails, CredentialsContainer {
 		this.roles = roles;
 	}
 
-	
-
-	
 	public void addRole(UserRole role) {
 		this.roles.add(role);
 	}
-	
+
 	public void removeRole(UserRole role) {
 		this.roles.remove(role);
 	}
-	
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		return roles;
 	}
-	
+
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return username;
 	}
-	
-	
-	
+
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
@@ -145,7 +144,7 @@ public class User implements UserDetails, CredentialsContainer {
 	@Override
 	public void eraseCredentials() {
 		this.password = null;
-		
+
 	}
 
 	@Override
@@ -172,7 +171,5 @@ public class User implements UserDetails, CredentialsContainer {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

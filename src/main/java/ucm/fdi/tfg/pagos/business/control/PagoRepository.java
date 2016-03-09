@@ -1,4 +1,4 @@
-package ucm.fdi.tfg.pagos.business.repository;
+package ucm.fdi.tfg.pagos.business.control;
 
 import java.util.Collection;
 

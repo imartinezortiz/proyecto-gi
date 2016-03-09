@@ -1,4 +1,4 @@
-package ucm.fdi.tfg.investigadores.business.boundary;
+package ucm.fdi.tfg.users.business.boundary;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
@@ -12,11 +12,7 @@ public class Persona {
 	private String apellidos;
 	private String telefono;
 	private String email;
-	private String password;	
-	
-	
-	private UserRole rol;
-	
+
 	public Persona(){
 		
 	}
@@ -27,14 +23,6 @@ public class Persona {
 		this.telefono = telefono;
 		this.email = email;
 	
-	}
-	
-	public UserRole getRol() {
-		return rol;
-	}
-
-	public void setRol(UserRole rol) {
-		this.rol = rol;
 	}
 	
 	public String getNombre() {
@@ -60,11 +48,5 @@ public class Persona {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 }

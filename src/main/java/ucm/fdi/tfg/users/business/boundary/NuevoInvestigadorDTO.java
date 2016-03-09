@@ -1,4 +1,4 @@
-package ucm.fdi.tfg.investigadores.business.boundary;
+package ucm.fdi.tfg.users.business.boundary;
 
 public class NuevoInvestigadorDTO {
 	

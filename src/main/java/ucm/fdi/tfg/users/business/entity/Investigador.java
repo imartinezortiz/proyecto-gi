@@ -1,53 +1,51 @@
-package ucm.fdi.tfg.investigadores.business.entity;
+package ucm.fdi.tfg.users.business.entity;
 
-
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import ucm.fdi.tfg.investigadores.business.boundary.Persona;
-
-
-
+import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
+import ucm.fdi.tfg.users.business.boundary.Persona;
 
 @Entity
-@Table(name="Investigadores")
+@Table(name = "Investigadores")
 public class Investigador {
-	
+
 	@Id
-	@Column(name="investigadorId")
-	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	private Long id;	
-	
-	 private String departamento;
-	 private String centro;
-	
+	@Column(name = "investigadorId")
+	private Long id;
+
+	private String departamento;
+	private String centro;
+
 	@Embedded
 	private Persona persona;
+
+	@OneToMany(mappedBy="investigadorPrincipal")
+	private Collection<Proyecto> proyectosDirigidos;
 	
-	public Investigador(){
-		
+	Investigador() {
+
 	}
-	@Autowired
-	public Investigador(Persona persona, String departamento, String centro ){
+
+	public Investigador(Long id, Persona persona, String departamento, String centro) {
+		this.id = id;
 		this.persona = persona;
 		this.departamento = departamento;
 		this.centro = centro;
 	}
 
-	public Long getId(){
+	public Long getId() {
 		return id;
-	}	
-	
+	}
 
 	public String getDepartamento() {
 		return departamento;
@@ -64,15 +62,17 @@ public class Investigador {
 	public void setCentro(String centro) {
 		this.centro = centro;
 	}
+
 	public Persona getPersona() {
 		return persona;
 	}
+
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-	
-	
 
-	
+	public Collection<Proyecto> getProyectosDirigidos() {
+		return proyectosDirigidos;
+	}
 
 }

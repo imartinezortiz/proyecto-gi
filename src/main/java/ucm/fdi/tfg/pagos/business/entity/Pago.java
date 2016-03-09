@@ -4,7 +4,6 @@ package ucm.fdi.tfg.pagos.business.entity;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -15,10 +14,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import ucm.fdi.tfg.investigadores.business.entity.Investigador;
+import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
+import ucm.fdi.tfg.users.business.entity.Investigador;
 
 @Entity
 @Table(name="PAGOS")
@@ -29,33 +30,28 @@ public class Pago {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	Long id;
 	
-	private String numOrden;
-	private String proyecto;	
-	private String numContabilidad;
+	private String numOrden;	
 	//private LocalDate fecha;
 	
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Investigador investigadorPrincipal;
+
+	@OneToOne(fetch=FetchType.LAZY)
+	private Proyecto proyecto;
 		
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PAGO_GASTOS", joinColumns=@JoinColumn(name="pagoId"),  uniqueConstraints=@UniqueConstraint(columnNames={"pagoId", "numFactura"}))
 	private Collection<Gasto> gastos;
 	
-	
-	public Pago()
-	{
-		this.gastos = new ArrayList<Gasto>();
+	Pago() {
+		
+	}
+	public Pago(Proyecto proyecto) {
+		this(proyecto, "" );
 	}
 	
-	public Pago (String numOrden,String proyecto, String numContabilidad, Investigador investigadorPrincipal)
-	{
-				
+	public Pago (Proyecto proyecto, String numOrden) {			
 		this.numOrden = numOrden;
 		//this.fecha = fecha;
 		this.proyecto = proyecto;
-		this.numContabilidad = numContabilidad;
-		this.investigadorPrincipal = investigadorPrincipal;
 		this.gastos = new ArrayList<Gasto>();	
 	}
 
@@ -64,28 +60,12 @@ public class Pago {
 		this.numOrden = numOrden;
 	}
 
-	public String getProyecto() {
+	public Proyecto getProyecto() {
 		return proyecto;
 	}
 
-	public void setProyecto(String proyecto) {
+	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
-	}
-
-	public String getNumContabilidad() {
-		return numContabilidad;
-	}
-
-	public void setNumContabilidad(String numContabilidad) {
-		this.numContabilidad = numContabilidad;
-	}
-
-	public Investigador getInvestigadorPrincipal() {
-		return investigadorPrincipal;
-	}
-
-	public void setInvestigadorPrincipal(Investigador investigadorPrincipal) {
-		this.investigadorPrincipal = investigadorPrincipal;
 	}
 
 	public Collection<Gasto> getGastos() {

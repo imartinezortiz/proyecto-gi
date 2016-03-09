@@ -10,17 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ucm.fdi.tfg.investigadores.business.boundary.InvestigadorManager;
+import ucm.fdi.tfg.users.business.boundary.UserManager;
+import ucm.fdi.tfg.users.business.entity.Investigador;
+import ucm.fdi.tfg.users.business.entity.User;
 
 
 @Controller
 public class InvestigadorController {
 
-	InvestigadorManager investigadorManager;
+	private UserManager users;
 
 	@Autowired
-	public InvestigadorController(InvestigadorManager investigadorManager) {
-		this.investigadorManager = investigadorManager;
+	public InvestigadorController(UserManager users) {
+		this.users = users;
 	}
 
 	//Aqui manda todos los proyectos que hay, 
@@ -29,9 +31,12 @@ public class InvestigadorController {
 	@RequestMapping(value = "/proyectos", method = RequestMethod.GET)
 	public ModelAndView listarProeyctos() {
 
+		User user = users.getCurrentUser();
+		Investigador inv = users.findInvestigadorPrincipal(user.getId());
+		
 		Map<String, Object> model = new HashMap<String, Object>();
 
-		model.put("proyectos", investigadorManager.getAllProyects());
+		model.put("proyectos", inv.getProyectosDirigidos());
 
 		ModelAndView view = new ModelAndView("listarProyectos", model);
 

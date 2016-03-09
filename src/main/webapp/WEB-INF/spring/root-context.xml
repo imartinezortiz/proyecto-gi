@@ -19,6 +19,7 @@
 	<!-- Enables the Spring MVC @Service and @Repository programming model -->
 	<context:component-scan base-package="ucm.fdi.tfg.users.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.pagos.business"/>
+		<context:component-scan base-package="ucm.fdi.tfg.proyecto.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.investigadores.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.administradores.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.gestores.business"/>
@@ -43,10 +44,7 @@
    <array>
     <value>ucm.fdi.tfg.users.business.entity</value>
     <value>ucm.fdi.tfg.pagos.business.entity</value>
-    <value>ucm.fdi.tfg.investigadores.business.entity</value>
-     <value>ucm.fdi.tfg.administradores.business.entity</value>
-     <value>ucm.fdi.tfg.gestores.business.entity</value>
-      <value>ucm.fdi.tfg.proyecto.business.control</value>
+    <value>ucm.fdi.tfg.proyecto.business.entity</value>
    </array>
   </property> 
   <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>  
@@ -76,10 +74,17 @@
 	<!-- -->
 	<!-- Spring Data JPA -->
 	<!-- -->
-	<data:repositories base-package="ucm.fdi.tfg.users.control"
+	<data:repositories base-package="ucm.fdi.tfg.users.business.control"
 		entity-manager-factory-ref="entityManagerFactory"
 		transaction-manager-ref="transactionManager" />
 		
+	<data:repositories base-package="ucm.fdi.tfg.proyecto.business.control"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager" />
+		
+	<data:repositories base-package="ucm.fdi.tfg.pagos.business.control"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager" />		
 </beans>
 
 

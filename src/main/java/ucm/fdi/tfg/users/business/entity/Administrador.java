@@ -1,4 +1,4 @@
-package ucm.fdi.tfg.administradores.business.entity;
+package ucm.fdi.tfg.users.business.entity;
 
 import javax.persistence.Entity;
 

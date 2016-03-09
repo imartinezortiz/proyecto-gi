@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ucm.fdi.tfg.gestores.business.boundary.GestorManager;
 import ucm.fdi.tfg.pagos.business.boundary.PagoManager;
 import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
+import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Controller
@@ -25,12 +25,12 @@ public class PagoController {
 	private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
 	
 	PagoManager pagoManager;
-	GestorManager gestorManager;
+	ProyectosManager proyectosManager;
 	
 	@Autowired
-	public PagoController (PagoManager pagoManager,GestorManager gestorManager){
+	public PagoController (PagoManager pagoManager,ProyectosManager gestorManager){
 		this.pagoManager = pagoManager;
-		this.gestorManager = gestorManager;
+		this.proyectosManager = gestorManager;
 	}
 		
 	@RequestMapping(value = "/proyecto/{idProyecto}/menu/pagos", method = RequestMethod.GET)
@@ -39,15 +39,12 @@ public class PagoController {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		Pago pago = new Pago();
 		//Cogemos el proyecto  que vamos a pintar en el Pago
-		Proyecto proyecto = gestorManager.getGestorRepository().getEm().find(Proyecto.class, idProyecto);
+		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
+		Pago pago = new Pago(proyecto);
 		
-		Gasto g =new Gasto(null,null,null);
+		Gasto g =new Gasto();
 		pago.getGastos().add(g);
-		
-		pago.setNumContabilidad(proyecto.getNumContabilidad());
-		pago.setProyecto(proyecto.getTitulo());
 		
 		model.put("pago", pago);
 

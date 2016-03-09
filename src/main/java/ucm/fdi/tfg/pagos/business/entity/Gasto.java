@@ -19,14 +19,16 @@ public class Gasto {
 	@Basic
 	private BigDecimal importe;
 	
+	public Gasto(){
+		this(null, null, BigDecimal.ZERO);
+	}
+	
 	public Gasto(String numFactura,String provedor, BigDecimal importe ){
 		this.numFactura = numFactura;
 		this.proveedor = provedor;
 		this.importe = importe;
 	}	
-	
-	public Gasto(){		
-	}
+
 
 	public String getNumFactura() {
 		return numFactura;

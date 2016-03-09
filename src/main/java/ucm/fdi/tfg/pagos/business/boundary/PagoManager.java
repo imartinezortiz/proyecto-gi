@@ -1,17 +1,11 @@
 package ucm.fdi.tfg.pagos.business.boundary;
 
-import java.util.Collection;
-import java.util.List;
-
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-
-
+import ucm.fdi.tfg.pagos.business.control.PagoRepository;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
-import ucm.fdi.tfg.pagos.business.repository.PagoRepository;
 
 
 @Service

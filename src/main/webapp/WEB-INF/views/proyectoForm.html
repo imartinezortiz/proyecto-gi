@@ -35,14 +35,14 @@
 		<div class="panel-body">
 			<div class="form-group">
 				<input class="form-control" placeholder="Referencia"
-					name="referencia" type="text" />
+					name="referencia" type="text" th:value="*{referencia}"/>
 			</div>
 			<div class="form-group">
 				<input class="form-control" placeholder="Título"
-					name="titulo" type="text" />
+					name="titulo" type="text"  th:value="*{titulo}"/>
 			</div>
 			<div class="form-group">
-					<select class="form-control" name="investigadorId">
+					<select class="form-control" name="investigadorId" th:field="*{investigadorId}">
 						<option th:each="investigador : ${investigadores}" th:value="${investigador.id}"
 							th:text="${investigador.persona.nombre}">Investigadores</option>
 					</select>

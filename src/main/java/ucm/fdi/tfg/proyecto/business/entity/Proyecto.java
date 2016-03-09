@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import ucm.fdi.tfg.investigadores.business.entity.Investigador;
+import ucm.fdi.tfg.users.business.entity.Investigador;
 
 @Entity
 @Table(name="Proyectos")
@@ -22,8 +22,10 @@ public class Proyecto {
 	String titulo;
 	@ManyToOne
 	@JoinColumn(name="investigadorID")
-	Investigador investigador;
+	Investigador investigadorPrincipal;
 	String numContabilidad;
+	
+	
 	
 	public Proyecto(){
 	
@@ -49,12 +51,12 @@ public class Proyecto {
 		this.titulo = titulo;
 	}
 
-	public Investigador getInvestigador() {
-		return investigador;
+	public Investigador getInvestigadorPrincipal() {
+		return investigadorPrincipal;
 	}
 
-	public void setInvestigador(Investigador investigador) {
-		this.investigador = investigador;
+	public void setInvestigadorPrincipal(Investigador investigador) {
+		this.investigadorPrincipal = investigador;
 	}
 
 	public String getNumContabilidad() {

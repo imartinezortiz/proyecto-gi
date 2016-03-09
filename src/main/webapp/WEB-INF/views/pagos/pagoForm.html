@@ -77,11 +77,11 @@
 								</div>
 								<div class="form-group">
 									<input class="form-control" 
-										name="numContabilidad" type="text" th:value="${pago.numContabilidad}" readonly="readonly"/>
+										name="numContabilidad" type="text" th:value="*{proyecto.numContabilidad}" readonly="readonly"/>
 								</div>
 								<div class="form-group">
 									<input class="form-control" 
-										name="proyecto" type="text" th:value="${pago.proyecto}" readonly="readonly"/>
+										name="proyecto" type="text" th:value="${pago.proyecto.titulo}" readonly="readonly"/>
 								</div>
 								
 									<div class="panel panel-default">
@@ -91,11 +91,11 @@
 										<div class="panel-body">
 											<div class="form-group">
 												<input class="form-control" placeholder="Nombre"
-													name="investigadorPrincipal.nombre" type="text" />
+													name="investigadorPrincipal.nombre" type="text" th:value="${pago.proyecto.investigadorPrincipal.persona.nombre}" readonly="readonly"/>
 											</div>
 											<div class="form-group">
 												<input class="form-control" placeholder="Apellidos"
-													name="investigadorPrincipal.apellidos" type="text" />
+													name="investigadorPrincipal.apellidos" type="text" th:value="${pago.proyecto.investigadorPrincipal.persona.apellidos}" readonly="readonly"/>
 											</div>
 											<div class="form-group">
 												<input class="form-control" placeholder="Departamento"
