@@ -33,9 +33,10 @@
 			<p class="panel-title">Datos Proyecto</p>
 		</div>
 		<div class="panel-body">
-			<div class="form-group">
+			<div class="form-group" th:classappend="${#fields.hasErrors('referencia')} ? has-error">
 				<input class="form-control" placeholder="Referencia"
 					name="referencia" type="text" th:value="*{referencia}"/>
+				<span class="help-block" th:errors="*{referencia}">[errors]</span>
 			</div>
 			<div class="form-group">
 				<input class="form-control" placeholder="Título"
