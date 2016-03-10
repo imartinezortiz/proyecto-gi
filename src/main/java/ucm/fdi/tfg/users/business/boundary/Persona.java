@@ -1,9 +1,7 @@
 package ucm.fdi.tfg.users.business.boundary;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 
-import ucm.fdi.tfg.users.business.entity.UserRole;
 
 @Embeddable
 public class Persona {

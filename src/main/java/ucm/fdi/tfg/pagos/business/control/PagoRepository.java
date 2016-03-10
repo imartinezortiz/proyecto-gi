@@ -1,22 +1,13 @@
 package ucm.fdi.tfg.pagos.business.control;
 
-import java.util.Collection;
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 import org.springframework.stereotype.Repository;
 
-import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
-import ucm.fdi.tfg.users.business.entity.Investigador;
-import ucm.fdi.tfg.users.business.entity.User;
 
 @Repository
 public class PagoRepository {

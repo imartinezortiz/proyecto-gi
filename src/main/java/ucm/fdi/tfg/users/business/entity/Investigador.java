@@ -5,12 +5,9 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.Persona;
