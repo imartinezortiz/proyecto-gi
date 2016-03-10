@@ -30,15 +30,12 @@ public class GestorController {
 	@RequestMapping(value = "/gestor", method = RequestMethod.GET)
 	public ModelAndView menuGestor() {
 
-		Map<String, String> model = new HashMap<String, String>();
-
-		model.put("usuario", null);
-
-		ModelAndView view = new ModelAndView("menuGestor", model);
+		ModelAndView view = new ModelAndView("menuGestor");
 
 		return view;
 	}
-//cambiar a /proyectos/nuevo
+	
+	//cambiar a /proyectos/nuevo
 	@RequestMapping(value = "/crearProyecto", method = RequestMethod.GET)
 	public ModelAndView añadirProyecto() {
 

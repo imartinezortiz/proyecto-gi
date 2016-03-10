@@ -11,44 +11,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ucm.fdi.tfg.users.business.boundary.UserManager;
-import ucm.fdi.tfg.users.business.entity.User;
 
 @Controller
 public class UserController {
 
-	UserManager userManager;
+	private UserManager users;
 
 	@Autowired
 	public UserController(UserManager userManager) {
-		this.userManager = userManager;
+		this.users = userManager;
 	}
 
 	// Por aqui entra la aplicacion
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home() {
-
-		Map<String, Object> model = new HashMap<String, Object>();
-
-		model.put("usuario", null);
-
-		ModelAndView view = new ModelAndView("home", model);
-
+		
+		ModelAndView view = new ModelAndView("home");
+		
 		return view;
-
 	}
 
 	// Redirecciona al menu despues de hacer login
 	@RequestMapping(value = "/bienvenido", method = RequestMethod.GET)
 	public ModelAndView prueba() {
 
-		Map<String, String> model = new HashMap<String, String>();
-
-		model.put("usuario", null);
-
-		ModelAndView view = new ModelAndView("menu", model);
+		ModelAndView view = new ModelAndView("menu");
 
 		return view;
-
 	}
 
 	// Entra por aqui, cuando hay un error en el login.
@@ -73,51 +62,10 @@ public class UserController {
 	@RequestMapping(value = "/registroCompleto", method = RequestMethod.GET)
 	public ModelAndView regcompletado() {
 
-		Map<String, Object> model = new HashMap<String, Object>();
-
-		model.put("usuario", null);
-
-		ModelAndView view = new ModelAndView("registroCompletado", model);
+		ModelAndView view = new ModelAndView("registroCompletado");
 
 		return view;
-
 	}
-
-	/*
-	 * 
-	 * // Login form with error
-	 * 
-	 * @RequestMapping("/login-error.html") public String loginError(Model
-	 * model) { model.addAttribute("loginError", true); return "login.html"; }
-	 */
-
-	/*
-	 * @RequestMapping(value = "/error", method = RequestMethod.GET) public
-	 * ModelAndView error() {
-	 * 
-	 * Map<String, Object> model = new HashMap<String, Object>();
-	 * 
-	 * model.put("usuario",null);
-	 * 
-	 * ModelAndView view = new ModelAndView("error", model);
-	 * 
-	 * return view;
-	 * 
-	 * }
-	 */
-	/*
-	 * @RequestMapping(value = "/bienvenido", method = RequestMethod.GET) public
-	 * ModelAndView prueba(User user) {
-	 * 
-	 * Map<String, Object> model = new HashMap<String, Object>();
-	 * 
-	 * model.put("usuario",userManager.loadUserByUsername(user.getName()));
-	 * 
-	 * ModelAndView view = new ModelAndView("logueados", model);
-	 * 
-	 * return view;
-	 * 
-	 * }
-	 */
+	
 
 }

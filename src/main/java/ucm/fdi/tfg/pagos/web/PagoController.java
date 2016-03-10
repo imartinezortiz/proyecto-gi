@@ -54,19 +54,16 @@ public class PagoController {
 	}
 		
 	
-	//Por aqui entra la aplicacion.
 	//Igual que en thymeleaf le decimos mediante th:object el objeto q mandamos,  
 	//en spring mediante ModelAttribute le decimos el tipo de objeto que le llega.
 	@RequestMapping(value = "/addPago", method = RequestMethod.POST)
 	public String addPago(@ModelAttribute Pago pago, BindingResult errors){
-		System.out.println("AÑADIENDO PAGO");
-		
+				
 		if(errors.hasErrors()){
 			return "redirect:/errorPago";
 		}
 		else{
-			try{ 
-				
+			try{ 				
 				pagoManager.save(pago);		 
 			}catch(Exception e){
 				logger.error("Error añadiendo pago", e);
@@ -79,11 +76,7 @@ public class PagoController {
 	@RequestMapping(value = "/errorPago", method = RequestMethod.GET)
 	public ModelAndView errores() {
 		
-		Map<String, Object> model = new HashMap<String, Object>();
-
-		model.put("null", null);
-
-		ModelAndView view = new ModelAndView("error", model);
+		ModelAndView view = new ModelAndView("error");
 		
 		return view;
 	}
