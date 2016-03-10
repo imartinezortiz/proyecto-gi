@@ -1,7 +1,7 @@
 package ucm.fdi.tfg.users.business.boundary;
 
 
-import java.util.Collection;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.control.InvestigadoresRepository;
 import ucm.fdi.tfg.users.business.control.UserRepository;
 import ucm.fdi.tfg.users.business.entity.Investigador;
@@ -25,7 +24,6 @@ import ucm.fdi.tfg.users.business.entity.UserRole;
 public class UserManager implements UserDetailsService{
 	
 	private UserRepository repositoryUser;
-	//Habrá que añadir el passwordEncoder para que no se vea en la BBDD
 	
 	private InvestigadoresRepository investigadores;
 	
@@ -49,8 +47,8 @@ public class UserManager implements UserDetailsService{
 	private User addUser(User user){
 		//Hasheamos aqui el password	
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.addRole(new UserRole("ROLE_USER"));
-		user.addRole(new UserRole("ROLE_ADMIN"));
+		//user.addRole(new UserRole("ROLE_USER"));
+		//user.addRole(new UserRole("ROLE_ADMIN"));
 		return repositoryUser.save(user);
 	}
 
