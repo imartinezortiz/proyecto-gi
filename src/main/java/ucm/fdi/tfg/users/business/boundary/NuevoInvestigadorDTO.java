@@ -3,6 +3,7 @@ package ucm.fdi.tfg.users.business.boundary;
 public class NuevoInvestigadorDTO {
 	
 	//Atributos para Persona
+	String username;
 	String nombre;
 	String apellidos;
 	String telefono;
@@ -13,8 +14,7 @@ public class NuevoInvestigadorDTO {
 	
 	//Atributos para Investigador
 	String departamento;	
-	String centro;	
-	
+	String centro;		
 	
 	
 	public String getNombre() {
@@ -64,6 +64,12 @@ public class NuevoInvestigadorDTO {
 	}
 	public void setNuevaPassword(String nuevaPassword) {
 		this.nuevaPassword = nuevaPassword;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	
