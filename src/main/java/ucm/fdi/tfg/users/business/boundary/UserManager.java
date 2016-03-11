@@ -47,19 +47,32 @@ public class UserManager implements UserDetailsService{
 	private User addUser(User user){
 		//Hasheamos aqui el password	
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		//user.addRole(new UserRole("ROLE_USER"));
-		//user.addRole(new UserRole("ROLE_ADMIN"));
 		return repositoryUser.save(user);
+	}
+	
+	public User addGestor(User admin) {
+		User user = new User (admin.getUsername(), admin.getPassword(), admin.getNombre(), admin.getApellidos(), admin.getTelefono(), admin.getEmail());
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.addRole(new UserRole("ROLE_GESTOR"));	
+		user.addRole(new UserRole("ROLE_ADMIN"));	
+		user.addRole(new UserRole("ROLE_USER"));
+		return repositoryUser.save(user);				
+	}
+	
+	public User addAdmin(User admin) {		
+		User user = new User (admin.getUsername(), admin.getPassword(), admin.getNombre(), admin.getApellidos(), admin.getTelefono(), admin.getEmail());
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.addRole(new UserRole("ROLE_ADMIN"));	
+		user.addRole(new UserRole("ROLE_USER"));
+		return repositoryUser.save(user);		 
 	}
 
 	public Investigador addInvestigador(NuevoInvestigadorDTO nuevoInvestigadorDTO){
-		
-		User user = new User(nuevoInvestigadorDTO.getEmail(), nuevoInvestigadorDTO.getPassword());
+		User user = new User(nuevoInvestigadorDTO.getUsername(), nuevoInvestigadorDTO.getPassword(), nuevoInvestigadorDTO.getNombre(), nuevoInvestigadorDTO.getApellidos(), nuevoInvestigadorDTO.getTelefono(), nuevoInvestigadorDTO.getEmail());
 		user.addRole(new UserRole("ROLE_INVESTIGADOR"));
 		user = addUser(user);	
 		
-		Persona p = new Persona(nuevoInvestigadorDTO.getNombre(), nuevoInvestigadorDTO.getApellidos(), nuevoInvestigadorDTO.getTelefono(), nuevoInvestigadorDTO.getEmail());
-		Investigador inv = new Investigador(user.getId(), p, nuevoInvestigadorDTO.getDepartamento(), nuevoInvestigadorDTO.getCentro());			
+		Investigador inv = new Investigador(user.getId(), nuevoInvestigadorDTO.getDepartamento(), nuevoInvestigadorDTO.getCentro());			
 		return this.investigadores.save(inv);
 	}
 	
@@ -75,9 +88,7 @@ public class UserManager implements UserDetailsService{
 			throw new UsernameNotFoundException(String.format("User %s not found", username));
 		}
 		
-		return user;
-	
-		
+		return user;		
 	}
 
 	public Investigador findInvestigador(Long id) {
@@ -92,6 +103,12 @@ public class UserManager implements UserDetailsService{
 		Investigador inv = investigadores.findInvestigadorPrincipal(id);
 		return inv;
 	}
+
+	
+
+	
+
+
 
 
 }
