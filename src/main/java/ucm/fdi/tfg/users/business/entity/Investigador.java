@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
-import ucm.fdi.tfg.users.business.boundary.Persona;
 
 @Entity
 @Table(name = "Investigadores")
@@ -22,10 +21,7 @@ public class Investigador {
 
 	private String departamento;
 	private String centro;
-
-	@Embedded
-	private Persona persona;
-
+	
 	@OneToMany(mappedBy="investigadorPrincipal")
 	private Collection<Proyecto> proyectosDirigidos;
 	
@@ -33,9 +29,8 @@ public class Investigador {
 
 	}
 
-	public Investigador(Long id, Persona persona, String departamento, String centro) {
+	public Investigador(Long id, String departamento, String centro) {
 		this.id = id;
-		this.persona = persona;
 		this.departamento = departamento;
 		this.centro = centro;
 	}
@@ -60,14 +55,7 @@ public class Investigador {
 		this.centro = centro;
 	}
 
-	public Persona getPersona() {
-		return persona;
-	}
-
-	public void setPersona(Persona persona) {
-		this.persona = persona;
-	}
-
+	
 	public Collection<Proyecto> getProyectosDirigidos() {
 		return proyectosDirigidos;
 	}

@@ -44,7 +44,12 @@ public class User implements UserDetails, CredentialsContainer {
 
 	private boolean credentialsExpired;
 
-	private boolean enabled;
+	private boolean enabled;	
+
+	private String nombre;
+	private String apellidos;
+	private String telefono;
+	private String email;
 
 	public User() {
 		this.roles = new ArrayList<UserRole>();
@@ -54,7 +59,7 @@ public class User implements UserDetails, CredentialsContainer {
 		this.credentialsExpired = false;
 	}
 
-	public User(String username, String password) {
+	public User(String username, String password, String nombre, String apellidos, String telefono, String email) {
 		this.username = username;
 		this.password = password;
 		this.enabled = true;
@@ -62,8 +67,45 @@ public class User implements UserDetails, CredentialsContainer {
 		this.accountLocked = false;
 		this.credentialsExpired = false;
 		this.roles = new ArrayList<UserRole>();
+		
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.telefono = telefono;
+		this.email = email;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public Long getId() {
 		return this.id;
 	}
