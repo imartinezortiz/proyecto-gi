@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" >
 <head>
 <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 <!-- Bootstrap Core CSS -->
 <link type="text/css"
@@ -25,6 +27,13 @@
 	rel="stylesheet" type="text/css"
 	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
 
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 <title>Menu</title>
 </head>
 <body>
@@ -42,15 +51,15 @@
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<p>
-						<a class="btn btn-link" th:href="@{/proyectos}">Proyectos</a>
-						<a class="btn btn-link" th:href="@{/admin}" >Admin</a>
-						<a class="btn btn-link" th:href="@{/gestor}" >Gestor</a>
-					</p>
-				</div>
+						<a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class=" btn btn-link" th:href="@{/admin}" >Admin</a>
+						<a th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}" class=" btn btn-link" th:href="@{/gestor}" >Gestor</a>
+						<a th:if="${#authorization.expression('hasRole(''ROLE_INVESTIGADOR'')')}"class="btn btn-link" th:href="@{/proyectos}">Proyectos</a>											
+					</p>							
+				</div>				
 				<!-- /.panel-body -->
 			</div>
 		</div>
 	</div>
-	
+		
 </body>
 </html>
