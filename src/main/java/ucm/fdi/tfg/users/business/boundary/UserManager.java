@@ -1,7 +1,6 @@
 package ucm.fdi.tfg.users.business.boundary;
 
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,11 +49,10 @@ public class UserManager implements UserDetailsService{
 		return repositoryUser.save(user);
 	}
 	
-	public User addGestor(User admin) {
-		User user = new User (admin.getUsername(), admin.getPassword(), admin.getNombre(), admin.getApellidos(), admin.getTelefono(), admin.getEmail());
+	public User addGestor(User gestor) {
+		User user = new User (gestor.getUsername(), gestor.getPassword(), gestor.getNombre(), gestor.getApellidos(), gestor.getTelefono(), gestor.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.addRole(new UserRole("ROLE_GESTOR"));	
-		user.addRole(new UserRole("ROLE_ADMIN"));	
 		user.addRole(new UserRole("ROLE_USER"));
 		return repositoryUser.save(user);				
 	}
@@ -70,6 +68,7 @@ public class UserManager implements UserDetailsService{
 	public Investigador addInvestigador(NuevoInvestigadorDTO nuevoInvestigadorDTO){
 		User user = new User(nuevoInvestigadorDTO.getUsername(), nuevoInvestigadorDTO.getPassword(), nuevoInvestigadorDTO.getNombre(), nuevoInvestigadorDTO.getApellidos(), nuevoInvestigadorDTO.getTelefono(), nuevoInvestigadorDTO.getEmail());
 		user.addRole(new UserRole("ROLE_INVESTIGADOR"));
+		user.addRole(new UserRole("ROLE_USER"));
 		user = addUser(user);	
 		
 		Investigador inv = new Investigador(user.getId(), nuevoInvestigadorDTO.getDepartamento(), nuevoInvestigadorDTO.getCentro());			
