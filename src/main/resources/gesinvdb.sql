@@ -7,12 +7,17 @@ INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentials
 
 INSERT INTO user_roles (usersId, role) VALUES (1, 'ROLE_ADMIN');
 INSERT INTO user_roles (usersId, role) VALUES(1, 'ROLE_USER');
+INSERT INTO user_roles (usersId, role) VALUES(1, 'ROLE_GESTOR');
+INSERT INTO user_roles (usersId, role) VALUES(1, 'ROLE_INVESTIGADOR');
 
 INSERT INTO user_roles (usersId, role) VALUES(2, 'ROLE_ADMIN');
 INSERT INTO user_roles (usersId, role) VALUES(2, 'ROLE_USER');
+INSERT INTO user_roles (usersId, role) VALUES(2, 'ROLE_GESTOR');
+INSERT INTO user_roles (usersId, role) VALUES(2, 'ROLE_INVESTIGADOR');
 
 INSERT INTO user_roles (usersId, role) VALUES(3, 'ROLE_GESTOR');
 INSERT INTO user_roles (usersId, role) VALUES(3, 'ROLE_USER');
+INSERT INTO user_roles (usersId, role) VALUES(3, 'ROLE_INVESTIGADOR');
 
 INSERT INTO user_roles (usersId, role) VALUES(4, 'ROLE_INVESTIGADOR');
 INSERT INTO user_roles (usersId, role) VALUES(4, 'ROLE_USER');

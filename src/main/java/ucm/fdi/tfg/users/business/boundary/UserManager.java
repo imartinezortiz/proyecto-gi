@@ -53,6 +53,7 @@ public class UserManager implements UserDetailsService{
 		User user = new User (gestor.getUsername(), gestor.getPassword(), gestor.getNombre(), gestor.getApellidos(), gestor.getTelefono(), gestor.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.addRole(new UserRole("ROLE_GESTOR"));	
+		user.addRole(new UserRole("ROLE_INVESTIGADOR"));
 		user.addRole(new UserRole("ROLE_USER"));
 		return repositoryUser.save(user);				
 	}
@@ -61,6 +62,8 @@ public class UserManager implements UserDetailsService{
 		User user = new User (admin.getUsername(), admin.getPassword(), admin.getNombre(), admin.getApellidos(), admin.getTelefono(), admin.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.addRole(new UserRole("ROLE_ADMIN"));	
+		user.addRole(new UserRole("ROLE_GESTOR"));	
+		user.addRole(new UserRole("ROLE_INVESTIGADOR"));
 		user.addRole(new UserRole("ROLE_USER"));
 		return repositoryUser.save(user);		 
 	}
