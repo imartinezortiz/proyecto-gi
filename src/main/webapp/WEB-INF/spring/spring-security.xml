@@ -35,7 +35,7 @@
 		<intercept-url pattern="/pruebas" access="permitAll" />
 		
 
-		<intercept-url pattern="/bienvenido" access="hasRole('ROLE_ADMIN')" />
+		<!-- <intercept-url pattern="/bienvenido" access="hasRole('ROLE_ADMIN')" /> -->
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		
 		
@@ -48,19 +48,6 @@
 		<logout logout-url="/doLogout" logout-success-url="/"  />				
 	</http>
 
-
-	 <!--  	 
-	<authentication-manager>
-		<authentication-provider>
-		<user-service>
-			<user name="rico" password="rico" authorities="ROLE_USER" />
-			<user name="bob" password="bobspassword" authorities="ROLE_USER" />
-		</user-service>			
-		</authentication-provider>
-	</authentication-manager>
-	
-	 -->
-	
 	<authentication-manager>
 		<authentication-provider user-service-ref="userManager">
 			<password-encoder ref="passwordEncoder" />
