@@ -19,18 +19,24 @@ import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
+import ucm.fdi.tfg.users.business.boundary.UserManager;
+import ucm.fdi.tfg.users.business.entity.Investigador;
+import ucm.fdi.tfg.users.business.entity.User;
 
 @Controller
 public class PagoController {
 	private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
 	
-	PagoManager pagoManager;
-	ProyectosManager proyectosManager;
+	private PagoManager pagoManager;
+	private ProyectosManager proyectosManager;
+	
+	private UserManager users;
 	
 	@Autowired
-	public PagoController (PagoManager pagoManager,ProyectosManager gestorManager){
+	public PagoController (PagoManager pagoManager,ProyectosManager gestorManager, UserManager users){
 		this.pagoManager = pagoManager;
 		this.proyectosManager = gestorManager;
+		this.users = users;
 	}
 		
 	@RequestMapping(value = "/proyecto/{idProyecto}/menu/pagos", method = RequestMethod.GET)
@@ -41,12 +47,16 @@ public class PagoController {
 		
 		//Cogemos el proyecto  que vamos a pintar en el Pago
 		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
+		
+		User userActivo = users.getCurrentUser();
+		
 		Pago pago = new Pago(proyecto);
 		
 		Gasto g =new Gasto();
 		pago.getGastos().add(g);
 		
 		model.put("pago", pago);
+		model.put("user", userActivo);
 
 		ModelAndView view = new ModelAndView("pagos/pagoForm", model);
 		
