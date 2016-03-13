@@ -70,7 +70,7 @@
 					<p class="panel-title">Introduzca valores Pago</p>
 				</div>
 				<div class="panel-body">
-					<form role="form" action="#" th:action="@{/addPago}" th:object="${pago}" method="POST">
+					<form role="form" action="#" th:action="@{'/proyecto/{idProyecto}/pagos'  (idProyecto=*{proyecto.id})}" th:object="${pago}" method="POST">
 								<div class="form-group">
 									<input class="form-control" placeholder="NumOrden"
 										name="numOrden" type="text" />
