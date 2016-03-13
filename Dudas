@@ -5,4 +5,22 @@ DUDAS:
 	
 Apuntes:
 
-	Cambiaría todo lo del adminController a usercontroller
+	* Si usaba getOne no me funcionaba  y he tenido q cambiar a findOne
+	
+				//cambiar a /proyectos/nuevo
+				@RequestMapping(value = "/crearProyecto", method = RequestMethod.GET)
+				public ModelAndView añadirProyecto() {
+			
+					Map<String, Object> model = new HashMap<String, Object>();
+					
+					//model.put("investigadores", users.findAllInvestigadores());
+					model.put("investigadores", users.findAllUserInvestigadores());
+					model.put("NuevoProyectoDTO",  new NuevoProyectoDTO());
+					ModelAndView view = new ModelAndView("proyectoForm", model);
+			
+					return view;
+				}
+				
+	*
+				
+	
