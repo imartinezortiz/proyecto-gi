@@ -22,7 +22,7 @@
 <tbody>
 
 <tr th:each="proyecto : ${proyectos}">
-   <td> <a th:href="@{'/proyecto/{id}/menu' (id=${proyecto.id})}" th:text="${proyecto.referencia} + '  --     ' + ${proyecto.titulo}"></a></td>
+   <td> <a th:href="@{'/proyecto/{id}/' (id=${proyecto.id})}" th:text="${proyecto.referencia} + '  --     ' + ${proyecto.titulo}"></a></td>
 </tr>
 </tbody>
 </table>

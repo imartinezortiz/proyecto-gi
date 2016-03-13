@@ -20,7 +20,7 @@ import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
-import ucm.fdi.tfg.users.business.entity.Investigador;
+
 import ucm.fdi.tfg.users.business.entity.User;
 
 @Controller
@@ -39,7 +39,7 @@ public class PagoController {
 		this.users = users;
 	}
 		
-	@RequestMapping(value = "/proyecto/{idProyecto}/menu/pagos", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyecto/{idProyecto}/pagos", method = RequestMethod.GET)
 	public ModelAndView pagoform(@PathVariable(value="idProyecto") Long idProyecto) {
 		
 		
@@ -66,21 +66,25 @@ public class PagoController {
 	
 	//Igual que en thymeleaf le decimos mediante th:object el objeto q mandamos,  
 	//en spring mediante ModelAttribute le decimos el tipo de objeto que le llega.
-	@RequestMapping(value = "/addPago", method = RequestMethod.POST)
-	public String addPago(@ModelAttribute Pago pago, BindingResult errors){
+	@RequestMapping(value = "/proyecto/{idProyecto}/pagos", method = RequestMethod.POST)
+	public String addPago(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute Pago pago, BindingResult errors){
 				
-		if(errors.hasErrors()){
+		/*if(errors.hasErrors()){
 			return "redirect:/errorPago";
 		}
 		else{
-			try{ 				
+			try{ 		
 				pagoManager.save(pago);		 
 			}catch(Exception e){
 				logger.error("Error añadiendo pago", e);
 				return "redirect:/errorPago";
 		 }
+		
+		}		*/
+		pago.setProyecto(proyectosManager.findProyecto(idProyecto));
+		pagoManager.save(pago);	
 		return "redirect:/registroCompleto";
-		}		
+		
 	}
 	
 	@RequestMapping(value = "/errorPago", method = RequestMethod.GET)

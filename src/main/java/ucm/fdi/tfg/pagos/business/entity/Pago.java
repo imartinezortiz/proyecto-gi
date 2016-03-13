@@ -41,7 +41,7 @@ public class Pago {
 	private Collection<Gasto> gastos;
 	
 	Pago() {
-		
+		this.gastos = new ArrayList<Gasto>();	
 	}
 	public Pago(Proyecto proyecto) {
 		this(proyecto, "" );

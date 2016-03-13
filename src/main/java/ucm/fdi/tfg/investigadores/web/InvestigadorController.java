@@ -43,7 +43,7 @@ public class InvestigadorController {
 		return view;
 	}
 	
-	@RequestMapping(value = "/proyecto/{id}/menu", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyecto/{id}/", method = RequestMethod.GET)
 	public ModelAndView menuProyecto(@PathVariable(value="id") Long id) {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
