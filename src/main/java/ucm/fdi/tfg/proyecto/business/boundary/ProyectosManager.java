@@ -25,7 +25,8 @@ public class ProyectosManager {
 	
 	public void nuevoProyecto(NuevoProyectoDTO proyectoDTO){
 		Proyecto proyecto = new Proyecto(); 
-		Investigador inv = this.users.getInvestigador(proyectoDTO.getInvestigadorId());
+		//Investigador inv = this.users.getInvestigador(proyectoDTO.getInvestigadorId());
+		Investigador inv = this.users.getInvestigadorFindOne(proyectoDTO.getInvestigadorId());
 		proyecto.setTitulo(proyectoDTO.getTitulo());
 		proyecto.setReferencia(proyectoDTO.getReferencia());
 		proyecto.setNumContabilidad(proyectoDTO.getNumContabilidad());

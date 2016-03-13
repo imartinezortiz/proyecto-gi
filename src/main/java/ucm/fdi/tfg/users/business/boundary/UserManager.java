@@ -103,6 +103,11 @@ public class UserManager implements UserDetailsService{
 		return investigadores.getOne(id);
 	}
 
+	public Investigador getInvestigadorFindOne(Long id) {
+		return investigadores.findOne(id);
+	}
+
+
 	public Investigador findInvestigadorPrincipal(Long id) {
 		Investigador inv = investigadores.findInvestigadorPrincipal(id);
 		return inv;
@@ -116,6 +121,7 @@ public class UserManager implements UserDetailsService{
 		List <Long> listaInvestidagoresId = new ArrayList<Long>();
 		
 		for (int i = 0; i<investigadores.size(); i++){
+				
 			listaInvestidagoresId.add(investigadores.get(i).getId());
 		}
 				
