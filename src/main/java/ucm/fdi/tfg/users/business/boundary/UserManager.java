@@ -1,6 +1,8 @@
 package ucm.fdi.tfg.users.business.boundary;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +106,20 @@ public class UserManager implements UserDetailsService{
 	public Investigador findInvestigadorPrincipal(Long id) {
 		Investigador inv = investigadores.findInvestigadorPrincipal(id);
 		return inv;
+	}
+	
+	
+	public List<User> findAllUserInvestigadores(){
+		List <Investigador> investigadores = this.investigadores.findAll();
+		
+		//necesito coger le id de la lista de investigadores
+		List <Long> listaInvestidagoresId = new ArrayList<Long>();
+		
+		for (int i = 0; i<investigadores.size(); i++){
+			listaInvestidagoresId.add(investigadores.get(i).getId());
+		}
+				
+		return repositoryUser.findAll(listaInvestidagoresId);
 	}
 
 	
