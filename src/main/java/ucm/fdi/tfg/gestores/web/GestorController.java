@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.gestores.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 import ucm.fdi.tfg.proyecto.business.boundary.NuevoProyectoDTO;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
+import ucm.fdi.tfg.users.business.control.UserRepository;
+import ucm.fdi.tfg.users.business.entity.Investigador;
 
 @Controller
 public class GestorController {
 
-	private ProyectosManager gestorManager;
+	private ProyectosManager proyectos;
 	private UserManager users;
 
 	@Autowired
-	public GestorController(ProyectosManager gestorManager, UserManager users) {
-		this.gestorManager = gestorManager;
+	public GestorController(ProyectosManager proyectos, UserManager users) {
+		this.proyectos = proyectos;
 		this.users = users;
 	}
 
@@ -39,8 +42,9 @@ public class GestorController {
 	public ModelAndView añadirProyecto() {
 
 		Map<String, Object> model = new HashMap<String, Object>();
-
-		model.put("investigadores", users.findAllInvestigadores());
+		
+		//model.put("investigadores", users.findAllInvestigadores());
+		model.put("investigadores", users.findAllUserInvestigadores());
 		model.put("NuevoProyectoDTO",  new NuevoProyectoDTO());
 		ModelAndView view = new ModelAndView("proyectoForm", model);
 
@@ -49,7 +53,11 @@ public class GestorController {
 
 	@RequestMapping(value = "/crearProyecto", method = RequestMethod.POST)
 	public ModelAndView añadirProyectoPost(NuevoProyectoDTO proyectoDTO, BindingResult errors) {
-		ModelAndView view = null;
+		/*
+		 * ModelAndView view = null;
+		
+		 Lo que nos dejó Iván
+		
 		
 		//if (errors.hasErrors()) {
 			view = new ModelAndView("proyectoForm");
@@ -59,6 +67,12 @@ public class GestorController {
 //			gestorManager.nuevoProyecto(proyectoDTO);
 //			view = new ModelAndView("redirect:/proyectos");
 //		}
+		
+		*/		
+		
+		 proyectos.nuevoProyecto(proyectoDTO);
+		 
+		 ModelAndView view = new ModelAndView("menuGestor");
 		
 		return view;
 	}
