@@ -20,7 +20,7 @@ import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
-
+import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
 
 @Controller
@@ -48,7 +48,9 @@ public class PagoController {
 		//Cogemos el proyecto  que vamos a pintar en el Pago
 		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
 		
-		User userActivo = users.getCurrentUser();
+		Investigador inv = proyecto.getInvestigadorPrincipal();
+		
+		User userActivo = users.findOneUser(inv.getId());
 		
 		Pago pago = new Pago(proyecto);
 		
