@@ -21,6 +21,19 @@ Apuntes:
 					return view;
 				}
 				
-	*
+	*Por qué en pagoController hay q meterle el proyecto y cogiendo de la url si supuestamente ya se lo metemos en el método de arriba GET
+	
+	//Igual que en thymeleaf le decimos mediante th:object el objeto q mandamos,  
+	//en spring mediante ModelAttribute le decimos el tipo de objeto que le llega.
+	@RequestMapping(value = "/proyecto/{idProyecto}/pagos", method = RequestMethod.POST)
+	public String addPago(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute Pago pago, BindingResult errors){
+				
+			
+		
+	//	pago.setProyecto(proyectosManager.findProyecto(idProyecto));
+		pagoManager.save(pago);	
+		return "redirect:/registroCompleto";
+		
+	}
 				
 	
