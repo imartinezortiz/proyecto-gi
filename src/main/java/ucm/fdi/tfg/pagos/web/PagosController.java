@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ucm.fdi.tfg.pagos.business.boundary.PagoManager;
+import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
 import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
@@ -24,17 +24,17 @@ import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
 
 @Controller
-public class PagoController {
+public class PagosController {
 	//private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
 	
-	private PagoManager pagoManager;
+	private PagosManager pagoManager;
 	private ProyectosManager proyectosManager;
 
 	
 	private UserManager users;
 	
 	@Autowired
-	public PagoController (PagoManager pagoManager,ProyectosManager gestorManager, UserManager users){
+	public PagosController (PagosManager pagoManager,ProyectosManager gestorManager, UserManager users){
 		this.pagoManager = pagoManager;
 		this.proyectosManager = gestorManager;
 		this.users = users;

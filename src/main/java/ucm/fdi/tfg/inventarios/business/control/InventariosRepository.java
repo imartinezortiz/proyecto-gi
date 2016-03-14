@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 
-public interface InventarioRepository extends JpaRepository<Inventario, Long>{
+public interface InventariosRepository extends JpaRepository<Inventario, Long>{
 
 }

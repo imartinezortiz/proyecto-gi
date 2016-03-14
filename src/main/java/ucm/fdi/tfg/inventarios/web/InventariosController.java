@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ucm.fdi.tfg.inventarios.business.boundary.InventarioManager;
+import ucm.fdi.tfg.inventarios.business.boundary.InventariosManager;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
-import ucm.fdi.tfg.pagos.business.boundary.PagoManager;
+import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
 import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
@@ -28,10 +28,10 @@ public class InventariosController {
 
 	private ProyectosManager proyectos;	
 	private UserManager users;
-	private InventarioManager inventarios;
+	private InventariosManager inventarios;
 	
 	@Autowired
-	public InventariosController (ProyectosManager proyectos, UserManager users,InventarioManager inventarios){
+	public InventariosController (ProyectosManager proyectos, UserManager users,InventariosManager inventarios){
 		this.proyectos = proyectos;
 		this.users = users;	
 		this.inventarios = inventarios;
