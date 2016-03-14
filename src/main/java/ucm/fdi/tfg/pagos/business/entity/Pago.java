@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.pagos.business.entity;
 
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,8 +31,56 @@ public class Pago {
 	Long id;
 	
 	private String numOrden;	
-	//private LocalDate fecha;
+	private String fecha;
+	private String iban;
+	private String bic;
+	private String pagador;
+	private String memoria;
+	private String relacion;
 	
+
+	public String getMemoria() {
+		return memoria;
+	}
+	public void setMemoria(String memoria) {
+		this.memoria = memoria;
+	}
+	public String getRelacion() {
+		return relacion;
+	}
+	public void setRelacion(String relacion) {
+		this.relacion = relacion;
+	}
+	public String getPagador() {
+		return pagador;
+	}
+	public void setPagador(String pagador) {
+		this.pagador = pagador;
+	}
+	public String getIban() {
+		return iban;
+	}
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+	public String getBic() {
+		return bic;
+	}
+	public void setBic(String bic) {
+		this.bic = bic;
+	}
+	public Long getId() {
+		return id;
+	}
+	public String getNumOrden() {
+		return numOrden;
+	}
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
 
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;
@@ -44,12 +93,12 @@ public class Pago {
 		this.gastos = new ArrayList<Gasto>();	
 	}
 	public Pago(Proyecto proyecto) {
-		this(proyecto, "" );
+		this(proyecto, "","");
 	}
 	
-	public Pago (Proyecto proyecto, String numOrden) {			
+	public Pago (Proyecto proyecto, String numOrden,String fecha) {			
 		this.numOrden = numOrden;
-		//this.fecha = fecha;
+		this.fecha = fecha;
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<Gasto>();	
 	}
