@@ -18,13 +18,16 @@ public class Proyecto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	Long id;
+	
 	String referencia;
+	
 	String titulo;
+	
 	@ManyToOne
 	@JoinColumn(name="investigadorID")
 	Investigador investigadorPrincipal;
-	String numContabilidad;
 	
+	String numContabilidad;	
 	
 	
 	public Proyecto(){

@@ -19,10 +19,11 @@
 	<!-- Enables the Spring MVC @Service and @Repository programming model -->
 	<context:component-scan base-package="ucm.fdi.tfg.users.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.pagos.business"/>
-		<context:component-scan base-package="ucm.fdi.tfg.proyecto.business"/>
+	<context:component-scan base-package="ucm.fdi.tfg.proyecto.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.investigadores.business"/>
-	<context:component-scan base-package="ucm.fdi.tfg.administradores.business"/>
-	<context:component-scan base-package="ucm.fdi.tfg.gestores.business"/>
+	<context:component-scan base-package="ucm.fdi.tfg.inventarios.business"/>
+	
+	
 	
 <!-- org.thymeleaf.templateresolver.ServletContextTemplateResolver -->	
  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
@@ -45,6 +46,7 @@
     <value>ucm.fdi.tfg.users.business.entity</value>
     <value>ucm.fdi.tfg.pagos.business.entity</value>
     <value>ucm.fdi.tfg.proyecto.business.entity</value>
+    <value>ucm.fdi.tfg.inventarios.business.entity</value>    
   </array>
   </property> 
   <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>  
