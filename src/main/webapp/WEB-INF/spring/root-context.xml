@@ -86,7 +86,12 @@
 		
 	<data:repositories base-package="ucm.fdi.tfg.pagos.business.control"
 		entity-manager-factory-ref="entityManagerFactory"
-		transaction-manager-ref="transactionManager" />		
+		transaction-manager-ref="transactionManager" />	
+		
+	<data:repositories base-package="ucm.fdi.tfg.inventarios.business.control"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager" />
+	
 </beans>
 
 

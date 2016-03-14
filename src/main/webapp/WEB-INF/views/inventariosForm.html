@@ -25,11 +25,6 @@
 	rel="stylesheet" type="text/css"
 	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
 
-<script type="text/javascript">
-	$(function() {
-		$('#datetimepicker1').datetimepicker();
-	});
-</script>
 
 <title>Inventario</title>
 </head>
@@ -43,7 +38,8 @@
 					<p class="panel-title">Introduzca valores Inventario</p>
 				</div>
 				<div class="panel-body">
-					<form role="form" action="#" th:action="@{/bienvenido}"  method="POST">
+					<form role="form" action="#" th:action="@{'/proyecto/{idProyecto}/inventarios'  (idProyecto=*{proyecto.id})}"
+					 th:object=${inventario} method="POST">
 						<div class="form-group">
 							<input class="form-control" placeholder="Nº CONTABILIDAD"
 								name="numContabilidad" type="text" />
@@ -56,19 +52,19 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<input class="form-control" placeholder="Nombre"
-										name="investigadorPrincipal.nombre" type="text" />
+										th:value="${user.nombre}" type="text" />
 								</div>
 								<div class="form-group">
 									<input class="form-control" placeholder="Apellidos"
-										name="investigadorPrincipal.apellidos" type="text" />
+										th:value="${user.apellidos}" type="text" />
 								</div>
 								<div class="form-group">
 									<input class="form-control" placeholder="Departamento"
-										name="investigadorPrincipal.departamento" type="text" />
+										th:value="${inventario.proyecto.investigadorPrincipal.departamento}" type="text" />
 								</div>
 								<div class="form-group">
 									<input class="form-control" placeholder="CENTRO AL QUE ESTÁ ADSCRITO EL INVESTIGADOR"
-										name="investigadorPrincipal.centro" type="text" />
+										th:value="${inventario.proyecto.investigadorPrincipal.centro}" type="text" />
 								</div>
 							</div>
 						</div>
@@ -80,30 +76,23 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label>DESCRIPCIÓN DEL BIEN A INVENTARIAR:</label>
-									<textarea class="form-control" rows="3"></textarea>
+									<textarea class="form-control" rows="3" name="descripcion"></textarea>
 								</div>
 								<div class="form-group">
 									<label>CENTRO EN EL QUE SE EMPLAZARÁ EL BIEN::</label>
-									<textarea class="form-control" rows="3"></textarea>
+									<textarea class="form-control" rows="3" name="centro"></textarea>
 								</div>
 								<div class="form-group">
 									<label>AUTORIZACIÓN DEL GERENTE DEL CENTRO (si se necesita instalación o afecta a la infraestructura del Centro):</label>
-									<textarea class="form-control" rows="3"></textarea>
-								</div>
-								<div class="form-group">
-									<div class='input-group date' id='datetimepicker1'>
-										<input type='text' class="form-control" /> <span
-											class="input-group-addon"> <span
-											class="glyphicon glyphicon-calendar"></span>
-										</span>
-									</div>
+									<textarea class="form-control" rows="3" name="autorizacion"></textarea>
 								</div>
 								<div class="form-group">
 									<label>OBSERVACIONES:</label>
-									<textarea class="form-control" rows="3"></textarea>
+									<textarea class="form-control" rows="3" name="observaciones"></textarea>
 								</div>
-																
-								<input type="date" />
+								<div class="form-group">
+									<input class="form-control" name="fecha" type="date"/>
+								</div>							
 								
 							</div>
 							
@@ -125,27 +114,27 @@
 	<!-- jQuery -->
 	<script
 		src="../../resources/bower_components/jquery/dist/jquery.min.js"
-		data-th-src="@{resources/bower_components/jquery/dist/jquery.min.js}">
+		data-th-src="@{/resources/bower_components/jquery/dist/jquery.min.js}">
 		
 	</script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script
 		src="../../resources/bower_components/bootstrap/dist/js/bootstrap.min.js"
-		data-th-src="@{resources/bower_components/bootstrap/dist/js/bootstrap.min.js}">
+		data-th-src="@{/resources/bower_components/bootstrap/dist/js/bootstrap.min.js}">
 		
 	</script>
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script
 		src="../../resources/bower_components/metisMenu/dist/metisMenu.min.js"
-		data-th-src="@{resources/bower_components/metisMenu/dist/metisMenu.min.js}">
+		data-th-src="@{/resources/bower_components/metisMenu/dist/metisMenu.min.js}">
 		
 	</script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="../../resources/dist/js/sb-admin-2.js"
-		data-th-src="@{resources/dist/js/sb-admin-2.js}">
+		data-th-src="@{/resources/dist/js/sb-admin-2.js}">
 		
 	</script>
 </body>
