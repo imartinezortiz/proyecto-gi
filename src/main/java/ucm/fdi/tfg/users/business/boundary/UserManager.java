@@ -128,6 +128,11 @@ public class UserManager implements UserDetailsService{
 		return repositoryUser.findAll(listaInvestidagoresId);
 	}
 
+	public User findOneUser(Long id) {
+		return this.repositoryUser.findOne(id);
+		
+	}
+
 	
 
 	
