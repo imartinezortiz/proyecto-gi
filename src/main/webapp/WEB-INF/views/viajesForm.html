@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+
+<!-- Bootstrap Core CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
+
+<!-- MetisMenu CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/metisMenu/dist/metisMenu.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/metisMenu/dist/metisMenu.min.css}" />
+
+<!-- Custom CSS -->
+<link type="text/css" href="../../resources/dist/css/sb-admin-2.css"
+	rel="stylesheet" data-th-href="@{/resources/dist/css/sb-admin-2.css}" />
+
+<!-- Custom Fonts -->
+<link
+	href="../../resources/bower_components/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css"
+	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
+
+<title>VIAJES</title>
+</head>
+<body class="container">
+
+<div class="text-center"style=border-style:solid>
+<h1> ANEXO III</h1>
+<h2> MEMORIA JUSTIFICATIVA – ORDEN DE PAGO </h2>
+<h2> Nº CONTABILIDAD </h2>
+</div>
+
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">ORDEN Nº</p>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<input class="form-control" name="iban"
+						type="text" th:value="${viaje.order}" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">FECHA</p>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<input class="form-control"
+					th:value="${viaje.fecha}" name="fecha" type="date" />
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
