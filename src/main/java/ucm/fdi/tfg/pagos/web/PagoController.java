@@ -3,8 +3,8 @@ package ucm.fdi.tfg.pagos.web;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -25,10 +25,11 @@ import ucm.fdi.tfg.users.business.entity.User;
 
 @Controller
 public class PagoController {
-	private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
+	//private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
 	
 	private PagoManager pagoManager;
 	private ProyectosManager proyectosManager;
+
 	
 	private UserManager users;
 	
@@ -68,19 +69,7 @@ public class PagoController {
 	//en spring mediante ModelAttribute le decimos el tipo de objeto que le llega.
 	@RequestMapping(value = "/proyecto/{idProyecto}/pagos", method = RequestMethod.POST)
 	public String addPago(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute Pago pago, BindingResult errors){
-				
-		/*if(errors.hasErrors()){
-			return "redirect:/errorPago";
-		}
-		else{
-			try{ 		
-				pagoManager.save(pago);		 
-			}catch(Exception e){
-				logger.error("Error añadiendo pago", e);
-				return "redirect:/errorPago";
-		 }
-		
-		}		*/
+	
 		pago.setProyecto(proyectosManager.findProyecto(idProyecto));
 		pagoManager.save(pago);	
 		return "redirect:/registroCompleto";

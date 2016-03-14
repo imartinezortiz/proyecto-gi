@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.pagos.business.entity;
 
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,8 +31,21 @@ public class Pago {
 	Long id;
 	
 	private String numOrden;	
-	//private LocalDate fecha;
+	private String fecha;
 	
+
+	public Long getId() {
+		return id;
+	}
+	public String getNumOrden() {
+		return numOrden;
+	}
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
 
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;
@@ -44,12 +58,12 @@ public class Pago {
 		this.gastos = new ArrayList<Gasto>();	
 	}
 	public Pago(Proyecto proyecto) {
-		this(proyecto, "" );
+		this(proyecto, "","");
 	}
 	
-	public Pago (Proyecto proyecto, String numOrden) {			
+	public Pago (Proyecto proyecto, String numOrden,String fecha) {			
 		this.numOrden = numOrden;
-		//this.fecha = fecha;
+		this.fecha = fecha;
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<Gasto>();	
 	}
