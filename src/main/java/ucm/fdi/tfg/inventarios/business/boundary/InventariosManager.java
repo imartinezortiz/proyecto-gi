@@ -4,17 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ucm.fdi.tfg.inventarios.business.control.InventarioRepository;
+import ucm.fdi.tfg.inventarios.business.control.InventariosRepository;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 
 @Service
 @Transactional
-public class InventarioManager {
+public class InventariosManager {
 	
-	InventarioRepository inventarioRepository;
+	InventariosRepository inventarioRepository;
 	
 	@Autowired
-	public InventarioManager(InventarioRepository inventarioRepository){
+	public InventariosManager(InventariosRepository inventarioRepository){
 		this.inventarioRepository=inventarioRepository;
 	}
 	

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 
 @Repository
-public interface PagoRepository extends JpaRepository<Pago, Long> {	
+public interface PagosRepository extends JpaRepository<Pago, Long> {	
 		
 		
 	/*

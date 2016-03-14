@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ucm.fdi.tfg.pagos.business.control.PagoRepository;
+import ucm.fdi.tfg.pagos.business.control.PagosRepository;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 
 
 @Service
 @Transactional
-public class PagoManager {
+public class PagosManager {
 	
-	PagoRepository repositoryPago;
+	PagosRepository repositoryPago;
 	
 	 @Autowired
-	 public PagoManager (PagoRepository pagos){
+	 public PagosManager (PagosRepository pagos){
 		 this.repositoryPago = pagos;
 		 
 	 }
