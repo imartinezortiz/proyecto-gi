@@ -29,12 +29,13 @@
 </head>
 <body class="container">
 
-<div class="text-center"style=border-style:solid>
-<h1> ANEXO III</h1>
-<h2> MEMORIA JUSTIFICATIVA – ORDEN DE PAGO </h2>
-<h2> Nº CONTABILIDAD </h2>
-</div>
-
+	<div class="text-center col-md-12" style="border-style: solid">
+		<h1>ANEXO III</h1>
+		<h2>MEMORIA JUSTIFICATIVA – ORDEN DE PAGO</h2>
+		<h2>Nº CONTABILIDAD</h2>
+	</div>
+	
+	
 	<div class="col-md-3">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -42,8 +43,8 @@
 			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<input class="form-control" name="iban"
-						type="text" th:value="${viaje.order}" />
+					<input class="form-control" name="iban" type="text"
+						th:value="${viaje.order}" />
 				</div>
 			</div>
 		</div>
@@ -55,11 +56,132 @@
 			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<input class="form-control"
-					th:value="${viaje.fecha}" name="fecha" type="date" />
+					<input class="form-control" th:value="${viaje.fecha}" name="fecha"
+						type="date" />
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group">
+					<input class="form-control" th:value="${viaje.fecha}"
+						name="investigadorPrincipal.nombre" type="text" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" th:value="${viaje.fecha}"
+						name="proyecto.referencia" type="text" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" th:value="${viaje.fecha}" name="fecha"
+						type="text" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" th:value="${viaje.fecha}" name="fecha"
+						type="text" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" th:value="${viaje.fecha}" name="fecha"
+						type="text" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" th:value="${viaje.fecha}" name="fecha"
+						type="text" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<h3 class="text-right col-md-12">JUSTIFICACIÓN PARA VIAJES</h3>
+	<div class="form-group">
+		<div class="col-md-2">
+			<label class="control-label" for="email">Nombre y apellidos:</label>
+		</div>
+		<div class="col-md-10">
+			<input type="text" class="form-control" id="text"
+				placeholder="Enter email"/>
+		</div>
+	</div>
+	<div class="form-group">
+	<div class="col-md-2">
+		<label class="control-label">Relación con el contrato</label>
+	</div>
+	<div class="col-md-10">
+	<div class="checkbox">
+		<label><input type="checkbox" value="">Miembro del
+			proyecto</label>
+	</div>
+	<div class="checkbox">
+		<label><input type="checkbox" value="">Profesor
+			invitado</label>
+	</div>
+	</div>
+	<div class="form-group">
+	<div class="col-md-2">
+	<label class="control-label" for="objetoDesplazamiento">Objeto
+		del desplazamiento en relación con la ejecución del proyecto</label>
+	</div>
+	<div class="col-md-10">
+		<textarea class="form-control" rows="4" name="objetoDesplazamiento"></textarea>
+	</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-2">
+			<label class="control-label">Itinerario</label>
+		</div>
+		<div class="col-md-10">
+			<input type="text" class="form-control" id="text"
+				/>
+		</div>
+	</div>
+		<div class="form-group">
+		<div class="col-md-2">
+			<label class="control-label">Fechas</label>
+		</div>
+		<div class="col-md-10">
+			<input type="text" class="form-control" id="text"/>
+		</div>
+	</div>
+	<h3 class="text-center col-md-12">JUSTIFICACIÓN DE GASTOS</h3>
+	<div class="form-group">
+	<div class="col-md-2">
+			<label class="control-label" for="email">Medios de transporte:</label>
+	</div>
+	<div class="col-md-4">
+	<div class="checkbox">
+		<label><input type="checkbox" value="">Avión</label>
+	</div>
+	<div class="checkbox">
+		<label><input type="checkbox" value="">Coche</label>
+	</div>
+	<div class="checkbox">
+		<label><input type="checkbox" value="">Tren</label>
+	</div>
+	<div class="checkbox">
+		<label><input type="checkbox" value="">Autobús</label>
+	</div>
+	<div class="checkbox">
+		<label><input type="checkbox" value="">Taxis</label>
+	</div>
+	<div class="checkbox">
+		<label><input type="checkbox" value="">Otros(especificar)</label>
+	</div>
+	</div>
+	<div class="col-md-2">
+		<p>0,19€/km x </p>
+	</div>
+	
+	
+	
+	
+	
+		</div>
+
+</div>
+	
+
+	
+	
+
 </body>
 </html>
