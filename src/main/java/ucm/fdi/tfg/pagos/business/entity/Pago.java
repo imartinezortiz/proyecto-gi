@@ -39,48 +39,7 @@ public class Pago {
 	private String relacion;
 	
 
-	public String getMemoria() {
-		return memoria;
-	}
-	public void setMemoria(String memoria) {
-		this.memoria = memoria;
-	}
-	public String getRelacion() {
-		return relacion;
-	}
-	public void setRelacion(String relacion) {
-		this.relacion = relacion;
-	}
-	public String getPagador() {
-		return pagador;
-	}
-	public void setPagador(String pagador) {
-		this.pagador = pagador;
-	}
-	public String getIban() {
-		return iban;
-	}
-	public void setIban(String iban) {
-		this.iban = iban;
-	}
-	public String getBic() {
-		return bic;
-	}
-	public void setBic(String bic) {
-		this.bic = bic;
-	}
-	public Long getId() {
-		return id;
-	}
-	public String getNumOrden() {
-		return numOrden;
-	}
-	public String getFecha() {
-		return fecha;
-	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
+
 
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;
@@ -123,7 +82,48 @@ public class Pago {
 	public void setGastos(Collection<Gasto> gastos) {
 		this.gastos = gastos;
 	}
-	
+	public String getMemoria() {
+		return memoria;
+	}
+	public void setMemoria(String memoria) {
+		this.memoria = memoria;
+	}
+	public String getRelacion() {
+		return relacion;
+	}
+	public void setRelacion(String relacion) {
+		this.relacion = relacion;
+	}
+	public String getPagador() {
+		return pagador;
+	}
+	public void setPagador(String pagador) {
+		this.pagador = pagador;
+	}
+	public String getIban() {
+		return iban;
+	}
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+	public String getBic() {
+		return bic;
+	}
+	public void setBic(String bic) {
+		this.bic = bic;
+	}
+	public Long getId() {
+		return id;
+	}
+	public String getNumOrden() {
+		return numOrden;
+	}
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
 	
 	
 }
