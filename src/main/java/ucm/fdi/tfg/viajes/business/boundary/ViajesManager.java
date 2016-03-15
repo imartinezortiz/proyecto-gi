@@ -12,8 +12,18 @@ public class ViajesManager {
 
 	private ViajesRepository viajes;
 	
+	
+
 	@Autowired
 	public ViajesManager (ViajesRepository viajes){
 		this.viajes=viajes;
+	}
+	
+	public ViajesRepository getViajes() {
+		return viajes;
+	}
+
+	public void setViajes(ViajesRepository viajes) {
+		this.viajes = viajes;
 	}
 }
