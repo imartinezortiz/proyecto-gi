@@ -37,9 +37,6 @@ public class Pago {
 	private String pagador;
 	private String memoria;
 	private String relacion;
-	
-
-
 
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;

@@ -3,7 +3,7 @@ package ucm.fdi.tfg.users.business.entity;
 import java.util.Collection;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;

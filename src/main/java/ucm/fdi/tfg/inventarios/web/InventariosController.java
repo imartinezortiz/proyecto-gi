@@ -14,9 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ucm.fdi.tfg.inventarios.business.boundary.InventariosManager;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
-import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
-import ucm.fdi.tfg.pagos.business.entity.Gasto;
-import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
