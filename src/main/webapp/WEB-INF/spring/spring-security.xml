@@ -33,6 +33,7 @@
 		<intercept-url pattern="/pagos" access="isAuthenticated()" />
 		<intercept-url pattern="/home" access="permitAll" />
 		<intercept-url pattern="/pruebas" access="permitAll" />
+		<intercept-url pattern="/viajes" access="permitAll" />
 		
 
 		<!-- <intercept-url pattern="/bienvenido" access="hasRole('ROLE_ADMIN')" /> -->

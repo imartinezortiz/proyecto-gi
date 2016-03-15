@@ -43,8 +43,8 @@
 			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<input class="form-control" name="iban" type="text"
-						th:value="${viaje.order}" />
+					<input class="form-control" name="numOrden" type="text"
+						th:value="${viaje.numOrden}" />
 				</div>
 			</div>
 		</div>
@@ -66,28 +66,22 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="form-group">
-					<input class="form-control" th:value="${viaje.fecha}"
-						name="investigadorPrincipal.nombre" type="text" />
+					<input class="form-control" th:value="${user.nombre}" type="text" />
 				</div>
 				<div class="form-group">
-					<input class="form-control" th:value="${viaje.fecha}"
-						name="proyecto.referencia" type="text" />
+					<input class="form-control" th:value="${viaje.proyecto.referencia}" type="text" />
 				</div>
 				<div class="form-group">
-					<input class="form-control" th:value="${viaje.fecha}" name="fecha"
-						type="text" />
+					<input class="form-control" th:value="${viaje.proyecto.investigadorPrincipal.departamento}" type="text" />
 				</div>
 				<div class="form-group">
-					<input class="form-control" th:value="${viaje.fecha}" name="fecha"
-						type="text" />
+					<input class="form-control" th:value="${viaje.proyecto.investigadorPrincipal.centro}" type="text" />
 				</div>
 				<div class="form-group">
-					<input class="form-control" th:value="${viaje.fecha}" name="fecha"
-						type="text" />
+					<input class="form-control" th:value="${user.telefono}"  type="text" />
 				</div>
 				<div class="form-group">
-					<input class="form-control" th:value="${viaje.fecha}" name="fecha"
-						type="text" />
+					<input class="form-control" th:value="${user.email}" type="text" />
 				</div>
 			</div>
 		</div>
@@ -98,8 +92,8 @@
 			<label class="control-label" for="email">Nombre y apellidos:</label>
 		</div>
 		<div class="col-md-10">
-			<input type="text" class="form-control" id="text"
-				placeholder="Enter email"/>
+			<input type="text" class="form-control" name="credenciales"
+				placeholder="Nombre y apellidos"/>
 		</div>
 	</div>
 	<div class="form-group">
@@ -130,8 +124,7 @@
 			<label class="control-label">Itinerario</label>
 		</div>
 		<div class="col-md-10">
-			<input type="text" class="form-control" id="text"
-				/>
+			<input type="text" class="form-control" name ="itinerario"/>
 		</div>
 	</div>
 		<div class="form-group">
@@ -139,7 +132,7 @@
 			<label class="control-label">Fechas</label>
 		</div>
 		<div class="col-md-10">
-			<input type="text" class="form-control" id="text"/>
+			<input type="text" class="form-control" name="text"/>
 		</div>
 	</div>
 	<h3 class="text-center col-md-12">JUSTIFICACIÓN DE GASTOS</h3>

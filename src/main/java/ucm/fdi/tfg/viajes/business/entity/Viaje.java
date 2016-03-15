@@ -19,7 +19,9 @@ public class Viaje {
 	@Column(name="viajeId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	Long id;
-	
+	private String credenciales;
+	private String fecha;
+	private String numOrden;
 	private String relacion;
 	private String objetoDesplazamiento;
 	private String itinerario;
@@ -35,6 +37,10 @@ public class Viaje {
 		
 	}
 	
+	public Viaje(Proyecto proyecto) {
+		this.proyecto = proyecto;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -86,6 +92,30 @@ public class Viaje {
 
 	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
+	}
+
+	public String getNumOrden() {
+		return numOrden;
+	}
+
+	public void setNumOrden(String numOrden) {
+		this.numOrden = numOrden;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getCredenciales() {
+		return credenciales;
+	}
+
+	public void setCredenciales(String credenciales) {
+		this.credenciales = credenciales;
 	}
 
 }
