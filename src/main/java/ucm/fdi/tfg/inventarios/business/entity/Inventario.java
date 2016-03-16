@@ -1,5 +1,7 @@
 package ucm.fdi.tfg.inventarios.business.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
@@ -33,7 +39,9 @@ public class Inventario {
 	
 	private String observaciones;
 	
-	private String fecha;
+	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate fecha;
 	
 	public Inventario(){
 		
@@ -91,11 +99,11 @@ public class Inventario {
 		this.observaciones = observaciones;
 	}
 
-	public String getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

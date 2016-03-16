@@ -119,11 +119,10 @@ public class UserManager implements UserDetailsService{
 		//necesito coger le id de la lista de investigadores
 		List <Long> listaInvestidagoresId = new ArrayList<Long>();
 		
-		for (int i = 0; i<investigadores.size(); i++){
-				
-			listaInvestidagoresId.add(investigadores.get(i).getId());
+		for (Investigador i : investigadores ){
+			listaInvestidagoresId.add(i.getId());
 		}
-				
+		
 		return repositoryUser.findAll(listaInvestidagoresId);
 	}
 

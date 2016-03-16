@@ -91,7 +91,8 @@
 									<textarea class="form-control" rows="3" name="observaciones"></textarea>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="fecha" type="date"/>
+									<input id="fechaInventario" class="form-control" type="date"/>
+									<input id="fechaInventarioForm" type="hidden" name="fecha" value="" />
 								</div>							
 								
 							</div>
@@ -136,6 +137,11 @@
 	<script src="../../resources/dist/js/sb-admin-2.js"
 		data-th-src="@{/resources/dist/js/sb-admin-2.js}">
 		
+	</script>
+	<script type="text/javascript">
+	  $("#fechaInventario").change(function() {
+		  $("#fechaInventarioForm").val( $("#fechaInventario").val());
+	  })
 	</script>
 </body>
 </html>

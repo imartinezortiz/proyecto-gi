@@ -47,4 +47,8 @@ public class ProyectosManager {
 	public Proyecto findProyecto(Long idProyecto) {
 		return proyectos.findOne(idProyecto);
 	}
+
+	public Proyecto getProyecto(Long idProyecto) {
+		return proyectos.getOne(idProyecto);
+	}
 }

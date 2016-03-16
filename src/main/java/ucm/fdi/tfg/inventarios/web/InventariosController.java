@@ -59,8 +59,7 @@ public class InventariosController {
 	@RequestMapping(value = "/proyecto/{idProyecto}/inventarios", method = RequestMethod.POST)
 	public String addPago(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute Inventario inventario, BindingResult errors){
 						
-		inventario.setProyecto(proyectos.findProyecto(idProyecto));
-		inventarios.save(inventario);	
+		inventarios.nuevoInventario(idProyecto, inventario);
 		return "redirect:/registroCompleto";
 		
 	}
