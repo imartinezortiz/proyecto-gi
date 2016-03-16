@@ -19,18 +19,37 @@ public class Viaje {
 	@Column(name="viajeId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	Long id;
-	private String credenciales;
-	private String fecha;
 	private String numOrden;
-	private String relacion;
-	private String objetoDesplazamiento;
-	private String itinerario;
-	private String fechas;
-	private String medioTransporte;
-	
+	private String fecha;	
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;
 	
+	private String credenciales;
+		
+	private String relacion;
+	public String getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public String getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	private String objetoDesplazamiento;
+	private String itinerario;
+	private String fechaInicio;
+	private String fechaFin;
+	private String medioTransporte;
+	
+
 
 
 	public Viaje(){
@@ -70,14 +89,7 @@ public class Viaje {
 		this.itinerario = itinerario;
 	}
 
-	public String getFechas() {
-		return fechas;
-	}
-
-	public void setFechas(String fechas) {
-		this.fechas = fechas;
-	}
-
+	
 	public String getMedioTransporte() {
 		return medioTransporte;
 	}

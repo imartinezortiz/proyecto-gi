@@ -25,11 +25,5 @@ public class ViajesManager {
 		 viajes.save(viaje);
 	}
 	
-	public ViajesRepository getViajes() {
-		return viajes;
-	}
-
-	public void setViajes(ViajesRepository viajes) {
-		this.viajes = viajes;
-	}
+	
 }
