@@ -12,27 +12,69 @@
 		var auxnumFactura = $('<td class="col-md-2"></td>');
 		var auxconcepto = $('<td class="col-md-8"></td>');
 		var auximporte = $('<td class="col-md-2"></td>');
+		//botones
+		var auxbtnMas = $('<td class="col-md-2"></td>');
+		var auxbtnMenos = $('<td class="col-md-2"></td>');
 
 		var numFactura = $(
-				'<input type="text" placeholder="Nº Factura" class="form-control col-md-2"/>')
-				.attr('name', 'gastos[' + count + '].numFactura');
+				'<input type="text" placeholder="Nº Factura" class="form-control col-md-2" />').attr('name', 'gastos[' + count + '].numFactura');
 		var concepto = $(
-				'<input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"/>')
-				.attr('name', 'gastos[' + count + '].proveedor');
+				'<input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"  />').attr('name', 'gastos[' + count + '].proveedor');
 		var importe = $(
-				'<input type="text" placeholder="Importe" class="form-control col-md-2"/>')
-				.attr('name', 'gastos[' + count + '].importe');
+				'<input type="text" placeholder="Importe" class="form-control col-md-2"/> ').attr('name', 'gastos[' + count + '].importe');
+		
+		var btnMas = $('<button onclick="appendText()" class="btn btn-success"	type="button">+</button>').attr('id', 'btnMas' + count );
+			
+		var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-success" type="button">-</button>').attr('id', 'btnMenos' + count );
+		
 
 		$(auxnumFactura).append(numFactura);
 		$(auxconcepto).append(concepto);
 		$(auximporte).append(importe);
+		
+		//botones
+		$(auxbtnMas).append(btnMas);
+		$(auxbtnMenos).append(btnMenos);
+		
 
 		$(nuevoGasto).append(auxnumFactura);
 		$(nuevoGasto).append(auxconcepto);
 		$(nuevoGasto).append(auximporte);
+		
+		//botones
+		$(nuevoGasto).append(auxbtnMas);
+		$(nuevoGasto).append(auxbtnMenos);
+		
+		//idNuevo
+		$(nuevoGasto).attr('id', 'gasto' + count);
+		
 		$('#gastos').append(nuevoGasto);
-
 	}
+</script>
+
+<script>
+function removeText(idBotonMenos) {
+	
+	//La posicion 8 del id guarda el numero de gasto
+	var numGasto = idBotonMenos.charAt(8);
+	
+	//Elimino tr
+	$('#gasto'+numGasto).remove();
+		
+	/*
+			//Hay que renombrar el "name" si se elimina un gasto intermedio. Se renombra a partir del eliminado.
+			
+			var totalGastos = $('#gastos tr').length;		
+			var posAnterior = 3; //2
+			var i = 3-1;
+			
+			for (i ; i < totalGastos; i++) {		
+				document.getElementByName('gastos['+posAnterior'].numFactura').setAttribute("name",'gastos['+i'].numFactura');
+				posAnterior = posAnterior -1;
+			}
+	
+	*/	
+}
 </script>
 
 
@@ -107,7 +149,7 @@
 							<div class="panel-body">
 								<table>
 									<tbody id="gastos">
-										<tr th:each="gasto,gastoStat : *{gastos}">
+										<tr id="gasto0" th:each="gasto,gastoStat : *{gastos}">
 											<td class="col-md-2"><input type="text"
 												class="form-control" placeholder="Nº Factura"
 												th:field="*{gastos[__${gastoStat.index}__].numFactura}" /></td>
@@ -120,7 +162,11 @@
 												th:field="*{gastos[__${gastoStat.index}__].importe}" /></td>
 											<td class="col-md-2">
 												<button onclick="appendText()" class="btn btn-success"
-													type="button">+</button>
+													type="button" id="btnMas0" >+</button>
+											</td>
+											<td class="col-md-2">
+												<button id="btnMenos0" onclick="removeText(this.id)" class="btn btn-success"
+													type="button" >-</button>
 											</td>
 
 										</tr>
