@@ -55,25 +55,35 @@
 <script>
 function removeText(idBotonMenos) {
 	
+	var totalGastos = $('#gastos tr').length;	
+	
 	//La posicion 8 del id guarda el numero de gasto
 	var numGasto = idBotonMenos.charAt(8);
 	
+	//Se pasa a numero
+	var posCambio = Number(numGasto) + 1; 
+	
 	//Elimino tr
 	$('#gasto'+numGasto).remove();
+
+	//A partir del tr eliminado, renombro names e ids
+	for (posCambio; posCambio < totalGastos; posCambio++){ 
 		
-	/*
-			//Hay que renombrar el "name" si se elimina un gasto intermedio. Se renombra a partir del eliminado.
-			
-			var totalGastos = $('#gastos tr').length;		
-			var posAnterior = 3; //2
-			var i = 3-1;
-			
-			for (i ; i < totalGastos; i++) {		
-				document.getElementByName('gastos['+posAnterior'].numFactura').setAttribute("name",'gastos['+i'].numFactura');
-				posAnterior = posAnterior -1;
-			}
-	
-	*/	
+		//Disminuye en uno el name
+		document.getElementsByName('gastos['+posCambio+'].numFactura')[0].setAttribute('name','gastos['+(posCambio-1)+'].numFactura');
+		document.getElementsByName('gastos['+posCambio+'].proveedor')[0].setAttribute('name','gastos['+(posCambio-1)+'].proveedor');
+		document.getElementsByName('gastos['+posCambio+'].importe')[0].setAttribute('name','gastos['+(posCambio-1)+'].importe');
+		
+		//Disminuye en uno el id de los botones
+		document.getElementById('btnMas'+posCambio).setAttribute('id','btnMas'+(posCambio-1));
+		document.getElementById('btnMenos'+posCambio).setAttribute('id','btnMenos'+(posCambio-1));
+		
+		//Disminuye en uno el id del tr
+		document.getElementById('gasto'+posCambio).setAttribute('id','gasto'+(posCambio-1));		
+		
+	}
+		
+
 }
 </script>
 
