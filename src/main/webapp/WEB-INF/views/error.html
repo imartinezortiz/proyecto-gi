@@ -2,18 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
+<!-- Bootstrap Core CSS -->
+    <link type="text/css" href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"
+    data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
 <title>Login</title>
 </head>
 
-<body>
-	<h1>Login </h1>
-	<br></br><br></br>
-	
-<p> ERROR </p>
-	
-	
+<body class="container">
+	<h1>Error Login </h1>
+	<br></br>
+
+	<div class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span> Usuario incorrecto.
+	</div>
+
+
 	<a th:href="@{'/'}"> Ir a login </a>
 	
-	<a th:href="@{'/bienvenido'}"> Ir a Menu </a>
 </body>
 </html>
