@@ -65,6 +65,11 @@ function removeText(idBotonMenos) {
 	
 	//Elimino tr
 	$('#gasto'+numGasto).remove();
+	
+	//Si eliminamos todos los tr tiene que mostrarse uno al menos.
+	if ($('#gastos tr').length == 0){
+		this.appendText();
+	}	
 
 	//A partir del tr eliminado, renombro names e ids
 	for (posCambio; posCambio < totalGastos; posCambio++){ 
@@ -80,7 +85,7 @@ function removeText(idBotonMenos) {
 		
 		//Disminuye en uno el id del tr
 		document.getElementById('gasto'+posCambio).setAttribute('id','gasto'+(posCambio-1));				
-	}
+	}	
 }
 </script>
 
