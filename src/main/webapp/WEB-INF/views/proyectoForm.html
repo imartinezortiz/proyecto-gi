@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 
 <!-- Bootstrap Core CSS -->
 <link type="text/css"
@@ -24,42 +24,71 @@
 	href="../../resources/bower_components/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css"
 	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
-	
+
 <title>Añadir Proyecto</title>
 </head>
 <body class="container">
- <h1>Añadir Proyecto </h1>
-<form role="form" action="#" th:action="@{/crearProyecto}" th:object="${NuevoProyectoDTO}" method="POST">
+	<h1>Añadir Proyecto</h1>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<p class="panel-title">Datos Proyecto</p>
 		</div>
 		<div class="panel-body">
-			<div class="form-group" th:classappend="${#fields.hasErrors('referencia')} ? has-error">
-				<input class="form-control" placeholder="Referencia"
-					name="referencia" type="text" th:value="*{referencia}"/>
-				<span class="help-block" th:errors="*{referencia}">[errors]</span>
-			</div>
-			<div class="form-group">
-				<input class="form-control" placeholder="Título"
-					name="titulo" type="text"  th:value="*{titulo}"/>
-			</div>
-			<div class="form-group">
-					<select class="form-control" name="investigadorId" th:field="*{investigadorId}">
-						<option th:each="investigador : ${investigadores}" th:value="${investigador.id}"
-							th:text="${investigador.nombre}">Investigadores</option>
-					</select>
-			</div>
-			<div class="form-group">
-				<input class="form-control" placeholder="Nº Contabilidad"
-					name="numContabilidad" type="text" />
-			</div>
-			<input type="submit" class="btn btn-lg btn-success btn-block" value="Crear Proyecto"/>
+			<form class="form-horizontal"  role="form" action="#" th:action="@{/crearProyecto}"
+				th:object="${nuevoProyectoDTO}" method="POST">
+			
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('referencia')} ? has-error">
+						<label class="control-label col-md-2" for="referencia">Referencia:</label>
+						<div class="col-md-10">
+							<input class="form-control col-md-10" placeholder="Referencia"
+								type="text" th:field="*{referencia}" />
+								<span class="help-block" th:errors="*{referencia}">[errors]</span>
+						</div>
+						
+					</div>
+
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('titulo')} ? has-error">
+						<label class="control-label col-md-2" for="titulo">Título:</label>
+						<div class="col-md-10">
+							<input class="form-control col-md-10" placeholder="Título"
+								type="text" th:field="*{titulo}" />
+								<span class="help-block" th:errors="*{titulo}">[errors]</span>
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-2" for="investigadores">
+							Investigadores:</label>
+							<div class="col-md-10">
+								<select class="form-control col-md-10"
+								name="investigadorId" th:field="*{investigadorId}">
+								<option th:each="investigador : ${investigadores}"
+									th:value="${investigador.id}" th:text="${investigador.nombre}">Investigadores</option>
+								</select>
+							</div>
+					</div>
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('numContabilidad')} ? has-error">
+						<label class="control-label col-md-2" for="numContabilidad">
+							Num. Contabilidad:</label>
+						<div class="col-md-10">
+							<input class="form-control col-md-10"
+								placeholder="Nº Contabilidad" type="text"
+								th:field="*{numContabilidad}" />
+								<span class="help-block" th:errors="*{numContabilidad}">[errors]</span>
+						</div>
+						
+					</div>
+					<input type="submit" class="btn btn-lg btn-success btn-block"
+						value="Crear Proyecto" />
+				
+				<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}" />
+			</form>
 		</div>
 	</div>
-	 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-	</form>
-
 </body>
 </html>
 

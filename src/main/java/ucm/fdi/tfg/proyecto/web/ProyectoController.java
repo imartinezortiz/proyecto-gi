@@ -3,9 +3,12 @@ package ucm.fdi.tfg.proyecto.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,38 +71,28 @@ public class ProyectoController {
 
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		//model.put("investigadores", users.findAllInvestigadores());
 		model.put("investigadores", users.findAllUserInvestigadores());
-		model.put("NuevoProyectoDTO",  new NuevoProyectoDTO());
+		model.put("nuevoProyectoDTO",  new NuevoProyectoDTO());
 		ModelAndView view = new ModelAndView("proyectoForm", model);
 
 		return view;
 	}
 
 	@RequestMapping(value = "/crearProyecto", method = RequestMethod.POST)
-	public ModelAndView añadirProyectoPost(NuevoProyectoDTO proyectoDTO, BindingResult errors) {
-		/*
-		 * ModelAndView view = null;
+	public ModelAndView añadirProyectoPost(@ModelAttribute("nuevoProyectoDTO") @Valid NuevoProyectoDTO  nuevoProyectoDTO, BindingResult errors) {
 		
-		 Lo que nos dejó Iván
+		ModelAndView view = null;			
 		
-		
-		//if (errors.hasErrors()) {
+		if (errors.hasErrors()) {
 			view = new ModelAndView("proyectoForm");
-			view.addObject("investigadores", users.findAllInvestigadores());
-			view.addObject("NuevoProyectoDTO", proyectoDTO);
-//		} else {
-//			gestorManager.nuevoProyecto(proyectoDTO);
-//			view = new ModelAndView("redirect:/proyectos");
-//		}
+			view.addObject("investigadores", users.findAllUserInvestigadores());
+			view.addObject("NuevoProyectoDTO", nuevoProyectoDTO);				
+		} else {
+			proyectos.nuevoProyecto(nuevoProyectoDTO);
+			view = new ModelAndView("redirect:/proyectos");
+		}
 		
-		*/		
-		
-		 proyectos.nuevoProyecto(proyectoDTO);
-		 
-		 ModelAndView view = new ModelAndView("menuGestor");
-		
-		return view;
+		return view;		
 	}
 
 }

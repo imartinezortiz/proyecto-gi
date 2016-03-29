@@ -1,10 +1,20 @@
 package ucm.fdi.tfg.proyecto.business.boundary;
 
-public class NuevoProyectoDTO {
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
+public class NuevoProyectoDTO {
+	
+	@NotEmpty(message = "Campo vacío")
+	@Email(message = "Debe ser un email")
 	private String referencia;
+	
+	@NotEmpty(message = "Campo vacío")
 	private String titulo;
+	
 	private Long investigadorId;
+	
+	@NotEmpty(message = "Campo vacío")
 	private String numContabilidad;
 
 	public String getReferencia() {
