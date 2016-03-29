@@ -1,5 +1,7 @@
 package ucm.fdi.tfg.proyecto.business.boundary;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +52,9 @@ public class ProyectosManager {
 
 	public Proyecto getProyecto(Long idProyecto) {
 		return proyectos.getOne(idProyecto);
+	}
+	
+	public List<Proyecto> findAll(){
+		return proyectos.findAll();
 	}
 }

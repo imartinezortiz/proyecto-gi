@@ -36,19 +36,13 @@ public class ProyectoController {
 
 		return view;
 	}
-	
-	//Aqui manda todos los proyectos que hay, 
-		//pero cuando arreglemos el login, solo mandará los proyectos asociados a ese investigador
-		
+	 	
 		@RequestMapping(value = "/proyectos", method = RequestMethod.GET)
 		public ModelAndView listarProeyctos() {
-
-			User user = users.getCurrentUser();
-			Investigador inv = users.findInvestigadorPrincipal(user.getId());
 			
 			Map<String, Object> model = new HashMap<String, Object>();
-
-			model.put("proyectos", inv.getProyectosDirigidos());
+			
+			model.put("proyectos", proyectos.findAll());
 
 			ModelAndView view = new ModelAndView("listarProyectos", model);
 
