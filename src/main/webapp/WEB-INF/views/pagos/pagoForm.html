@@ -17,11 +17,11 @@
 		var auxbtnMenos = $('<td class="col-md-2"></td>');
 
 		var numFactura = $(
-				'<input type="text" placeholder="Nº Factura" class="form-control col-md-2" />').attr('name', 'gastos[' + count + '].numFactura');
+				'<input type="text" class="form-control col-md-2" />').attr('name', 'gastos[' + count + '].numFactura');
 		var concepto = $(
-				'<input type="text" placeholder="Proveedor,concepto y partida presupuestaria" class="form-control"  />').attr('name', 'gastos[' + count + '].proveedor');
+				'<input type="text" class="form-control"  />').attr('name', 'gastos[' + count + '].proveedor');
 		var importe = $(
-				'<input type="text" placeholder="Importe" class="form-control col-md-2"/> ').attr('name', 'gastos[' + count + '].importe');
+				'<input type="text" class="form-control col-md-2"/> ').attr('name', 'gastos[' + count + '].importe');
 		
 		var btnMas = $('<button onclick="appendText()" class="btn btn-success"	type="button">+</button>').attr('id', 'btnMas' + count );
 			
@@ -95,33 +95,41 @@ function removeText(idBotonMenos) {
 </head>
 
 <body class="container">
-
-	<div class="row">
-		<div class="col-md-12 col-md-offset-1">
 			<h1>Orden de Pago</h1>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<p class="panel-title">Introduzca valores Pago</p>
 				</div>
 				<div class="panel-body">
-					<form role="form" action="#"
-						th:action="@{'/proyecto/{idProyecto}/pagos'  (idProyecto=*{proyecto.id})}"
+					<form class="form-horizontal" role="form" action="#" th:action="@{'/proyecto/{idProyecto}/pagos'  (idProyecto=*{proyecto.id})}"
 						th:object="${pago}" method="POST">
 						<div class="form-group">
+						 <label class="control-label col-md-2" for="fecha">Fecha:</label>
+							 <div class="col-md-10">
 							<input class="form-control"
-								th:value="${pago.fecha}" name="fecha" type="date" />
+								th:value="${pago.fecha}"  id="fecha" name="fecha" type="date" />
+								</div>
 						</div>
 						<div class="form-group">
-							<input class="form-control" placeholder="NumOrden"
+						<label class="control-label col-md-2" for="numOrden">Num Orden:</label>
+							<div class="col-md-10">
+							<input class="form-control" id="numOrden"
 								name="numOrden" type="text" />
+								</div>
 						</div>
 						<div class="form-group">
+						<label class="control-label col-md-2" for="contabilidad">Contabilidad:</label>
+							<div class="col-md-10">
 							<input class="form-control" name="numContabilidad" type="text"
 								th:value="*{proyecto.numContabilidad}" readonly="readonly" />
+							</div>
 						</div>
 						<div class="form-group">
-							<input class="form-control" name="proyecto" type="text"
+						<label class="control-label col-md-2" for="titulo">Título:</label>
+						<div class="col-md-10">
+							<input class="form-control" id="titulo" name="proyecto" type="text" 
 								th:value="${pago.proyecto.titulo}" readonly="readonly" />
+						</div>
 						</div>
 
 						<div class="panel panel-default">
@@ -130,26 +138,41 @@ function removeText(idBotonMenos) {
 							</div>
 							<div class="panel-body">
 								<div class="form-group">
-									<input class="form-control" placeholder="Nombre" type="text"
+								<label class="control-label col-md-2" for="nombre">Nombre:</label>
+								<div class="col-md-10">
+									<input class="form-control" id="nombre" type="text"
 										th:value="${user.nombre}" readonly="readonly" />
+										</div>
 								</div>
 								<div class="form-group">
-									<input class="form-control" placeholder="Apellidos" type="text"
+								<label class="control-label col-md-2" for="apellidos">Apellidos:</label>
+								<div class="col-md-10">
+									<input class="form-control" id="apellidos" type="text"
 										th:value="${user.apellidos}" readonly="readonly" />
+										</div>
 								</div>
 								<div class="form-group">
-									<input class="form-control" placeholder="Teléfono" type="text"
+								<label class="control-label col-md-2" for="telefono">Teléfono:</label>
+								<div class="col-md-10">
+									<input class="form-control" id="telefono" type="text"
 										th:value="${user.telefono}" readonly="readonly" />
+										</div>
 								</div>
 								<div class="form-group">
-									<input class="form-control" placeholder="Departamento" type="text"
+								<label class="control-label col-md-2" for="departamento">Departamento:</label>
+								<div class="col-md-10">
+									<input class="form-control" id="departamento" type="text"
 										th:value="${pago.proyecto.investigadorPrincipal.departamento}"
 										readonly="readonly" />
+										</div>
 								</div>
 								<div class="form-group">
-									<input class="form-control" placeholder="Centro" type="text"
+								<label class="control-label col-md-2" for="centro">Centro:</label>
+								<div class="col-md-10">
+									<input class="form-control" id="centro" type="text"
 										th:value="${pago.proyecto.investigadorPrincipal.centro}"
 										readonly="readonly" />
+								</div>
 								</div>
 							</div>
 						</div>
@@ -160,17 +183,23 @@ function removeText(idBotonMenos) {
 							</div>
 							<div class="panel-body">
 								<table>
+								<thead>
+								<tr>
+								<th class="col-md-2 text-center">Nº Factura</th>
+								<th class="col-md-8 text-center">Proveedor,concepto y partida presupuestaria</th>
+								<th class="col-md-2 text-center">Importe</th>
+								</tr>
+								</thead>
 									<tbody id="gastos">
 										<tr id="gasto0" th:each="gasto,gastoStat : *{gastos}">
 											<td class="col-md-2"><input type="text"
-												class="form-control" placeholder="Nº Factura"
+												class="form-control" 
 												th:field="*{gastos[__${gastoStat.index}__].numFactura}" /></td>
 											<td class="col-md-8"><input type="text"
 												class="form-control"
-												placeholder="Proveedor,concepto y partida presupuestaria"
 												th:field="*{gastos[__${gastoStat.index}__].proveedor}" /></td>
 											<td class="col-md-2"><input type="text"
-												class="form-control" placeholder="Importe"
+												class="form-control" 
 												th:field="*{gastos[__${gastoStat.index}__].importe}" /></td>
 											<td class="col-md-2">
 												<button onclick="appendText()" class="btn btn-success"
@@ -197,7 +226,10 @@ function removeText(idBotonMenos) {
 										</div>
 										<div class="panel-body">
 										<div class="form-group">
-												<input class="form-control" placeholder="Pagar a:" name="pagador" type="text" th:value="${pago.pagador}" />
+										<label class="control-label col-md-2" for="pagador">Pagar a:</label>
+										<div class="col-md-10">
+												<input class="form-control" id="pagador" name="pagador" type="text" th:value="${pago.pagador}" />
+										</div>
 										</div>
 										</div>
 									</div>
@@ -210,10 +242,16 @@ function removeText(idBotonMenos) {
 										</div>
 										<div class="panel-body">
 											<div class="form-group">
-												<input class="form-control" placeholder="IBAN" name="iban" type="text" th:value="${pago.iban}" />
+											<label class="control-label col-md-2" for="iban">IBAN:</label>
+											<div class="col-md-10">
+												<input class="form-control" id="iban" name="iban" type="text" th:value="${pago.iban}" />
+											</div>
 											</div>
 											<div class="form-group">
-												<input class="form-control" placeholder="BIC" name="bic" type="text" th:value="${pago.bic}" />
+											<label class="control-label col-md-2" for="bic">BIC:</label>
+											<div class="col-md-10">
+												<input class="form-control" id="bic" name="bic" type="text" th:value="${pago.bic}" />
+											</div>
 											</div>
 										</div>
 									</div>
@@ -246,8 +284,7 @@ function removeText(idBotonMenos) {
 					</form>
 				</div>
 			</div>
-		</div>
-	</div>
+
 
 </body>
 
