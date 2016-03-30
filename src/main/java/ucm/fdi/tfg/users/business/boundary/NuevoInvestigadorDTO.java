@@ -1,19 +1,47 @@
 package ucm.fdi.tfg.users.business.boundary;
 
+import java.io.Serializable;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.ScriptAssert;
+
+@ScriptAssert(lang="javascript",script="(_this.password!=null)?  _this.password.equals(_this.nuevaPassword) : false",message="Los 2 passwords deben ser iguales")
 public class NuevoInvestigadorDTO {
 	
 	//Atributos para Persona
+	
+	
+	@Size(min=3, max=20, message="La longitud debe estar entre 3 y 20")
 	String username;
+	
+	@NotEmpty(message = "Campo vacio") 
 	String nombre;
+	
+	@NotEmpty(message = "Campo vacio") 
 	String apellidos;
+	
+	@NotEmpty(message = "Campo vacio") 
 	String telefono;
+	
+	@NotEmpty(message = "Campo vacio") 
+	@Email(message = "Debe ser un email") 
 	String email;
 	
+	@NotNull
 	String password;
+	
+	@NotNull
 	String nuevaPassword;
 	
 	//Atributos para Investigador
+	@NotEmpty(message = "Campo vacio") 
 	String departamento;	
+	
+	@NotEmpty(message = "Campo vacio") 
 	String centro;		
 	
 	

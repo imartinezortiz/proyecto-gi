@@ -3,9 +3,13 @@ package ucm.fdi.tfg.users.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,18 +64,30 @@ public class UserController {
 
 	@RequestMapping(value = "/altaInvestigador", method = RequestMethod.GET)
 	public ModelAndView altaInvestigador() {
+				
+		Map<String, Object> model = new HashMap<String, Object>();
 		
-		ModelAndView view = new ModelAndView("usuarios/investigadorForm");
+		model.put("nuevoInvestigadorDTO", new NuevoInvestigadorDTO());
+		ModelAndView view = new ModelAndView("usuarios/investigadorForm", model);
 		
 		return view;
 	}
 
 	@RequestMapping(value = "/altaInvestigador", method = RequestMethod.POST)
-	public String addInvestigador(NuevoInvestigadorDTO investigador) {
+	public ModelAndView addInvestigador(@ModelAttribute("nuevoInvestigadorDTO") @Valid NuevoInvestigadorDTO nuevoInvestigadorDTO, BindingResult errors) {
 
-		users.addInvestigador(investigador);
-
-		return "redirect:/admin";
+		ModelAndView view = null;
+		
+		if (errors.hasErrors()){			
+			view = new ModelAndView ("usuarios/investigadorForm");
+			view.addObject("NuevoInvestigadorDTO", nuevoInvestigadorDTO);
+		}
+		else{
+			users.addInvestigador(nuevoInvestigadorDTO);
+			view = new ModelAndView ("redirect:/admin");			
+		}				
+		
+		return view;
 	}
 	
 	@RequestMapping(value = "/altaAdmin", method = RequestMethod.GET)
