@@ -19,6 +19,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Entity
@@ -30,6 +32,7 @@ public class Pago {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	Long id;
 	
+	@NotEmpty(message="Campo vacio")
 	private String numOrden;	
 	private String fecha;
 	private String iban;

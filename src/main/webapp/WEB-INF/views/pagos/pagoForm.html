@@ -103,32 +103,30 @@ function removeText(idBotonMenos) {
 				<div class="panel-body">
 					<form class="form-horizontal" role="form" action="#" th:action="@{'/proyecto/{idProyecto}/pagos'  (idProyecto=*{proyecto.id})}"
 						th:object="${pago}" method="POST">
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('fecha')} ? has-error">
 						 <label class="control-label col-md-2" for="fecha">Fecha:</label>
 							 <div class="col-md-10">
-							<input class="form-control"
-								th:value="${pago.fecha}"  id="fecha" name="fecha" type="date" />
-								</div>
+								<input class="form-control" th:field="*{fecha}" type="date" />
+								<span class="help-block" th:errors="*{fecha}">[errors]</span>
+							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('numOrden')} ? has-error">
 						<label class="control-label col-md-2" for="numOrden">Num Orden:</label>
 							<div class="col-md-10">
-							<input class="form-control" id="numOrden"
-								name="numOrden" type="text" />
-								</div>
-						</div>
-						<div class="form-group">
-						<label class="control-label col-md-2" for="contabilidad">Contabilidad:</label>
-							<div class="col-md-10">
-							<input class="form-control" name="numContabilidad" type="text"
-								th:value="*{proyecto.numContabilidad}" readonly="readonly" />
+							<input class="form-control" th:field="*{numOrden}" type="text" />
+							<span class="help-block" th:errors="*{numOrden}">[errors]</span>
 							</div>
 						</div>
 						<div class="form-group">
-						<label class="control-label col-md-2" for="titulo">Título:</label>
+						<label class="control-label col-md-2" for="proyecto.numContabilidad">Contabilidad:</label>
+							<div class="col-md-10">
+							<input class="form-control" type="text" th:field="*{proyecto.numContabilidad}" readonly="readonly" />
+							</div>
+						</div>
+						<div class="form-group">
+						<label class="control-label col-md-2" for="proyecto.titulo">Título:</label>
 						<div class="col-md-10">
-							<input class="form-control" id="titulo" name="proyecto" type="text" 
-								th:value="${pago.proyecto.titulo}" readonly="readonly" />
+							<input class="form-control" type="text"  th:field="*{proyecto.titulo}" readonly="readonly" />
 						</div>
 						</div>
 
@@ -138,39 +136,38 @@ function removeText(idBotonMenos) {
 							</div>
 							<div class="panel-body">
 								<div class="form-group">
-								<label class="control-label col-md-2" for="nombre">Nombre:</label>
+								<label class="control-label col-md-2" for="user.nombre">Nombre:</label>
 								<div class="col-md-10">
-									<input class="form-control" id="nombre" type="text"
-										th:value="${user.nombre}" readonly="readonly" />
+									<input class="form-control" type="text"
+										th:field="${user.nombre}" readonly="readonly" />
 										</div>
 								</div>
 								<div class="form-group">
-								<label class="control-label col-md-2" for="apellidos">Apellidos:</label>
+								<label class="control-label col-md-2" for="user.apellidos">Apellidos:</label>
 								<div class="col-md-10">
-									<input class="form-control" id="apellidos" type="text"
-										th:value="${user.apellidos}" readonly="readonly" />
+									<input class="form-control" type="text"
+										th:field="${user.apellidos}" readonly="readonly" />
 										</div>
 								</div>
 								<div class="form-group">
-								<label class="control-label col-md-2" for="telefono">Teléfono:</label>
+								<label class="control-label col-md-2" for="user.telefono">Teléfono:</label>
 								<div class="col-md-10">
-									<input class="form-control" id="telefono" type="text"
-										th:value="${user.telefono}" readonly="readonly" />
+									<input class="form-control" type="text"
+										th:field="${user.telefono}" readonly="readonly" />
 										</div>
 								</div>
 								<div class="form-group">
-								<label class="control-label col-md-2" for="departamento">Departamento:</label>
+								<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.departamento">Departamento:</label>
 								<div class="col-md-10">
-									<input class="form-control" id="departamento" type="text"
-										th:value="${pago.proyecto.investigadorPrincipal.departamento}"
-										readonly="readonly" />
-										</div>
+									<input class="form-control" type="text"
+										th:value="*{proyecto.investigadorPrincipal.departamento}" readonly="readonly" />
+								</div>
 								</div>
 								<div class="form-group">
-								<label class="control-label col-md-2" for="centro">Centro:</label>
+								<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.centro">Centro:</label>
 								<div class="col-md-10">
-									<input class="form-control" id="centro" type="text"
-										th:value="${pago.proyecto.investigadorPrincipal.centro}"
+									<input class="form-control" type="text"
+										th:value="*{proyecto.investigadorPrincipal.centro}"
 										readonly="readonly" />
 								</div>
 								</div>
@@ -228,7 +225,7 @@ function removeText(idBotonMenos) {
 										<div class="form-group">
 										<label class="control-label col-md-2" for="pagador">Pagar a:</label>
 										<div class="col-md-10">
-												<input class="form-control" id="pagador" name="pagador" type="text" th:value="${pago.pagador}" />
+											<input class="form-control" type="text" th:field="*{pagador}" />
 										</div>
 										</div>
 										</div>
@@ -244,13 +241,13 @@ function removeText(idBotonMenos) {
 											<div class="form-group">
 											<label class="control-label col-md-2" for="iban">IBAN:</label>
 											<div class="col-md-10">
-												<input class="form-control" id="iban" name="iban" type="text" th:value="${pago.iban}" />
+												<input class="form-control" type="text" th:field="*{iban}" />
 											</div>
 											</div>
 											<div class="form-group">
 											<label class="control-label col-md-2" for="bic">BIC:</label>
 											<div class="col-md-10">
-												<input class="form-control" id="bic" name="bic" type="text" th:value="${pago.bic}" />
+												<input class="form-control"  type="text" th:field="*{bic}" />
 											</div>
 											</div>
 										</div>
@@ -263,7 +260,7 @@ function removeText(idBotonMenos) {
 											<p class="panel-title">MEMORIA EXPLICATIVA DE LOS GASTOS</p>
 										</div>
 										<div class="panel-body">
-											<textarea name="memoria" class="form-control" rows="3"></textarea>
+											<textarea class="form-control" rows="3" th:field="*{memoria}"> </textarea>
 										</div>
 							</div>
 							<div class="panel panel-default">
@@ -271,7 +268,7 @@ function removeText(idBotonMenos) {
 											<p class="panel-title">RELACIÓN CON EL PROYECTO</p>
 										</div>
 										<div class="panel-body">
-											<textarea name="relacion" class="form-control" rows="3"></textarea>
+											<textarea  class="form-control" rows="3" th:field="*{relacion}"></textarea>
 										</div>
 							</div>
 			

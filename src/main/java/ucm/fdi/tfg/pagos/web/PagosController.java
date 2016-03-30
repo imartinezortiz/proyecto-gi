@@ -3,6 +3,8 @@ package ucm.fdi.tfg.pagos.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,11 +72,30 @@ public class PagosController {
 	//Igual que en thymeleaf le decimos mediante th:object el objeto q mandamos,  
 	//en spring mediante ModelAttribute le decimos el tipo de objeto que le llega.
 	@RequestMapping(value = "/proyecto/{idProyecto}/pagos", method = RequestMethod.POST)
-	public String addPago(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute Pago pago, BindingResult errors){
+	public ModelAndView addPago(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute @Valid Pago pago, BindingResult errors){
+		
+		ModelAndView view = null;	
+		
+		if(errors.hasErrors()){
+			
+			view = new ModelAndView("pagos/pagoForm");
+			Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
 	
-		pago.setProyecto(proyectosManager.findProyecto(idProyecto));
-		pagoManager.save(pago);	
-		return "redirect:/registroCompleto";
+			pago.setProyecto(proyecto);
+	
+			Investigador inv = proyecto.getInvestigadorPrincipal();
+			
+			User userActivo = users.findOneUser(inv.getId());
+			view.addObject("pago", pago);
+			view.addObject("user", userActivo);
+			
+		}else{
+			pago.setProyecto(proyectosManager.findProyecto(idProyecto));
+			pagoManager.save(pago);	
+			view = new ModelAndView("redirect:/registroCompleto");
+		}
+		return view;
+		
 		
 	}
 	
