@@ -31,10 +31,10 @@ public class NuevoInvestigadorDTO {
 	@Email(message = "Debe ser un email") 
 	String email;
 	
-	@NotNull
+	@NotEmpty(message = "Campo vacio") 
 	String password;
 	
-	@NotNull
+	@NotEmpty(message = "Campo vacio") 
 	String nuevaPassword;
 	
 	//Atributos para Investigador
