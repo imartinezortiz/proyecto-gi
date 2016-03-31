@@ -41,7 +41,7 @@ public class ProyectoController {
 			
 			model.put("proyectos", proyectos.findAll());
 
-			ModelAndView view = new ModelAndView("listarProyectos", model);
+			ModelAndView view = new ModelAndView("proyectos/listarProyectos", model);
 
 			return view;
 		}
@@ -67,7 +67,7 @@ public class ProyectoController {
 		
 		model.put("investigadores", users.findAllUserInvestigadores());
 		model.put("nuevoProyectoDTO",  new NuevoProyectoDTO());
-		ModelAndView view = new ModelAndView("proyectoForm", model);
+		ModelAndView view = new ModelAndView("proyectos/proyectoForm", model);
 
 		return view;
 	}
@@ -78,7 +78,7 @@ public class ProyectoController {
 		ModelAndView view = null;			
 		
 		if (errors.hasErrors()) {
-			view = new ModelAndView("proyectoForm");
+			view = new ModelAndView("proyectos/proyectoForm");
 			view.addObject("investigadores", users.findAllUserInvestigadores());
 			view.addObject("nuevoProyectoDTO", nuevoProyectoDTO);						
 		} else {
