@@ -51,7 +51,7 @@ public class InventariosController {
 		model.put("inventario", inventario);
 		model.put("user", userActivo); 
 
-		ModelAndView view = new ModelAndView("inventariosForm", model);
+		ModelAndView view = new ModelAndView("inventarios/inventariosForm", model);
 		
 		return view;
 	}

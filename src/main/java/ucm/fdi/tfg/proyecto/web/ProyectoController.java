@@ -32,13 +32,7 @@ public class ProyectoController {
 		this.users = users;
 	}
 
-	@RequestMapping(value = "/gestor", method = RequestMethod.GET)
-	public ModelAndView menuGestor() {
 
-		ModelAndView view = new ModelAndView("menuGestor");
-
-		return view;
-	}
 	 	
 		@RequestMapping(value = "/proyectos", method = RequestMethod.GET)
 		public ModelAndView listarProeyctos() {
@@ -59,7 +53,7 @@ public class ProyectoController {
 			
 			model.put("idProyecto",id);
 			
-			ModelAndView view = new ModelAndView("menuProyecto", model);
+			ModelAndView view = new ModelAndView("menus/menuProyecto", model);
 
 			return view;
 		}

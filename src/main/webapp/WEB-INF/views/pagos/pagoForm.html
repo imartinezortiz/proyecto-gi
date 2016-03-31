@@ -189,12 +189,10 @@ function removeText(idBotonMenos) {
 								</thead>
 									<tbody id="gastos">
 										<tr id="gasto0" th:each="gasto,gastoStat : *{gastos}">
-											<td class="col-md-2">
-											<div class="form-group">
+											<td class="col-md-2">	
 											<input type="text" class="form-control" 
 												th:field="*{gastos[__${gastoStat.index}__].numFactura}" />
-												<span class="help-block" th:errors="*{gastos[__${gastoStat.index}__].numFactura}">[errors]</span>
-											</div>
+												<span class="help-block" th:errors="*{gastos[__${gastoStat.index}__].numFactura}">[errors]</span>									
 											</td>
 											<td class="col-md-8">
 											<input type="text"

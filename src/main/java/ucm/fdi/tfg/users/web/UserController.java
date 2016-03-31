@@ -42,7 +42,7 @@ public class UserController {
 	@RequestMapping(value = "/bienvenido", method = RequestMethod.GET)
 	public ModelAndView prueba() {
 
-		ModelAndView view = new ModelAndView("menu");
+		ModelAndView view = new ModelAndView("menus/menu");
 
 		return view;
 	}
@@ -58,7 +58,15 @@ public class UserController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView menuAdmin() {
 
-		ModelAndView view = new ModelAndView("menuAdmin");
+		ModelAndView view = new ModelAndView("menus/menuAdmin");
+
+		return view;
+	}
+	
+	@RequestMapping(value = "/gestor", method = RequestMethod.GET)
+	public ModelAndView menuGestor() {
+
+		ModelAndView view = new ModelAndView("menus/menuGestor");
 
 		return view;
 	}
