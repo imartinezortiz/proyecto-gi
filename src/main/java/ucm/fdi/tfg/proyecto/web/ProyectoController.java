@@ -86,7 +86,7 @@ public class ProyectoController {
 		if (errors.hasErrors()) {
 			view = new ModelAndView("proyectoForm");
 			view.addObject("investigadores", users.findAllUserInvestigadores());
-			view.addObject("NuevoProyectoDTO", nuevoProyectoDTO);				
+			view.addObject("nuevoProyectoDTO", nuevoProyectoDTO);						
 		} else {
 			proyectos.nuevoProyecto(nuevoProyectoDTO);
 			view = new ModelAndView("redirect:/proyectos");

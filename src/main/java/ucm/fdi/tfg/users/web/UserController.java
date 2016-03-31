@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ucm.fdi.tfg.users.business.boundary.NuevoInvestigadorDTO;
+import ucm.fdi.tfg.users.business.boundary.UserDTO;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
 import ucm.fdi.tfg.users.business.entity.User;
 
@@ -80,7 +81,7 @@ public class UserController {
 		
 		if (errors.hasErrors()){			
 			view = new ModelAndView ("usuarios/investigadorForm");
-			view.addObject("NuevoInvestigadorDTO", nuevoInvestigadorDTO);
+			view.addObject("nuevoInvestigadorDTO", nuevoInvestigadorDTO);
 		}
 		else{
 			users.addInvestigador(nuevoInvestigadorDTO);
@@ -92,34 +93,59 @@ public class UserController {
 	
 	@RequestMapping(value = "/altaAdmin", method = RequestMethod.GET)
 	public ModelAndView altaAdmin() {
-		ModelAndView view = new ModelAndView("usuarios/adminForm");
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		model.put("userDTO", new UserDTO());
+		
+		ModelAndView view = new ModelAndView("usuarios/adminForm", model);
 		
 		return view;
 	}
 	
 	@RequestMapping(value = "/altaAdmin", method = RequestMethod.POST)
-	public String addAdmin(User admin) {
-
-		users.addAdmin(admin);
+	public ModelAndView addAdmin(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult errors) {
 		
-		return "redirect:/admin";
+		ModelAndView view = null;
+		
+		if (errors.hasErrors()){			
+			view = new ModelAndView ("usuarios/adminForm");
+			view.addObject("userDTO", userDTO);
+		}
+		else{
+			users.addAdmin(userDTO);
+			view = new ModelAndView ("redirect:/admin");			
+		}	
+				
+		return view;
 	}
 	
 	
 	@RequestMapping(value = "/altaGestor", method = RequestMethod.GET)
 	public ModelAndView altaGestor() {
+		Map<String, Object> model = new HashMap<String, Object>();
 		
-		ModelAndView view = new ModelAndView("usuarios/gestorForm");
+		model.put("userDTO", new UserDTO());		
+		
+		ModelAndView view = new ModelAndView("usuarios/gestorForm",model);
 
 		return view;
 	}
 	
 	@RequestMapping(value = "/altaGestor", method = RequestMethod.POST)
-	public String addGestor(User user) {
+	public ModelAndView addGestor(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult errors) {
+		ModelAndView view = null;
 		
-		users.addGestor(user);
-
-		return "redirect:/admin";
+		if (errors.hasErrors()){			
+			view = new ModelAndView ("usuarios/gestorForm");
+			view.addObject("userDTO", userDTO);
+		}
+		else{
+			users.addGestor(userDTO);
+			view = new ModelAndView ("redirect:/admin");			
+		}	
+				
+		return view;
 	}
 	
 	
