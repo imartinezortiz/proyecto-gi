@@ -2,22 +2,21 @@ package ucm.fdi.tfg.pagos.business.entity;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Basic;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Embeddable // es atributo de un Entity 
 @Table(name="PAGO_GASTOS")
 public class Gasto {
 	
 	
-	@NotEmpty(message="Campo vacio")
+	
 	private String numFactura;
 	
 	
-	@NotEmpty(message="Campo vacio")
+	
 	private String proveedor;
 	
 	

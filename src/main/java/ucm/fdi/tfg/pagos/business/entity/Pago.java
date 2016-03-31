@@ -53,7 +53,6 @@ public class Pago {
 		
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PAGO_GASTOS", joinColumns=@JoinColumn(name="pagoId"),  uniqueConstraints=@UniqueConstraint(columnNames={"pagoId", "numFactura"}))
-	@Valid
 	private Collection<Gasto> gastos;
 	
 	Pago() {
