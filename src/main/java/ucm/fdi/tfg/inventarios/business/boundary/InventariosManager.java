@@ -29,6 +29,7 @@ public class InventariosManager {
 
 	public void nuevoInventario(Long idProyecto, Inventario inventario) {
 		inventario.setProyecto(proyectos.getProyecto(idProyecto));
+	//	inventario.setNumContabilidad(proyectos.getProyecto(idProyecto).getNumContabilidad());
 		inventarioRepository.save(inventario);
 	}
 

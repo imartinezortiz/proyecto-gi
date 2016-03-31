@@ -36,11 +36,14 @@
 					<p class="panel-title">Introduzca valores Inventario</p>
 				</div>
 				<div class="panel-body">
-					<form role="form" action="#" th:action="@{'/proyecto/{idProyecto}/inventarios'  (idProyecto=*{proyecto.id})}"
+					<form class="form-horizontal" role="form" action="#" th:action="@{'/proyecto/{idProyecto}/inventarios'  (idProyecto=*{proyecto.id})}"
 					 th:object=${inventario} method="POST">
+					 
 						<div class="form-group">
-							<input class="form-control" placeholder="Nº CONTABILIDAD"
-								name="numContabilidad" type="text" />
+							<label class="control-label col-md-2" for=" proyecto.numContabilidad">Nº Contabilidad</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="*{proyecto.numContabilidad}" type="text"readonly="readonly" />
+							</div>
 						</div>
 						
 						<div class="panel panel-default">
@@ -49,20 +52,30 @@
 							</div>
 							<div class="panel-body">
 								<div class="form-group">
-									<input class="form-control" placeholder="Nombre"
-										th:value="${user.nombre}" type="text" />
+									<label class="control-label col-md-2" for="user.nombre">Nombre</label>
+									<div class="col-md-10">
+										<input class="form-control" th:field="${user.nombre}" type="text"readonly="readonly" />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="control-label col-md-2" for="user.apellidos">Apellidos</label>
+									<div class="col-md-10">
+										<input class="form-control" th:field="${user.apellidos}" type="text" readonly="readonly"/>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.departamento">Departamento</label>
+									<div class="col-md-10">
+										<input class="form-control" th:value="*{proyecto.investigadorPrincipal.departamento}" type="text"readonly="readonly" />
+									</div>
 								</div>
 								<div class="form-group">
-									<input class="form-control" placeholder="Apellidos"
-										th:value="${user.apellidos}" type="text" />
-								</div>
-								<div class="form-group">
-									<input class="form-control" placeholder="Departamento"
-										th:value="${inventario.proyecto.investigadorPrincipal.departamento}" type="text" />
-								</div>
-								<div class="form-group">
-									<input class="form-control" placeholder="CENTRO AL QUE ESTÁ ADSCRITO EL INVESTIGADOR"
-										th:value="${inventario.proyecto.investigadorPrincipal.centro}" type="text" />
+									<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.centro">Centro</label>
+									<div class="col-md-10">
+										<input class="form-control" th:value="*{proyecto.investigadorPrincipal.centro}" type="text" readonly="readonly"/>
+									</div>								
 								</div>
 							</div>
 						</div>
@@ -72,28 +85,32 @@
 								<p class="panel-title">Activo</p>
 							</div>
 							<div class="panel-body">
-								<div class="form-group">
-									<label>DESCRIPCIÓN DEL BIEN A INVENTARIAR:</label>
-									<textarea class="form-control" rows="3" name="descripcion"></textarea>
+							
+								<div class="form-group" th:classappend="${#fields.hasErrors('descripcion')} ? has-error">
+									<label class="control-label" for="descripcion">DESCRIPCIÓN DEL BIEN A INVENTARIAR:</label>
+									<textarea class="form-control" rows="3" th:field="*{descripcion}"></textarea>
+									<span class="help-block" th:errors="*{descripcion}">[errors]</span>
+								</div>
+								<div class="form-group " th:classappend="${#fields.hasErrors('centro')} ? has-error">
+									<label class="control-label " for="centro">CENTRO EN EL QUE SE EMPLAZARÁ EL BIEN:</label>
+									<textarea class="form-control" rows="3" th:field="*{centro}"></textarea>
+									<span class="help-block" th:errors="*{centro}">[errors]</span>
+								</div>
+								<div class="form-group" >
+									<label class="control-label " for="autorizacion">AUTORIZACIÓN DEL GERENTE DEL CENTRO (si se necesita instalación o afecta a la infraestructura del Centro):</label>
+									<textarea class="form-control" rows="3" th:field="*{autorizacion}"></textarea>
 								</div>
 								<div class="form-group">
-									<label>CENTRO EN EL QUE SE EMPLAZARÁ EL BIEN::</label>
-									<textarea class="form-control" rows="3" name="centro"></textarea>
+									<label class="control-label " for="observaciones">OBSERVACIONES:</label>
+									<textarea class="form-control" rows="3" th:field="*{observaciones}"></textarea>
 								</div>
-								<div class="form-group">
-									<label>AUTORIZACIÓN DEL GERENTE DEL CENTRO (si se necesita instalación o afecta a la infraestructura del Centro):</label>
-									<textarea class="form-control" rows="3" name="autorizacion"></textarea>
-								</div>
-								<div class="form-group">
-									<label>OBSERVACIONES:</label>
-									<textarea class="form-control" rows="3" name="observaciones"></textarea>
-								</div>
-								<div class="form-group">
+								<div class="form-group" th:classappend="${#fields.hasErrors('fecha')} ? has-error">
 									<input id="fechaInventario" class="form-control" type="date"/>
 									<input id="fechaInventarioForm" type="hidden" name="fecha" value="" />
+									<span class="help-block" th:errors="*{fecha}">[errors]</span>
 								</div>							
-								
-							</div>
+								</div>
+						
 							
 						</div>
 

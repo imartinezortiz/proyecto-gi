@@ -10,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -26,13 +29,14 @@ public class Inventario {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	Long id;
 	
-	private String numContabilidad;
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;
 	
+	@NotEmpty(message="Campo vacio")
 	private String descripcion;
 	
+	@NotEmpty(message="Campo vacio")
 	private String centro;
 	
 	private String autorizacion;
@@ -41,6 +45,7 @@ public class Inventario {
 	
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
+	@NotNull(message="Introduce una fecha")
 	private LocalDate fecha;
 	
 	public Inventario(){
@@ -49,14 +54,6 @@ public class Inventario {
 	
 	public Inventario(Proyecto proyecto){
 		this.proyecto = proyecto;
-	}
-
-	public String getNumContabilidad() {
-		return numContabilidad;
-	}
-
-	public void setNumContabilidad(String numContabilidad) {
-		this.numContabilidad = numContabilidad;
 	}
 
 	public Proyecto getProyecto() {
