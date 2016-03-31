@@ -29,7 +29,8 @@ public class UserController {
 		this.users = userManager;
 	}
 
-	// Por aqui entra la aplicacion
+	
+	/*
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home() {
 		
@@ -37,9 +38,11 @@ public class UserController {
 		
 		return view;
 	}
+*/
+
 
 	// Redirecciona al menu despues de hacer login
-	@RequestMapping(value = "/bienvenido", method = RequestMethod.GET)
+	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public ModelAndView prueba() {
 
 		ModelAndView view = new ModelAndView("menus/menu");
@@ -67,7 +70,7 @@ public class UserController {
 	public ModelAndView menuGestor() {
 
 		ModelAndView view = new ModelAndView("menus/menuGestor");
-
+		
 		return view;
 	}
 

@@ -25,7 +25,7 @@
 		<intercept-url pattern="/doLogin" access="permitAll" />
 		<intercept-url pattern="/logout" access="isAuthenticated()" />
 		<intercept-url pattern="/doLogout" access="isAuthenticated()" />
-		<intercept-url pattern="/bienvenido" access="isAuthenticated()" />
+		<intercept-url pattern="/menu" access="isAuthenticated()" />
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/addPago" access="permitAll" />
 		<intercept-url pattern="/registroCompleto" access="permitAll" />
@@ -34,6 +34,7 @@
 		<intercept-url pattern="/home" access="permitAll" />
 		<intercept-url pattern="/pruebas" access="permitAll" />
 		<intercept-url pattern="/viajes" access="permitAll" />
+		<intercept-url pattern="/inventarios" access="permitAll" />
 		
 
 		<!-- <intercept-url pattern="/bienvenido" access="hasRole('ROLE_ADMIN')" /> -->
@@ -44,7 +45,7 @@
 		<!-- /doLogin y /doLogout son propias de SpringSecurity -->
 		<form-login login-processing-url="/doLogin" login-page="/"
 			username-parameter="username" password-parameter="password"
-			default-target-url="/bienvenido" authentication-failure-url="/loginError?auth=error" />
+			default-target-url="/menu" authentication-failure-url="/loginError?auth=error" />
 			<!-- Si hay error al hacer login mapea "/loginError" desde el Controller. A partir de aqui es variable "?auth=error" -->
 		<logout logout-url="/doLogout" logout-success-url="/"  />				
 	</http>
