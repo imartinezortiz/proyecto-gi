@@ -50,7 +50,7 @@ public class UserManager implements UserDetailsService{
 		return repositoryUser.save(user);
 	}
 	
-	public User addGestor(User gestor) {
+	public User addGestor(UserDTO gestor) {
 		User user = new User (gestor.getUsername(), gestor.getPassword(), gestor.getNombre(), gestor.getApellidos(), gestor.getTelefono(), gestor.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.addRole(new UserRole("ROLE_GESTOR"));	
@@ -59,7 +59,7 @@ public class UserManager implements UserDetailsService{
 		return repositoryUser.save(user);				
 	}
 	
-	public User addAdmin(User admin) {		
+	public User addAdmin(UserDTO admin) {		
 		User user = new User (admin.getUsername(), admin.getPassword(), admin.getNombre(), admin.getApellidos(), admin.getTelefono(), admin.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.addRole(new UserRole("ROLE_ADMIN"));	
