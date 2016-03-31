@@ -189,11 +189,16 @@ function removeText(idBotonMenos) {
 								</thead>
 									<tbody id="gastos">
 										<tr id="gasto0" th:each="gasto,gastoStat : *{gastos}">
-											<td class="col-md-2"><input type="text"
+											<td class="col-md-2">
+											<div class="form-group">
+											<input type="text" class="form-control" 
+												th:field="*{gastos[__${gastoStat.index}__].numFactura}" />
+												<span class="help-block" th:errors="*{gastos[__${gastoStat.index}__].numFactura}">[errors]</span>
+											</div>
+											</td>
+											<td class="col-md-8">
+											<input type="text"
 												class="form-control" 
-												th:field="*{gastos[__${gastoStat.index}__].numFactura}" /></td>
-											<td class="col-md-8"><input type="text"
-												class="form-control"
 												th:field="*{gastos[__${gastoStat.index}__].proveedor}" /></td>
 											<td class="col-md-2"><input type="text"
 												class="form-control" 
@@ -222,10 +227,11 @@ function removeText(idBotonMenos) {
 											<p class="panel-title">PAGAR A:</p>
 										</div>
 										<div class="panel-body">
-										<div class="form-group">
+										<div class="form-group" th:classappend="${#fields.hasErrors('pagador')} ? has-error">
 										<label class="control-label col-md-2" for="pagador">Pagar a:</label>
 										<div class="col-md-10">
 											<input class="form-control" type="text" th:field="*{pagador}" />
+											<span class="help-block" th:errors="*{pagador}">[errors]</span>
 										</div>
 										</div>
 										</div>
@@ -238,16 +244,18 @@ function removeText(idBotonMenos) {
 											<p class="panel-title">DATOS BANCARIOS</p>
 										</div>
 										<div class="panel-body">
-											<div class="form-group">
+											<div class="form-group" th:classappend="${#fields.hasErrors('iban')} ? has-error">
 											<label class="control-label col-md-2" for="iban">IBAN:</label>
 											<div class="col-md-10">
 												<input class="form-control" type="text" th:field="*{iban}" />
+												<span class="help-block" th:errors="*{iban}">[errors]</span>
 											</div>
 											</div>
-											<div class="form-group">
+											<div class="form-group" th:classappend="${#fields.hasErrors('bic')} ? has-error">
 											<label class="control-label col-md-2" for="bic">BIC:</label>
 											<div class="col-md-10">
 												<input class="form-control"  type="text" th:field="*{bic}" />
+												<span class="help-block" th:errors="*{bic}">[errors]</span>
 											</div>
 											</div>
 										</div>
@@ -259,21 +267,23 @@ function removeText(idBotonMenos) {
 										<div class="panel-heading">
 											<p class="panel-title">MEMORIA EXPLICATIVA DE LOS GASTOS</p>
 										</div>
-										<div class="panel-body">
+										<div class="panel-body" th:classappend="${#fields.hasErrors('memoria')} ? has-error">
 											<textarea class="form-control" rows="3" th:field="*{memoria}"> </textarea>
+											<span class="help-block" th:errors="*{memoria}">[errors]</span>
 										</div>
 							</div>
 							<div class="panel panel-default">
 										<div class="panel-heading">
 											<p class="panel-title">RELACIÓN CON EL PROYECTO</p>
 										</div>
-										<div class="panel-body">
+										<div class="panel-body" th:classappend="${#fields.hasErrors('relacion')} ? has-error">
 											<textarea  class="form-control" rows="3" th:field="*{relacion}"></textarea>
+											<span class="help-block" th:errors="*{relacion}">[errors]</span>
 										</div>
 							</div>
 			
 						<br></br>
-
+					
 						<!-- Change this to a button or input when using this as a form -->
 						<input type="submit" class="btn btn-lg btn-success btn-block"
 							value="Add Pago" /> <input type="hidden"

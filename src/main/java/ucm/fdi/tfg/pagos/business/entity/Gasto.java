@@ -6,17 +6,21 @@ import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Embeddable // es atributo de un Entity 
 @Table(name="PAGO_GASTOS")
 public class Gasto {
 	
-	@Basic
+	
+	@NotEmpty(message="Campo vacio")
 	private String numFactura;
 	
-	@Basic
+	
+	@NotEmpty(message="Campo vacio")
 	private String proveedor;
 	
-	@Basic
+	
 	private BigDecimal importe;
 	
 	public Gasto(){

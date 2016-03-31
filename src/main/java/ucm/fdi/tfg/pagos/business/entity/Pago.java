@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -33,12 +34,18 @@ public class Pago {
 	Long id;
 	
 	@NotEmpty(message="Campo vacio")
-	private String numOrden;	
+	private String numOrden;
+	@NotEmpty(message="Campo vacio")
 	private String fecha;
+	@NotEmpty(message="Campo vacio")
 	private String iban;
+	@NotEmpty(message="Campo vacio")
 	private String bic;
+	@NotEmpty(message="Campo vacio")
 	private String pagador;
+	@NotEmpty(message="Campo vacio")
 	private String memoria;
+	@NotEmpty(message="Campo vacio")
 	private String relacion;
 
 	@OneToOne(fetch=FetchType.LAZY)
@@ -46,6 +53,7 @@ public class Pago {
 		
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PAGO_GASTOS", joinColumns=@JoinColumn(name="pagoId"),  uniqueConstraints=@UniqueConstraint(columnNames={"pagoId", "numFactura"}))
+	@Valid
 	private Collection<Gasto> gastos;
 	
 	Pago() {
