@@ -1,42 +1,11 @@
 DUDAS:
 
-	añadir tiempo de compilacion de Tomcat
-	
-	
-Apuntes:
-
-	* Si usaba getOne no me funcionaba  y he tenido q cambiar a findOne
-	
-				//cambiar a /proyectos/nuevo
-				@RequestMapping(value = "/crearProyecto", method = RequestMethod.GET)
-				public ModelAndView añadirProyecto() {
-			
-					Map<String, Object> model = new HashMap<String, Object>();
-					
-					//model.put("investigadores", users.findAllInvestigadores());
-					model.put("investigadores", users.findAllUserInvestigadores());
-					model.put("NuevoProyectoDTO",  new NuevoProyectoDTO());
-					ModelAndView view = new ModelAndView("proyectoForm", model);
-			
-					return view;
-				}
-				
-	*Por qué en pagoController hay q meterle el proyecto cogiendolo de la url si supuestamente ya se lo metemos en el método de arriba GET
-	
-	//Igual que en thymeleaf le decimos mediante th:object el objeto q mandamos,  
-	//en spring mediante ModelAttribute le decimos el tipo de objeto que le llega.
-	@RequestMapping(value = "/proyecto/{idProyecto}/pagos", method = RequestMethod.POST)
-	public String addPago(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute Pago pago, BindingResult errors){
-				
-			
+	Cosas Pendientes:
+		*Viajes
+		*Validar Gastos 
+		*Restructurar menu				
+		*Validar constraseñas (que sean iguales al hacer un alta) 
+		*Funcion Editar a raiz de restructurar
 		
-	//	pago.setProyecto(proyectosManager.findProyecto(idProyecto));
-		pagoManager.save(pago);	
-		return "redirect:/registroCompleto";
-		
-	}
-	
-	
-	* version thymeleaf
 				
 	
