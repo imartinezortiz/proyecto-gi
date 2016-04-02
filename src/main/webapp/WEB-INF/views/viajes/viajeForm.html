@@ -28,168 +28,145 @@
 <title>VIAJES</title>
 </head>
 <body class="container">
-
-	<div class="text-center col-md-12" style="border-style: solid">
-		<h1>ANEXO III</h1>
-		<h2>MEMORIA JUSTIFICATIVA – ORDEN DE PAGO</h2>
-		<h2>Nº CONTABILIDAD</h2>
+	<h1>ANEXO III - MEMORIA JUSTIFICATIVA – ORDEN DE PAGO</h1>
+		
+	<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title">Introduzca valores Viaje</p>
+				</div>
+				
+				<div class="panel-body">
+				
+					<form class="form-horizontal" role="form" action="#"
+						th:action="@{'/proyecto/{idProyecto}/viajes'  (idProyecto=*{proyecto.id})}"
+						th:object="${viaje}" method="POST">
+						
+						<div class="form-group" th:classappend="${#fields.hasErrors('fecha')} ? has-error">
+						 <label class="control-label col-md-2" for="fecha">Fecha:</label>
+							 <div class="col-md-2">
+								<input class="form-control" th:field="*{fecha}" type="date" />
+								<span class="help-block" th:errors="*{fecha}">[errors]</span>
+							</div>
+						</div>
+						<div class="form-group" th:classappend="${#fields.hasErrors('numOrden')} ? has-error">
+						<label class="control-label col-md-2" for="numOrden">Num Orden:</label>
+							<div class="col-md-10">
+							<input class="form-control" th:field="*{numOrden}" type="text" />
+							<span class="help-block" th:errors="*{numOrden}">[errors]</span>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-2" for=" proyecto.numContabilidad">Nº Contabilidad</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="*{proyecto.numContabilidad}" type="text"readonly="readonly" />
+							</div>
+						</div>
+						
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<p class="panel-title">Datos Investigador Principal</p>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label class="control-label col-md-2" for="user.nombre">Nombre</label>
+									<div class="col-md-10">
+										<input class="form-control" th:field="${user.nombre}" type="text"readonly="readonly" />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="control-label col-md-2" for="user.apellidos">Apellidos</label>
+									<div class="col-md-10">
+										<input class="form-control" th:field="${user.apellidos}" type="text" readonly="readonly"/>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.departamento">Departamento</label>
+									<div class="col-md-10">
+										<input class="form-control" th:value="*{proyecto.investigadorPrincipal.departamento}" type="text"readonly="readonly" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.centro">Centro</label>
+									<div class="col-md-10">
+										<input class="form-control" th:value="*{proyecto.investigadorPrincipal.centro}" type="text" readonly="readonly"/>
+									</div>								
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<p class="panel-title">JUSTIFICACION PARA VIAJES </p>
+							</div>
+							<div class="panel-body">
+								
+								<div class="form-group">
+										<label class="control-label col-md-2" for="">Nombre y apellidos:</label>
+										<div class="col-md-10">
+											<input class="form-control" th:value="*{proyecto.investigadorPrincipal.centro}" type="text" />
+										</div>								
+								</div>
+								
+								<div class="form-group">
+										<label class="control-label col-md-2" for="relacion">Relacion con el contrato:</label>
+																														
+										<div class="checkbox"  >
+											<label> <input  type="checkbox" value="a" name="relacion">Miembro del
+													proyecto</label>
+										</div>
+											<div class="checkbox">
+												<label><input  type="checkbox" value="b" name="relacion">Profesor
+													invitado</label>
+											</div>							
+								</div>
+								
+								<div class="form-group">
+										<label class="control-label col-md-2" for="itinerario">Itinerario:</label>
+										<div class="col-md-10">
+											<input class="form-control" th:field="*{itinerario}" type="text"  />
+										</div>								
+								</div>
+								
+								<div class="form-group">
+										<label class="control-label col-md-2">Fecha Salida:</label>
+										<div class="col-md-2">
+											<input type="date" class="form-control" th:field="*{fechaInicio}" placeholder="Fecha Salida"/>
+										</div>
+								</div>	
+								
+								<div class="form-group">
+										<label class="control-label col-md-2">Fechas LLegada:</label>
+										<div class="col-md-2">
+											<input type="date" class="form-control" th:field="*{fechaFin}" placeholder="Fecha Llegada" />
+										</div>
+								</div>																	
+							</div>
+						</div>
+							
+							<div class="panel panel-default">
+							<div class="panel-heading">
+								<p class="panel-title">JUSTIFICACION DE GASTOS  </p>
+							</div>
+							
+						</div>
+						
+						
+						
+						
+						
+					</form>
+						
+				
+				</div>
+				
+				
 	</div>
+	
+	
+	
 
-	<form role="form" action="#"
-		th:action="@{'/proyecto/{idProyecto}/viajes'  (idProyecto=*{proyecto.id})}"
-		th:object="${viaje}" method="POST">
-		<div class="col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<p class="panel-title">ORDEN Nº</p>
-				</div>
-				<div class="panel-body">
-					<div class="form-group">
-						<input class="form-control" name="numOrden" type="text"
-							th:value="${viaje.numOrden}" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<p class="panel-title">FECHA</p>
-				</div>
-				<div class="panel-body">
-					<div class="form-group">
-						<input class="form-control" th:value="${viaje.fecha}" name="fecha"
-							type="date" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<div class="form-group">
-						<input class="form-control" th:value="${user.nombre}" type="text" />
-					</div>
-					<div class="form-group">
-						<input class="form-control"
-							th:value="${viaje.proyecto.referencia}" type="text" />
-					</div>
-					<div class="form-group">
-						<input class="form-control"
-							th:value="${viaje.proyecto.investigadorPrincipal.departamento}"
-							type="text" />
-					</div>
-					<div class="form-group">
-						<input class="form-control"
-							th:value="${viaje.proyecto.investigadorPrincipal.centro}"
-							type="text" />
-					</div>
-					<div class="form-group">
-						<input class="form-control" th:value="${user.telefono}"
-							type="text" />
-					</div>
-					<div class="form-group">
-						<input class="form-control" th:value="${user.email}" type="text" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<h3 class="text-right col-md-12">JUSTIFICACIÓN PARA VIAJES</h3>
-		<div class="form-group">
-			<div class="col-md-2">
-				<label class="control-label" for="email">Nombre y apellidos:</label>
-			</div>
-			<div class="col-md-10">
-				<input type="text" class="form-control" name="credenciales"
-					placeholder="Nombre y apellidos" />
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-md-2">
-				<label class="control-label">Relación con el contrato</label>
-			</div>
-			<div class="col-md-10">
-				<div class="checkbox">
-					<label><input type="checkbox" value="a" name="relacion">Miembro del
-						proyecto</label>
-				</div>
-				<div class="checkbox">
-					<label><input type="checkbox" value="b" name="relacion">Profesor
-						invitado</label>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="control-label" for="objetoDesplazamiento">Objeto
-						del desplazamiento en relación con la ejecución del proyecto</label>
-				</div>
-				<div class="col-md-10">
-					<textarea class="form-control" rows="4" name="objetoDesplazamiento"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="control-label">Itinerario</label>
-				</div>
-				<div class="col-md-10">
-					<input type="text" class="form-control" name="itinerario" />
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="control-label">Fechas</label>
-				</div>
-				<div class="col-md-5">
-					<input type="date" class="form-control" name="fechaInicio" />
-				</div>
-				<div class="col-md-5">
-					<input type="date" class="form-control" name="fechaFin" />
-				</div>
-			</div>
-			<h3 class="text-center col-md-12">JUSTIFICACIÓN DE GASTOS</h3>
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="control-label" for="email">Medios de
-						transporte:</label>
-				</div>
-				<div class="col-md-4">
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Avión</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Coche</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Tren</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Autobús</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Taxis</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Otros(especificar)</label>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<p>0,19€/km x</p>
-				</div>
-
-
-
-
-
-			</div>
-
-		</div>
-
-
-
-
-		<input type="submit" class="btn btn-lg btn-success btn-block"
-			value="Añadir Viaje" /> <input type="hidden"
-			th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-	</form>
 </body>
 </html>
