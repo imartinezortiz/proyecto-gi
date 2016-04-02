@@ -131,6 +131,20 @@
 								</div>
 								
 								<div class="form-group">
+										<label class="control-label col-md-2" for="objetoDesplazamiento">Objeto del desplazamiento:</label>
+										<div class="col-md-10">
+											<textarea class="form-control" th:field="*{objetoDesplazamiento}" > </textarea>
+										</div>								
+								</div>
+																
+								<div class="form-group">
+										<label class="control-label col-md-2" for="itinerario">Itinerario:</label>
+										<div class="col-md-10">
+											<input class="form-control" th:field="*{itinerario}" type="text"  />
+										</div>								
+								</div>
+								
+								<div class="form-group">
 										<label class="control-label col-md-2">Fecha Salida:</label>
 										<div class="col-md-2">
 											<input type="date" class="form-control" th:field="*{fechaInicio}" placeholder="Fecha Salida"/>
