@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ucm.fdi.tfg.users.business.boundary.NuevoInvestigadorDTO;
 import ucm.fdi.tfg.users.business.boundary.UserDTO;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
-import ucm.fdi.tfg.users.business.entity.User;
+
 
 @Controller
 public class UserController {

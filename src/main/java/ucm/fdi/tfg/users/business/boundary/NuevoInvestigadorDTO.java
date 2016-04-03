@@ -1,8 +1,6 @@
 package ucm.fdi.tfg.users.business.boundary;
 
-import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;

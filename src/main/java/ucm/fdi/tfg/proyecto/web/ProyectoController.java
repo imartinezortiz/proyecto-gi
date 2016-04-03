@@ -17,8 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ucm.fdi.tfg.proyecto.business.boundary.NuevoProyectoDTO;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
-import ucm.fdi.tfg.users.business.entity.Investigador;
-import ucm.fdi.tfg.users.business.entity.User;
+
 
 @Controller
 public class ProyectoController {
