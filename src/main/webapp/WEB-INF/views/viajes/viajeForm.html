@@ -3,11 +3,336 @@
 <head>
 <meta charset="UTF-8" />
 
+<script type="text/javascript">
+
+	function appendMedioTransporte(){
+		
+		if (document.getElementById("mediosTransporte").value != "")
+		{
+		
+		var count = $('#gastos tr').length;
+		var nuevoGasto = $('<tr></tr>');
+		var auxTipo = $('<td class="col-md-2"></td>');
+		var auxDescripcion = $('<td class="col-md-2"></td>');
+		var auximporte = $('<td class="col-md-2"></td>');
+		
+		//Campos no significativos para la entity
+		var auxFactor = $('<td class="col-md-2"><input type="text" name="factor" readonly="readonly" class="form-control" /></td>');
+		var auxKM = $('<td class="col-md-2"><input type="text" value="0"name="km" class="form-control" /></td>');
+			
+		//botones
+		var auxbtnMenos = $('<td class="col-md-2"></td>');
+
+		var tipo= $(
+				'<input type="text" class="form-control col-md-2 " readonly="readonly" />').attr({'name': 'gastos[' + count + '].tipo', 'value': 'Transporte'});
+		
+				
+		var descripcion = $(
+				'<input type="text" class="form-control"  readonly="readonly" />').attr({'name': 'gastos[' + count + '].descripcion', 'value' : document.getElementById("mediosTransporte").value });
+		
+		
+		var importe = $(
+				'<input type="text" class="form-control col-md-2"/> ').attr('name', 'gastos[' + count + '].importe');
+		
+		var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-danger form-control" type="button">-</button>').attr('id', 'btnMenos' + count );
+	
+		$(auxTipo).append(tipo);
+		$(auxDescripcion).append(descripcion);
+		$(auximporte).append(importe);
+		
+		//botones
+		$(auxbtnMenos).append(btnMenos);
+		
+		$(nuevoGasto).append(auxTipo);
+		$(nuevoGasto).append(auxDescripcion);
+		
+		//Campos no significativos
+		$(nuevoGasto).append(auxFactor);
+		$(nuevoGasto).append(auxKM);
+		
+		$(nuevoGasto).append(auximporte);
+		
+				
+		//botones
+		$(nuevoGasto).append(auxbtnMenos);
+		
+		//idNuevo
+		$(nuevoGasto).attr('id', 'gasto' + count);
+		
+		
+		$('#gastos').append(nuevoGasto);
+	
+		}
+		
+	}
+		
+
+</script>
+<script type="text/javascript">
+	
+</script>
+
+<title>VIAJES</title>
+</head>
+<body class="container">
+	<h1>ANEXO III - MEMORIA JUSTIFICATIVA – ORDEN DE PAGO</h1>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p class="panel-title">Introduzca valores Viaje</p>
+		</div>
+
+		<div class="panel-body">
+
+			<form class="form-horizontal" role="form" action="#"
+				th:action="@{'/proyecto/{idProyecto}/viajes'  (idProyecto=*{proyecto.id})}"
+				th:object="${viaje}" method="POST">
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('fecha')} ? has-error">
+					<label class="control-label col-md-2" for="fecha">Fecha:</label>
+					<div class="col-md-2">
+						<input class="form-control" th:field="*{fecha}" type="date" /> <span
+							class="help-block" th:errors="*{fecha}">[errors]</span>
+					</div>
+				</div>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('numOrden')} ? has-error">
+					<label class="control-label col-md-2" for="numOrden">Num
+						Orden:</label>
+					<div class="col-md-10">
+						<input class="form-control" th:field="*{numOrden}" type="text" />
+						<span class="help-block" th:errors="*{numOrden}">[errors]</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-2"
+						for=" proyecto.numContabilidad">Nº Contabilidad</label>
+					<div class="col-md-10">
+						<input class="form-control" th:field="*{proyecto.numContabilidad}"
+							type="text" readonly="readonly" />
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="panel-title">Datos Investigador Principal</p>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="control-label col-md-2" for="user.nombre">Nombre</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="${user.nombre}"
+									type="text" readonly="readonly" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="user.apellidos">Apellidos</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="${user.apellidos}"
+									type="text" readonly="readonly" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2"
+								for="proyecto.investigadorPrincipal.departamento">Departamento</label>
+							<div class="col-md-10">
+								<input class="form-control"
+									th:value="*{proyecto.investigadorPrincipal.departamento}"
+									type="text" readonly="readonly" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2"
+								for="proyecto.investigadorPrincipal.centro">Centro</label>
+							<div class="col-md-10">
+								<input class="form-control"
+									th:value="*{proyecto.investigadorPrincipal.centro}" type="text"
+									readonly="readonly" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="user.telefono">Teléfono</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="${user.telefono}"
+									type="text" readonly="readonly" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="user.email">email</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="${user.email}" type="text"
+									readonly="readonly" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="panel-title">JUSTIFICACION PARA VIAJES</p>
+					</div>
+					<div class="panel-body">
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Nombre y
+								apellidos:</label>
+							<div class="col-md-10">
+								<input class="form-control"
+									th:value="*{proyecto.investigadorPrincipal.centro}" type="text" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="relacion">Relacion
+								con el contrato:</label>
+
+							<div class="radio">
+								<label> <input type="radio" value="miembro"
+									name="relacion">Miembro del proyecto
+								</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" value="invitado"
+									name="relacion">Profesor invitado</label>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="objetoDesplazamiento">Objeto
+								del desplazamiento:</label>
+							<div class="col-md-10">
+								<textarea class="form-control"
+									th:field="*{objetoDesplazamiento}"> </textarea>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="itinerario">Itinerario:</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="*{itinerario}" type="text" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2">Fecha Salida:</label>
+							<div class="col-md-2">
+								<input type="date" class="form-control"
+									th:field="*{fechaInicio}" placeholder="Fecha Salida" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2">Fechas LLegada:</label>
+							<div class="col-md-2">
+								<input type="date" class="form-control" th:field="*{fechaFin}"
+									placeholder="Fecha Llegada" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="panel-title">JUSTIFICACION DE GASTOS</p>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="mediosTransporte">Medios
+								de transporte:</label>
+							<div class="col-md-3">
+								<select class="form-control col-md-3" name="medios" id="mediosTransporte">
+									<option value=""> --- Seleccion de Transporte --- </option>
+									<option value="Avion">Avión</option>
+									<option value="Tren">Tren</option>
+									<option value="Bus">Bus</option>
+								</select>
+							</div>
+							<div class="col-md-5">
+								<div class="col-md-2">
+									<button onclick="appendMedioTransporte()" class="btn btn-success"
+										type="button">+</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel-body">
+							<table>
+								<thead>
+									<tr>
+										<th class="col-md-2 text-center">Tipo</th>
+										<th class="col-md-2 text-center">Descripcion</th>
+										<th class="col-md-2 text-center">Factor</th>
+										<th class="col-md-2 text-center">KM</th>
+										<th class="col-md-2 text-center">Importe</th>
+										<th class="col-md-2 text-center">Eliminar Gasto</th>
+										
+									</tr>
+								</thead>
+								<tbody id="gastos">
+									<tr id="gasto0" th:each="gasto,gastoStat : *{gastos}">
+										<td class="col-md-2"><input type="text"
+											class="form-control"
+											th:field="*{gastos[__${gastoStat.index}__].tipo}" 
+											readonly="readonly"  /></td>
+										<td class="col-md-2"><input type="text"
+											class="form-control"
+											th:field="*{gastos[__${gastoStat.index}__].descripcion}" 
+											readonly="readonly"  /></td>
+										<td class="col-md-2"><input type="text" name="factor"
+											readonly="readonly" class="form-control" /></td>
+										<td class="col-md-2"><input type="text" value="0"name="km"
+											class="form-control" /></td>
+										<td class="col-md-2"><input type="text"
+											class="form-control"
+											th:field="*{gastos[__${gastoStat.index}__].importe}" /></td>
+										<td class="col-md-2"><button id="btnMenos0" onclick="removeText(this.id)"
+												class="btn btn-danger form-control" type="button">-</button>
+										</td>
+									</tr>
+								</tbody>
+
+							</table>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- Change this to a button or input when using this as a form -->
+				<input type="submit" class="btn btn-lg btn-success btn-block"
+					value="Add Viaje" /> <input type="hidden"
+					th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+
+
+</body>
+
 <!-- Bootstrap Core CSS -->
 <link type="text/css"
 	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
+
+
+<!-- jQuery -->
+<script src="../../resources/bower_components/jquery/dist/jquery.min.js"
+	data-th-src="@{/resources/bower_components/jquery/dist/jquery.min.js}">
+		
+	</script>
 
 <!-- MetisMenu CSS -->
 <link type="text/css"
@@ -25,167 +350,25 @@
 	rel="stylesheet" type="text/css"
 	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
 
-<title>VIAJES</title>
-</head>
-<body class="container">
-	<h1>ANEXO III - MEMORIA JUSTIFICATIVA – ORDEN DE PAGO</h1>
-		
-	<div class="panel panel-default">
-				<div class="panel-heading">
-					<p class="panel-title">Introduzca valores Viaje</p>
-				</div>
-				
-				<div class="panel-body">
-				
-					<form class="form-horizontal" role="form" action="#"
-						th:action="@{'/proyecto/{idProyecto}/viajes'  (idProyecto=*{proyecto.id})}"
-						th:object="${viaje}" method="POST">
-						
-						<div class="form-group" th:classappend="${#fields.hasErrors('fecha')} ? has-error">
-						 <label class="control-label col-md-2" for="fecha">Fecha:</label>
-							 <div class="col-md-2">
-								<input class="form-control" th:field="*{fecha}" type="date" />
-								<span class="help-block" th:errors="*{fecha}">[errors]</span>
-							</div>
-						</div>
-						<div class="form-group" th:classappend="${#fields.hasErrors('numOrden')} ? has-error">
-						<label class="control-label col-md-2" for="numOrden">Num Orden:</label>
-							<div class="col-md-10">
-							<input class="form-control" th:field="*{numOrden}" type="text" />
-							<span class="help-block" th:errors="*{numOrden}">[errors]</span>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="control-label col-md-2" for=" proyecto.numContabilidad">Nº Contabilidad</label>
-							<div class="col-md-10">
-								<input class="form-control" th:field="*{proyecto.numContabilidad}" type="text"readonly="readonly" />
-							</div>
-						</div>
-						
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<p class="panel-title">Datos Investigador Principal</p>
-							</div>
-							<div class="panel-body">
-								<div class="form-group">
-									<label class="control-label col-md-2" for="user.nombre">Nombre</label>
-									<div class="col-md-10">
-										<input class="form-control" th:field="${user.nombre}" type="text" readonly="readonly" />
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label class="control-label col-md-2" for="user.apellidos">Apellidos</label>
-									<div class="col-md-10">
-										<input class="form-control" th:field="${user.apellidos}" type="text" readonly="readonly"/>
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.departamento">Departamento</label>
-									<div class="col-md-10">
-										<input class="form-control" th:value="*{proyecto.investigadorPrincipal.departamento}" type="text"readonly="readonly" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.centro">Centro</label>
-									<div class="col-md-10">
-										<input class="form-control" th:value="*{proyecto.investigadorPrincipal.centro}" type="text" readonly="readonly"/>
-									</div>								
-								</div>
-								<div class="form-group">
-									<label class="control-label col-md-2" for="user.telefono">Teléfono</label>
-									<div class="col-md-10">
-										<input class="form-control" th:field="${user.telefono}" type="text" readonly="readonly"/>
-									</div>								
-								</div>
-								<div class="form-group">
-									<label class="control-label col-md-2" for="user.email">email</label>
-									<div class="col-md-10">
-										<input class="form-control" th:field="${user.email}" type="text" readonly="readonly"/>
-									</div>								
-								</div>
-							</div>
-						</div>
-						
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<p class="panel-title">JUSTIFICACION PARA VIAJES </p>
-							</div>
-							<div class="panel-body">
-								
-								<div class="form-group">
-										<label class="control-label col-md-2" for="">Nombre y apellidos:</label>
-										<div class="col-md-10">
-											<input class="form-control" th:value="*{proyecto.investigadorPrincipal.centro}" type="text" />
-										</div>								
-								</div>
-								
-								<div class="form-group">
-										<label class="control-label col-md-2" for="relacion">Relacion con el contrato:</label>
-																														
-										<div class="radio"  >
-											<label> <input  type="radio" value="miembro" name="relacion">Miembro del
-													proyecto</label>
-										</div>
-											<div class="radio">
-												<label><input  type="radio" value="invitado" name="relacion">Profesor
-													invitado</label>
-											</div>							
-								</div>
-								
-								<div class="form-group">
-										<label class="control-label col-md-2" for="objetoDesplazamiento">Objeto del desplazamiento:</label>
-										<div class="col-md-10">
-											<textarea class="form-control" th:field="*{objetoDesplazamiento}" > </textarea>
-										</div>								
-								</div>
-																
-								<div class="form-group">
-										<label class="control-label col-md-2" for="itinerario">Itinerario:</label>
-										<div class="col-md-10">
-											<input class="form-control" th:field="*{itinerario}" type="text"  />
-										</div>								
-								</div>
-								
-								<div class="form-group">
-										<label class="control-label col-md-2">Fecha Salida:</label>
-										<div class="col-md-2">
-											<input type="date" class="form-control" th:field="*{fechaInicio}" placeholder="Fecha Salida"/>
-										</div>
-								</div>	
-								
-								<div class="form-group">
-										<label class="control-label col-md-2">Fechas LLegada:</label>
-										<div class="col-md-2">
-											<input type="date" class="form-control" th:field="*{fechaFin}" placeholder="Fecha Llegada" />
-										</div>
-								</div>																	
-							</div>
-						</div>
-							
-							<div class="panel panel-default">
-							<div class="panel-heading">
-								<p class="panel-title">JUSTIFICACION DE GASTOS  </p>
-							</div>
-							
-						</div>
-						
-						
-						
-						
-						
-					</form>
-						
-				
-				</div>
-				
-				
-	</div>
-	
-	
-	
 
-</body>
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="../../resources/bower_components/bootstrap/dist/js/bootstrap.min.js"
+	data-th-src="@{/resources/bower_components/bootstrap/dist/js/bootstrap.min.js}">
+		
+	</script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script
+	src="../../resources/bower_components/metisMenu/dist/metisMenu.min.js"
+	data-th-src="@{/resources/bower_components/metisMenu/dist/metisMenu.min.js}">
+		
+	</script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../../resources/dist/js/sb-admin-2.js"
+	data-th-src="@{/resources/dist/js/sb-admin-2.js}">
+		
+	</script>
+
 </html>
