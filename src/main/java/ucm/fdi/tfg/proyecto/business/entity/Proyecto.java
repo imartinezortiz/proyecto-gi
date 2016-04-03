@@ -1,11 +1,14 @@
 package ucm.fdi.tfg.proyecto.business.entity;
 
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -17,17 +20,20 @@ public class Proyecto {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	Long id;
+	private Long id;
 	
-	String referencia;
+	private String referencia;
 	
-	String titulo;
+	private String titulo;
 	
 	@ManyToOne
 	@JoinColumn(name="investigadorID")
-	Investigador investigadorPrincipal;
+	private Investigador investigadorPrincipal;
 	
-	String numContabilidad;	
+	@ManyToMany
+	private Collection<Investigador> investigadores;
+	
+	private String numContabilidad;	
 	
 	
 	public Proyecto(){

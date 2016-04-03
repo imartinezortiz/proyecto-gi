@@ -27,7 +27,7 @@ public class Inventario {
 	@Id
 	@Column(name="inventarioId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	Long id;
+	private Long id;
 	
 	
 	@OneToOne(fetch=FetchType.LAZY)

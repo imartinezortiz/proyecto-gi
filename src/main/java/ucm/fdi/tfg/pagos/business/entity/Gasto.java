@@ -11,11 +11,7 @@ import javax.persistence.Table;
 @Table(name="PAGO_GASTOS")
 public class Gasto {
 	
-	
-	
 	private String numFactura;
-	
-	
 	
 	private String proveedor;
 	

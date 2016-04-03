@@ -31,20 +31,26 @@ public class Pago {
 	@Id
 	@Column(name="pagoId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	Long id;
+	private Long id;
 	
 	@NotEmpty(message="Campo vacio")
 	private String numOrden;
+	
 	@NotEmpty(message="Campo vacio")
 	private String fecha;
+	
 	@NotEmpty(message="Campo vacio")
 	private String iban;
+	
 	@NotEmpty(message="Campo vacio")
 	private String bic;
+	
 	@NotEmpty(message="Campo vacio")
 	private String pagador;
+	
 	@NotEmpty(message="Campo vacio")
 	private String memoria;
+	
 	@NotEmpty(message="Campo vacio")
 	private String relacion;
 

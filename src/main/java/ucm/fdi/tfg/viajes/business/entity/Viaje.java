@@ -18,15 +18,19 @@ public class Viaje {
 	@Id
 	@Column(name="viajeId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
-	Long id;
+	private Long id;
+	
 	private String numOrden;
+	
 	private String fecha;	
+	
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;
 	
 	private String credenciales;
 		
 	private String relacion;
+	
 	public String getFechaInicio() {
 		return fechaInicio;
 	}

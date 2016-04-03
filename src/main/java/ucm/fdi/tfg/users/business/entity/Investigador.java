@@ -6,6 +6,7 @@ import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,6 +25,9 @@ public class Investigador {
 	
 	@OneToMany(mappedBy="investigadorPrincipal")
 	private Collection<Proyecto> proyectosDirigidos;
+	
+	@ManyToMany(mappedBy="investigadores")
+	private Collection<Proyecto> proyectos;
 	
 	Investigador() {
 
