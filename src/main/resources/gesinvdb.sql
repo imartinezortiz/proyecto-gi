@@ -34,3 +34,5 @@ INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) 
 INSERT INTO pagos(pagoId, numOrden,fecha,iban,bic,pagador,memoria,relacion, proyecto_id) VALUES (1,111,'05-04-2016','100','150','David','Memoriaaa','La relacion misma',1);
 
 INSERT INTO pago_gastos (pagoId, importe, numFactura, proveedor) VALUES (1, '100.00', '222', 'p1');
+
+INSERT INTO dietas (dietaId,pais,importe) VALUES (1,'España','65.40')
