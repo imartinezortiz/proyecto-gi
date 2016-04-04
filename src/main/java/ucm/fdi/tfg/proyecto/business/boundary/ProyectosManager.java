@@ -1,5 +1,6 @@
 package ucm.fdi.tfg.proyecto.business.boundary;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,17 @@ public class ProyectosManager {
 	public void nuevoProyecto(NuevoProyectoDTO proyectoDTO){
 		Proyecto proyecto = new Proyecto(); 
 		//Investigador inv = this.users.getInvestigador(proyectoDTO.getInvestigadorId());
-		Investigador inv = this.users.getInvestigadorFindOne(proyectoDTO.getInvestigadorId());
+		Investigador investigadorPrincipal = this.users.getInvestigadorFindOne(proyectoDTO.getInvestigadorId());
+		
+		Iterator<Long> it = proyectoDTO.getInvestigadoresID().iterator();
+		while(it.hasNext()){
+			proyecto.getInvestigadores().add(users.findInvestigador(it.next()));
+		}
+	
 		proyecto.setTitulo(proyectoDTO.getTitulo());
 		proyecto.setReferencia(proyectoDTO.getReferencia());
 		proyecto.setNumContabilidad(proyectoDTO.getNumContabilidad());
-		proyecto.setInvestigadorPrincipal(inv);
+		proyecto.setInvestigadorPrincipal(investigadorPrincipal);
 		proyectos.save(proyecto);
 	}
 	

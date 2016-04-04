@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.proyecto.business.entity;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -32,12 +33,12 @@ public class Proyecto {
 	
 	@ManyToMany
 	private Collection<Investigador> investigadores;
-	
+
 	private String numContabilidad;	
 	
 	
 	public Proyecto(){
-	
+		investigadores =  new ArrayList<Investigador>();
 	}
 	
 	public Long getId(){
@@ -46,6 +47,14 @@ public class Proyecto {
 
 	public String getReferencia() {
 		return referencia;
+	}
+	
+	public Collection<Investigador> getInvestigadores() {
+		return investigadores;
+	}
+
+	public void setInvestigadores(Collection<Investigador> investigadores) {
+		this.investigadores = investigadores;
 	}
 
 	public void setReferencia(String referencia) {

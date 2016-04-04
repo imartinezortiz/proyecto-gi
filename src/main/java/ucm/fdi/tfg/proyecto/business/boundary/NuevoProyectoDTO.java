@@ -1,12 +1,15 @@
 package ucm.fdi.tfg.proyecto.business.boundary;
 
+import java.util.Collection;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import ucm.fdi.tfg.users.business.entity.Investigador;
 
 public class NuevoProyectoDTO {
 	
 	@NotEmpty(message = "Campo vacío")
-	@Email(message = "Debe ser un email")
 	private String referencia;
 	
 	@NotEmpty(message = "Campo vacío")
@@ -14,6 +17,16 @@ public class NuevoProyectoDTO {
 	
 	private Long investigadorId;
 	
+	private Collection<Long> investigadoresID;
+	
+	public Collection<Long> getInvestigadoresID() {
+		return investigadoresID;
+	}
+
+	public void setInvestigadoresID(Collection<Long> investigadoresID) {
+		this.investigadoresID = investigadoresID;
+	}
+
 	@NotEmpty(message = "Campo vacío")
 	private String numContabilidad;
 
