@@ -1,6 +1,10 @@
 package ucm.fdi.tfg.viajes.business.entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Entity
@@ -54,14 +59,18 @@ public class Viaje {
 	private String medioTransporte;
 	
 
+	@ElementCollection(fetch=FetchType.EAGER)
+	private Collection<GastoViaje> gastos;
 
 
 	public Viaje(){
+		this.gastos = new ArrayList<GastoViaje>();
 		
 	}
 	
 	public Viaje(Proyecto proyecto) {
 		this.proyecto = proyecto;
+		this.gastos = new ArrayList<GastoViaje>();
 	}
 
 	public Long getId() {
@@ -79,6 +88,14 @@ public class Viaje {
 
 	public String getObjetoDesplazamiento() {
 		return objetoDesplazamiento;
+	}
+
+	public Collection<GastoViaje> getGastos() {
+		return gastos;
+	}
+
+	public void setGastos(Collection<GastoViaje> gastos) {
+		this.gastos = gastos;
 	}
 
 	public void setObjetoDesplazamiento(String objetoDesplazamiento) {

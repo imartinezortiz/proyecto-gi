@@ -18,6 +18,7 @@ import ucm.fdi.tfg.users.business.boundary.UserManager;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
 import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
+import ucm.fdi.tfg.viajes.business.entity.GastoViaje;
 import ucm.fdi.tfg.viajes.business.entity.Viaje;
 
 @Controller
@@ -48,7 +49,9 @@ public class ViajesController {
 		
 		Viaje viaje = new Viaje(proyecto);
 		
-
+		GastoViaje g = new GastoViaje();
+		viaje.getGastos().add(g);
+		
 		
 		model.put("viaje", viaje);
 		model.put("user", userActivo);
