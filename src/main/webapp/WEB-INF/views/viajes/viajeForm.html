@@ -3,6 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 
+
+<script>
+function calcularImporte(input){
+
+	alert(input.name);
+	
+	
+	//document.getElementById(input.name).val("aaaa");
+	
+	var valor = 0.19 * Number(input.value) ;
+	
+	$('#'+input.name).val(valor);
+	
+	
+}
+
+
+</script>
+
+
 <script type="text/javascript">
 
 	function appendMedioTransporte(){
@@ -10,59 +30,82 @@
 		if (document.getElementById("mediosTransporte").value != "")
 		{
 		
-		var count = $('#gastos tr').length;
-		var nuevoGasto = $('<tr></tr>');
-		var auxTipo = $('<td class="col-md-2"></td>');
-		var auxDescripcion = $('<td class="col-md-2"></td>');
-		var auximporte = $('<td class="col-md-2"></td>');
-		
-		//Campos no significativos para la entity
-		var auxFactor = $('<td class="col-md-2"><input type="text" name="factor" readonly="readonly" class="form-control" /></td>');
-		var auxKM = $('<td class="col-md-2"><input type="text" value="0"name="km" class="form-control" /></td>');
+			var count = $('#gastos tr').length;
+			var nuevoGasto;
 			
-		//botones
-		var auxbtnMenos = $('<td class="col-md-2"></td>');
-
-		var tipo= $(
-				'<input type="text" class="form-control col-md-2 " readonly="readonly" />').attr({'name': 'gastos[' + count + '].tipo', 'value': 'Transporte'});
-		
+			if (count ==0)
+				nuevoGasto = $(' <tr id="gasto0" th:each="gasto,gastoStat : *{gastos}"> ');
+			else
+				nuevoGasto = $('<tr></tr>');
+			
+			var auxTipo = $('<td class="col-md-2"></td>');
+			var auxDescripcion = $('<td class="col-md-2"></td>');
+			var auximporte = $('<td class="col-md-2"></td>');
+			
+			//Campos no significativos para la entity
+			var auxFactor;
+			var auxKM;
+			
+			var importe; 
+			if (document.getElementById("mediosTransporte").value == "Coche"){
+				auxFactor = $('<td class="col-md-2"></td>');				
+				auxFactorTD = $('<input type="text" name="factor" readonly="readonly" class="form-control text-center" />').attr('value', 0.19);
+				$(auxFactor).append(auxFactorTD);
+				auxKM = $('<td class="col-md-2"></td>');
+				auxKMTD = $('<input type="text" class="form-control text-center" onchange="calcularImporte(this)"/>').attr('name', 'km'+count);
+				$(auxKM).append(auxKMTD);
+				//El importe es calculado automaticamente
+				importe = $('<input type="text" class="form-control col-md-2 text-center" readonly="readonly" /> ').attr({'name': 'gastos[' + count + '].importe', 'id': 'km'+count});
+			}
+			else {
+				auxFactor = $('<td class="col-md-2"></td>');
+				auxKM = $('<td class="col-md-2"></td>');
+				importe = $(
+				'<input type="text" class="form-control col-md-2 text-center"/> ').attr('name', 'gastos[' + count + '].importe');
+			}
 				
-		var descripcion = $(
-				'<input type="text" class="form-control"  readonly="readonly" />').attr({'name': 'gastos[' + count + '].descripcion', 'value' : document.getElementById("mediosTransporte").value });
-		
-		
-		var importe = $(
-				'<input type="text" class="form-control col-md-2"/> ').attr('name', 'gastos[' + count + '].importe');
-		
-		var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-danger form-control" type="button">-</button>').attr('id', 'btnMenos' + count );
+			//botones
+			var auxbtnMenos = $('<td class="col-md-2"></td>');
 	
-		$(auxTipo).append(tipo);
-		$(auxDescripcion).append(descripcion);
-		$(auximporte).append(importe);
+			var tipo= $(
+					'<input type="text" class="form-control col-md-2 text-center" readonly="readonly" />').attr({'name': 'gastos[' + count + '].tipo', 'value': document.getElementById("mediosTransporte").value});
+			
+			var descripcion;
+			if (document.getElementById("mediosTransporte").value == "Otros"){
+				descripcion = $('<input type="text" class="form-control col-md-4 text-center " />').attr('name', 'gastos[' + count + '].descripcion');
+			}
+			else descripcion = $('<input type="text" class="form-control col-md-4 text-center" readonly="readonly" />').attr('name', 'gastos[' + count + '].descripcion');
+			
+						
+			var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-danger form-control" type="button">-</button>').attr('id', 'btnMenos' + count );
 		
-		//botones
-		$(auxbtnMenos).append(btnMenos);
+			$(auxTipo).append(tipo);
+			$(auxDescripcion).append(descripcion);
+			$(auximporte).append(importe);
+			
+			//botones
+			$(auxbtnMenos).append(btnMenos);
+			
+			$(nuevoGasto).append(auxTipo);
+			$(nuevoGasto).append(auxDescripcion);
+			
+			//Campos no significativos
+			$(nuevoGasto).append(auxFactor);
+			$(nuevoGasto).append(auxKM);
+			
+			$(nuevoGasto).append(auximporte);
+			
+					
+			//botones
+			$(nuevoGasto).append(auxbtnMenos);
+			
+			//idNuevo
+			$(nuevoGasto).attr('id', 'gasto' + count);
+			
+			
+			$('#gastos').append(nuevoGasto);
 		
-		$(nuevoGasto).append(auxTipo);
-		$(nuevoGasto).append(auxDescripcion);
-		
-		//Campos no significativos
-		$(nuevoGasto).append(auxFactor);
-		$(nuevoGasto).append(auxKM);
-		
-		$(nuevoGasto).append(auximporte);
-		
-				
-		//botones
-		$(nuevoGasto).append(auxbtnMenos);
-		
-		//idNuevo
-		$(nuevoGasto).attr('id', 'gasto' + count);
-		
-		
-		$('#gastos').append(nuevoGasto);
-	
-		}
+			}
 		
 	}
 		
@@ -246,11 +289,14 @@
 							<label class="control-label col-md-2" for="mediosTransporte">Medios
 								de transporte:</label>
 							<div class="col-md-3">
-								<select class="form-control col-md-3" name="medios" id="mediosTransporte">
+								<select class="form-control col-md-3 " name="medios" id="mediosTransporte">
 									<option value=""> --- Seleccion de Transporte --- </option>
 									<option value="Avion">Avión</option>
 									<option value="Tren">Tren</option>
-									<option value="Bus">Bus</option>
+									<option value="Bus">Autobús</option>
+									<option value="Taxis">Taxis</option>
+									<option value="Coche">Coche</option>
+									<option value="Otros">Otros</option>
 								</select>
 							</div>
 							<div class="col-md-5">
@@ -266,7 +312,7 @@
 								<thead>
 									<tr>
 										<th class="col-md-2 text-center">Tipo</th>
-										<th class="col-md-2 text-center">Descripcion</th>
+										<th class="col-md-4 text-center">Descripcion</th>
 										<th class="col-md-2 text-center">Factor</th>
 										<th class="col-md-2 text-center">KM</th>
 										<th class="col-md-2 text-center">Importe</th>
@@ -275,26 +321,7 @@
 									</tr>
 								</thead>
 								<tbody id="gastos">
-									<tr id="gasto0" th:each="gasto,gastoStat : *{gastos}">
-										<td class="col-md-2"><input type="text"
-											class="form-control"
-											th:field="*{gastos[__${gastoStat.index}__].tipo}" 
-											readonly="readonly"  /></td>
-										<td class="col-md-2"><input type="text"
-											class="form-control"
-											th:field="*{gastos[__${gastoStat.index}__].descripcion}" 
-											readonly="readonly"  /></td>
-										<td class="col-md-2"><input type="text" name="factor"
-											readonly="readonly" class="form-control" /></td>
-										<td class="col-md-2"><input type="text" value="0"name="km"
-											class="form-control" /></td>
-										<td class="col-md-2"><input type="text"
-											class="form-control"
-											th:field="*{gastos[__${gastoStat.index}__].importe}" /></td>
-										<td class="col-md-2"><button id="btnMenos0" onclick="removeText(this.id)"
-												class="btn btn-danger form-control" type="button">-</button>
-										</td>
-									</tr>
+								
 								</tbody>
 
 							</table>
