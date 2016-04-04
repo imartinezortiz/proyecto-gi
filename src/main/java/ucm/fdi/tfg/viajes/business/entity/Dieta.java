@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,13 +18,14 @@ public class Dieta {
 	
 	@Id
 	@Column(name="dietaId")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	private Long id;
 	
 	@NotEmpty
+	@Column(unique=true)
 	String pais;
 	
-	// @Digits(integer=2, fraction=2)    Preguntar a Iván si esta anotacion es correcta.
+	@Digits(integer=2, fraction=2)   
 	BigDecimal importe;
 	
 }
