@@ -7,5 +7,6 @@ import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Repository
 public interface ProyectosRepository extends JpaRepository<Proyecto, Long> {
+	
 
 }
