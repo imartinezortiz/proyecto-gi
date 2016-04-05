@@ -6,20 +6,12 @@
 
 <script>
 function calcularImporte(input){
-
-	alert(input.name);
-	
-	
-	//document.getElementById(input.name).val("aaaa");
 	
 	var valor = 0.19 * Number(input.value) ;
 	
 	$('#'+input.name).val(valor);
 	
-	
 }
-
-
 </script>
 
 
@@ -109,12 +101,39 @@ function calcularImporte(input){
 		
 	}
 		
-
 </script>
 <script type="text/javascript">
-	
+function redondeo(numero, decimales)
+{
+	var flotante = parseFloat(numero);
+	var resultado = Math.round(flotante*Math.pow(10,decimales))/Math.pow(10,decimales);
+	return resultado;
+}
+</script>
+<script type="text/javascript">
+    function actualizarImporteDietas() {
+   
+       var valueSelected = $('#listaDietas').val();
+       
+       var importeTotal = Number(valueSelected) * ($('#numDietas').val());
+       
+       importeTotal = redondeo( importeTotal, 2)
+ 	  
+ 	  $('#importeDieta').val(importeTotal);
+    }
 </script>
 
+
+<!-- Por consola si funciona!
+<script >
+$('#listaDietas').change(function () {
+	    
+	  var valueSelected = $(this).val();
+	  
+	  
+});
+</script>
+ -->
 <title>VIAJES</title>
 </head>
 <body class="container">
@@ -308,7 +327,7 @@ function calcularImporte(input){
 						</div>
 
 						<div class="panel-body">
-							<table>
+							<table class="table table-bordered ">
 								<thead>
 									<tr>
 										<th class="col-md-2 text-center">Tipo</th>
@@ -316,11 +335,44 @@ function calcularImporte(input){
 										<th class="col-md-2 text-center">Factor</th>
 										<th class="col-md-2 text-center">KM</th>
 										<th class="col-md-2 text-center">Importe</th>
-										<th class="col-md-2 text-center">Eliminar Gasto</th>
-										
+										<th class="col-md-2 text-center">Eliminar</th>										
 									</tr>
 								</thead>
-								<tbody id="gastos">
+								<tbody id="gastos">		
+														
+								</tbody>
+							</table>
+
+						</div>
+
+					</div>
+					
+					<div class="panel-body">
+							<table  class="table">
+								<thead>
+									<tr>
+										<th class="col-md-2 text-center">Num Dieta</th>
+										<th class="col-md-4 text-center">Pais</th>
+										<th class="col-md-2 text-center">Importe</th>									
+									</tr>
+								</thead>
+								<tbody id="dietas">
+									<tr id="dietas" >
+											<td class="col-md-2  ">	
+												<input type="text" class="form-control text-center"  id="numDietas" value="1" onchange="actualizarImporteDietas();" />																				
+											</td>
+											<td class="col-md-4" onchange="actualizarImporteDietas();">
+												<select class="form-control col-md-4" id="listaDietas" >
+													<option th:each="dieta : ${dietas}"
+														th:value="${dieta.importe}" th:text="${dieta.pais}"></option>
+												</select>
+												
+											</td>
+											<td class="col-md-2"  >
+												<input type="text"	class="form-control text-center " id="importeDieta" th:field="*{importeDieta}" readonly="readonly"/>
+											</td>					
+											
+										</tr>
 								
 								</tbody>
 
@@ -328,9 +380,41 @@ function calcularImporte(input){
 
 						</div>
 
-					</div>
-
 				</div>
+				
+				<div class="form-group">
+							<label class="control-label col-md-2" for="congreso">Inscripción Congreso:</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="*{congreso}" type="text" />
+							</div>
+				</div>
+				<div class="form-group">
+							<label class="control-label col-md-2" for="seminario">Seminario:</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="*{seminario}" type="text" />
+							</div>
+				</div>
+				<div class="form-group">
+							<label class="control-label col-md-2" for="reunion">Reunión:</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="*{reunion}" type="text" />
+							</div>
+				</div>
+				
+				<div class="form-group">
+							<label class="control-label col-md-2" for="pagarA">Pagar a:</label>
+							<div class="col-md-10">
+								<input class="form-control" th:field="*{pagarA}" type="text" />
+							</div>
+				</div>
+				
+				<div class="form-group">
+							<label class="control-label col-md-2" for="observaciones">Observaciones:</label>
+							<div class="col-md-10">
+								<textarea class="form-control" th:field="*{observaciones}" ></textarea>
+							</div>
+				</div>
+				
 
 				<!-- Change this to a button or input when using this as a form -->
 				<input type="submit" class="btn btn-lg btn-success btn-block"
@@ -348,18 +432,20 @@ function calcularImporte(input){
 
 </body>
 
+	<!-- jQuery -->
+<script src="../../resources/bower_components/jquery/dist/jquery.min.js"
+	data-th-src="@{/resources/bower_components/jquery/dist/jquery.min.js}">
+		
+</script>
+
+
+
 <!-- Bootstrap Core CSS -->
 <link type="text/css"
 	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
 
-
-<!-- jQuery -->
-<script src="../../resources/bower_components/jquery/dist/jquery.min.js"
-	data-th-src="@{/resources/bower_components/jquery/dist/jquery.min.js}">
-		
-	</script>
 
 <!-- MetisMenu CSS -->
 <link type="text/css"
@@ -397,5 +483,7 @@ function calcularImporte(input){
 	data-th-src="@{/resources/dist/js/sb-admin-2.js}">
 		
 	</script>
+	
+
 
 </html>
