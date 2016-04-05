@@ -1,11 +1,19 @@
 DUDAS:
 
 	Cosas Pendientes:
-		*Viajes
+		*VIAJES: 
+			desplegable de lista investigadores
+			funcion eliminar gasto transporte
+			¿Alojamiento?
 		*Validar Gastos 
 		*Restructurar menu				
 		*Validar constraseñas (que sean iguales al hacer un alta) 
 		*Funcion Editar a raiz de restructurar
+		*Eliminar primer tr de la tabla de gastos de Pagos (como en Viajes). Y solo un boton +
+		
+	Dudas:
+	
+		ViajeForm: NO funciona Jquery y por consola si!
 		
 				
 	
