@@ -53,7 +53,8 @@
 					<p>
 						<a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class=" btn btn-link" th:href="@{/admin}" >Admin</a>
 						<a th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}" class=" btn btn-link" th:href="@{/gestor}" >Gestor</a>
-						<a th:if="${#authorization.expression('hasRole(''ROLE_INVESTIGADOR'')')}"class="btn btn-link" th:href="@{/proyectos}">Proyectos</a>											
+						<a th:if="${#authorization.expression('hasRole(''ROLE_INVESTIGADOR'')')}"class="btn btn-link" th:href="@{/proyectos}">Proyectos</a>
+						<a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class=" btn btn-link" th:href="@{/editar}" >Editar</a>									
 					</p>							
 				</div>				
 				<!-- /.panel-body -->

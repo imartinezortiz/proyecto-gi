@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ucm.fdi.tfg.proyecto.business.boundary.NuevoProyectoDTO;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
+import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
 
 
@@ -70,7 +71,10 @@ public class ProyectoController {
 
 		return view;
 	}
+	
+	
 
+	
 	@RequestMapping(value = "/crearProyecto", method = RequestMethod.POST)
 	public ModelAndView añadirProyectoPost(@ModelAttribute("nuevoProyectoDTO") @Valid NuevoProyectoDTO  nuevoProyectoDTO, BindingResult errors) {
 		
@@ -86,6 +90,40 @@ public class ProyectoController {
 		}
 		
 		return view;		
+	}
+	
+	
+	@RequestMapping(value = "/editar", method = RequestMethod.GET)
+	public ModelAndView EditarlistarProeyctos() {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		model.put("proyectos", proyectos.findAll());
+
+		ModelAndView view = new ModelAndView("proyectos/EditarlistarProyectos", model);
+
+		return view;
+	}
+	
+	@RequestMapping(value = "edit/proyecto/{id}/", method = RequestMethod.GET)
+	public ModelAndView EditProyecto(@PathVariable(value="id") Long id) {
+		
+		ModelAndView view = null;
+		view = new ModelAndView("proyectos/proyectoForm");
+		NuevoProyectoDTO proyectDTO = new NuevoProyectoDTO();
+		Proyecto proyecto = proyectos.findProyecto(id);
+		
+		proyectDTO.setInvestigadorId(proyecto.getInvestigadorPrincipal().getId());
+		proyectDTO.setNumContabilidad((proyecto.getNumContabilidad()));
+		proyectDTO.setReferencia((proyecto.getReferencia()));
+		proyectDTO.setTitulo((proyecto.getTitulo()));
+		
+		proyectos.deleteProyect(id);
+		
+		view.addObject("investigadores", users.findAllUserInvestigadores());
+		view.addObject("nuevoProyectoDTO" ,proyectDTO);
+
+		return view;
 	}
 
 }

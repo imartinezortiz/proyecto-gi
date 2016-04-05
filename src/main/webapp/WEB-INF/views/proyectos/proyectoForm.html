@@ -75,7 +75,7 @@
 								<select class="form-control col-md-10"
 								name="investigadorId" th:field="*{investigadoresID}" size="10" multiple="multiple">
 								<option th:each="investigador : ${investigadores}"
-									th:value="${investigador.id}" th:text="${investigador.nombre}">Investigadores</option>
+									th:value="${investigador.id}" th:text="|${investigador.nombre} ${investigador.apellidos}|">Investigadores</option>
 								</select>
 							</div>
 					</div>
