@@ -41,6 +41,8 @@ public class ProyectosManager {
 		proyecto.setNumContabilidad(proyectoDTO.getNumContabilidad());
 		proyecto.setInvestigadorPrincipal(investigadorPrincipal);
 		proyectos.save(proyecto);
+		
+		
 	}
 	
 	
@@ -63,5 +65,9 @@ public class ProyectosManager {
 	
 	public List<Proyecto> findAll(){
 		return proyectos.findAll();
+	}
+	
+	public void deleteProyect(Long idProyecto){
+		proyectos.delete(idProyecto);
 	}
 }
