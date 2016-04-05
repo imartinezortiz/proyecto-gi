@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.viajes.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import ucm.fdi.tfg.users.business.boundary.UserManager;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
 import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
+import ucm.fdi.tfg.viajes.business.entity.Dieta;
 import ucm.fdi.tfg.viajes.business.entity.GastoViaje;
 import ucm.fdi.tfg.viajes.business.entity.Viaje;
 
@@ -52,9 +54,12 @@ public class ViajesController {
 		GastoViaje g = new GastoViaje();
 		viaje.getGastos().add(g);
 		
+		List<Dieta> dietas = viajes.dameDietas();
 		
 		model.put("viaje", viaje);
 		model.put("user", userActivo);
+		
+		model.put("dietas", dietas);
 
 		ModelAndView view = new ModelAndView("viajes/viajeForm", model);
 		
@@ -66,7 +71,7 @@ public class ViajesController {
 	
 		viaje.setProyecto(proyectosManager.findProyecto(idProyecto));
 		viajes.save(viaje);
-		return "redirect:/registroCompleto";
+		return "redirect:/menu";
 		
 	}
 	
