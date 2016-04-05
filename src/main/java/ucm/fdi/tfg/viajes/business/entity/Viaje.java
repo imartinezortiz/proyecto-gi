@@ -1,5 +1,6 @@
 package ucm.fdi.tfg.viajes.business.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 
 import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
@@ -56,12 +58,63 @@ public class Viaje {
 	private String itinerario;
 	private String fechaInicio;
 	private String fechaFin;
-	private String medioTransporte;
 	
-
 	@ElementCollection(fetch=FetchType.EAGER)
 	private Collection<GastoViaje> gastos;
 
+	private BigDecimal importeDieta;
+	
+	private String congreso;
+	
+	private String seminario;
+	
+	private String pagarA;
+	
+	private String observaciones;
+	
+	public String getPagarA() {
+		return pagarA;
+	}
+
+	public void setPagarA(String pagarA) {
+		this.pagarA = pagarA;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
+	
+	public String getCongreso() {
+		return congreso;
+	}
+
+	public void setCongreso(String congreso) {
+		this.congreso = congreso;
+	}
+
+	public String getSeminario() {
+		return seminario;
+	}
+
+	public void setSeminario(String seminario) {
+		this.seminario = seminario;
+	}
+
+	public String getReunion() {
+		return reunion;
+	}
+
+	public void setReunion(String reunion) {
+		this.reunion = reunion;
+	}
+
+	private String reunion;
+	
 
 	public Viaje(){
 		this.gastos = new ArrayList<GastoViaje>();
@@ -77,7 +130,14 @@ public class Viaje {
 		return id;
 	}
 
+	public BigDecimal getImporteDieta() {
+		return importeDieta;
+	}
 
+	public void setImporteDieta(BigDecimal importeDieta) {
+		this.importeDieta = importeDieta;
+	}
+	
 	public String getRelacion() {
 		return relacion;
 	}
@@ -111,14 +171,6 @@ public class Viaje {
 	}
 
 	
-	public String getMedioTransporte() {
-		return medioTransporte;
-	}
-
-	public void setMedioTransporte(String medioTransporte) {
-		this.medioTransporte = medioTransporte;
-	}
-
 	public Proyecto getProyecto() {
 		return proyecto;
 	}
