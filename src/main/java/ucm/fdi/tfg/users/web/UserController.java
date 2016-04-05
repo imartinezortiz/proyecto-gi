@@ -164,7 +164,6 @@ public class UserController {
 	// -------------------------------------------------------------------------------------------------------
 	
 	
-	
 
 	// Pagina de usuarios
 	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
@@ -179,13 +178,5 @@ public class UserController {
 		return view;
 	}
 
-	@RequestMapping(value = "/registroCompleto", method = RequestMethod.GET)
-	public ModelAndView regcompletado() {
-
-		ModelAndView view = new ModelAndView("registroCompletado");
-
-		return view;
-	}
-	
 
 }
