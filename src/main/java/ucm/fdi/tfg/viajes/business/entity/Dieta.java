@@ -3,6 +3,7 @@ package ucm.fdi.tfg.viajes.business.entity;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,4 +29,31 @@ public class Dieta {
 	@Digits(integer=2, fraction=2)   
 	BigDecimal importe;
 	
+	
+	public Dieta(){
+		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+
+	public BigDecimal getImporte() {
+		return importe;
+	}
+
+
+	public void setImporte(BigDecimal importe) {
+		this.importe = importe;
+	}
 }
