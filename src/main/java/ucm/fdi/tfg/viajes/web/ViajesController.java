@@ -60,6 +60,7 @@ public class ViajesController {
 		model.put("user", userActivo);
 		
 		model.put("dietas", dietas);
+		model.put("importePrecioKm", 0.19);
 
 		ModelAndView view = new ModelAndView("viajes/viajeForm", model);
 		
