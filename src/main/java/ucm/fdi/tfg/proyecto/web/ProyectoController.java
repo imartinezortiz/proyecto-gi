@@ -117,6 +117,7 @@ public class ProyectoController {
 		proyectDTO.setNumContabilidad((proyecto.getNumContabilidad()));
 		proyectDTO.setReferencia((proyecto.getReferencia()));
 		proyectDTO.setTitulo((proyecto.getTitulo()));
+		//XXX proyectDTO.setInvestigadoresID(pro);
 		
 		//Le metemos el id, en la vista no parecera, ya que ira en in hide
 		proyectDTO.setIdProyecto(id);

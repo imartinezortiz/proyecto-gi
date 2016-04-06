@@ -27,25 +27,18 @@ public class ProyectosManager {
 	}
 	
 	public void nuevoProyecto(NuevoProyectoDTO proyectoDTO){
-		Proyecto proyecto = new Proyecto(); 
-		//Investigador inv = this.users.getInvestigador(proyectoDTO.getInvestigadorId());
-		Investigador investigadorPrincipal = this.users.getInvestigadorFindOne(proyectoDTO.getInvestigadorId());
-		
-		Iterator<Long> it = proyectoDTO.getInvestigadoresID().iterator();
-		while(it.hasNext()){
-			proyecto.getInvestigadores().add(users.findInvestigador(it.next()));
-		}
-	
-		proyecto.setTitulo(proyectoDTO.getTitulo());
-		proyecto.setReferencia(proyectoDTO.getReferencia());
-		proyecto.setNumContabilidad(proyectoDTO.getNumContabilidad());
-		proyecto.setInvestigadorPrincipal(investigadorPrincipal);
+		Proyecto proyecto = fromDto(proyectoDTO, new Proyecto());
 		proyectos.save(proyecto);
 	
 	}
 	
 	public void editar(NuevoProyectoDTO proyectoDTO) {
-		Proyecto proyecto = new Proyecto(); 
+		Proyecto proyecto = fromDto(proyectoDTO, proyectos.getOne(proyectoDTO.getIdProyecto()));
+		proyectos.save(proyecto);
+	}
+	
+	private Proyecto fromDto(NuevoProyectoDTO proyectoDTO, Proyecto proyecto) {
+		//Proyecto proyecto = new Proyecto(); 
 		//Investigador inv = this.users.getInvestigador(proyectoDTO.getInvestigadorId());
 		Investigador investigadorPrincipal = this.users.getInvestigadorFindOne(proyectoDTO.getInvestigadorId());
 		
@@ -53,17 +46,15 @@ public class ProyectosManager {
 		while(it.hasNext()){
 			proyecto.getInvestigadores().add(users.findInvestigador(it.next()));
 		}
-		proyecto.setId(proyectoDTO.getIdProyecto());
+		//proyecto.setId(proyectoDTO.getIdProyecto());
 		proyecto.setTitulo(proyectoDTO.getTitulo());
 		proyecto.setReferencia(proyectoDTO.getReferencia());
 		proyecto.setNumContabilidad(proyectoDTO.getNumContabilidad());
 		proyecto.setInvestigadorPrincipal(investigadorPrincipal);
-		proyectos.save(proyecto);
 		
+		return proyecto;
 	}
-	
-	
-	
+
 	public ProyectosRepository getGestorRepository() {
 		return proyectos;
 	}
