@@ -35,6 +35,13 @@
 			<form class="form-horizontal" role="form" action="#"
 				th:action="@{/altaInvestigador}" th:object="${nuevoInvestigadorDTO}"
 				method="POST">
+				 <div class="errors" th:if="${#fields.hasErrors('*')}">
+                <h3>Please fix the following error(s)</h3>
+          <ul>
+            <li th:each="err : ${#fields.errors('*')}" 
+                th:text="${err}">Input is incorrect</li>
+          </ul>
+        </div>
 				<fieldset>
 					<div class="form-group"
 						th:classappend="${#fields.hasErrors('username')} ? has-error">
