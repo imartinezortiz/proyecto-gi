@@ -4,136 +4,29 @@
 <meta charset="UTF-8" />
 
 
-<script>
-function calcularImporte(input){
-	
-	var valor = 0.19 * Number(input.value) ;
-	
-	$('#'+input.name).val(valor);
-	
-}
-</script>
+<!-- Bootstrap Core CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
 
 
-<script type="text/javascript">
+<!-- MetisMenu CSS -->
+<link type="text/css"
+	href="../../resources/bower_components/metisMenu/dist/metisMenu.min.css"
+	rel="stylesheet"
+	data-th-href="@{/resources/bower_components/metisMenu/dist/metisMenu.min.css}" />
 
-	function appendMedioTransporte(){
-		
-		if (document.getElementById("mediosTransporte").value != "")
-		{
-		
-			var count = $('#gastos tr').length;
-			var nuevoGasto;
-			
-			if (count ==0)
-				nuevoGasto = $(' <tr id="gasto0" th:each="gasto,gastoStat : *{gastos}"> ');
-			else
-				nuevoGasto = $('<tr></tr>');
-			
-			var auxTipo = $('<td class="col-md-2"></td>');
-			var auxDescripcion = $('<td class="col-md-2"></td>');
-			var auximporte = $('<td class="col-md-2"></td>');
-			
-			//Campos no significativos para la entity
-			var auxFactor;
-			var auxKM;
-			
-			var importe; 
-			if (document.getElementById("mediosTransporte").value == "Coche"){
-				auxFactor = $('<td class="col-md-2"></td>');				
-				auxFactorTD = $('<input type="text" name="factor" readonly="readonly" class="form-control text-center" />').attr('value', 0.19);
-				$(auxFactor).append(auxFactorTD);
-				auxKM = $('<td class="col-md-2"></td>');
-				auxKMTD = $('<input type="text" class="form-control text-center" onchange="calcularImporte(this)"/>').attr('name', 'km'+count);
-				$(auxKM).append(auxKMTD);
-				//El importe es calculado automaticamente
-				importe = $('<input type="text" class="form-control col-md-2 text-center" readonly="readonly" /> ').attr({'name': 'gastos[' + count + '].importe', 'id': 'km'+count});
-			}
-			else {
-				auxFactor = $('<td class="col-md-2"></td>');
-				auxKM = $('<td class="col-md-2"></td>');
-				importe = $(
-				'<input type="text" class="form-control col-md-2 text-center"/> ').attr('name', 'gastos[' + count + '].importe');
-			}
-				
-			//botones
-			var auxbtnMenos = $('<td class="col-md-2"></td>');
-	
-			var tipo= $(
-					'<input type="text" class="form-control col-md-2 text-center" readonly="readonly" />').attr({'name': 'gastos[' + count + '].tipo', 'value': document.getElementById("mediosTransporte").value});
-			
-			var descripcion;
-			if (document.getElementById("mediosTransporte").value == "Otros"){
-				descripcion = $('<input type="text" class="form-control col-md-4 text-center " />').attr('name', 'gastos[' + count + '].descripcion');
-			}
-			else descripcion = $('<input type="text" class="form-control col-md-4 text-center" readonly="readonly" />').attr('name', 'gastos[' + count + '].descripcion');
-			
-						
-			var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-danger form-control" type="button">-</button>').attr('id', 'btnMenos' + count );
-		
-			$(auxTipo).append(tipo);
-			$(auxDescripcion).append(descripcion);
-			$(auximporte).append(importe);
-			
-			//botones
-			$(auxbtnMenos).append(btnMenos);
-			
-			$(nuevoGasto).append(auxTipo);
-			$(nuevoGasto).append(auxDescripcion);
-			
-			//Campos no significativos
-			$(nuevoGasto).append(auxFactor);
-			$(nuevoGasto).append(auxKM);
-			
-			$(nuevoGasto).append(auximporte);
-			
-					
-			//botones
-			$(nuevoGasto).append(auxbtnMenos);
-			
-			//idNuevo
-			$(nuevoGasto).attr('id', 'gasto' + count);
-			
-			
-			$('#gastos').append(nuevoGasto);
-		
-			}
-		
-	}
-		
-</script>
-<script type="text/javascript">
-function redondeo(numero, decimales)
-{
-	var flotante = parseFloat(numero);
-	var resultado = Math.round(flotante*Math.pow(10,decimales))/Math.pow(10,decimales);
-	return resultado;
-}
-</script>
-<script type="text/javascript">
-    function actualizarImporteDietas() {
-   
-       var valueSelected = $('#listaDietas').val();
-       
-       var importeTotal = Number(valueSelected) * ($('#numDietas').val());
-       
-       importeTotal = redondeo( importeTotal, 2)
- 	  
- 	  $('#importeDieta').val(importeTotal);
-    }
-</script>
+<!-- Custom CSS -->
+<link type="text/css" href="../../resources/dist/css/sb-admin-2.css"
+	rel="stylesheet" data-th-href="@{/resources/dist/css/sb-admin-2.css}" />
 
+<!-- Custom Fonts -->
+<link
+	href="../../resources/bower_components/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css"
+	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
 
-<!-- Por consola si funciona!
-<script >
-$('#listaDietas').change(function () {
-	    
-	  var valueSelected = $(this).val();
-	  
-	  
-});
-</script>
- -->
 <title>VIAJES</title>
 </head>
 <body class="container">
@@ -361,10 +254,10 @@ $('#listaDietas').change(function () {
 											<td class="col-md-2  ">	
 												<input type="text" class="form-control text-center"  id="numDietas" value="1" onchange="actualizarImporteDietas();" />																				
 											</td>
-											<td class="col-md-4" onchange="actualizarImporteDietas();">
+											<td class="col-md-4">
 												<select class="form-control col-md-4" id="listaDietas" >
-													<option th:each="dieta : ${dietas}"
-														th:value="${dieta.importe}" th:text="${dieta.pais}"></option>
+													<option th:each="dieta : ${dietas}" th:attr="data-importe=${dieta.importe}"
+														th:value="${dieta.id}" th:text="${dieta.pais}"></option>
 												</select>
 												
 											</td>
@@ -428,41 +321,11 @@ $('#listaDietas').change(function () {
 	</div>
 
 
-
-
-</body>
-
-	<!-- jQuery -->
+<!-- jQuery -->
 <script src="../../resources/bower_components/jquery/dist/jquery.min.js"
 	data-th-src="@{/resources/bower_components/jquery/dist/jquery.min.js}">
 		
 </script>
-
-
-
-<!-- Bootstrap Core CSS -->
-<link type="text/css"
-	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
-
-
-<!-- MetisMenu CSS -->
-<link type="text/css"
-	href="../../resources/bower_components/metisMenu/dist/metisMenu.min.css"
-	rel="stylesheet"
-	data-th-href="@{/resources/bower_components/metisMenu/dist/metisMenu.min.css}" />
-
-<!-- Custom CSS -->
-<link type="text/css" href="../../resources/dist/css/sb-admin-2.css"
-	rel="stylesheet" data-th-href="@{/resources/dist/css/sb-admin-2.css}" />
-
-<!-- Custom Fonts -->
-<link
-	href="../../resources/bower_components/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css"
-	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
-
 
 <!-- Bootstrap Core JavaScript -->
 <script
@@ -483,7 +346,139 @@ $('#listaDietas').change(function () {
 	data-th-src="@{/resources/dist/js/sb-admin-2.js}">
 		
 	</script>
+
+<script th:inline="javascript">
+function calcularImporte(input){
+	var importePrecioKm = /*[[${importePrecioKm}]]*/ 0.19;
+	var valor = importePrecioKm * Number(input.value) ;
 	
+	$('#'+input.name).val(valor);
+	
+}
+</script>
 
 
+<script type="text/javascript">
+
+	function appendMedioTransporte(){
+		
+		if (document.getElementById("mediosTransporte").value != "")
+		{
+		
+			var count = $('#gastos tr').length;
+			var nuevoGasto;
+			
+			if (count ==0)
+				nuevoGasto = $(' <tr id="gasto0" th:each="gasto,gastoStat : *{gastos}"> ');
+			else
+				nuevoGasto = $('<tr></tr>');
+			
+			var auxTipo = $('<td class="col-md-2"></td>');
+			var auxDescripcion = $('<td class="col-md-2"></td>');
+			var auximporte = $('<td class="col-md-2"></td>');
+			
+			//Campos no significativos para la entity
+			var auxFactor;
+			var auxKM;
+			
+			var importe; 
+			//XXX $('#mediosTransporte').val() 
+			//XXX
+			if (document.getElementById("mediosTransporte").value == "Coche"){
+				auxFactor = $('<td class="col-md-2"></td>');				
+				auxFactorTD = $('<input type="text" name="factor" readonly="readonly" class="form-control text-center" />').attr('value', 0.19);
+				$(auxFactor).append(auxFactorTD);
+				auxKM = $('<td class="col-md-2"></td>');
+				auxKMTD = $('<input type="text" class="form-control text-center" onchange="calcularImporte(this)"/>').attr('name', 'km'+count);
+				$(auxKM).append(auxKMTD);
+				//El importe es calculado automaticamente
+				importe = $('<input type="text" class="form-control col-md-2 text-center" readonly="readonly" /> ').attr({'name': 'gastos[' + count + '].importe', 'id': 'km'+count});
+			}
+			else {
+				auxFactor = $('<td class="col-md-2"></td>');
+				auxKM = $('<td class="col-md-2"></td>');
+				importe = $(
+				'<input type="text" class="form-control col-md-2 text-center"/> ').attr('name', 'gastos[' + count + '].importe');
+			}
+				
+			//botones
+			var auxbtnMenos = $('<td class="col-md-2"></td>');
+	
+			var tipo= $(
+					'<input type="text" class="form-control col-md-2 text-center" readonly="readonly" />').attr({'name': 'gastos[' + count + '].tipo', 'value': document.getElementById("mediosTransporte").value});
+			
+			var descripcion;
+			if (document.getElementById("mediosTransporte").value == "Otros"){
+				descripcion = $('<input type="text" class="form-control col-md-4 text-center " />').attr('name', 'gastos[' + count + '].descripcion');
+			}
+			else descripcion = $('<input type="text" class="form-control col-md-4 text-center" readonly="readonly" />').attr('name', 'gastos[' + count + '].descripcion');
+			
+						
+			var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-danger form-control" type="button">-</button>').attr('id', 'btnMenos' + count );
+		
+			$(auxTipo).append(tipo);
+			$(auxDescripcion).append(descripcion);
+			$(auximporte).append(importe);
+			
+			//botones
+			$(auxbtnMenos).append(btnMenos);
+			
+			$(nuevoGasto).append(auxTipo);
+			$(nuevoGasto).append(auxDescripcion);
+			
+			//Campos no significativos
+			$(nuevoGasto).append(auxFactor);
+			$(nuevoGasto).append(auxKM);
+			
+			$(nuevoGasto).append(auximporte);
+			
+					
+			//botones
+			$(nuevoGasto).append(auxbtnMenos);
+			
+			//idNuevo
+			$(nuevoGasto).attr('id', 'gasto' + count);
+			
+			
+			$('#gastos').append(nuevoGasto);
+		
+			}
+		
+	}
+		
+</script>
+<script type="text/javascript">
+function redondeo(numero, decimales)
+{
+	var flotante = parseFloat(numero);
+	var resultado = Math.round(flotante*Math.pow(10,decimales))/Math.pow(10,decimales);
+	return resultado;
+}
+</script>
+<script type="text/javascript">
+    function actualizarImporteDietas() {
+   
+       var valueSelected = $('#listaDietas option:selected').attr("data-importe");
+       
+       var importeTotal = Number(valueSelected) * ($('#numDietas').val());
+       
+       importeTotal = redondeo( importeTotal, 2)
+ 	  
+ 	  $('#importeDieta').val(importeTotal);
+    }
+</script>
+
+
+<!-- Por consola si funciona! -->
+<script >
+$('#listaDietas').change(function () {
+	    
+	  actualizarImporteDietas();
+	  
+	  
+});
+</script>
+
+
+</body>
 </html>
