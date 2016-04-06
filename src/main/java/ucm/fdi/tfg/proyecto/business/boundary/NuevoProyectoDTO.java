@@ -2,13 +2,14 @@ package ucm.fdi.tfg.proyecto.business.boundary;
 
 import java.util.Collection;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import ucm.fdi.tfg.users.business.entity.Investigador;
 
 public class NuevoProyectoDTO {
 	
+	private Long idProyecto;
+
 	@NotEmpty(message = "Campo vacío")
 	private String referencia;
 	
@@ -18,6 +19,14 @@ public class NuevoProyectoDTO {
 	private Long investigadorId;
 	
 	private Collection<Long> investigadoresID;
+	
+	public Long getIdProyecto() {
+		return idProyecto;
+	}
+
+	public void setIdProyecto(Long idProyecto) {
+		this.idProyecto = idProyecto;
+	}
 	
 	public Collection<Long> getInvestigadoresID() {
 		return investigadoresID;

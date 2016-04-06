@@ -109,7 +109,7 @@ public class ProyectoController {
 	public ModelAndView EditProyecto(@PathVariable(value="id") Long id) {
 		
 		ModelAndView view = null;
-		view = new ModelAndView("proyectos/proyectoForm");
+		view = new ModelAndView("proyectos/proyectoFormEditar");
 		NuevoProyectoDTO proyectDTO = new NuevoProyectoDTO();
 		Proyecto proyecto = proyectos.findProyecto(id);
 		
@@ -118,12 +118,31 @@ public class ProyectoController {
 		proyectDTO.setReferencia((proyecto.getReferencia()));
 		proyectDTO.setTitulo((proyecto.getTitulo()));
 		
-		proyectos.deleteProyect(id);
+		//Le metemos el id, en la vista no parecera, ya que ira en in hide
+		proyectDTO.setIdProyecto(id);
+		
 		
 		view.addObject("investigadores", users.findAllUserInvestigadores());
 		view.addObject("nuevoProyectoDTO" ,proyectDTO);
 
 		return view;
+	}
+	
+	@RequestMapping(value = "/edit/proyecto/{id}/", method = RequestMethod.POST)
+	public ModelAndView editarProyectoPost(@ModelAttribute("nuevoProyectoDTO") @Valid NuevoProyectoDTO  nuevoProyectoDTO, BindingResult errors) {
+		
+		ModelAndView view = null;			
+		
+		if (errors.hasErrors()) {
+			view = new ModelAndView("proyectos/proyectoForm");
+			view.addObject("investigadores", users.findAllUserInvestigadores());
+			view.addObject("nuevoProyectoDTO", nuevoProyectoDTO);						
+		} else {
+			proyectos.editar(nuevoProyectoDTO);
+			view = new ModelAndView("redirect:/proyectos");
+		}
+		
+		return view;		
 	}
 
 }

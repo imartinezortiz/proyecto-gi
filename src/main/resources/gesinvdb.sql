@@ -49,6 +49,11 @@ INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (8, 'C8'
 INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (1, '150', 'FA1903', 'Primera Proyecto', 4);
 INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (2, '200', 'atm1903', 'Segunda Proyecto', 4);
 
+INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (1,4);
+INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (1,5);
+INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (2,6);
+INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (2,7);
+
 INSERT INTO pagos(pagoId, numOrden,fecha,iban,bic,pagador,memoria,relacion, proyecto_id) VALUES (1,111,'05-04-2016','100','150','David','Memoriaaa','La relacion misma',1);
 
 INSERT INTO pago_gastos (pagoId, importe, numFactura, proveedor) VALUES (1, '100.00', '222', 'p1');

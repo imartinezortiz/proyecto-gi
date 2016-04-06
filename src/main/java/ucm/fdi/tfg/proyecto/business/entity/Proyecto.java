@@ -23,6 +23,8 @@ public class Proyecto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	private Long id;
 	
+
+
 	private String referencia;
 	
 	private String titulo;
@@ -39,6 +41,10 @@ public class Proyecto {
 	
 	public Proyecto(){
 		investigadores =  new ArrayList<Investigador>();
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public Long getId(){

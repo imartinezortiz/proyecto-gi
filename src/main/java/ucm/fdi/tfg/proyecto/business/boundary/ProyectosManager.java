@@ -41,7 +41,24 @@ public class ProyectosManager {
 		proyecto.setNumContabilidad(proyectoDTO.getNumContabilidad());
 		proyecto.setInvestigadorPrincipal(investigadorPrincipal);
 		proyectos.save(proyecto);
+	
+	}
+	
+	public void editar(NuevoProyectoDTO proyectoDTO) {
+		Proyecto proyecto = new Proyecto(); 
+		//Investigador inv = this.users.getInvestigador(proyectoDTO.getInvestigadorId());
+		Investigador investigadorPrincipal = this.users.getInvestigadorFindOne(proyectoDTO.getInvestigadorId());
 		
+		Iterator<Long> it = proyectoDTO.getInvestigadoresID().iterator();
+		while(it.hasNext()){
+			proyecto.getInvestigadores().add(users.findInvestigador(it.next()));
+		}
+		proyecto.setId(proyectoDTO.getIdProyecto());
+		proyecto.setTitulo(proyectoDTO.getTitulo());
+		proyecto.setReferencia(proyectoDTO.getReferencia());
+		proyecto.setNumContabilidad(proyectoDTO.getNumContabilidad());
+		proyecto.setInvestigadorPrincipal(investigadorPrincipal);
+		proyectos.save(proyecto);
 		
 	}
 	
@@ -70,4 +87,6 @@ public class ProyectosManager {
 	public void deleteProyect(Long idProyecto){
 		proyectos.delete(idProyecto);
 	}
+
+	
 }
