@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +34,7 @@ public class Proyecto {
 	@JoinColumn(name="investigadorID")
 	private Investigador investigadorPrincipal;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<Investigador> investigadores;
 
 	private String numContabilidad;	

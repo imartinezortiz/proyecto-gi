@@ -1,5 +1,6 @@
 package ucm.fdi.tfg.proyecto.business.boundary;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,15 +39,14 @@ public class ProyectosManager {
 	}
 	
 	private Proyecto fromDto(NuevoProyectoDTO proyectoDTO, Proyecto proyecto) {
-		//Proyecto proyecto = new Proyecto(); 
-		//Investigador inv = this.users.getInvestigador(proyectoDTO.getInvestigadorId());
+		
 		Investigador investigadorPrincipal = this.users.getInvestigadorFindOne(proyectoDTO.getInvestigadorId());
 		
 		Iterator<Long> it = proyectoDTO.getInvestigadoresID().iterator();
 		while(it.hasNext()){
 			proyecto.getInvestigadores().add(users.findInvestigador(it.next()));
 		}
-		//proyecto.setId(proyectoDTO.getIdProyecto());
+
 		proyecto.setTitulo(proyectoDTO.getTitulo());
 		proyecto.setReferencia(proyectoDTO.getReferencia());
 		proyecto.setNumContabilidad(proyectoDTO.getNumContabilidad());
@@ -79,5 +79,22 @@ public class ProyectosManager {
 		proyectos.delete(idProyecto);
 	}
 
+	public NuevoProyectoDTO proyectoAproyectoDTO(Proyecto proyecto){
+		
+		NuevoProyectoDTO proyectDTO = new NuevoProyectoDTO();
+		proyectDTO.setInvestigadorId(proyecto.getInvestigadorPrincipal().getId());
+		proyectDTO.setNumContabilidad((proyecto.getNumContabilidad()));
+		proyectDTO.setReferencia((proyecto.getReferencia()));
+		proyectDTO.setTitulo((proyecto.getTitulo()));
+		proyectDTO.setIdProyecto(proyecto.getId());
+				
+		Iterator<Investigador> it = proyecto.getInvestigadores().iterator();
+		while(it.hasNext()){
+			proyectDTO.getInvestigadoresID().add(it.next().getId());
+		}
+		
+		return proyectDTO;
+
+	}
 	
 }

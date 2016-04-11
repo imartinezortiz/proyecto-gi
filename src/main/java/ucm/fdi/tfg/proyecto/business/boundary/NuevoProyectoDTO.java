@@ -1,5 +1,6 @@
 package ucm.fdi.tfg.proyecto.business.boundary;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,6 +19,10 @@ public class NuevoProyectoDTO {
 	private Long investigadorId;
 	
 	private Collection<Long> investigadoresID;
+	
+	public NuevoProyectoDTO(){
+		investigadoresID = new ArrayList<Long>();
+	}
 	
 	public Long getIdProyecto() {
 		return idProyecto;

@@ -110,18 +110,10 @@ public class ProyectoController {
 		
 		ModelAndView view = null;
 		view = new ModelAndView("proyectos/proyectoFormEditar");
-		NuevoProyectoDTO proyectDTO = new NuevoProyectoDTO();
+		
 		Proyecto proyecto = proyectos.findProyecto(id);
 		
-		proyectDTO.setInvestigadorId(proyecto.getInvestigadorPrincipal().getId());
-		proyectDTO.setNumContabilidad((proyecto.getNumContabilidad()));
-		proyectDTO.setReferencia((proyecto.getReferencia()));
-		proyectDTO.setTitulo((proyecto.getTitulo()));
-		//XXX proyectDTO.setInvestigadoresID(pro);
-		
-		//Le metemos el id, en la vista no parecera, ya que ira en in hide
-		proyectDTO.setIdProyecto(id);
-		
+		NuevoProyectoDTO proyectDTO = proyectos.proyectoAproyectoDTO(proyecto);
 		
 		view.addObject("investigadores", users.findAllUserInvestigadores());
 		view.addObject("nuevoProyectoDTO" ,proyectDTO);
