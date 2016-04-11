@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import ucm.fdi.tfg.users.business.entity.Investigador;
 
 public class NuevoProyectoDTO {
 	

@@ -13,9 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 
-import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Entity
