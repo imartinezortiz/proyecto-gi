@@ -113,37 +113,35 @@
 						<p class="panel-title">JUSTIFICACION PARA VIAJES</p>
 					</div>
 					<div class="panel-body">
-
-						<div id="relacionContrato" class="form-group">
-							<label class="control-label col-md-2" for="relacion">Relacion
-								con el contrato:</label>
-							<div class="col-md-10">	
-								<div class="radio col-md-4">
-									<input id="miembroRadio" type="radio" value="miembro" name="tipoRelacionContrato">								
-									<label for="miembroRadio">Miembro del proyecto </label>
-								</div>
-								<div id="listaInventigadores" class="col-md-4" style="display: none">
-											<select class="form-control col-md-8"	th:field="*{relacion}">
-												<option th:each="user : ${investigadoresAsignadosAproyecto}"
-													th:value="|${user.nombre} ${user.apellidos}|"
-													th:text="|${user.nombre} ${user.apellidos}|">Investigadores</option>
-											</select>
-								</div>	
-							</div>							
+										 
+						 <div class="form-group">
+						 	<label class="control-label col-md-2" for="relacion">Relacion con el contrato:</label>
+						 	
+						 	<div class="radio  col-md-3 ">
+										<input  id="miembroRadio" type="radio" value="miembro" name="tipoRelacionContrato">								
+										<label   for="miembroRadio">Miembro del proyecto </label>																		
+							</div>
+														
+							<div class="radio  col-md-3">
+										<input id="invitadoRadio" type="radio" value="invitado" name="tipoRelacionContrato" >								
+										<label  for="invitadoRadio">Profesor invitado</label>	
+							</div>	
+							<div id="inputProfesorInvitado"class="col-md-4 " style="display:none">
+										<input class="form-control" th:field="*{relacion}" type="text" placeholder="Ej: Manuel López"/>
+							</div>	
 							
-							<div class="col-md-10">							
-								<div class="radio col-md-4">
-									<input id="invitadoRadio" type="radio" value="invitado" name="tipoRelacionContrato" >								
-									<label for="invitadoRadio">Profesor invitado</label>	
-								</div>
-								<div class="col-md-4" style="display: none">
-									<input class="form-control" th:field="*{relacion}" type="text" />
-								</div>	
-							</div>								
-								
-						</div>								
-							
-
+							<div id="listaInventigadores" class="col-md-4 " style="display:none">
+												<select class="form-control center col-md-4"	th:field="*{relacion}" >
+													<option th:each="user : ${investigadoresAsignadosAproyecto}"
+														th:value="|${user.nombre} ${user.apellidos}|"
+														th:text="|${user.nombre} ${user.apellidos}|">Investigadores</option>
+												</select>
+							</div>
+													 						 
+						 </div>					
+									
+						
+						 
 						<div class="form-group">
 							<label class="control-label col-md-2" for="objetoDesplazamiento">Objeto
 								del desplazamiento:</label>
@@ -353,7 +351,24 @@
 		
 </script>
 
+ <script type="text/javascript">
 
+		$("input[name=tipoRelacionContrato]").change(function() {
+				
+			var radioPulsado = $(this).val();
+			
+			if (radioPulsado == "miembro"){
+				$('#inputProfesorInvitado').hide();
+				$('#listaInventigadores').show();	
+				
+			}
+			else {//es invitado
+				$('#listaInventigadores').hide();
+				$('#inputProfesorInvitado').show();				
+			}
+			
+		});
+	</script>
 
 
 <script th:inline="javascript">
@@ -456,6 +471,8 @@ function calcularImporte(input){
 	}
 		
 </script>
+
+
 
 <script type="text/javascript">
 function redondeo(numero, decimales)
