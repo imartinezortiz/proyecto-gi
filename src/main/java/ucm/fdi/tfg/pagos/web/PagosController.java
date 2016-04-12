@@ -92,7 +92,7 @@ public class PagosController {
 		}else{
 			pago.setProyecto(proyectosManager.findProyecto(idProyecto));
 			pagoManager.save(pago);	
-			view = new ModelAndView("redirect:/menu");
+			view = new ModelAndView("redirect:/inicio");
 		}
 		return view;
 		
