@@ -1,6 +1,9 @@
 package ucm.fdi.tfg.viajes.web;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -54,13 +57,30 @@ public class ViajesController {
 		GastoViaje g = new GastoViaje();
 		viaje.getGastos().add(g);
 		
+		
+		
 		List<Dieta> dietas = viajes.dameDietas();
+		
+		          Collection <Investigador> investigadores = proyecto.getInvestigadores();
+		          
+		             
+		          //necesito coger le id de la lista de investigadores
+		          List <Long> listaInvestidagoresId = new ArrayList<Long>();
+		          
+		          for (Investigador i : investigadores ){
+		              listaInvestidagoresId.add(i.getId());
+		        }
+
+		        List<User> investigadoresAsignadosAproyecto = users.findAll(listaInvestidagoresId);
+
 		
 		model.put("viaje", viaje);
 		model.put("user", userActivo);
 		
 		model.put("dietas", dietas);
 		model.put("importePrecioKm", 0.19);
+		
+		model.put("investigadoresAsignadosAproyecto", investigadoresAsignadosAproyecto);
 
 		ModelAndView view = new ModelAndView("viajes/viajeForm", model);
 		

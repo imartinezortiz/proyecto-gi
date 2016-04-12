@@ -25,51 +25,68 @@ public class Viaje {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	private Long id;
 	
-	private String numOrden;
-	
+	private String numOrden;	
 	private String fecha;	
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;
 	
-	private String credenciales;
 		
 	private String relacion;
 	
-	public String getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public void setFechaInicio(String fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-
-	public String getFechaFin() {
-		return fechaFin;
-	}
-
-	public void setFechaFin(String fechaFin) {
-		this.fechaFin = fechaFin;
-	}
-
 	private String objetoDesplazamiento;
 	private String itinerario;
 	private String fechaInicio;
 	private String fechaFin;
 	
+	
+// ----------- JUSTIFICACION GASTOS -----------------------------------
+	
 	@ElementCollection(fetch=FetchType.EAGER)
-	private Collection<GastoViaje> gastos;
+	private Collection<GastoViaje> gastos; //Transporte 
 
 	private BigDecimal importeDieta;
 	
-	private String congreso;
+	private BigDecimal congreso;
 	
-	private String seminario;
+	private BigDecimal seminario;
+	
+	private BigDecimal reunion;
+	
+	private BigDecimal alojamiento;
+
+// --------------------------------------------------------------------
+	
 	
 	private String pagarA;
 	
-	private String observaciones;
+	private String observaciones;	
 	
+	
+
+	public Viaje(){
+		this.gastos = new ArrayList<GastoViaje>();
+		
+	}
+	
+		
+	public Viaje(Proyecto proyecto) {
+		this.proyecto = proyecto;
+		this.gastos = new ArrayList<GastoViaje>();
+	}
+	
+	
+	
+	public BigDecimal getAlojamiento() {
+		return alojamiento;
+	}
+
+
+	public void setAlojamiento(BigDecimal alojamiento) {
+		this.alojamiento = alojamiento;
+	}
+
+
 	public String getPagarA() {
 		return pagarA;
 	}
@@ -87,43 +104,46 @@ public class Viaje {
 	}
 
 	
-	public String getCongreso() {
+	public BigDecimal getCongreso() {
 		return congreso;
 	}
 
-	public void setCongreso(String congreso) {
+	public void setCongreso(BigDecimal congreso) {
 		this.congreso = congreso;
 	}
 
-	public String getSeminario() {
+	public BigDecimal getSeminario() {
 		return seminario;
 	}
 
-	public void setSeminario(String seminario) {
+	public void setSeminario(BigDecimal seminario) {
 		this.seminario = seminario;
 	}
 
-	public String getReunion() {
+	public BigDecimal getReunion() {
 		return reunion;
 	}
 
-	public void setReunion(String reunion) {
+	public void setReunion(BigDecimal reunion) {
 		this.reunion = reunion;
 	}
-
-	private String reunion;
 	
-
-	public Viaje(){
-		this.gastos = new ArrayList<GastoViaje>();
-		
-	}
-	
-	public Viaje(Proyecto proyecto) {
-		this.proyecto = proyecto;
-		this.gastos = new ArrayList<GastoViaje>();
+	public String getFechaInicio() {
+		return fechaInicio;
 	}
 
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public String getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -193,12 +213,6 @@ public class Viaje {
 		this.fecha = fecha;
 	}
 
-	public String getCredenciales() {
-		return credenciales;
-	}
-
-	public void setCredenciales(String credenciales) {
-		this.credenciales = credenciales;
-	}
+	
 
 }

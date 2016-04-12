@@ -1,19 +1,31 @@
 DUDAS:
 
 	Cosas Pendientes:
-		*VIAJES: 
-			desplegable de lista investigadores
-			funcion eliminar gasto transporte
-			¿Alojamiento?
-		*Validar Gastos 
-		*Restructurar menu				
-		*Validar constraseñas (que sean iguales al hacer un alta) 
-		*Funcion Editar a raiz de restructurar
-		*Eliminar primer tr de la tabla de gastos de Pagos (como en Viajes). Y solo un boton +
-		
-	Dudas:
+		RICO:						
+			*VIAJES: 
+				- Lista desplegable investigadores de ese proyecto.
+				- Funcion eliminar gasto transporte
+				- ¿Alojamiento? Como un input más
+				- Enum para listas : http://blog.florentlim.com/listing-enum-on-select-element-using-thymeleaf/
+				- input Importe TOTAL
+				- Validar VIAJES
+				- @ManyToOne Dieta
+				- Constante 0.19 dentro de Spring
+				- Quitar javascript puro				
+				
+				
+			* Validar constraseñas (que sean iguales al hacer un alta) 			
+			
+			* Eliminar primer tr de la tabla de gastos de Pagos (como en Viajes). Y solo un boton +.
+			
+		NIETO:
+			*Devolver Investigadores Seleccionador en la Select Multiple de EDITAR. (Falta: Se quedan seleccionados los anteriores)
+			*Validar Gastos - Pagos
+			*PagingAndSortRepository...
+			*Mejorar Vistas
 	
-		http://blog.florentlim.com/listing-enum-on-select-element-using-thymeleaf/
+	
+		
 		
 				
 	
