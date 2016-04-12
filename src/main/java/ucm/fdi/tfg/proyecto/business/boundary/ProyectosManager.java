@@ -42,9 +42,12 @@ public class ProyectosManager {
 		
 		Investigador investigadorPrincipal = this.users.getInvestigadorFindOne(proyectoDTO.getInvestigadorId());
 		
+		//Para limpiar los investigadores anteriores, y que solo esten los q has añadido al editar y no aparezcan todos.
+		proyecto.getInvestigadores().clear();
+		
 		Iterator<Long> it = proyectoDTO.getInvestigadoresID().iterator();
 		while(it.hasNext()){
-			proyecto.getInvestigadores().add(users.findInvestigador(it.next()));
+			proyecto.getInvestigadores().add(users.getInvestigador(it.next()));
 		}
 
 		proyecto.setTitulo(proyectoDTO.getTitulo());
