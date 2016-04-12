@@ -11,7 +11,8 @@ DUDAS:
 				- Validar VIAJES
 				- @ManyToOne Dieta
 				- Constante 0.19 dentro de Spring
-				- Quitar javascript puro				
+				- Quitar javascript puro	
+							
 				
 				
 			* Validar constraseñas (que sean iguales al hacer un alta) 			
@@ -25,7 +26,9 @@ DUDAS:
 			*Mejorar Vistas
 	
 	
-		
+		DUDAS:
+	
+			[Viajes] Como mejorar para mandar los investigadores de "un proyecto" a al formulario de Viajes
 		
 				
 	
