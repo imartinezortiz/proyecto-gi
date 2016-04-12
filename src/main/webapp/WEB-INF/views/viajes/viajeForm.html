@@ -70,6 +70,7 @@
 					</div>
 				</div>
 
+<!----------------------------------------------------- INVESTIGADOR PRINCIPAL----------------------------------------------------------->
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<p class="panel-title">Datos Investigador Principal</p>
@@ -125,36 +126,45 @@
 						</div>
 					</div>
 				</div>
-
+				
+<!-----------------------------------------------------FIN  INVESTIGADOR PRINCIPAL----------------------------------------------------------->
+				
+<!----------------------------------------------------- JUSTIFICACION PARA VIAJES----------------------------------------------------------->
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<p class="panel-title">JUSTIFICACION PARA VIAJES</p>
 					</div>
 					<div class="panel-body">
 
-						<div class="form-group">
-							<label class="control-label col-md-2" for="">Nombre y
-								apellidos:</label>
-							<div class="col-md-10">
-								<input class="form-control"
-									th:value="*{proyecto.investigadorPrincipal.centro}" type="text" />
-							</div>
-						</div>
-
-						<div class="form-group">
+						<div id="relacionContrato" class="form-group">
 							<label class="control-label col-md-2" for="relacion">Relacion
 								con el contrato:</label>
-
-							<div class="radio">
-								<label> <input type="radio" value="miembro"
-									name="relacion">Miembro del proyecto
-								</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" value="invitado"
-									name="relacion">Profesor invitado</label>
-							</div>
-						</div>
+							<div class="col-md-10">	
+								<div class="radio col-md-4">
+									<input id="miembroRadio" type="radio" value="miembro" name="tipoRelacionContrato">								
+									<label for="miembroRadio">Miembro del proyecto </label>
+								</div>
+								<div id="listaInventigadores" class="col-md-4" style="display: none">
+											<select class="form-control col-md-8"	th:field="*{relacion}">
+												<option th:each="user : ${investigadoresAsignadosAproyecto}"
+													th:value="|${user.nombre} ${user.apellidos}|"
+													th:text="|${user.nombre} ${user.apellidos}|">Investigadores</option>
+											</select>
+								</div>	
+							</div>							
+							
+							<div class="col-md-10">							
+								<div class="radio col-md-4">
+									<input id="invitadoRadio" type="radio" value="invitado" name="tipoRelacionContrato" >								
+									<label for="invitadoRadio">Profesor invitado</label>	
+								</div>
+								<div class="col-md-4" style="display: none">
+									<input class="form-control" th:field="*{relacion}" type="text" />
+								</div>	
+							</div>								
+								
+						</div>								
+							
 
 						<div class="form-group">
 							<label class="control-label col-md-2" for="objetoDesplazamiento">Objeto
@@ -189,6 +199,10 @@
 						</div>
 					</div>
 				</div>
+				
+<!----------------------------------------------------- FIN JUSTIFICACION PARA VIAJES----------------------------------------------------------->
+
+<!----------------------------------------------------- JUSTIFICACION DE GASTOS  ----------------------------------------------------------->
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -305,7 +319,7 @@
 
 				</div>
 				
-				
+<!----------------------------------------------------- FIN JUSTIFICACION DE GASTOS  ----------------------------------------------------------->				
 				
 				<div class="form-group">
 							<label class="control-label col-md-2" for="pagarA">Pagar a:</label>
@@ -358,7 +372,10 @@
 <script src="../../resources/dist/js/sb-admin-2.js"
 	data-th-src="@{/resources/dist/js/sb-admin-2.js}">
 		
-	</script>
+</script>
+
+
+
 
 <script th:inline="javascript">
 function calcularImporte(input){
@@ -460,6 +477,7 @@ function calcularImporte(input){
 	}
 		
 </script>
+
 <script type="text/javascript">
 function redondeo(numero, decimales)
 {
@@ -468,6 +486,7 @@ function redondeo(numero, decimales)
 	return resultado;
 }
 </script>
+
 <script type="text/javascript">
     function actualizarImporteDietas() {
    
@@ -481,13 +500,10 @@ function redondeo(numero, decimales)
     }
 </script>
 
-
-<!-- Por consola si funciona! -->
 <script >
 $('#listaDietas').change(function () {
 	    
-	  actualizarImporteDietas();
-	  
+	actualizarImporteDietas(); 
 	  
 });
 </script>
