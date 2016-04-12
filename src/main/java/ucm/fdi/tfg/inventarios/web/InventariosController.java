@@ -77,7 +77,7 @@ public class InventariosController {
 			view.addObject("user",userActivo);
 		}else{
 			inventarios.nuevoInventario(idProyecto, inventario);
-			view = new ModelAndView("redirect:/menu");
+			view = new ModelAndView("redirect:/inicio");
 			
 		}
 		return view;

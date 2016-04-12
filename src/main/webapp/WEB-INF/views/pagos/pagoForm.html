@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
+<meta charset="utf-8">
+
 
 <script>
 	function appendText() {
@@ -91,11 +91,15 @@ function removeText(idBotonMenos) {
 
 
 
-<title>PAGOS</title>
-</head>
-
-<body class="container">
-			<h1>Orden de Pago</h1>
+<div th:include="menus"></div>
+<div id="page-wrapper">
+<div class="row">
+<div class="col-lg-12">
+					<h1 class="page-header">Orden de Pago</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<p class="panel-title">Introduzca valores Pago</p>
@@ -289,60 +293,8 @@ function removeText(idBotonMenos) {
 					</form>
 				</div>
 			</div>
+</div>
 
-
-</body>
-
-<!-- Bootstrap Core CSS -->
-<link type="text/css"
-	href="../../resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	data-th-href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
-
-
-<!-- jQuery -->
-<script src="../../resources/bower_components/jquery/dist/jquery.min.js"
-	data-th-src="@{/resources/bower_components/jquery/dist/jquery.min.js}">
-		
-	</script>
-
-<!-- MetisMenu CSS -->
-<link type="text/css"
-	href="../../resources/bower_components/metisMenu/dist/metisMenu.min.css"
-	rel="stylesheet"
-	data-th-href="@{/resources/bower_components/metisMenu/dist/metisMenu.min.css}" />
-
-<!-- Custom CSS -->
-<link type="text/css" href="../../resources/dist/css/sb-admin-2.css"
-	rel="stylesheet" data-th-href="@{/resources/dist/css/sb-admin-2.css}" />
-
-<!-- Custom Fonts -->
-<link
-	href="../../resources/bower_components/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css"
-	data-th-href="@{/resources/bower_components/font-awesome/css/font-awesome.min.css}" />
-
-
-<!-- Bootstrap Core JavaScript -->
-<script
-	src="../../resources/bower_components/bootstrap/dist/js/bootstrap.min.js"
-	data-th-src="@{/resources/bower_components/bootstrap/dist/js/bootstrap.min.js}">
-		
-	</script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script
-	src="../../resources/bower_components/metisMenu/dist/metisMenu.min.js"
-	data-th-src="@{/resources/bower_components/metisMenu/dist/metisMenu.min.js}">
-		
-	</script>
-
-<!-- Custom Theme JavaScript -->
-<script src="../../resources/dist/js/sb-admin-2.js"
-	data-th-src="@{/resources/dist/js/sb-admin-2.js}">
-		
-	</script>
-
-</html>
+<div th:include="scripts"></div>
 
 

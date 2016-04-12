@@ -42,10 +42,10 @@ public class UserController {
 
 
 	// Redirecciona al menu despues de hacer login
-	@RequestMapping(value = "/menu", method = RequestMethod.GET)
+	@RequestMapping(value = "/inicio", method = RequestMethod.GET)
 	public ModelAndView prueba() {
 
-		ModelAndView view = new ModelAndView("menus/menu");
+		ModelAndView view = new ModelAndView("menus/inicio");
 
 		return view;
 	}
@@ -96,7 +96,7 @@ public class UserController {
 		}
 		else{
 			users.addInvestigador(nuevoInvestigadorDTO);
-			view = new ModelAndView ("redirect:/admin");			
+			view = new ModelAndView ("redirect:/inicio");			
 		}				
 		
 		return view;
@@ -125,7 +125,7 @@ public class UserController {
 		}
 		else{
 			users.addAdmin(userDTO);
-			view = new ModelAndView ("redirect:/admin");			
+			view = new ModelAndView ("redirect:/inicio");			
 		}	
 				
 		return view;
@@ -153,7 +153,7 @@ public class UserController {
 		}
 		else{
 			users.addGestor(userDTO);
-			view = new ModelAndView ("redirect:/admin");			
+			view = new ModelAndView ("redirect:/inicio");			
 		}	
 				
 		return view;

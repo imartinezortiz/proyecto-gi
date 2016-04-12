@@ -92,7 +92,7 @@ public class ViajesController {
 	
 		viaje.setProyecto(proyectosManager.findProyecto(idProyecto));
 		viajes.save(viaje);
-		return "redirect:/menu";
+		return "redirect:/inicio";
 		
 	}
 	

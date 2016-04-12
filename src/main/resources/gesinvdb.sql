@@ -46,8 +46,18 @@ INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (7, 'C7'
 INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (8, 'C8', 'D8');
 
 
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (1, '150', 'FA1903', 'Primera Proyecto', 4);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (2, '200', 'atm1903', 'Segunda Proyecto', 4);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (1, '150', 'FA1903', 'Primer Proyecto', 4);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (2, '200', 'atm1903', 'Segundo Proyecto', 5);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (3, '250', 'FDI', 'Tercer Proyecto', 6);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (4, '300', 'UCM', 'Cuarto Proyecto', 7);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (5, '350', 'Politecnica', 'Quinto Proyecto', 8);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (6, '400', 'Eptisa', 'Sexto Proyecto', 4);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (7, '450', 'IMCs', 'Septimo Proyecto', 5);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (8, '500', 'Avanade', 'Octavo Proyecto', 6);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (9, '550', 'GTI', 'Noveno Proyecto', 7);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (10, '600', 'Repsol', 'Decimo Proyecto', 8);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (11, '650', 'Campsa', 'Onceavo Proyecto', 4);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (12, '700', 'Petronor', 'Doceavo Proyecto', 5);
 
 INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (1,4);
 INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (1,5);

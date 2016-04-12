@@ -45,7 +45,7 @@
 		<!-- /doLogin y /doLogout son propias de SpringSecurity -->
 		<form-login login-processing-url="/doLogin" login-page="/"
 			username-parameter="username" password-parameter="password"
-			default-target-url="/menu" authentication-failure-url="/loginError?auth=error" />
+			default-target-url="/inicio" authentication-failure-url="/loginError?auth=error" />
 			<!-- Si hay error al hacer login mapea "/loginError" desde el Controller. A partir de aqui es variable "?auth=error" -->
 		<logout logout-url="/doLogout" logout-success-url="/"  />				
 	</http>
