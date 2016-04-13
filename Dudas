@@ -3,7 +3,7 @@ DUDAS:
 	Cosas Pendientes:
 		RICO:						
 			*VIAJES: 
-				- Lista desplegable investigadores de ese proyecto.
+				- Lista desplegable investigadores de ese proyecto. (type="radio")
 				- Funcion eliminar gasto transporte
 				- ¿Alojamiento? Como un input más
 				- Enum para listas : http://blog.florentlim.com/listing-enum-on-select-element-using-thymeleaf/
@@ -29,6 +29,9 @@ DUDAS:
 		DUDAS:
 	
 			[Viajes] Como mejorar para mandar los investigadores de "un proyecto" a al formulario de Viajes
+			
+			[Viajes] Mirar con Iván funcionalidad de los type "radio" (porque al jugar con la visibildiad y append y remove puede haber problemas al editar o volver
+						con Hibernate Validation)
 		
 				
 	
