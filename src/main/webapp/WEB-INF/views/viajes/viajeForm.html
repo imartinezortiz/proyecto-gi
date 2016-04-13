@@ -127,15 +127,17 @@
 										<label  for="invitadoRadio">Profesor invitado</label>	
 							</div>	
 							<div id="inputProfesorInvitado"class="col-md-4 " style="display:none">
-										<input class="form-control" th:field="*{relacion}" type="text" placeholder="Ej: Manuel López"/>
+									<!--  <input class="form-control" th:field="*{relacion}" type="text" placeholder="Ej: Manuel López"/> -->	
 							</div>	
 							
 							<div id="listaInventigadores" class="col-md-4 " style="display:none">
-												<select class="form-control center col-md-4"	th:field="*{relacion}" >
+												<select id="listaInventigadoresSelect" class="form-control text-center col-md-4"	>
+													<option value=""> -------- Investigadores Proyecto -------- </option>
 													<option th:each="user : ${investigadoresAsignadosAproyecto}"
 														th:value="|${user.nombre} ${user.apellidos}|"
 														th:text="|${user.nombre} ${user.apellidos}|">Investigadores</option>
 												</select>
+												
 							</div>
 													 						 
 						 </div>					
@@ -358,14 +360,31 @@
 			var radioPulsado = $(this).val();
 			
 			if (radioPulsado == "miembro"){
+				//añadimos el atributo name al select
+				$('#listaInventigadoresSelect').attr('name', 'relacion');
+				
+				//Eliminamos input 
+				$('#inputRelacion').remove();				
+							
+				//ocultamos div que contiene el input de profesor invitado
 				$('#inputProfesorInvitado').hide();
-				$('#listaInventigadores').show();	
+				
+				//mostramos div que contiene la lista de investigadores
+				$('#listaInventigadores').show();		
 				
 			}
-			else {//es invitado
+			else {//es invitado				
+				
+				//Añadimos el input 
+				$('#inputProfesorInvitado').append('<input id="inputRelacion" class="form-control" name="relacion" type="text" placeholder="Ej: Manuel López"/>');
+				
+				//Eliminamos atributo name a la lista
+				$('#listaInventigadoresSelect').removeAttr("name");
+				
+				
 				$('#listaInventigadores').hide();
-				$('#inputProfesorInvitado').show();				
-			}
+				$('#inputProfesorInvitado').show();
+			}		
 			
 		});
 	</script>
