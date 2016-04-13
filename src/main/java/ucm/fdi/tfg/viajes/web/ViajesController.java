@@ -50,7 +50,7 @@ public class ViajesController {
 		
 		Investigador inv = proyecto.getInvestigadorPrincipal();
 		
-		User userActivo = users.findOneUser(inv.getId());
+		User userInvestigadorPrincipal = users.findOneUser(inv.getId());
 		
 		Viaje viaje = new Viaje(proyecto);
 		
@@ -75,7 +75,7 @@ public class ViajesController {
 
 		
 		model.put("viaje", viaje);
-		model.put("user", userActivo);
+		model.put("user", userInvestigadorPrincipal);
 		
 		model.put("dietas", dietas);
 		model.put("importePrecioKm", 0.19);
