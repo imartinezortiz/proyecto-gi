@@ -3,16 +3,20 @@ package ucm.fdi.tfg.viajes.business.entity;
 import java.math.BigDecimal;
 
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 
 @Embeddable
 public class GastoViaje {
 	
 	// Transporte, alojamiento, ..
-	private String tipo;
+	//private String tipo;
 	
-	private String descripcion;
+	@Enumerated(EnumType.STRING)
+	private TipoGasto tipo;
 	
+	private String descripcion;	
 	
 	private BigDecimal importe;
 	
@@ -20,17 +24,17 @@ public class GastoViaje {
 		this(null, null, BigDecimal.ZERO);
 	}
 	
-	public GastoViaje(String tipo,String descripcion, BigDecimal importe ){
+	public GastoViaje(TipoGasto tipo,String descripcion, BigDecimal importe ){
 		this.tipo= tipo;
 		this.descripcion = descripcion;
 		this.importe = importe;		
 	}
 
-	public String getTipo() {
+	public TipoGasto getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoGasto tipo) {
 		this.tipo = tipo;
 	}
 
