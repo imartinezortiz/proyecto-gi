@@ -24,6 +24,7 @@
 											<th>Referencia</th>
 											<th>Numero de Contabilidad</th>
 											<th>Numero de Investigadores</th>
+											<th>Editar</th>
 
 										</tr>
 									</thead>
@@ -38,6 +39,9 @@
 											<td th:text="${proyecto.referencia}"></td>
 											<td th:text="${proyecto.numContabilidad}"></td>
 											<td th:text="${proyecto.investigadores.size()}"></td>
+											<td> 
+												<a th:href="@{'edit/proyecto/{id}/' (id=${proyecto.id})} ">  Editar </a>
+											</td>
 										</tr>
 									</tbody>
 								</table>
