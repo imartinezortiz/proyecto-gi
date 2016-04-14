@@ -116,8 +116,16 @@ public class UserManager implements UserDetailsService{
 	public List<User> findAllUserInvestigadores(){	
 		//Devuelvo mediante una query, los datos en User de los investigadores.
 		return repositoryUser.DameDatosUserDeInvestigadores();
-
 	}
+	
+	public List<User> findAllAdministradores() {
+		return repositoryUser.DameDatosUser("ROLE_ADMIN");
+	}
+	
+	public List<User> findAllGestores() {
+		return repositoryUser.DameDatosUser("ROLE_GESTOR");
+	}
+
 
 	public User findOneUser(Long id) {
 		return this.repositoryUser.findOne(id);
@@ -127,6 +135,8 @@ public class UserManager implements UserDetailsService{
 		return repositoryUser.findAll(listaInvestidagoresId);
 		
 	}
+
+	
 
 	
 

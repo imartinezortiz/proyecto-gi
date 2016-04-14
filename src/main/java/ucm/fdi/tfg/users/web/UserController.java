@@ -46,6 +46,18 @@ public class UserController {
 	
 	// ------------------------------------------------------- ADMIN ---------------------------------------------------------------------
 	
+	@RequestMapping(value = "/administradores", method = RequestMethod.GET)
+	public ModelAndView listarAdministradores() {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("administradores", users.findAllAdministradores());
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		ModelAndView view = new ModelAndView("usuarios/listarAdministradores", model);
+		
+		return view;
+		
+	}
+	
 	@RequestMapping(value = "/altaAdmin", method = RequestMethod.GET)
 	public ModelAndView altaAdmin() {
 		
@@ -74,6 +86,21 @@ public class UserController {
 		}	
 				
 		return view;
+	}
+	
+	
+		
+	@RequestMapping(value = "/gestores", method = RequestMethod.GET)
+	public ModelAndView listarGestores() {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("gestores", users.findAllGestores());
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		ModelAndView view = new ModelAndView("usuarios/listarGestores", model);
+		
+		return view;
+		
 	}
 	
 	

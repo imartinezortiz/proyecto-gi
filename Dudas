@@ -20,13 +20,20 @@ DUDAS:
 			* Eliminar primer tr de la tabla de gastos de Pagos (como en Viajes). Y solo un boton +.
 			
 		NIETO:
-			*Devolver Investigadores Seleccionador en la Select Multiple de EDITAR. (Falta: Se quedan seleccionados los anteriores)
 			*Validar Gastos - Pagos
-			*PagingAndSortRepository...
-			*Mejorar Vistas
+			*PagingAndSortRepository... ( Usando SB Admin )
+			*Editar. 
 	
 	
 		DUDAS:
+		
+			*Preguntar si una sola vista q sea listarUsuarios, que englobe las 3 opciones.
+					  Dependiendo, sera 3 requestMaping edit/admin/3  edit/investigador/3   edit/gestor/3  
+					  o edi/user/3.
+		    *Preguntar inner join en JPQL y setencia Select IN
+		    
+		    
+
 	
 			[Viajes] Como mejorar para mandar los investigadores de "un proyecto" a al formulario de Viajes
 			

@@ -5,7 +5,7 @@
 <div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Proyectos</h1>
+					<h1 class="page-header">gestores</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">Listado de Proyectos</div>
+						<div class="panel-heading">Listado de Gestores</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="dataTable_wrapper">
@@ -21,27 +21,26 @@
 									id="dataTables-example">
 									<thead>
 										<tr>
-											<th>Titulo</th>
-											<th>Referencia</th>
-											<th>Numero de Contabilidad</th>
-											<th>Numero de Investigadores</th>
+											<th>Nombre</th>
+											<th>Apellidos</th>
+											<th>Email</th>
+											<th>Username</th>
+											<th>Telefono</th>
 											<th>Editar</th>
 
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="proyecto : ${proyectos}">
-											<td>
-												<a
-													th:href="@{'/proyecto/{id}/' (id=${proyecto.id})}"
-													th:text="${proyecto.titulo}">
-												</a>
+										<tr th:each="gestor : ${gestores}">
+											<td
+												th:text="${gestor.nombre}">
 											</td>
-											<td th:text="${proyecto.referencia}"></td>
-											<td th:text="${proyecto.numContabilidad}"></td>
-											<td th:text="${proyecto.investigadores.size()}"></td>
+											<td th:text="${gestor.apellidos}"></td>
+											<td th:text="${gestor.email}"></td>
+											<td th:text="${gestor.username}"></td>
+											<td th:text="${gestor.telefono}"></td>
 											<td> 
-												<a th:href="@{'edit/proyecto/{id}/' (id=${proyecto.id})} ">  Editar </a>
+												<a th:href="@{'edit/gestor/{id}/' (id=${gestor.id})} ">  Editar </a>
 											</td>
 										</tr>
 									</tbody>
