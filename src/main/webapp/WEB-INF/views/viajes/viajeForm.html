@@ -188,20 +188,19 @@
 					</div>
 
 					<div class="panel-body">
-
+					
+						
 						<div class="form-group">
 							<label class="control-label col-md-2" for="mediosTransporte">Medios
 								de transporte:</label>
 							<div class="col-md-3">
-								<select class="form-control col-md-3 " name="medios" id="mediosTransporte">
-									<option value=""> --- Seleccion de Transporte --- </option>
-									<option value="Avion">Avión</option>
-									<option value="Tren">Tren</option>
-									<option value="Bus">Autobús</option>
-									<option value="Taxis">Taxis</option>
-									<option value="Coche">Coche</option>
-									<option value="Otros">Otros</option>
-								</select>
+								<select name="medios" class="form-control col-md-3" id="mediosTransporte">
+								<option value=""> --- Seleccion de Transporte --- </option>
+ 							 	<option th:each="medio,rowStat : ${T(ucm.fdi.tfg.viajes.business.entity.TipoGasto).values()}" th:if="${rowStat.count} < 7"
+ 							 	th:value="${{medio}}" th:text="${medio.estado}" ></option>
+								
+								</select>  
+								
 							</div>
 							<div class="col-md-5">
 								<div class="col-md-2">
@@ -210,6 +209,31 @@
 								</div>
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-2" for="mediosTransporte">Otros Gastos:</label>
+							<div class="col-md-3">
+								
+								<select name="otrosGastos" class="form-control col-md-3" id="otrosGastos">
+								<option value=""> --- Otros Gastos --- </option>
+ 							 	<option th:each="medio,rowStat : ${T(ucm.fdi.tfg.viajes.business.entity.TipoGasto).values()}" th:if="${rowStat.count} > 6"
+ 							 	th:value="${{medio}}" th:text="${medio.estado}" ></option>
+								
+								</select>  
+								
+							</div>
+							<div class="col-md-5">
+								<div class="col-md-2">
+									<button onclick="appendOtrosGastos()" class="btn btn-success"
+										type="button">+</button>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
+						
 
 						<div class="panel-body">
 							<table class="table table-bordered ">
@@ -244,17 +268,17 @@
 								<tbody id="dietas">
 									<tr id="dietas" >
 											<td class="col-md-2  ">	
-												<input type="text" class="form-control text-center"  id="numDietas" value="1" onchange="actualizarImporteDietas();" />																				
+												<input type="text" class="form-control text-center" th:field="*{numDietas}" id="numDietas" value="1" onchange="actualizarImporteDietas();" />																				
 											</td>
 											<td class="col-md-4">
-												<select class="form-control col-md-4" id="listaDietas" >
-													<option th:each="dieta : ${dietas}" th:attr="data-importe=${dieta.importe}"
+												<select class="form-control col-md-4" id="listaDietas" th:field="*{dietaID}" >
+													<option th:each="dieta : ${dietas}" th:attr="data-importe=${dieta.importe}" 
 														th:value="${dieta.id}" th:text="${dieta.pais}"></option>
 												</select>
 												
 											</td>
 											<td class="col-md-2"  >
-												<input type="text"	class="form-control text-center " id="importeDieta" th:field="*{importeDieta}" readonly="readonly"/>
+												<input type="text"	class="form-control text-center " id="importeDietaTotal" th:field="*{importeDietaTotal}" readonly="readonly"/>
 											</td>					
 											
 										</tr>
@@ -264,36 +288,7 @@
 							</table>
 
 						</div>
-
-					<div class="panel-body">
 					
-						<div class="form-group">
-							<label class="control-label col-md-2" for="alojamiento">Alojamiento:</label>
-							<div class="col-md-3">
-								<input class="form-control" th:field="*{alojamiento}" type="text" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-2" for="congreso">Inscripción
-								Congreso:</label>
-							<div class="col-md-3">
-								<input class="form-control" th:field="*{congreso}" type="text" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-2" for="seminario">Seminario:</label>
-							<div class="col-md-3">
-								<input class="form-control" th:field="*{seminario}" type="text" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-2" for="reunion">Reunión:</label>
-							<div class="col-md-3">
-								<input class="form-control" th:field="*{reunion}" type="text" />
-							</div>
-						</div>
-					</div>
 
 				</div>
 				
@@ -400,14 +395,12 @@ function calcularImporte(input){
 }
 </script>
 
-
-<script type="text/javascript">
-
-	function appendMedioTransporte(){
+<script th:inline="javascript">
+	function appendOtrosGastos(){
 		
-		if (document.getElementById("mediosTransporte").value != "")
-		{
-		
+		if ( $('#otrosGastos').val() !=  "")
+		{				
+			
 			var count = $('#gastos tr').length;
 			var nuevoGasto;
 			
@@ -425,9 +418,85 @@ function calcularImporte(input){
 			var auxKM;
 			
 			var importe; 
-			//XXX $('#mediosTransporte').val() 
-			//XXX
-			if (document.getElementById("mediosTransporte").value == "Coche"){
+			
+			
+				auxFactor = $('<td class="col-md-2"></td>');
+				auxKM = $('<td class="col-md-2"></td>');
+				importe = $(
+				'<input type="text" class="form-control col-md-2 text-center"/> ').attr('name', 'gastos[' + count + '].importe');
+			
+				
+			//botones
+			var auxbtnMenos = $('<td class="col-md-2"></td>');
+	
+			var tipo= $(
+					'<input type="text" class="form-control col-md-2 text-center" readonly="readonly" />').attr({'name': 'gastos[' + count + '].tipo', 'value': document.getElementById("otrosGastos").value});
+			
+			var descripcion;
+			
+			descripcion = $('<input type="text" class="form-control col-md-4 text-center" readonly="readonly" />').attr('name', 'gastos[' + count + '].descripcion');
+			
+						
+			var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-danger form-control" type="button">-</button>').attr('id', 'btnMenos' + count );
+		
+			$(auxTipo).append(tipo);
+			$(auxDescripcion).append(descripcion);
+			$(auximporte).append(importe);
+			
+			//botones
+			$(auxbtnMenos).append(btnMenos);
+			
+			$(nuevoGasto).append(auxTipo);
+			$(nuevoGasto).append(auxDescripcion);
+			
+			//Campos no significativos
+			$(nuevoGasto).append(auxFactor);
+			$(nuevoGasto).append(auxKM);
+			
+			$(nuevoGasto).append(auximporte);
+			
+					
+			//botones
+			$(nuevoGasto).append(auxbtnMenos);
+			
+			//idNuevo
+			$(nuevoGasto).attr('id', 'gasto' + count);
+			
+			
+			$('#gastos').append(nuevoGasto);
+		
+			}
+	
+}
+</script>
+
+
+<script type="text/javascript">
+
+	function appendMedioTransporte(){
+		
+		if ( $('#mediosTransporte').val() !=  "")
+		{				
+			
+			var count = $('#gastos tr').length;
+			var nuevoGasto;
+			
+			if (count ==0)
+				nuevoGasto = $(' <tr id="gasto0" th:each="gasto,gastoStat : *{gastos}"> ');
+			else
+				nuevoGasto = $('<tr></tr>');
+			
+			var auxTipo = $('<td class="col-md-2"></td>');
+			var auxDescripcion = $('<td class="col-md-2"></td>');
+			var auximporte = $('<td class="col-md-2"></td>');
+			
+			//Campos no significativos para la entity
+			var auxFactor;
+			var auxKM;
+			
+			var importe; 
+			
+			if ($('#mediosTransporte').val() == "COCHE"){
 				auxFactor = $('<td class="col-md-2"></td>');				
 				auxFactorTD = $('<input type="text" name="factor" readonly="readonly" class="form-control text-center" />').attr('value', 0.19);
 				$(auxFactor).append(auxFactorTD);
@@ -451,7 +520,7 @@ function calcularImporte(input){
 					'<input type="text" class="form-control col-md-2 text-center" readonly="readonly" />').attr({'name': 'gastos[' + count + '].tipo', 'value': document.getElementById("mediosTransporte").value});
 			
 			var descripcion;
-			if (document.getElementById("mediosTransporte").value == "Otros"){
+			if ($('#mediosTransporte').val() == "OTROS"){
 				descripcion = $('<input type="text" class="form-control col-md-4 text-center " />').attr('name', 'gastos[' + count + '].descripcion');
 			}
 			else descripcion = $('<input type="text" class="form-control col-md-4 text-center" readonly="readonly" />').attr('name', 'gastos[' + count + '].descripcion');
@@ -511,7 +580,7 @@ function redondeo(numero, decimales)
        
        importeTotal = redondeo( importeTotal, 2)
  	  
- 	  $('#importeDieta').val(importeTotal);
+ 	  $('#importeDietaTotal').val(importeTotal);
     }
 </script>
 
