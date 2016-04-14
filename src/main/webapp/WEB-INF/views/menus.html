@@ -1,4 +1,5 @@
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 
 <meta charset="utf-8">
@@ -83,8 +84,17 @@
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 						</li>
 						<li class="divider"></li>
-						<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>
-								Logout</a></li>
+						<li> 
+							<form role="form" action="#"  th:action="@{/doLogout}"  method="POST">
+							<div class="col-md-3">
+								<i class="fa  fa-sign-out fa-fw"></i>
+							</div>
+							<div>
+								<input class="btn btn-warning" type="submit" value="Logout">
+							</div>
+							 	
+							</form>
+						</li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
 			</ul>
@@ -124,6 +134,7 @@
 							<ul class="nav nav-second-level">
 								<li><a href="#">Gestores <span class="fa arrow"></span></a>
 									<ul class="nav nav-third-level">
+										<li><a th:href="@{/gestores}">Listar Gestores</a></li>
 										<li><a th:href="@{/altaGestor}">Alta Gestor</a></li>
 										<li><a href="#">Editar Gestor</a></li>
 									</ul> <!-- /.nav-third-level --></li>
@@ -131,6 +142,7 @@
 							<ul class="nav nav-second-level">
 								<li><a href="#">Investigadores <span class="fa arrow"></span></a>
 									<ul class="nav nav-third-level">
+										<li><a th:href="@{/investigadores}">Listar Investigadores</a></li>
 										<li><a th:href="@{/altaInvestigador}">Alta Investigador</a></li>
 										<li><a href="#">Editar Investigador</a></li>
 									</ul> <!-- /.nav-third-level --></li>
