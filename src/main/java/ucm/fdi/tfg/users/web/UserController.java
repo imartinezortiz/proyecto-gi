@@ -46,7 +46,7 @@ public class UserController {
 	public ModelAndView prueba() {
 
 		ModelAndView view = new ModelAndView("menus/inicio");
-
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		return view;
 	}
 
@@ -63,14 +63,6 @@ public class UserController {
 
 		ModelAndView view = new ModelAndView("menus/menuAdmin");
 
-		return view;
-	}
-	
-	@RequestMapping(value = "/gestor", method = RequestMethod.GET)
-	public ModelAndView menuGestor() {
-
-		ModelAndView view = new ModelAndView("menus/menuGestor");
-		
 		return view;
 	}
 
