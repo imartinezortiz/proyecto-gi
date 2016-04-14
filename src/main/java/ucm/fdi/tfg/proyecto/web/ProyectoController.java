@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,6 +41,7 @@ public class ProyectoController {
 			Map<String, Object> model = new HashMap<String, Object>();
 			
 			model.put("proyectos", proyectos.findAll());
+			model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 
 			ModelAndView view = new ModelAndView("proyectos/listarProyectos", model);
 
@@ -52,7 +54,7 @@ public class ProyectoController {
 			Map<String, Object> model = new HashMap<String, Object>();
 			
 			model.put("idProyecto",id);
-			
+			model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 			ModelAndView view = new ModelAndView("menus/menuProyecto", model);
 
 			return view;
@@ -67,6 +69,7 @@ public class ProyectoController {
 		
 		model.put("investigadores", users.findAllUserInvestigadores());
 		model.put("nuevoProyectoDTO",  new NuevoProyectoDTO());
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		ModelAndView view = new ModelAndView("proyectos/proyectoForm", model);
 
 		return view;
@@ -99,7 +102,8 @@ public class ProyectoController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		
 		model.put("proyectos", proyectos.findAll());
-
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		
 		ModelAndView view = new ModelAndView("proyectos/EditarlistarProyectos", model);
 
 		return view;
@@ -117,7 +121,7 @@ public class ProyectoController {
 		
 		view.addObject("investigadores", users.findAllUserInvestigadores());
 		view.addObject("nuevoProyectoDTO" ,proyectDTO);
-
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		return view;
 	}
 	

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -62,6 +63,7 @@ public class PagosController {
 		
 		model.put("pago", pago);
 		model.put("user", userActivo);
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 
 		ModelAndView view = new ModelAndView("pagos/pagoForm", model);
 		
@@ -103,6 +105,7 @@ public class PagosController {
 	public ModelAndView errores() {
 		
 		ModelAndView view = new ModelAndView("error");
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		
 		return view;
 	}

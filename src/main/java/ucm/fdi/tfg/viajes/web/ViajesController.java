@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -81,6 +82,8 @@ public class ViajesController {
 		model.put("importePrecioKm", 0.19);
 		
 		model.put("investigadoresAsignadosAproyecto", investigadoresAsignadosAproyecto);
+		
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 
 		ModelAndView view = new ModelAndView("viajes/viajeForm", model);
 		

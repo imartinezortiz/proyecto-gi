@@ -29,18 +29,6 @@ public class UserController {
 		this.users = userManager;
 	}
 
-	
-	/*
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView home() {
-		
-		ModelAndView view = new ModelAndView("home");
-		
-		return view;
-	}
-*/
-
-
 	// Redirecciona al menu despues de hacer login
 	@RequestMapping(value = "/inicio", method = RequestMethod.GET)
 	public ModelAndView prueba() {
@@ -58,42 +46,6 @@ public class UserController {
 	
 	// ------------------------------------------------------- ADMIN ---------------------------------------------------------------------
 	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public ModelAndView menuAdmin() {
-
-		ModelAndView view = new ModelAndView("menus/menuAdmin");
-
-		return view;
-	}
-
-	@RequestMapping(value = "/altaInvestigador", method = RequestMethod.GET)
-	public ModelAndView altaInvestigador() {
-				
-		Map<String, Object> model = new HashMap<String, Object>();
-		
-		model.put("nuevoInvestigadorDTO", new NuevoInvestigadorDTO());
-		ModelAndView view = new ModelAndView("usuarios/investigadorForm", model);
-		
-		return view;
-	}
-
-	@RequestMapping(value = "/altaInvestigador", method = RequestMethod.POST)
-	public ModelAndView addInvestigador(@ModelAttribute("nuevoInvestigadorDTO") @Valid NuevoInvestigadorDTO nuevoInvestigadorDTO, BindingResult errors) {
-
-		ModelAndView view = null;
-		
-		if (errors.hasErrors()){			
-			view = new ModelAndView ("usuarios/investigadorForm");
-			view.addObject("nuevoInvestigadorDTO", nuevoInvestigadorDTO);
-		}
-		else{
-			users.addInvestigador(nuevoInvestigadorDTO);
-			view = new ModelAndView ("redirect:/inicio");			
-		}				
-		
-		return view;
-	}
-	
 	@RequestMapping(value = "/altaAdmin", method = RequestMethod.GET)
 	public ModelAndView altaAdmin() {
 		
@@ -102,6 +54,7 @@ public class UserController {
 		model.put("userDTO", new UserDTO());
 		
 		ModelAndView view = new ModelAndView("usuarios/adminForm", model);
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		
 		return view;
 	}
@@ -131,6 +84,7 @@ public class UserController {
 		model.put("userDTO", new UserDTO());		
 		
 		ModelAndView view = new ModelAndView("usuarios/gestorForm",model);
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 
 		return view;
 	}
@@ -152,23 +106,37 @@ public class UserController {
 	}
 	
 	
-	
-	// -------------------------------------------------------------------------------------------------------
-	
-	
-
-	// Pagina de usuarios
-	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
-	public ModelAndView usuarios() {
-
-		Map<String, String> model = new HashMap<String, String>();
-
-		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-
-		ModelAndView view = new ModelAndView("registrar", model);
-
+	@RequestMapping(value = "/altaInvestigador", method = RequestMethod.GET)
+	public ModelAndView altaInvestigador() {
+				
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		model.put("nuevoInvestigadorDTO", new NuevoInvestigadorDTO());
+		ModelAndView view = new ModelAndView("usuarios/investigadorForm", model);
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		
 		return view;
 	}
+
+	@RequestMapping(value = "/altaInvestigador", method = RequestMethod.POST)
+	public ModelAndView addInvestigador(@ModelAttribute("nuevoInvestigadorDTO") @Valid NuevoInvestigadorDTO nuevoInvestigadorDTO, BindingResult errors) {
+
+		ModelAndView view = null;
+		
+		if (errors.hasErrors()){			
+			view = new ModelAndView ("usuarios/investigadorForm");
+			view.addObject("nuevoInvestigadorDTO", nuevoInvestigadorDTO);
+		}
+		else{
+			users.addInvestigador(nuevoInvestigadorDTO);
+			view = new ModelAndView ("redirect:/inicio");			
+		}				
+		
+		return view;
+	}
+	
+	
+	
 
 
 }
