@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -45,15 +46,11 @@ public class Viaje {
 	@ElementCollection(fetch=FetchType.EAGER)
 	private Collection<GastoViaje> gastos; //Transporte 
 
-	private BigDecimal importeDieta;
+	//Atributos para Dieta
+		private BigDecimal importeDietaTotal;		
+		private Long dietaID;
+		private Double numDietas;
 	
-	private BigDecimal congreso;
-	
-	private BigDecimal seminario;
-	
-	private BigDecimal reunion;
-	
-	private BigDecimal alojamiento;
 
 // --------------------------------------------------------------------
 	
@@ -74,18 +71,40 @@ public class Viaje {
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<GastoViaje>();
 	}
+
 	
 	
-	
-	public BigDecimal getAlojamiento() {
-		return alojamiento;
+	public BigDecimal getImporteDietaTotal() {
+		return importeDietaTotal;
 	}
 
 
-	public void setAlojamiento(BigDecimal alojamiento) {
-		this.alojamiento = alojamiento;
+	public void setImporteDietaTotal(BigDecimal importeDietaTotal) {
+		this.importeDietaTotal = importeDietaTotal;
 	}
 
+
+	public Double getNumDietas() {
+		return numDietas;
+	}
+
+
+	public void setNumDietas(Double numDietas) {
+		this.numDietas = numDietas;
+	}
+
+
+	public Long getDietaID() {
+		return dietaID;
+	}
+
+
+	public void setDietaID(Long dietaID) {
+		this.dietaID = dietaID;
+	}
+
+
+	
 
 	public String getPagarA() {
 		return pagarA;
@@ -101,32 +120,7 @@ public class Viaje {
 
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
-	}
-
-	
-	public BigDecimal getCongreso() {
-		return congreso;
-	}
-
-	public void setCongreso(BigDecimal congreso) {
-		this.congreso = congreso;
-	}
-
-	public BigDecimal getSeminario() {
-		return seminario;
-	}
-
-	public void setSeminario(BigDecimal seminario) {
-		this.seminario = seminario;
-	}
-
-	public BigDecimal getReunion() {
-		return reunion;
-	}
-
-	public void setReunion(BigDecimal reunion) {
-		this.reunion = reunion;
-	}
+	}	
 	
 	public String getFechaInicio() {
 		return fechaInicio;
@@ -149,11 +143,11 @@ public class Viaje {
 	}
 
 	public BigDecimal getImporteDieta() {
-		return importeDieta;
+		return importeDietaTotal;
 	}
 
 	public void setImporteDieta(BigDecimal importeDieta) {
-		this.importeDieta = importeDieta;
+		this.importeDietaTotal = importeDieta;
 	}
 	
 	public String getRelacion() {
