@@ -288,7 +288,18 @@
 							</table>
 
 						</div>
-					
+
+					<div class="panel-body">
+
+						<div class="input-group col-xs-3">							
+							<input type="text" id="gastoTotal" value=0 readonly="readonly"
+								class="form-control text-center" aria-label="Amount (to the nearest dollar)">									
+							<span class="input-group-addon">$</span> 		
+										
+						</div>
+						<span class="help-block">Gastos Totales.</span>	
+					</div>
+
 
 				</div>
 				
@@ -390,7 +401,7 @@ function calcularImporte(input){
 	var importePrecioKm = /*[[${importePrecioKm}]]*/ 0.19;
 	var valor = importePrecioKm * Number(input.value) ;
 	
-	$('#'+input.name).val(valor);
+	$('#'+input.name).val(valor);	
 	
 }
 </script>
