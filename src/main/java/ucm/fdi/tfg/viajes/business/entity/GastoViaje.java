@@ -10,9 +10,7 @@ import javax.persistence.Enumerated;
 @Embeddable
 public class GastoViaje {
 	
-	// Transporte, alojamiento, ..
-	//private String tipo;
-	
+		
 	@Enumerated(EnumType.STRING)
 	private TipoGasto tipo;
 	
