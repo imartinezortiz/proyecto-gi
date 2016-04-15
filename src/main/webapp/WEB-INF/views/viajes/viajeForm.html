@@ -115,26 +115,26 @@
 					<div class="panel-body">
 										 
 						 <div class="form-group">
-						 	<label class="control-label col-md-2" for="relacion">Relacion con el contrato:</label>
+						 	<label class="control-label col-md-2" for="relacion">Relacion con el proyecto:</label>
 						 	
 						 	<div class="radio  col-md-3 ">
-										<input  id="miembroRadio" type="radio" value="miembro" name="tipoRelacionContrato">								
+										<input  id="miembroRadio" type="radio" value="true" th:field="*{miembroProyecto}">								
 										<label   for="miembroRadio">Miembro del proyecto </label>																		
 							</div>
 														
 							<div class="radio  col-md-3">
-										<input id="invitadoRadio" type="radio" value="invitado" name="tipoRelacionContrato" >								
+										<input id="invitadoRadio" type="radio" value="false" th:field="*{miembroProyecto}">								
 										<label  for="invitadoRadio">Profesor invitado</label>	
 							</div>	
 							<div id="inputProfesorInvitado"class="col-md-4 " style="display:none">
-									<!--  <input class="form-control" th:field="*{relacion}" type="text" placeholder="Ej: Manuel López"/> -->	
+									<input class="form-control" th:field="*{invitado}" type="text" placeholder="Ej: Manuel López"/>	
 							</div>	
 							
-							<div id="listaInventigadores" class="col-md-4 " style="display:none">
-												<select id="listaInventigadoresSelect" class="form-control text-center col-md-4"	>
-													<option value=""> -------- Investigadores Proyecto -------- </option>
+							<div id="listaInventigadores" class="col-md-4 ">
+												<select id="listaInventigadoresSelect" class="form-control text-center col-md-4" th:field="*{investigador}"	>
+													<option value="-1"> -------- Investigadores Proyecto -------- </option>
 													<option th:each="user : ${investigadoresAsignadosAproyecto}"
-														th:value="|${user.nombre} ${user.apellidos}|"
+														th:value="${user.id}"
 														th:text="|${user.nombre} ${user.apellidos}|">Investigadores</option>
 												</select>
 												
@@ -361,18 +361,15 @@
 
  <script type="text/javascript">
 
-		$("input[name=tipoRelacionContrato]").change(function() {
+		$("input[name=miembroProyecto]").change(function() {
 				
 			var radioPulsado = $(this).val();
 			
-			if (radioPulsado == "miembro"){
-				//añadimos el atributo name al select
-				$('#listaInventigadoresSelect').attr('name', 'relacion');
-				
-				//Eliminamos input 
-				$('#inputRelacion').remove();				
+			if (radioPulsado == "true"){
+							
 							
 				//ocultamos div que contiene el input de profesor invitado
+				$('#invitado').val('');
 				$('#inputProfesorInvitado').hide();
 				
 				//mostramos div que contiene la lista de investigadores
@@ -381,12 +378,7 @@
 			}
 			else {//es invitado				
 				
-				//Añadimos el input 
-				$('#inputProfesorInvitado').append('<input id="inputRelacion" class="form-control" name="relacion" type="text" placeholder="Ej: Manuel López"/>');
-				
-				//Eliminamos atributo name a la lista
-				$('#listaInventigadoresSelect').removeAttr("name");
-				
+				$("#listaInventigadoresSelect option:nth-child(1)").prop('selected', true);
 				
 				$('#listaInventigadores').hide();
 				$('#inputProfesorInvitado').show();

@@ -79,7 +79,7 @@ public class ViajesController {
 		model.put("user", userInvestigadorPrincipal);
 		
 		model.put("dietas", dietas);
-		model.put("importePrecioKm", 0.19);
+		model.put("importePrecioKm", viajes.getCostePorKm());
 		
 		model.put("investigadoresAsignadosAproyecto", investigadoresAsignadosAproyecto);
 		

@@ -238,7 +238,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.1.0.Final</version>
+			<version>5.2.4.Final</version>
 		</dependency>
 
 		<!-- Apache Commons DBCP esta dependencia es para el Pool de Conexiones. -->

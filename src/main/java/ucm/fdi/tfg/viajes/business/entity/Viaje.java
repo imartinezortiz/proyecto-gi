@@ -11,11 +11,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
+import ucm.fdi.tfg.users.business.entity.Investigador;
 
 @Entity
 @Table(name="viajes")
@@ -32,8 +32,11 @@ public class Viaje {
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;
 	
-		
-	private String relacion;
+	private boolean miembroProyecto;
+	
+	private Long investigador;
+	
+	private String invitado;
 	
 	private String objetoDesplazamiento;
 	private String itinerario;
@@ -62,12 +65,14 @@ public class Viaje {
 	
 
 	public Viaje(){
+		this.miembroProyecto = true;
 		this.gastos = new ArrayList<GastoViaje>();
 		
 	}
 	
 		
 	public Viaje(Proyecto proyecto) {
+		this.miembroProyecto = true;
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<GastoViaje>();
 	}
@@ -150,13 +155,33 @@ public class Viaje {
 		this.importeDietaTotal = importeDieta;
 	}
 	
-	public String getRelacion() {
-		return relacion;
+	public String getInvitado() {
+		return invitado;
 	}
 
-	public void setRelacion(String relacion) {
-		this.relacion = relacion;
+	public void setInvitado(String invitado) {
+		this.invitado = invitado;
 	}
+
+	public boolean isMiembroProyecto() {
+		return miembroProyecto;
+	}
+
+
+	public void setMiembroProyecto(boolean miembroProyecto) {
+		this.miembroProyecto = miembroProyecto;
+	}
+
+
+	public Long getInvestigador() {
+		return investigador;
+	}
+
+
+	public void setInvestigador(Long investigador) {
+		this.investigador = investigador;
+	}
+
 
 	public String getObjetoDesplazamiento() {
 		return objetoDesplazamiento;
