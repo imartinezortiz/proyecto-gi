@@ -338,21 +338,25 @@
 <div th:include="scripts"></div>
 
 <script type="text/javascript">
- 
- function actualizarImporteTotalGastos() {
-	 
-	 var acu = 0;
-	 $("input[name*=importe]").each(function(){
 
-	 acu = acu + Number($(this).val());
-	     });
+	/*
+	*	Función que actualiza el input del importe Total acumulado de todos los gastos
+	*/
+	function actualizarImporteTotalGastos() {
+		 
+		 var acu = 0;
+		
+		 //Recorremos todos los input que contienen en su atributo name la cadena importe.
+		 $("input[name*=importe]").each(function(){
+	
+		 	acu = acu + Number($(this).val());
+		 });	
+	
+		 $('#gastoTotal').val(acu);		 
+	 } 
+	
+</script>
 
-	 $('#gastoTotal').val(acu);
-	 
- }
- 
- </script>
- 
  <script type="text/javascript">
  
  function removeText(idBotonMenos) {
@@ -419,8 +423,7 @@ function calcularImporte(input){
 	var importePrecioKm = /*[[${importePrecioKm}]]*/ 0.19;
 	var valor = importePrecioKm * Number(input.value) ;
 	
-	$('#'+input.name).val(valor);
-	
+	$('#'+input.name).val(valor);	
 	
 	this.actualizarImporteTotalGastos();
 	
@@ -428,6 +431,10 @@ function calcularImporte(input){
 </script>
 
 <script th:inline="javascript">
+
+	/**
+	*
+	*/
 	function appendOtrosGastos(){
 		
 		if ( $('#otrosGastos').val() !=  "")
