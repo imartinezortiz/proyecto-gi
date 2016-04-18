@@ -10,13 +10,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ucm.fdi.tfg.proyecto.business.boundary.NuevoProyectoDTO;
+import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.NuevoInvestigadorDTO;
 import ucm.fdi.tfg.users.business.boundary.UserDTO;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
+import ucm.fdi.tfg.users.business.entity.User;
 
 
 @Controller
@@ -50,9 +54,10 @@ public class UserController {
 	public ModelAndView listarAdministradores() {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("administradores", users.findAllAdministradores());
+		model.put("tipoUsuario", "administradores");
+		model.put("usuarios", users.findAllAdministradores());
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-		ModelAndView view = new ModelAndView("usuarios/listarAdministradores", model);
+		ModelAndView view = new ModelAndView("usuarios/listarUsuarios", model);
 		
 		return view;
 		
@@ -64,6 +69,9 @@ public class UserController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		
 		model.put("userDTO", new UserDTO());
+		model.put("modo", "altaAdmin");
+		model.put("modoTitulo", "Alta");
+
 		
 		ModelAndView view = new ModelAndView("usuarios/adminForm", model);
 		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
@@ -78,6 +86,7 @@ public class UserController {
 		
 		if (errors.hasErrors()){			
 			view = new ModelAndView ("usuarios/adminForm");
+			view.addObject("modoTitulo", "Alta");
 			view.addObject("userDTO", userDTO);
 		}
 		else{
@@ -88,16 +97,55 @@ public class UserController {
 		return view;
 	}
 	
+	@RequestMapping(value = "edit/administradores/{id}/", method = RequestMethod.GET)
+	public ModelAndView editAdministrador(@PathVariable(value="id") Long id) {
+		
+		ModelAndView view = null;
+		
+		
+		view = new ModelAndView("usuarios/adminForm");
+		
+		view.addObject("modoTitulo", "Editar");
+		
+		view.addObject("modo", "");
+		User usuarioEditar = users.findOneUser(id);
+		
+		UserDTO usuarioEditarDTO = users.UserToUserDTO(usuarioEditar);
+		
+		view.addObject(usuarioEditarDTO);
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		return view;
+	}
+	
+	@RequestMapping(value = "edit/administradores/{id}/", method = RequestMethod.POST)
+	public ModelAndView editarAdministradorPost(@ModelAttribute("userDTO") @Valid UserDTO  editarAdministradorDTO, BindingResult errors) {
+		
+		ModelAndView view = null;			
+		
+		if (errors.hasErrors()) {
+			view = new ModelAndView("usuarios/adminForm");
+			view.addObject("modoTitulo", "Editar");	
+			view.addObject("modo", "");
+			view.addObject("AdministradorDTO", editarAdministradorDTO);						
+		} else {
+			
+			view = new ModelAndView("redirect:/inicio");
+		}
+		
+		return view;		
+	}
+	
 	
 		
 	@RequestMapping(value = "/gestores", method = RequestMethod.GET)
 	public ModelAndView listarGestores() {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("gestores", users.findAllGestores());
+		model.put("tipoUsuario", "gestores");
+		model.put("usuarios", users.findAllGestores());
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		
-		ModelAndView view = new ModelAndView("usuarios/listarGestores", model);
+		ModelAndView view = new ModelAndView("usuarios/listarUsuarios", model);
 		
 		return view;
 		
@@ -130,6 +178,21 @@ public class UserController {
 		}	
 				
 		return view;
+	}
+	
+	
+	@RequestMapping(value = "/investigadores", method = RequestMethod.GET)
+	public ModelAndView listarInvestigadores() {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("tipoUsuario", "investigadores");
+		model.put("usuarios", users.findAllUserInvestigadores());
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		ModelAndView view = new ModelAndView("usuarios/listarUsuarios", model);
+		
+		return view;
+		
 	}
 	
 	

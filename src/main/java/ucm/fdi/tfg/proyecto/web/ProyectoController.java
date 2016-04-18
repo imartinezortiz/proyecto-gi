@@ -75,9 +75,6 @@ public class ProyectoController {
 		return view;
 	}
 	
-	
-
-	
 	@RequestMapping(value = "/crearProyecto", method = RequestMethod.POST)
 	public ModelAndView añadirProyectoPost(@ModelAttribute("nuevoProyectoDTO") @Valid NuevoProyectoDTO  nuevoProyectoDTO, BindingResult errors) {
 		
@@ -95,22 +92,8 @@ public class ProyectoController {
 		return view;		
 	}
 	
-	
-	@RequestMapping(value = "/editar", method = RequestMethod.GET)
-	public ModelAndView EditarlistarProeyctos() {
-		
-		Map<String, Object> model = new HashMap<String, Object>();
-		
-		model.put("proyectos", proyectos.findAll());
-		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-		
-		ModelAndView view = new ModelAndView("proyectos/EditarlistarProyectos", model);
-
-		return view;
-	}
-	
 	@RequestMapping(value = "edit/proyecto/{id}/", method = RequestMethod.GET)
-	public ModelAndView EditProyecto(@PathVariable(value="id") Long id) {
+	public ModelAndView editProyecto(@PathVariable(value="id") Long id) {
 		
 		ModelAndView view = null;
 		view = new ModelAndView("proyectos/proyectoFormEditar");
@@ -126,16 +109,16 @@ public class ProyectoController {
 	}
 	
 	@RequestMapping(value = "/edit/proyecto/{id}/", method = RequestMethod.POST)
-	public ModelAndView editarProyectoPost(@ModelAttribute("nuevoProyectoDTO") @Valid NuevoProyectoDTO  nuevoProyectoDTO, BindingResult errors) {
+	public ModelAndView editarProyectoPost(@ModelAttribute("nuevoProyectoDTO") @Valid NuevoProyectoDTO  editarProyectoDTO, BindingResult errors) {
 		
 		ModelAndView view = null;			
 		
 		if (errors.hasErrors()) {
-			view = new ModelAndView("proyectos/proyectoForm");
+			view = new ModelAndView("proyectos/proyectoFormEditar");
 			view.addObject("investigadores", users.findAllUserInvestigadores());
-			view.addObject("nuevoProyectoDTO", nuevoProyectoDTO);						
+			view.addObject("nuevoProyectoDTO", editarProyectoDTO);						
 		} else {
-			proyectos.editar(nuevoProyectoDTO);
+			proyectos.editar(editarProyectoDTO);
 			view = new ModelAndView("redirect:/proyectos");
 		}
 		
