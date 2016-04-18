@@ -2,95 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
 
-
-<script>
-	function appendText() {
-		// Create text with DOM
-
-		var count = $('#gastos tr').length;
-		var nuevoGasto = $('<tr></tr>');
-		var auxnumFactura = $('<td class="col-md-2"></td>');
-		var auxconcepto = $('<td class="col-md-8"></td>');
-		var auximporte = $('<td class="col-md-2"></td>');
-		//botones
-		var auxbtnMas = $('<td class="col-md-2"></td>');
-		var auxbtnMenos = $('<td class="col-md-2"></td>');
-
-		var numFactura = $(
-				'<input type="text" class="form-control col-md-2" />').attr('name', 'gastos[' + count + '].numFactura');
-		var concepto = $(
-				'<input type="text" class="form-control"  />').attr('name', 'gastos[' + count + '].proveedor');
-		var importe = $(
-				'<input type="text" class="form-control col-md-2"/> ').attr('name', 'gastos[' + count + '].importe');
-		
-		var btnMas = $('<button onclick="appendText()" class="btn btn-success"	type="button">+</button>').attr('id', 'btnMas' + count );
-			
-		var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-success" type="button">-</button>').attr('id', 'btnMenos' + count );
-		
-
-		$(auxnumFactura).append(numFactura);
-		$(auxconcepto).append(concepto);
-		$(auximporte).append(importe);
-		
-		//botones
-		$(auxbtnMas).append(btnMas);
-		$(auxbtnMenos).append(btnMenos);
-		
-
-		$(nuevoGasto).append(auxnumFactura);
-		$(nuevoGasto).append(auxconcepto);
-		$(nuevoGasto).append(auximporte);
-		
-		//botones
-		$(nuevoGasto).append(auxbtnMas);
-		$(nuevoGasto).append(auxbtnMenos);
-		
-		//idNuevo
-		$(nuevoGasto).attr('id', 'gasto' + count);
-		
-		$('#gastos').append(nuevoGasto);
-	}
-</script>
-
-<script>
-function removeText(idBotonMenos) {
-	
-	var totalGastos = $('#gastos tr').length;	
-	
-	//La posicion 8 del id guarda el numero de gasto
-	var numGasto = idBotonMenos.charAt(8);
-	
-	//Se pasa a numero
-	var posCambio = Number(numGasto) + 1; 
-	
-	//Elimino tr
-	$('#gasto'+numGasto).remove();
-	
-	//Si eliminamos todos los tr tiene que mostrarse uno al menos.
-	if ($('#gastos tr').length == 0){
-		this.appendText();
-	}	
-
-	//A partir del tr eliminado, renombro names e ids
-	for (posCambio; posCambio < totalGastos; posCambio++){ 
-		
-		//Disminuye en uno el name
-		document.getElementsByName('gastos['+posCambio+'].numFactura')[0].setAttribute('name','gastos['+(posCambio-1)+'].numFactura');
-		document.getElementsByName('gastos['+posCambio+'].proveedor')[0].setAttribute('name','gastos['+(posCambio-1)+'].proveedor');
-		document.getElementsByName('gastos['+posCambio+'].importe')[0].setAttribute('name','gastos['+(posCambio-1)+'].importe');
-		
-		//Disminuye en uno el id de los botones
-		document.getElementById('btnMas'+posCambio).setAttribute('id','btnMas'+(posCambio-1));
-		document.getElementById('btnMenos'+posCambio).setAttribute('id','btnMenos'+(posCambio-1));
-		
-		//Disminuye en uno el id del tr
-		document.getElementById('gasto'+posCambio).setAttribute('id','gasto'+(posCambio-1));				
-	}	
-}
-</script>
-
-
-
 <div th:include="menus"></div>
 <div id="page-wrapper">
 <div class="row">
@@ -296,5 +207,95 @@ function removeText(idBotonMenos) {
 </div>
 
 <div th:include="scripts"></div>
+
+<script>
+	function appendText() {
+		// Create text with DOM
+
+		var count = $('#gastos tr').length;
+		var nuevoGasto = $('<tr></tr>');
+		var auxnumFactura = $('<td class="col-md-2"></td>');
+		var auxconcepto = $('<td class="col-md-8"></td>');
+		var auximporte = $('<td class="col-md-2"></td>');
+		//botones
+		var auxbtnMas = $('<td class="col-md-2"></td>');
+		var auxbtnMenos = $('<td class="col-md-2"></td>');
+
+		var numFactura = $(
+				'<input type="text" class="form-control col-md-2" />').attr('name', 'gastos[' + count + '].numFactura');
+		var concepto = $(
+				'<input type="text" class="form-control"  />').attr('name', 'gastos[' + count + '].proveedor');
+		var importe = $(
+				'<input type="text" class="form-control col-md-2"/> ').attr('name', 'gastos[' + count + '].importe');
+		
+		var btnMas = $('<button onclick="appendText()" class="btn btn-success"	type="button">+</button>').attr('id', 'btnMas' + count );
+			
+		var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-success" type="button">-</button>').attr('id', 'btnMenos' + count );
+		
+
+		$(auxnumFactura).append(numFactura);
+		$(auxconcepto).append(concepto);
+		$(auximporte).append(importe);
+		
+		//botones
+		$(auxbtnMas).append(btnMas);
+		$(auxbtnMenos).append(btnMenos);
+		
+
+		$(nuevoGasto).append(auxnumFactura);
+		$(nuevoGasto).append(auxconcepto);
+		$(nuevoGasto).append(auximporte);
+		
+		//botones
+		$(nuevoGasto).append(auxbtnMas);
+		$(nuevoGasto).append(auxbtnMenos);
+		
+		//idNuevo
+		$(nuevoGasto).attr('id', 'gasto' + count);
+		
+		$('#gastos').append(nuevoGasto);
+	}
+</script>
+
+<script>
+function removeText(idBotonMenos) {
+	
+	var totalGastos = $('#gastos tr').length;	
+	
+	//La posicion 8 del id guarda el numero de gasto
+	var numGasto = idBotonMenos.charAt(8);
+	
+	//Se pasa a numero
+	var posCambio = Number(numGasto) + 1; 
+	
+	//Elimino tr
+	$('#gasto'+numGasto).remove();
+	
+	//Si eliminamos todos los tr tiene que mostrarse uno al menos.
+	if ($('#gastos tr').length == 0){
+		this.appendText();
+	}	
+
+	//A partir del tr eliminado, renombro names e ids
+	for (posCambio; posCambio < totalGastos; posCambio++){ 
+		
+		//Disminuye en uno el name
+		document.getElementsByName('gastos['+posCambio+'].numFactura')[0].setAttribute('name','gastos['+(posCambio-1)+'].numFactura');
+		document.getElementsByName('gastos['+posCambio+'].proveedor')[0].setAttribute('name','gastos['+(posCambio-1)+'].proveedor');
+		document.getElementsByName('gastos['+posCambio+'].importe')[0].setAttribute('name','gastos['+(posCambio-1)+'].importe');
+		
+		//Disminuye en uno el id de los botones
+		document.getElementById('btnMas'+posCambio).setAttribute('id','btnMas'+(posCambio-1));
+		document.getElementById('btnMenos'+posCambio).setAttribute('id','btnMenos'+(posCambio-1));
+		
+		//Disminuye en uno el id del tr
+		document.getElementById('gasto'+posCambio).setAttribute('id','gasto'+(posCambio-1));				
+	}	
+}
+</script>
+
+</body>
+</html>
+
 
 
