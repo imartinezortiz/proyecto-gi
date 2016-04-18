@@ -359,31 +359,93 @@
 		
 </script>
 
+
+<script type="text/javascript">
+ /*
+	$("input[name*=importe]").each('change', function() {		
+		 
+ 		alert($(this).val());
+ 		
+	  });
+ */
+ 
+ </script>
+
+
+
+ <script type="text/javascript">
+ 
+ function actualizarImporteTotalGastos() {
+	 
+	 var acu = 0;
+	 $("input[name*=importe]").each(function(){
+
+	 acu = acu + Number($(this).val());
+	     });
+
+	 $('#gastoTotal').val(acu);
+	 
+ }
+ 
+ </script>
+ 
+ <script type="text/javascript">
+ 
+ function removeText(idBotonMenos) {
+		
+		var totalGastos = $('#gastos tr').length;	
+		
+		//La posicion 8 del id guarda el numero de gasto
+		var numGasto = idBotonMenos.charAt(8);
+		
+		//Se pasa a numero
+		var posCambio = Number(numGasto) + 1; 
+		
+		//Elimino tr
+		$('#gasto'+numGasto).remove();
+		
+		//A partir del tr eliminado, renombro names e ids
+		for (posCambio; posCambio < totalGastos; posCambio++){ 
+			
+			//Disminuye en uno el name
+			document.getElementsByName('gastos['+posCambio+'].tipo')[0].setAttribute('name','gastos['+(posCambio-1)+'].tipo');
+			document.getElementsByName('gastos['+posCambio+'].descripcion')[0].setAttribute('name','gastos['+(posCambio-1)+'].descripcion');
+			document.getElementsByName('gastos['+posCambio+'].importe')[0].setAttribute('name','gastos['+(posCambio-1)+'].importe');
+			
+			//Disminuye en uno el id de los botones
+			document.getElementById('btnMenos'+posCambio).setAttribute('id','btnMenos'+(posCambio-1));
+			
+			//Disminuye en uno el id del tr
+			document.getElementById('gasto'+posCambio).setAttribute('id','gasto'+(posCambio-1));				
+		}	
+		
+		this.actualizarImporteTotalGastos();
+	}
+	
+ </script>
+ 
+
  <script type="text/javascript">
 
 		$("input[name=miembroProyecto]").change(function() {
 				
 			var radioPulsado = $(this).val();
 			
-			if (radioPulsado == "true"){
-							
+			if (radioPulsado == "true"){						
 							
 				//ocultamos div que contiene el input de profesor invitado
 				$('#invitado').val('');
 				$('#inputProfesorInvitado').hide();
 				
 				//mostramos div que contiene la lista de investigadores
-				$('#listaInventigadores').show();		
-				
-			}
-			else {//es invitado				
+				$('#listaInventigadores').show();						
+			}else {//es invitado				
 				
 				$("#listaInventigadoresSelect option:nth-child(1)").prop('selected', true);
 				
 				$('#listaInventigadores').hide();
 				$('#inputProfesorInvitado').show();
-			}		
-			
+			}				
 		});
 	</script>
 
@@ -393,7 +455,10 @@ function calcularImporte(input){
 	var importePrecioKm = /*[[${importePrecioKm}]]*/ 0.19;
 	var valor = importePrecioKm * Number(input.value) ;
 	
-	$('#'+input.name).val(valor);	
+	$('#'+input.name).val(valor);
+	
+	
+	this.actualizarImporteTotalGastos();
 	
 }
 </script>
@@ -426,7 +491,7 @@ function calcularImporte(input){
 				auxFactor = $('<td class="col-md-2"></td>');
 				auxKM = $('<td class="col-md-2"></td>');
 				importe = $(
-				'<input type="text" class="form-control col-md-2 text-center"/> ').attr('name', 'gastos[' + count + '].importe');
+				'<input type="text" class="form-control col-md-2 text-center" onchange="actualizarImporteTotalGastos()"/> ').attr('name', 'gastos[' + count + '].importe');
 			
 				
 			//botones
@@ -507,13 +572,13 @@ function calcularImporte(input){
 				auxKMTD = $('<input type="text" class="form-control text-center" onchange="calcularImporte(this)"/>').attr('name', 'km'+count);
 				$(auxKM).append(auxKMTD);
 				//El importe es calculado automaticamente
-				importe = $('<input type="text" class="form-control col-md-2 text-center" readonly="readonly" /> ').attr({'name': 'gastos[' + count + '].importe', 'id': 'km'+count});
+				importe = $('<input type="text" class="form-control col-md-2 text-center" readonly="readonly"  onchange="actualizarImporteTotalGastos()" /> ').attr({'name': 'gastos[' + count + '].importe', 'id': 'km'+count});
 			}
 			else {
 				auxFactor = $('<td class="col-md-2"></td>');
 				auxKM = $('<td class="col-md-2"></td>');
 				importe = $(
-				'<input type="text" class="form-control col-md-2 text-center"/> ').attr('name', 'gastos[' + count + '].importe');
+				'<input type="text" class="form-control col-md-2 text-center" onchange="actualizarImporteTotalGastos()"/> ').attr('name', 'gastos[' + count + '].importe');
 			}
 				
 			//botones
@@ -584,6 +649,9 @@ function redondeo(numero, decimales)
        importeTotal = redondeo( importeTotal, 2)
  	  
  	  $('#importeDietaTotal').val(importeTotal);
+       
+       this.actualizarImporteTotalGastos();
+     
     }
 </script>
 
