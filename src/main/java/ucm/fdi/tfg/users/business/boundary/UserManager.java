@@ -150,6 +150,19 @@ public class UserManager implements UserDetailsService{
 		
 	}
 
+	public void editar(UserDTO editarAdministradorDTO, Long id) {
+		User adminEdit = repositoryUser.getOne(id);
+		adminEdit.setNombre(editarAdministradorDTO.getNombre());
+		adminEdit.setApellidos(editarAdministradorDTO.getApellidos());
+		adminEdit.setPassword(passwordEncoder.encode(editarAdministradorDTO.getPassword()));
+		adminEdit.setEmail(editarAdministradorDTO.getEmail());
+		adminEdit.setTelefono(editarAdministradorDTO.getTelefono());
+		adminEdit.setUsername(editarAdministradorDTO.getUsername());
+		
+		repositoryUser.save(adminEdit);
+	
+	}
+
 	
 
 	

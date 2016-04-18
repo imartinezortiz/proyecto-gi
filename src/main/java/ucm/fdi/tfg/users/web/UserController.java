@@ -118,7 +118,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "edit/administradores/{id}/", method = RequestMethod.POST)
-	public ModelAndView editarAdministradorPost(@ModelAttribute("userDTO") @Valid UserDTO  editarAdministradorDTO, BindingResult errors) {
+	public ModelAndView editarAdministradorPost(@ModelAttribute("userDTO") @Valid UserDTO  editarAdministradorDTO, @PathVariable(value="id") Long id, BindingResult errors) {
 		
 		ModelAndView view = null;			
 		
@@ -128,15 +128,14 @@ public class UserController {
 			view.addObject("modo", "");
 			view.addObject("AdministradorDTO", editarAdministradorDTO);						
 		} else {
-			
-			view = new ModelAndView("redirect:/inicio");
+			users.editar(editarAdministradorDTO,id);
+			view = new ModelAndView("redirect:/administradores");
 		}
 		
 		return view;		
 	}
 	
 	
-		
 	@RequestMapping(value = "/gestores", method = RequestMethod.GET)
 	public ModelAndView listarGestores() {
 		
