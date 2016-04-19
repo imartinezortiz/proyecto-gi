@@ -3,17 +3,9 @@ DUDAS:
 	Cosas Pendientes:
 		RICO:						
 			*VIAJES: 
-				- Lista desplegable investigadores de ese proyecto. (type="radio")
-				- Funcion eliminar gasto transporte
-				- ¿Alojamiento? Como un input más
-				- Enum para listas : http://blog.florentlim.com/listing-enum-on-select-element-using-thymeleaf/
-				- input Importe TOTAL
 				- Validar VIAJES
-				- @ManyToOne Dieta
-				- Constante 0.19 dentro de Spring
-				- Quitar javascript puro	
-							
-				
+				- DIETAS (Iván)
+				- Quitar javascript puro					
 				
 			* Validar constraseñas (que sean iguales al hacer un alta) 			
 			
@@ -31,14 +23,10 @@ DUDAS:
 					  Dependiendo, sera 3 requestMaping edit/admin/3  edit/investigador/3   edit/gestor/3  
 					  o edi/user/3.
 		    *Preguntar inner join en JPQL y setencia Select IN
-		    
-		    
-
-	
+		    	
 			[Viajes] Como mejorar para mandar los investigadores de "un proyecto" a al formulario de Viajes
 			
-			[Viajes] Mirar con Iván funcionalidad de los type "radio" (porque al jugar con la visibildiad y append y remove puede haber problemas al editar o volver
-						con Hibernate Validation)
+			
 		
 				
 	
