@@ -94,39 +94,51 @@
 								<p class="panel-title">Gastos</p>
 							</div>
 							<div class="panel-body">
-								<table>
+								<table class="table table-bordered ">
 								<thead>
 								<tr>
 								<th class="col-md-2 text-center">Nº Factura</th>
-								<th class="col-md-8 text-center">Proveedor,concepto y partida presupuestaria</th>
+								<th class="col-md-6 text-center">Proveedor,concepto y partida presupuestaria</th>
 								<th class="col-md-2 text-center">Importe</th>
+								<th class="col-md-1 text-center">+</th>	
+								<th class="col-md-1 text-center">-</th>	
 								</tr>
 								</thead>
 									<tbody id="gastos">
+										
 										<tr id="gasto0" th:each="gasto,gastoStat : *{gastos}">
-											<td class="col-md-2">	
-											<input type="text" class="form-control" 
-												th:field="*{gastos[__${gastoStat.index}__].numFactura}" />
-												<span class="help-block" th:errors="*{gastos[__${gastoStat.index}__].numFactura}">[errors]</span>									
+											
+											<td class="col-md-2" th:classappend="${#fields.hasErrors('gastos[__${gastoStat.index}__].numFactura')} ? has-error">	
+												<input type="text" class="form-control"  
+													th:field="*{gastos[__${gastoStat.index}__].numFactura}" />
+													<span class="help-block" th:errors="*{gastos[__${gastoStat.index}__].numFactura}">[errors]</span>									
+												
 											</td>
-											<td class="col-md-8">
-											<input type="text"
-												class="form-control" 
-												th:field="*{gastos[__${gastoStat.index}__].proveedor}" /></td>
-											<td class="col-md-2"><input type="text"
-												class="form-control" 
-												th:field="*{gastos[__${gastoStat.index}__].importe}" /></td>
+											
+											<td class="col-md-8" th:classappend="${#fields.hasErrors('gastos[__${gastoStat.index}__].proveedor')} ? has-error">
+												<input type="text"
+													class="form-control" 
+													th:field="*{gastos[__${gastoStat.index}__].proveedor}" />
+												<span class="help-block" th:errors="*{gastos[__${gastoStat.index}__].proveedor}">[errors]</span>
+											</td>
+											<td class="col-md-2"th:classappend="${#fields.hasErrors('gastos[__${gastoStat.index}__].importe')} ? has-error">
+												<input type="text"
+													class="form-control" 
+													th:field="*{gastos[__${gastoStat.index}__].importe}" />
+												<span class="help-block" th:errors="*{gastos[__${gastoStat.index}__].importe}">[errors]</span>
+											</td>
+											
 											<td class="col-md-2">
 												<button onclick="appendText()" class="btn btn-success"
 													type="button" id="btnMas0" >+</button>
 											</td>
 											<td class="col-md-2">
-												<button id="btnMenos0" onclick="removeText(this.id)" class="btn btn-success"
+												<button id="btnMenos0" onclick="removeText(this.id)" class="btn btn-danger form-control"
 													type="button" >-</button>
 											</td>
 
 										</tr>
-									</tbody>
+																			</tbody>
 
 								</table>
 								
@@ -230,7 +242,7 @@
 		
 		var btnMas = $('<button onclick="appendText()" class="btn btn-success"	type="button">+</button>').attr('id', 'btnMas' + count );
 			
-		var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-success" type="button">-</button>').attr('id', 'btnMenos' + count );
+		var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-danger form-control" type="button">-</button>').attr('id', 'btnMenos' + count );
 		
 
 		$(auxnumFactura).append(numFactura);

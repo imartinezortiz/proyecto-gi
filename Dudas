@@ -22,9 +22,11 @@ DUDAS:
 			*Preguntar si una sola vista q sea listarUsuarios, que englobe las 3 opciones.
 					  Dependiendo, sera 3 requestMaping edit/admin/3  edit/investigador/3   edit/gestor/3  
 					  o edi/user/3.
-		    *Preguntar inner join en JPQL y setencia Select IN
+				    
 		    	
-			[Viajes] Como mejorar para mandar los investigadores de "un proyecto" a al formulario de Viajes
+			*[Viajes] Como mejorar para mandar los investigadores de "un proyecto" a al formulario de Viajes
+			
+			*[Pagos-gastos] Al validar un bigdecimal cuando se mete una cadena salta exception y coge "message"
 			
 			
 		

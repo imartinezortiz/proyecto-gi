@@ -5,7 +5,10 @@ import java.math.BigDecimal;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
@@ -13,13 +16,20 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="PAGO_GASTOS")
 public class Gasto {
 	
-	@NotEmpty
+	@NotEmpty(message="Campo vacio")
 	private String numFactura;
 	
+	@NotEmpty(message="Campo vacio")
 	private String proveedor;
 	
 	
+	
+	//@NotBlank(message = "Campo vacio")
+	@Digits(integer=6, fraction=2,  message="Máximo dos decimales.")
+	@Min(value = (long) 0.01, message = "Valor mayor que 0.")
 	private BigDecimal importe;
+	
+	
 	
 	public Gasto(){
 		this(null, null, BigDecimal.ZERO);
