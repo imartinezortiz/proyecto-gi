@@ -5,7 +5,9 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.ScriptAssert;
 
+@ScriptAssert(lang="javascript",script="(_this.password!=null)?  _this.password.equals(_this.nuevaPassword) : false",message="Los 2 passwords deben ser iguales.")
 public class UserDTO {
 	
 
