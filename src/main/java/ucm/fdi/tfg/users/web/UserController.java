@@ -117,8 +117,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "edit/administradores/{id}/", method = RequestMethod.POST)
-	public ModelAndView editarAdministradorPost(@ModelAttribute("userDTO") @Valid UserDTO  userDTO, @PathVariable(value="id") Long id, BindingResult errors) {
-		
+	public ModelAndView editarAdministradorPost(@ModelAttribute("userDTO") @Valid UserDTO  userDTO, BindingResult errors ,@PathVariable(value="id") Long id ) {
+	
 		ModelAndView view = null;			
 		
 		if (errors.hasErrors()) {
