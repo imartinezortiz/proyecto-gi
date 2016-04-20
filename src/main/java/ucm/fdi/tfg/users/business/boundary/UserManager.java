@@ -143,8 +143,6 @@ public class UserManager implements UserDetailsService{
 		usuarioEditarDTO.setEmail(usuarioEditar.getEmail());
 		usuarioEditarDTO.setTelefono(usuarioEditar.getTelefono());
 		usuarioEditarDTO.setUsername(usuarioEditar.getUsername());
-		usuarioEditarDTO.setPassword(usuarioEditar.getPassword());
-		
 		
 		return usuarioEditarDTO;
 		

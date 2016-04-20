@@ -102,7 +102,6 @@ public class UserController {
 		
 		ModelAndView view = null;
 		
-		
 		view = new ModelAndView("usuarios/adminForm");
 		
 		view.addObject("modoTitulo", "Editar");
@@ -118,7 +117,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "edit/administradores/{id}/", method = RequestMethod.POST)
-	public ModelAndView editarAdministradorPost(@ModelAttribute("userDTO") @Valid UserDTO  editarAdministradorDTO, @PathVariable(value="id") Long id, BindingResult errors) {
+	public ModelAndView editarAdministradorPost(@ModelAttribute("userDTO") @Valid UserDTO  userDTO, @PathVariable(value="id") Long id, BindingResult errors) {
 		
 		ModelAndView view = null;			
 		
@@ -126,9 +125,9 @@ public class UserController {
 			view = new ModelAndView("usuarios/adminForm");
 			view.addObject("modoTitulo", "Editar");	
 			view.addObject("modo", "");
-			view.addObject("AdministradorDTO", editarAdministradorDTO);						
+			view.addObject("userDTO", userDTO);						
 		} else {
-			users.editar(editarAdministradorDTO,id);
+			users.editar(userDTO,id);
 			view = new ModelAndView("redirect:/administradores");
 		}
 		
