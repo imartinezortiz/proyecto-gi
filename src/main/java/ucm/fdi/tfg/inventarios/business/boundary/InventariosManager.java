@@ -1,5 +1,7 @@
 package ucm.fdi.tfg.inventarios.business.boundary;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,11 @@ public class InventariosManager {
 		inventario.setProyecto(proyectos.getProyecto(idProyecto));
 	//	inventario.setNumContabilidad(proyectos.getProyecto(idProyecto).getNumContabilidad());
 		inventarioRepository.save(inventario);
+	}
+	
+	public List<Inventario> inventariosPorProyecto(Long idProyecto){
+		
+		return inventarioRepository.inventariosPorProyecto(idProyecto);
 	}
 
 }
