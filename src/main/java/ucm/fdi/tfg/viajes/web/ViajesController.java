@@ -56,23 +56,14 @@ public class ViajesController {
 		Viaje viaje = new Viaje(proyecto);
 		
 		GastoViaje g = new GastoViaje();
-		viaje.getGastos().add(g);
-		
+		viaje.getGastos().add(g);		
 		
 		
 		List<Dieta> dietas = viajes.dameDietas();
 		
-		          Collection <Investigador> investigadores = proyecto.getInvestigadores();
-		          
-		             
-		          //necesito coger le id de la lista de investigadores
-		          List <Long> listaInvestidagoresId = new ArrayList<Long>();
-		          
-		          for (Investigador i : investigadores ){
-		              listaInvestidagoresId.add(i.getId());
-		        }
-
-		        List<User> investigadoresAsignadosAproyecto = users.findAll(listaInvestidagoresId);
+		
+		//Usuarios que participan en un proyecto
+		List<User> investigadoresAsignadosAproyecto = proyectosManager.investigadoresProyecto(idProyecto);
 
 		
 		model.put("viaje", viaje);

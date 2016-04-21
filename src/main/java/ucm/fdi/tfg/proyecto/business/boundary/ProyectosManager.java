@@ -12,6 +12,7 @@ import ucm.fdi.tfg.proyecto.business.control.ProyectosRepository;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
 import ucm.fdi.tfg.users.business.entity.Investigador;
+import ucm.fdi.tfg.users.business.entity.User;
 
 @Service
 @Transactional
@@ -99,5 +100,17 @@ public class ProyectosManager {
 		return proyectDTO;
 
 	}
+	
+	/**
+	 * Método que nos devuelve los Usuarios que participian en un proyecto.
+	 * @param idProyecto
+	 * @return List<User>
+	 */
+	public List<User> investigadoresProyecto(Long idProyecto){
+	
+		return proyectos.investigadoresProyecto(idProyecto);
+	}
+	
+		
 	
 }
