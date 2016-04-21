@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.inventarios.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -85,6 +86,25 @@ public class InventariosController {
 		return view;
 		
 	}
+	
+	
+	
+	@RequestMapping(value = "/proyecto/{idProyecto}/listarInventarios", method = RequestMethod.GET)
+	public ModelAndView listarInventarios(@PathVariable(value="idProyecto") Long idProyecto) {
+				
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		List<Inventario> inventariosPorProyecto = inventarios.inventariosPorProyecto(idProyecto);
+		
+		model.put("inventariosPorProyecto", inventariosPorProyecto);
+		
+		//model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+
+		ModelAndView view = new ModelAndView("inventarios/listarInventarios", model);
+		
+		return view;
+	}
+	
 	
 	
 	
