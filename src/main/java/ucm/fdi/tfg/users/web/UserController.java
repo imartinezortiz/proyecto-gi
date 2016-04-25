@@ -252,7 +252,8 @@ public class UserController {
 				
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		model.put("modo", "altaGestor");
+		model.put("modoTitulo", "Alta");
+		model.put("modo", "altaInvestigador");
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		model.put("nuevoInvestigadorDTO", new NuevoInvestigadorDTO());
 		
@@ -268,6 +269,10 @@ public class UserController {
 		
 		if (errors.hasErrors()){			
 			view = new ModelAndView ("usuarios/investigadorForm");
+			view.addObject("modoTitulo", "Alta");
+			view.addObject("modo", "altaInvestigador");
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+
 			view.addObject("nuevoInvestigadorDTO", nuevoInvestigadorDTO);
 		}
 		else{
@@ -282,27 +287,18 @@ public class UserController {
 	public ModelAndView editarInvestigador(@PathVariable(value="id") Long id) {
 		
 		ModelAndView view = new ModelAndView("usuarios/investigadorForm");
-		
-		view.addObject("modoTitulo", "Editar");
-		view.addObject("tipoUsuario", "gestor");
-		view.addObject("modo", "");
-		
-		
-		
+
 		User usuarioEditar = users.findOneUser(id);
 		Investigador investigadorEditar = users.findInvestigador(id);
-		NuevoInvestigadorDTO nuevoInvestigadorDTO = new NuevoInvestigadorDTO();
 		
-		nuevoInvestigadorDTO.setApellidos(usuarioEditar.getApellidos());
-		nuevoInvestigadorDTO.setNombre(usuarioEditar.getNombre());
-		nuevoInvestigadorDTO.setEmail(usuarioEditar.getEmail());
-		nuevoInvestigadorDTO.setTelefono(usuarioEditar.getTelefono());
-		nuevoInvestigadorDTO.setUsername(usuarioEditar.getUsername());
-		nuevoInvestigadorDTO.setCentro(investigadorEditar.getCentro());
-		nuevoInvestigadorDTO.setDepartamento(investigadorEditar.getDepartamento());
-		
+		//Pasamos De User e Investigador al DTO para poder pintarlo en el formulario 
+		NuevoInvestigadorDTO nuevoInvestigadorDTO = users.UserAndInvestigadorToDTO(usuarioEditar,investigadorEditar);
+
 		view.addObject(nuevoInvestigadorDTO);
+		view.addObject("modoTitulo", "Editar");
+		view.addObject("modo", "");
 		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		
 		return view;
 	}
 	
@@ -318,8 +314,8 @@ public class UserController {
 			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 			view.addObject("nuevoInvestigadorDTO", nuevoInvestigadorDTO);						
 		} else {
-			//users.editar(nuevoInvestigadorDTO,id);
-			view = new ModelAndView("redirect:/gestores");
+			users.editarInvestigador(nuevoInvestigadorDTO,id);
+			view = new ModelAndView("redirect:/investigadores");
 		}
 		
 		return view;		

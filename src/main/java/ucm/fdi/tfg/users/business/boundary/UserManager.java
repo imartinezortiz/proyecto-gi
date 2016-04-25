@@ -80,6 +80,21 @@ public class UserManager implements UserDetailsService{
 		return this.investigadores.save(inv);
 	}
 	
+	public Investigador editarInvestigador(NuevoInvestigadorDTO nuevoInvestigadorDTO,Long id){
+		User userEdit = repositoryUser.getOne(id);
+		userEdit.setNombre(nuevoInvestigadorDTO.getNombre());
+		userEdit.setApellidos(nuevoInvestigadorDTO.getApellidos());
+		userEdit.setEmail(nuevoInvestigadorDTO.getEmail());
+		userEdit.setPassword(passwordEncoder.encode(nuevoInvestigadorDTO.getPassword()));
+		userEdit.setTelefono(nuevoInvestigadorDTO.getTelefono());
+		userEdit.setUsername(nuevoInvestigadorDTO.getUsername());
+		repositoryUser.save(userEdit);
+		Investigador investigadorEdit = investigadores.getOne(id);
+		investigadorEdit.setCentro(nuevoInvestigadorDTO.getCentro());
+		investigadorEdit.setDepartamento(nuevoInvestigadorDTO.getDepartamento());
+		return investigadores.save(investigadorEdit);
+	}
+	
 	public List<Investigador> findAllInvestigadores(){
 		return investigadores.findAll();
 	}
@@ -153,7 +168,7 @@ public class UserManager implements UserDetailsService{
 
 	
 	// Se usa para Administradores y Gestores
-	public void editar(UserDTO editarUserDTO, Long id) {
+	public User editar(UserDTO editarUserDTO, Long id) {
 		User userEdit = repositoryUser.getOne(id);
 		userEdit.setNombre(editarUserDTO.getNombre());
 		userEdit.setApellidos(editarUserDTO.getApellidos());
@@ -162,8 +177,23 @@ public class UserManager implements UserDetailsService{
 		userEdit.setTelefono(editarUserDTO.getTelefono());
 		userEdit.setUsername(editarUserDTO.getUsername());
 		
-		repositoryUser.save(userEdit);
+		return repositoryUser.save(userEdit);
 	
+	}
+
+	public NuevoInvestigadorDTO UserAndInvestigadorToDTO(User usuarioEditar, Investigador investigadorEditar) {
+		NuevoInvestigadorDTO nuevoInvestigadorDTO = new NuevoInvestigadorDTO();
+
+		nuevoInvestigadorDTO.setApellidos(usuarioEditar.getApellidos());
+		nuevoInvestigadorDTO.setNombre(usuarioEditar.getNombre());
+		nuevoInvestigadorDTO.setEmail(usuarioEditar.getEmail());
+		nuevoInvestigadorDTO.setTelefono(usuarioEditar.getTelefono());
+		nuevoInvestigadorDTO.setUsername(usuarioEditar.getUsername());
+		nuevoInvestigadorDTO.setCentro(investigadorEditar.getCentro());
+		nuevoInvestigadorDTO.setDepartamento(investigadorEditar.getDepartamento());
+		
+		return nuevoInvestigadorDTO;
+		
 	}
 
 	
