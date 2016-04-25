@@ -71,22 +71,24 @@ public class UserController {
 		model.put("userDTO", new UserDTO());
 		model.put("modo", "altaAdmin");
 		model.put("modoTitulo", "Alta");
-
+		model.put("tipoUsuario", "administrador");
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		
-		ModelAndView view = new ModelAndView("usuarios/adminForm", model);
-		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		ModelAndView view = new ModelAndView("usuarios/userForm", model);
 		
 		return view;
 	}
 	
 	@RequestMapping(value = "/altaAdmin", method = RequestMethod.POST)
-	public ModelAndView addAdmin(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult errors) {
+	public ModelAndView altaAdminPost(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult errors) {
 		
 		ModelAndView view = null;
 		
 		if (errors.hasErrors()){			
-			view = new ModelAndView ("usuarios/adminForm");
+			view = new ModelAndView ("usuarios/userForm");
 			view.addObject("modoTitulo", "Alta");
+			view.addObject("tipoUsuario", "administrador");
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 			view.addObject("userDTO", userDTO);
 		}
 		else{
@@ -98,15 +100,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "edit/administradores/{id}/", method = RequestMethod.GET)
-	public ModelAndView editAdministrador(@PathVariable(value="id") Long id) {
+	public ModelAndView editarAdministrador(@PathVariable(value="id") Long id) {
 		
-		ModelAndView view = null;
-		
-		view = new ModelAndView("usuarios/adminForm");
+		ModelAndView view = new ModelAndView("usuarios/userForm");
 		
 		view.addObject("modoTitulo", "Editar");
-		
+		view.addObject("tipoUsuario", "administrador");
 		view.addObject("modo", "");
+		
 		User usuarioEditar = users.findOneUser(id);
 		
 		UserDTO usuarioEditarDTO = users.UserToUserDTO(usuarioEditar);
@@ -122,9 +123,11 @@ public class UserController {
 		ModelAndView view = null;			
 		
 		if (errors.hasErrors()) {
-			view = new ModelAndView("usuarios/adminForm");
+			view = new ModelAndView("usuarios/userForm");
 			view.addObject("modoTitulo", "Editar");	
 			view.addObject("modo", "");
+			view.addObject("tipoUsuario", "administrador");
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 			view.addObject("userDTO", userDTO);						
 		} else {
 			users.editar(userDTO,id);
@@ -134,6 +137,8 @@ public class UserController {
 		return view;		
 	}
 	
+	// ------------------------------------------------------- GESTORES ---------------------------------------------------------------------
+
 	
 	@RequestMapping(value = "/gestores", method = RequestMethod.GET)
 	public ModelAndView listarGestores() {
@@ -154,20 +159,26 @@ public class UserController {
 	public ModelAndView altaGestor() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		model.put("userDTO", new UserDTO());		
+		model.put("userDTO", new UserDTO());
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		model.put("modo", "altaGestor");
+		model.put("modoTitulo", "Alta");
+		model.put("tipoUsuario", "gestor");
 		
-		ModelAndView view = new ModelAndView("usuarios/gestorForm",model);
-		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		ModelAndView view = new ModelAndView("usuarios/userForm",model);
 
 		return view;
 	}
 	
 	@RequestMapping(value = "/altaGestor", method = RequestMethod.POST)
-	public ModelAndView addGestor(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult errors) {
+	public ModelAndView altaGestorPost(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult errors) {
 		ModelAndView view = null;
 		
 		if (errors.hasErrors()){			
-			view = new ModelAndView ("usuarios/gestorForm");
+			view = new ModelAndView ("usuarios/userForm");
+			view.addObject("modoTitulo", "Alta");
+			view.addObject("tipoUsuario", "gestor");
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 			view.addObject("userDTO", userDTO);
 		}
 		else{
@@ -178,6 +189,47 @@ public class UserController {
 		return view;
 	}
 	
+	@RequestMapping(value = "edit/gestores/{id}/", method = RequestMethod.GET)
+	public ModelAndView editarGestor(@PathVariable(value="id") Long id) {
+		
+		ModelAndView view = new ModelAndView("usuarios/userForm");
+		
+		view.addObject("modoTitulo", "Editar");
+		view.addObject("tipoUsuario", "gestor");
+		view.addObject("modo", "");
+		
+		User usuarioEditar = users.findOneUser(id);
+		
+		UserDTO usuarioEditarDTO = users.UserToUserDTO(usuarioEditar);
+		
+		view.addObject(usuarioEditarDTO);
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		return view;
+	}
+	
+	@RequestMapping(value = "edit/gestores/{id}/", method = RequestMethod.POST)
+	public ModelAndView editarGestorPost(@ModelAttribute("userDTO") @Valid UserDTO  userDTO, BindingResult errors ,@PathVariable(value="id") Long id ) {
+	
+		ModelAndView view = null;			
+		
+		if (errors.hasErrors()) {
+			view = new ModelAndView("usuarios/userForm");
+			view.addObject("modoTitulo", "Editar");	
+			view.addObject("tipoUsuario", "gestor");
+			view.addObject("modo", "");
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+			view.addObject("userDTO", userDTO);						
+		} else {
+			users.editar(userDTO,id);
+			view = new ModelAndView("redirect:/gestores");
+		}
+		
+		return view;		
+	}
+	
+	
+	// ------------------------------------------------------- INVESTIGADORES ---------------------------------------------------------------------
+
 	
 	@RequestMapping(value = "/investigadores", method = RequestMethod.GET)
 	public ModelAndView listarInvestigadores() {

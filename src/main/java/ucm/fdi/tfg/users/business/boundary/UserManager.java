@@ -44,6 +44,7 @@ public class UserManager implements UserDetailsService{
 		return null;
 	}
 	
+	//Lo usamos cuando añadimos un investigador, con est metodo añadimos primero la parte User. Asi obtenemos el id q le metemos al inv.
 	private User addUser(User user){
 		//Hasheamos aqui el password	
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -135,7 +136,9 @@ public class UserManager implements UserDetailsService{
 		return repositoryUser.findAll(listaInvestidagoresId);
 		
 	}
-
+	
+	
+	// Se usa para Administradores y Gestores
 	public UserDTO UserToUserDTO(User usuarioEditar) {
 		UserDTO usuarioEditarDTO = new UserDTO();
 		usuarioEditarDTO.setNombre(usuarioEditar.getNombre());
@@ -148,16 +151,18 @@ public class UserManager implements UserDetailsService{
 		
 	}
 
-	public void editar(UserDTO editarAdministradorDTO, Long id) {
-		User adminEdit = repositoryUser.getOne(id);
-		adminEdit.setNombre(editarAdministradorDTO.getNombre());
-		adminEdit.setApellidos(editarAdministradorDTO.getApellidos());
-		adminEdit.setPassword(passwordEncoder.encode(editarAdministradorDTO.getPassword()));
-		adminEdit.setEmail(editarAdministradorDTO.getEmail());
-		adminEdit.setTelefono(editarAdministradorDTO.getTelefono());
-		adminEdit.setUsername(editarAdministradorDTO.getUsername());
+	
+	// Se usa para Administradores y Gestores
+	public void editar(UserDTO editarUserDTO, Long id) {
+		User userEdit = repositoryUser.getOne(id);
+		userEdit.setNombre(editarUserDTO.getNombre());
+		userEdit.setApellidos(editarUserDTO.getApellidos());
+		userEdit.setPassword(passwordEncoder.encode(editarUserDTO.getPassword()));
+		userEdit.setEmail(editarUserDTO.getEmail());
+		userEdit.setTelefono(editarUserDTO.getTelefono());
+		userEdit.setUsername(editarUserDTO.getUsername());
 		
-		repositoryUser.save(adminEdit);
+		repositoryUser.save(userEdit);
 	
 	}
 
