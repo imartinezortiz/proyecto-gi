@@ -20,6 +20,7 @@ import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.NuevoInvestigadorDTO;
 import ucm.fdi.tfg.users.business.boundary.UserDTO;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
+import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
 
 
@@ -251,9 +252,11 @@ public class UserController {
 				
 		Map<String, Object> model = new HashMap<String, Object>();
 		
+		model.put("modo", "altaGestor");
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		model.put("nuevoInvestigadorDTO", new NuevoInvestigadorDTO());
+		
 		ModelAndView view = new ModelAndView("usuarios/investigadorForm", model);
-		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		
 		return view;
 	}
@@ -273,6 +276,53 @@ public class UserController {
 		}				
 		
 		return view;
+	}
+	
+	@RequestMapping(value = "edit/investigadores/{id}/", method = RequestMethod.GET)
+	public ModelAndView editarInvestigador(@PathVariable(value="id") Long id) {
+		
+		ModelAndView view = new ModelAndView("usuarios/investigadorForm");
+		
+		view.addObject("modoTitulo", "Editar");
+		view.addObject("tipoUsuario", "gestor");
+		view.addObject("modo", "");
+		
+		
+		
+		User usuarioEditar = users.findOneUser(id);
+		Investigador investigadorEditar = users.findInvestigador(id);
+		NuevoInvestigadorDTO nuevoInvestigadorDTO = new NuevoInvestigadorDTO();
+		
+		nuevoInvestigadorDTO.setApellidos(usuarioEditar.getApellidos());
+		nuevoInvestigadorDTO.setNombre(usuarioEditar.getNombre());
+		nuevoInvestigadorDTO.setEmail(usuarioEditar.getEmail());
+		nuevoInvestigadorDTO.setTelefono(usuarioEditar.getTelefono());
+		nuevoInvestigadorDTO.setUsername(usuarioEditar.getUsername());
+		nuevoInvestigadorDTO.setCentro(investigadorEditar.getCentro());
+		nuevoInvestigadorDTO.setDepartamento(investigadorEditar.getDepartamento());
+		
+		view.addObject(nuevoInvestigadorDTO);
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		return view;
+	}
+	
+	@RequestMapping(value = "edit/investigadores/{id}/", method = RequestMethod.POST)
+	public ModelAndView editarInvestigadorPost(@ModelAttribute("nuevoInvestigadorDTO") @Valid NuevoInvestigadorDTO nuevoInvestigadorDTO, BindingResult errors ,@PathVariable(value="id") Long id ) {
+	
+		ModelAndView view = null;			
+		
+		if (errors.hasErrors()) {
+			view = new ModelAndView("usuarios/investigadorForm");
+			view.addObject("modoTitulo", "Editar");	
+			view.addObject("modo", "");
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+			view.addObject("nuevoInvestigadorDTO", nuevoInvestigadorDTO);						
+		} else {
+			//users.editar(nuevoInvestigadorDTO,id);
+			view = new ModelAndView("redirect:/gestores");
+		}
+		
+		return view;		
 	}
 	
 	

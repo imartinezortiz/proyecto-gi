@@ -114,9 +114,9 @@ public class User implements UserDetails, CredentialsContainer {
 		return username;
 	}
 
-	public void setName(String username) {
-		this.username = username;
-
+	
+	public String getUsername() {
+		return username;
 	}
 
 	public void setUsername(String username) {
@@ -153,11 +153,7 @@ public class User implements UserDetails, CredentialsContainer {
 		return roles;
 	}
 
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return username;
-	}
+	
 
 	@Override
 	public boolean isAccountNonExpired() {
