@@ -40,4 +40,10 @@ public class InventariosManager {
 		return inventarioRepository.inventariosPorProyecto(idProyecto);
 	}
 
+
+	public Inventario findOneInventario(Long id) {
+		
+		return this.inventarioRepository.findOne(id);
+	}
+
 }
