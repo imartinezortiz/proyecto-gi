@@ -43,26 +43,7 @@ public class InventariosController {
 	
 	@RequestMapping(value = "/proyecto/{idProyecto}/altaInventario", method = RequestMethod.GET)
 	public ModelAndView altaInventario(@PathVariable(value="idProyecto") Long idProyecto) {
-		/*
-		Map<String, Object> model = new HashMap<String, Object>();
-		
-		Proyecto proyecto = proyectos.findProyecto(idProyecto);
-		
-		Investigador inv = proyecto.getInvestigadorPrincipal();
-		
-		User userActivo = users.findOneUser(inv.getId());		
-		
-		Inventario inventario = new Inventario(proyecto);
 				
-		model.put("inventario", inventario);
-		model.put("user", userActivo); 
-		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-
-		ModelAndView view = new ModelAndView("inventarios/inventarioForm", model);
-		
-		return view;
-		*/
-		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
 		Proyecto proyecto = proyectos.findProyecto(idProyecto);
@@ -88,8 +69,7 @@ public class InventariosController {
 	@RequestMapping(value = "/proyecto/{idProyecto}/altaInventario", method = RequestMethod.POST)
 	public ModelAndView altaIventarioPost(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute @Valid Inventario inventario, BindingResult errors){
 				
-		ModelAndView view = null;
-		
+		ModelAndView view = null;		
 		
 		if(errors.hasErrors()){
 			Proyecto proyecto = proyectos.findProyecto(idProyecto);
@@ -106,8 +86,7 @@ public class InventariosController {
 			view.addObject("modo", "altaInventario");
 			view.addObject("modoTitulo", "Alta Inventario");
 			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-			
-			
+						
 		}else{
 			inventarios.nuevoInventario(idProyecto, inventario);
 			view = new ModelAndView("redirect:/inicio");
@@ -116,8 +95,7 @@ public class InventariosController {
 		return view;			
 		
 	}	
-	
-	
+		
 	@RequestMapping(value = "/proyecto/{idProyecto}/listarInventarios", method = RequestMethod.GET)
 	public ModelAndView listarInventarios(@PathVariable(value="idProyecto") Long idProyecto) {
 				
@@ -127,56 +105,38 @@ public class InventariosController {
 		
 		model.put("inventariosPorProyecto", inventariosPorProyecto);
 		
-		//model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 
 		ModelAndView view = new ModelAndView("inventarios/listarInventarios", model);
 		
 		return view;
 	}
+		
 	
-	
-	/*
-	@RequestMapping(value = "edit/gestores/{id}/", method = RequestMethod.GET)
-	public ModelAndView editarGestor(@PathVariable(value="id") Long id) {
+	@RequestMapping(value = "/proyecto/{idProyecto}/edit/inventario/{idInventario}/", method = RequestMethod.GET)
+	public ModelAndView editarInventario(@PathVariable(value="idProyecto") Long idProyecto, @PathVariable(value="idInventario") Long idInventario) {
+			
+		ModelAndView view = new ModelAndView("inventarios/inventarioForm");
+			
+		Proyecto proyecto = proyectos.findProyecto(idProyecto);
+		Investigador inv = proyecto.getInvestigadorPrincipal();
+		User userActivo = users.findOneUser(inv.getId());
 		
-		ModelAndView view = new ModelAndView("usuarios/userForm");
+		view.addObject("user", userActivo); 
 		
-		view.addObject("modoTitulo", "Editar");
-		view.addObject("tipoUsuario", "gestor");
-		view.addObject("modo", "");
+		Inventario inventario = this.inventarios.findOneInventario(idInventario);		
 		
-		User usuarioEditar = users.findOneUser(id);
-		
-		UserDTO usuarioEditarDTO = users.UserToUserDTO(usuarioEditar);
-		
-		view.addObject(usuarioEditarDTO);
+		view.addObject(inventario);
+		view.addObject("modoTitulo", "Editar Inventario");
+		view.addObject("modo", "");		
 		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-		return view;
-	}
-	
-	*/
-	
-	/*
-	@RequestMapping(value = "edit/inventario/{id}/", method = RequestMethod.POST)
-	public ModelAndView editarGestorPost(@ModelAttribute @Valid Inventario  inventario, BindingResult errors ,@PathVariable(value="id") Long id ) {
-	
-		ModelAndView view = null;			
 		
-		if (errors.hasErrors()) {
-			view = new ModelAndView("inventarios/inventariosForm");
-			view.addObject("modoTitulo", "Editar");	
-			view.addObject("modo", "");
-			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-			view.addObject("inventario", inventario);						
-		} else {
-			this.inventarios.editar(inventario,id);
-			view = new ModelAndView("redirect:/gestores");
-		}
 		
-		return view;		
+		return view;	
+		
 	}
+
 	
-	*/
 	
 	
 	

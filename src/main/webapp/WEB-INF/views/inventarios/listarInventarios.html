@@ -26,8 +26,7 @@
 											<th>Descripcion</th>
 											<th>Fecha</th>
 											<th>Observaciones</th>
-											
-
+											<th>Editar</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -39,6 +38,9 @@
 											<td th:text="${inventario.fecha}"></td>
 											<td th:text="${inventario.observaciones}"></td>
 											
+											<td> 
+												<a th:href="@{'edit/inventario/{id}/' (id=${inventario.id})} ">  Editar </a>
+											</td>
 											
 										</tr>
 									</tbody>
