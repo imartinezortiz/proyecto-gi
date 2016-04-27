@@ -29,10 +29,10 @@ public class InventariosManager {
 	}
 
 
-	public void nuevoInventario(Long idProyecto, Inventario inventario) {
+	public Inventario nuevoInventario(Long idProyecto, Inventario inventario) {
 		inventario.setProyecto(proyectos.getProyecto(idProyecto));
 	//	inventario.setNumContabilidad(proyectos.getProyecto(idProyecto).getNumContabilidad());
-		inventarioRepository.save(inventario);
+		return inventarioRepository.save(inventario);
 	}
 	
 	public List<Inventario> inventariosPorProyecto(Long idProyecto){
@@ -44,6 +44,22 @@ public class InventariosManager {
 	public Inventario findOneInventario(Long id) {
 		
 		return this.inventarioRepository.findOne(id);
+	}
+
+
+	public Inventario editar(Inventario inventario, Long idInventario) {
+		Inventario inventarioEdit = inventarioRepository.getOne(idInventario);	
+		
+		inventarioEdit.setAutorizacion(inventario.getAutorizacion());
+		inventarioEdit.setCentro(inventario.getCentro());
+		inventarioEdit.setDescripcion(inventario.getAutorizacion());
+		inventarioEdit.setFecha(inventario.getFecha());
+		inventarioEdit.setObservaciones(inventario.getObservaciones());
+		inventarioEdit.setProyecto(inventario.getProyecto());
+		
+			
+		return this.inventarioRepository.save(inventarioEdit);
+		
 	}
 
 }

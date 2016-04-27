@@ -66,7 +66,7 @@ public class InventariosController {
 		return view;
 	}
 	
-	@RequestMapping(value = "/proyecto/{idProyecto}/altaInventario", method = RequestMethod.POST)
+	@RequestMapping(value = "/proyecto/{idProyecto}/altaInventario/", method = RequestMethod.POST)
 	public ModelAndView altaIventarioPost(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute @Valid Inventario inventario, BindingResult errors){
 				
 		ModelAndView view = null;		
@@ -81,6 +81,9 @@ public class InventariosController {
 			inventario.setProyecto(proyecto);
 			view = new ModelAndView("inventarios/inventarioForm");
 			view.addObject("inventario",inventario);
+			
+			//Se pasa un IdInventario para th:action de EDITAR
+			view.addObject("idInventario","");
 			view.addObject("user",userActivo);
 			
 			view.addObject("modo", "altaInventario");
@@ -113,7 +116,7 @@ public class InventariosController {
 	}
 		
 	
-	@RequestMapping(value = "/proyecto/{idProyecto}/edit/inventario/{idInventario}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyecto/{idProyecto}/editarInventario/{idInventario}", method = RequestMethod.GET)
 	public ModelAndView editarInventario(@PathVariable(value="idProyecto") Long idProyecto, @PathVariable(value="idInventario") Long idInventario) {
 			
 		ModelAndView view = new ModelAndView("inventarios/inventarioForm");
@@ -128,7 +131,7 @@ public class InventariosController {
 		
 		view.addObject(inventario);
 		view.addObject("modoTitulo", "Editar Inventario");
-		view.addObject("modo", "");		
+		view.addObject("modo", "editarInventario");		
 		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		
 		
@@ -136,7 +139,39 @@ public class InventariosController {
 		
 	}
 
-	
+	@RequestMapping(value = "/proyecto/{idProyecto}/editarInventario/{idInventario}", method = RequestMethod.POST)
+	public ModelAndView editarInventarioPost(@PathVariable(value="idProyecto") Long idProyecto , @PathVariable(value="idInventario") Long idInventario,@ModelAttribute @Valid Inventario inventario, BindingResult errors){
+		
+		ModelAndView view = null;		
+		
+		Proyecto proyecto = proyectos.findProyecto(idProyecto);	
+		inventario.setProyecto(proyecto);
+		
+		if(errors.hasErrors()){
+			
+			view = new ModelAndView("inventarios/inventarioForm");			
+					
+			Investigador inv = proyecto.getInvestigadorPrincipal();			
+			User userActivo = users.findOneUser(inv.getId());				
+								
+			view.addObject("inventario",inventario);
+			
+			//Se pasa un IdInventario para th:action de EDITAR
+			view.addObject("idInventario",idInventario);
+			view.addObject("user",userActivo);			
+			view.addObject("modo", "editarInventario");
+			view.addObject("modoTitulo", "Editar Inventario");
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+						
+		}else{
+						
+			this.inventarios.editar(inventario,idInventario);
+			view = new ModelAndView("redirect:/inicio");			
+		}
+		
+		return view;	
+		
+	}
 	
 	
 	
