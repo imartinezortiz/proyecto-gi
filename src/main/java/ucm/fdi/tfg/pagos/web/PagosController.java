@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.pagos.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
 import ucm.fdi.tfg.pagos.business.entity.Gasto;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
@@ -109,4 +111,48 @@ public class PagosController {
 		
 		return view;
 	}
+	
+	@RequestMapping(value = "/proyecto/{idProyecto}/listarPagos", method = RequestMethod.GET)
+	public ModelAndView listarInventarios(@PathVariable(value="idProyecto") Long idProyecto) {
+				
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		List<Pago> pagosPorProyecto = pagoManager.pagosPorProyecto(idProyecto);
+		
+		model.put("pagosPorProyecto", pagosPorProyecto);
+		
+		
+		
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+
+		ModelAndView view = new ModelAndView("pagos/listarPagos", model);
+		
+		return view;
+	}
+	
+	
+	@RequestMapping(value = "/proyecto/{idProyecto}/edit/pago/{idPago}/", method = RequestMethod.GET)
+	public ModelAndView editarPago(@PathVariable(value="idProyecto") Long idProyecto, @PathVariable(value="idPago") Long idPago) {
+			
+		ModelAndView view = new ModelAndView("pagos/pagoForm");
+			
+		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
+		Investigador inv = proyecto.getInvestigadorPrincipal();
+		User userActivo = users.findOneUser(inv.getId());
+		
+		view.addObject("user", userActivo); 
+		
+		Pago pago = this.pagoManager.findOnePago(idPago);		
+		
+		view.addObject(pago);
+		view.addObject("modoTitulo", "Editar");
+		view.addObject("modo", "");		
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		
+		return view;	
+		
+	}
+	
+	
 }

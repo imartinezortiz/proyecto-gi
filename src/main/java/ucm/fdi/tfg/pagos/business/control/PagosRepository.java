@@ -1,31 +1,20 @@
 package ucm.fdi.tfg.pagos.business.control;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 
 @Repository
 public interface PagosRepository extends JpaRepository<Pago, Long> {	
 		
-		
-	/*
-	public Pago findByNumOrden (int numOrden){
-		// from ...(nombreClase)
-		Query query = em.createQuery("SELECT p FROM Pago p where p.numOrden= :numOrden");
-		query.setParameter("numOrden",numOrden);
-		Pago p;
-		//Como solo quiero un objeto, uso getsingleresult
-		try{
-			p = (Pago) query.getSingleResult();
-		}catch(NoResultException | NonUniqueResultException e ){
-			  return null;
-		}
-		  
-		return p;
-	}
-	
-	*/
+	@Query(" SELECT I FROM Pago I WHERE I.proyecto.id = :idProyecto")
+	public List<Pago> pagosPorProyecto(@Param(value = "idProyecto") Long idProyecto);
 
 
 	

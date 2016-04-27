@@ -54,12 +54,12 @@ public class Pago {
 	@NotEmpty(message="Campo vacio")
 	private String relacion;
 
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	private Proyecto proyecto;
-		
+	
+	@Valid
 	@ElementCollection(fetch=FetchType.EAGER)
-	@CollectionTable(name="PAGO_GASTOS", joinColumns=@JoinColumn(name="pagoId"),  uniqueConstraints=@UniqueConstraint(columnNames={"pagoId", "numFactura"}))
-	  @Valid
+	@CollectionTable(name="PAGO_GASTOS", joinColumns=@JoinColumn(name="pagoId"),  uniqueConstraints=@UniqueConstraint(columnNames={"pagoId", "numFactura"}))  
 	private Collection<Gasto> gastos;
 	
 	Pago() {

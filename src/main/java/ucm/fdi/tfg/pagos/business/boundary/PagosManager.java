@@ -1,5 +1,7 @@
 package ucm.fdi.tfg.pagos.business.boundary;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,14 @@ public class PagosManager {
 	 
 	 public void save(Pago pago){	
 		repositoryPago.save(pago);
+	}
+
+	public List<Pago> pagosPorProyecto(Long idProyecto) {
+		 return repositoryPago.pagosPorProyecto(idProyecto);
+	}
+
+	public Pago findOnePago(Long idPago) {
+		return repositoryPago.findOne(idPago);
 	}
 	 
 	 /*
