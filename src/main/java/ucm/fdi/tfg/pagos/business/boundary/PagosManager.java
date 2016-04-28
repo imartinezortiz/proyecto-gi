@@ -33,6 +33,20 @@ public class PagosManager {
 	public Pago findOnePago(Long idPago) {
 		return repositoryPago.findOne(idPago);
 	}
+
+	public Pago editar(Pago pago, Long idPago) {
+		Pago pagoEditar = repositoryPago.getOne(idPago);
+		pagoEditar.setBic(pago.getBic());
+		pagoEditar.setFecha(pago.getFecha());
+		pagoEditar.setGastos(pago.getGastos());
+		pagoEditar.setIban(pago.getIban());
+		pagoEditar.setMemoria(pago.getMemoria());
+		pagoEditar.setNumOrden(pago.getNumOrden());
+		pagoEditar.setPagador(pago.getPagador());
+		pagoEditar.setProyecto(pago.getProyecto());
+		pagoEditar.setRelacion(pago.getRelacion());
+		return repositoryPago.save(pagoEditar);
+	}
 	 
 	 /*
 	public Collection<Gasto> getAllGastos(){
