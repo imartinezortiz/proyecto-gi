@@ -34,7 +34,7 @@ public class Proyecto {
 	@JoinColumn(name="investigadorID")
 	private Investigador investigadorPrincipal;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	private Collection<Investigador> investigadores;
 
 	private String numContabilidad;	
