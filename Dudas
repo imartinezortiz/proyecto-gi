@@ -25,6 +25,11 @@ DUDAS:
 			* Cambiar redirección cuando se da de alta viaje, inventario, pago.
 			
 			
+	Dudas:
+	
+		USER.java : Al quitar EAGER de Collection<UserRole> roles, salta el error de Lazy!  
+			
+			
 			
 			
 		

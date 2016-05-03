@@ -29,7 +29,7 @@ public class Inventario {
 	private Long id;
 	
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne
 	private Proyecto proyecto;
 	
 	@NotEmpty(message="Campo vacio")

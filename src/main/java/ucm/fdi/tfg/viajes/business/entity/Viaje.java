@@ -46,7 +46,7 @@ public class Viaje {
 	
 // ----------- JUSTIFICACION GASTOS -----------------------------------
 	
-	@ElementCollection(fetch=FetchType.EAGER)
+	@ElementCollection
 	private Collection<GastoViaje> gastos; //Transporte 
 
 	//Atributos para Dieta
