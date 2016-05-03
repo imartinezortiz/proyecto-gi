@@ -92,7 +92,7 @@ public class InventariosController {
 						
 		}else{
 			inventarios.nuevoInventario(idProyecto, inventario);
-			view = new ModelAndView("redirect:/inicio");
+			view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/");
 			
 		}
 		return view;			
@@ -166,7 +166,7 @@ public class InventariosController {
 		}else{
 						
 			this.inventarios.editar(inventario,idInventario);
-			view = new ModelAndView("redirect:/inicio");			
+			view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/");			
 		}
 		
 		return view;	

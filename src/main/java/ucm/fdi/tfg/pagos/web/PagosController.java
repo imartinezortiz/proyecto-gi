@@ -100,7 +100,7 @@ public class PagosController {
 		}else{
 			pago.setProyecto(proyectosManager.findProyecto(idProyecto));
 			pagoManager.save(pago);	
-			view = new ModelAndView("redirect:/inicio");
+			view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/");
 		}
 		return view;
 		
@@ -184,7 +184,7 @@ public class PagosController {
 		}else{
 			pago.setProyecto(proyectosManager.findProyecto(idProyecto));
 			pagoManager.editar(pago,idPago);	
-			view = new ModelAndView("redirect:/inicio");
+			view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/");
 		}
 		return view;
 		
