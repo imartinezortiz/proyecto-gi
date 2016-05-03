@@ -1,32 +1,29 @@
 DUDAS:
 
 	Cosas Pendientes:
-		RICO:						
+								
 			*VIAJES: 
 				- Validar VIAJES
 				- DIETAS (Iván)
-				- Quitar javascript puro					
+				- Quitar javascript puro
+				- Editar Viajes				
 				
 			* Validar constraseñas (que sean iguales al hacer un alta) 			
 			
 			* Eliminar primer tr de la tabla de gastos de Pagos (como en Viajes). Y solo un boton +.
 			
-		NIETO:
-			*Validar Gastos - Pagos
-			*PagingAndSortRepository... ( Usando SB Admin )
-			*Editar. 
-	
-	
-		DUDAS:
-		
-			*Preguntar si una sola vista q sea listarUsuarios, que englobe las 3 opciones.
-					  Dependiendo, sera 3 requestMaping edit/admin/3  edit/investigador/3   edit/gestor/3  
-					  o edi/user/3.
-				    
-		    	
-			*[Viajes] Como mejorar para mandar los investigadores de "un proyecto" a al formulario de Viajes
+				
+			*[Pagos-gastos] Al validar un bigdecimal cuando se mete una cadena salta exception y coge "message". Mirar como cambiar ese mensaje en Spring.
 			
-			*[Pagos-gastos] Al validar un bigdecimal cuando se mete una cadena salta exception y coge "message"
+			* Quitar EAGER
+			
+			* Cambiar a plural URLs: proyectos/1/..
+			
+			* Fecha del Sistema por defecto en los form
+			
+			* Btn añadir tb en la vista de listar
+			
+			
 			
 			
 		
