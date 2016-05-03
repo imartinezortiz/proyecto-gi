@@ -33,7 +33,7 @@
 										<tr th:each="proyecto : ${proyectos}">
 											<td>
 												<a
-													th:href="@{'/proyecto/{id}/' (id=${proyecto.id})}"
+													th:href="@{'/proyectos/{id}/' (id=${proyecto.id})}"
 													th:text="${proyecto.titulo}">
 												</a>
 											</td>
@@ -41,7 +41,7 @@
 											<td th:text="${proyecto.numContabilidad}"></td>
 											<td th:text="${proyecto.investigadores.size()}"></td>
 											<td> 
-												<a th:href="@{'edit/proyecto/{id}/' (id=${proyecto.id})} ">  Editar </a>
+												<a th:href="@{'edit/proyectos/{id}/' (id=${proyecto.id})} ">  Editar </a>
 											</td>
 										</tr>
 									</tbody>

@@ -48,7 +48,7 @@ public class ProyectoController {
 			return view;
 		}
 		
-		@RequestMapping(value = "/proyecto/{id}/", method = RequestMethod.GET)
+		@RequestMapping(value = "/proyectos/{id}/", method = RequestMethod.GET)
 		public ModelAndView menuProyecto(@PathVariable(value="id") Long id) {
 			
 			Map<String, Object> model = new HashMap<String, Object>();
@@ -92,7 +92,7 @@ public class ProyectoController {
 		return view;		
 	}
 	
-	@RequestMapping(value = "edit/proyecto/{id}/", method = RequestMethod.GET)
+	@RequestMapping(value = "edit/proyectos/{id}/", method = RequestMethod.GET)
 	public ModelAndView editProyecto(@PathVariable(value="id") Long id) {
 		
 		ModelAndView view = null;
@@ -108,7 +108,7 @@ public class ProyectoController {
 		return view;
 	}
 	
-	@RequestMapping(value = "/edit/proyecto/{id}/", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit/proyectos/{id}/", method = RequestMethod.POST)
 	public ModelAndView editarProyectoPost(@ModelAttribute("nuevoProyectoDTO") @Valid NuevoProyectoDTO  editarProyectoDTO, BindingResult errors) {
 		
 		ModelAndView view = null;			

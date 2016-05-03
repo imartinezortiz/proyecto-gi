@@ -16,7 +16,7 @@
 					<p class="panel-title">Introduzca valores Pago</p>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal" role="form" action="#" th:action="@{'/proyecto/{idProyecto}/{modo}/pago/{idPago}'  (idProyecto=*{proyecto.id} , modo=${modo}, idPago=${idPago})}"
+					<form class="form-horizontal" role="form" action="#" th:action="@{'/proyectos/{idProyecto}/{modo}/{idPago}'  (idProyecto=*{proyecto.id} , modo=${modo}, idPago=${idPago})}"
 						th:object="${pago}" method="POST">
 						<div class="form-group" th:classappend="${#fields.hasErrors('fecha')} ? has-error">
 						 <label class="control-label col-md-2" for="fecha">Fecha:</label>

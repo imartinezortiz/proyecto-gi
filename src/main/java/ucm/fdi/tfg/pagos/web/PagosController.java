@@ -45,7 +45,7 @@ public class PagosController {
 		this.users = users;
 	}
 		
-	@RequestMapping(value = "/proyecto/{idProyecto}/alta/pago", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyectos/{idProyecto}/altaPago", method = RequestMethod.GET)
 	public ModelAndView pagoform(@PathVariable(value="idProyecto") Long idProyecto) {
 		
 		
@@ -66,7 +66,7 @@ public class PagosController {
 		model.put("pago", pago);
 		model.put("user", userActivo);
 		model.put("modoTitulo", "Alta");
-		model.put("modo", "alta");	
+		model.put("modo", "altaPago");	
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 
 		ModelAndView view = new ModelAndView("pagos/pagoForm", model);
@@ -77,7 +77,7 @@ public class PagosController {
 	
 	//Igual que en thymeleaf le decimos mediante th:object el objeto q mandamos,  
 	//en spring mediante ModelAttribute le decimos el tipo de objeto que le llega.
-	@RequestMapping(value = "/proyecto/{idProyecto}/alta/pago", method = RequestMethod.POST)
+	@RequestMapping(value = "/proyectos/{idProyecto}/altaPago", method = RequestMethod.POST)
 	public ModelAndView addPago(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute @Valid Pago pago, BindingResult errors){
 		
 		ModelAndView view = null;	
@@ -95,7 +95,7 @@ public class PagosController {
 			view.addObject("pago", pago);
 			view.addObject("user", userActivo);
 			view.addObject("modoTitulo", "Alta");
-			view.addObject("modo", "alta");	
+			view.addObject("modo", "altaPago");	
 			
 		}else{
 			pago.setProyecto(proyectosManager.findProyecto(idProyecto));
@@ -116,7 +116,7 @@ public class PagosController {
 		return view;
 	}
 	
-	@RequestMapping(value = "/proyecto/{idProyecto}/listarPagos", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyectos/{idProyecto}/pagos", method = RequestMethod.GET)
 	public ModelAndView listarInventarios(@PathVariable(value="idProyecto") Long idProyecto) {
 				
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -135,7 +135,7 @@ public class PagosController {
 	}
 	
 	
-	@RequestMapping(value = "/proyecto/{idProyecto}/edit/pago/{idPago}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyectos/{idProyecto}/edit/pagos/{idPago}/", method = RequestMethod.GET)
 	public ModelAndView editarPago(@PathVariable(value="idProyecto") Long idProyecto, @PathVariable(value="idPago") Long idPago) {
 			
 		ModelAndView view = new ModelAndView("pagos/pagoForm");
@@ -151,7 +151,7 @@ public class PagosController {
 		view.addObject(pago);
 		
 		view.addObject("modoTitulo", "Editar");
-		view.addObject("modo", "edit");	
+		view.addObject("modo", "edit/pagos");	
 		view.addObject("idPago", idPago);	
 		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		
@@ -160,7 +160,7 @@ public class PagosController {
 		
 	}
 	
-	@RequestMapping(value = "/proyecto/{idProyecto}/edit/pago/{idPago}", method = RequestMethod.POST)
+	@RequestMapping(value = "/proyectos/{idProyecto}/edit/pagos/{idPago}", method = RequestMethod.POST)
 	public ModelAndView editarPagoPost(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute @Valid Pago pago, BindingResult errors, @PathVariable(value="idPago") Long idPago){
 		
 		ModelAndView view = null;	
@@ -178,7 +178,7 @@ public class PagosController {
 			view.addObject("pago", pago);
 			view.addObject("user", userActivo);
 			view.addObject("modoTitulo", "Editar");
-			view.addObject("modo", "edit");	
+			view.addObject("modo", "edit/pagos");	
 			view.addObject("idPago", idPago);
 			
 		}else{

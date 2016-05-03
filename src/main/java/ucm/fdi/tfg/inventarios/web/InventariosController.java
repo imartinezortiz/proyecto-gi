@@ -41,7 +41,7 @@ public class InventariosController {
 	}
 		
 	
-	@RequestMapping(value = "/proyecto/{idProyecto}/altaInventario", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyectos/{idProyecto}/altaInventario", method = RequestMethod.GET)
 	public ModelAndView altaInventario(@PathVariable(value="idProyecto") Long idProyecto) {
 				
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -66,7 +66,7 @@ public class InventariosController {
 		return view;
 	}
 	
-	@RequestMapping(value = "/proyecto/{idProyecto}/altaInventario/", method = RequestMethod.POST)
+	@RequestMapping(value = "/proyectos/{idProyecto}/altaInventario/", method = RequestMethod.POST)
 	public ModelAndView altaIventarioPost(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute @Valid Inventario inventario, BindingResult errors){
 				
 		ModelAndView view = null;		
@@ -99,7 +99,7 @@ public class InventariosController {
 		
 	}	
 		
-	@RequestMapping(value = "/proyecto/{idProyecto}/listarInventarios", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyectos/{idProyecto}/inventarios", method = RequestMethod.GET)
 	public ModelAndView listarInventarios(@PathVariable(value="idProyecto") Long idProyecto) {
 				
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -116,7 +116,7 @@ public class InventariosController {
 	}
 		
 	
-	@RequestMapping(value = "/proyecto/{idProyecto}/editarInventario/{idInventario}", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyectos/{idProyecto}/edit/inventarios/{idInventario}", method = RequestMethod.GET)
 	public ModelAndView editarInventario(@PathVariable(value="idProyecto") Long idProyecto, @PathVariable(value="idInventario") Long idInventario) {
 			
 		ModelAndView view = new ModelAndView("inventarios/inventarioForm");
@@ -131,7 +131,7 @@ public class InventariosController {
 		
 		view.addObject(inventario);
 		view.addObject("modoTitulo", "Editar Inventario");
-		view.addObject("modo", "editarInventario");		
+		view.addObject("modo", "edit/inventarios");		
 		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		
 		
@@ -139,7 +139,7 @@ public class InventariosController {
 		
 	}
 
-	@RequestMapping(value = "/proyecto/{idProyecto}/editarInventario/{idInventario}", method = RequestMethod.POST)
+	@RequestMapping(value = "/proyectos/{idProyecto}/edit/inventarios/{idInventario}", method = RequestMethod.POST)
 	public ModelAndView editarInventarioPost(@PathVariable(value="idProyecto") Long idProyecto , @PathVariable(value="idInventario") Long idInventario,@ModelAttribute @Valid Inventario inventario, BindingResult errors){
 		
 		ModelAndView view = null;		
@@ -159,7 +159,7 @@ public class InventariosController {
 			//Se pasa un IdInventario para th:action de EDITAR
 			view.addObject("idInventario",idInventario);
 			view.addObject("user",userActivo);			
-			view.addObject("modo", "editarInventario");
+			view.addObject("modo", "edit/inventarios");
 			view.addObject("modoTitulo", "Editar Inventario");
 			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 						
