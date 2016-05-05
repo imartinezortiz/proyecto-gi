@@ -56,6 +56,7 @@ public class UserController {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("tipoUsuario", "administradores");
+		model.put("modo", "altaAdmin");
 		model.put("usuarios", users.findAllAdministradores());
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		ModelAndView view = new ModelAndView("usuarios/listarUsuarios", model);
@@ -148,7 +149,7 @@ public class UserController {
 		model.put("tipoUsuario", "gestores");
 		model.put("usuarios", users.findAllGestores());
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-		
+		model.put("modo", "altaGestor");
 		ModelAndView view = new ModelAndView("usuarios/listarUsuarios", model);
 		
 		return view;
@@ -239,7 +240,7 @@ public class UserController {
 		model.put("tipoUsuario", "investigadores");
 		model.put("usuarios", users.findAllUserInvestigadores());
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-		
+		model.put("modo", "altaInvestigador");
 		ModelAndView view = new ModelAndView("usuarios/listarUsuarios", model);
 		
 		return view;

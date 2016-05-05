@@ -124,7 +124,7 @@ public class PagosController {
 		List<Pago> pagosPorProyecto = pagoManager.pagosPorProyecto(idProyecto);
 		
 		model.put("pagosPorProyecto", pagosPorProyecto);
-		
+		model.put("idProyecto", idProyecto);
 		
 		
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
