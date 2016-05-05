@@ -30,13 +30,13 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="viajes : ${viajesPorProyecto}">
+										<tr th:each="viaje : ${viajesPorProyecto}">
 											
-											<td th:text="${viajes.id}"></td>											
-											<td th:text="${viajes.numOrden}"></td>
-											<td th:text="${viajes.itinerario}"></td>
-											<td th:text="${viajes.objetoDesplazamiento}"></td>
-											<td th:text="${viajes.observaciones}"></td>
+											<td th:text="${viaje.id}"></td>											
+											<td th:text="${viaje.numOrden}"></td>
+											<td th:text="${viaje.itinerario}"></td>
+											<td th:text="${viaje.objetoDesplazamiento}"></td>
+											<td th:text="${viaje.observaciones}"></td>
 											
 											<td> 
 												<a th:href="@{'edit/viajes/{id}/' (id=${viaje.id})} ">  Editar </a>

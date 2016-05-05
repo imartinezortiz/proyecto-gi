@@ -232,6 +232,9 @@ public class Viaje {
 		this.fecha = fecha;
 	}
 
+
+	
+
 	
 
 }

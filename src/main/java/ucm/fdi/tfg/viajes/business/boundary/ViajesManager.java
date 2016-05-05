@@ -40,6 +40,36 @@ public class ViajesManager {
 	public void setCostePorKm(BigDecimal costePorKm) {
 		this.costePorKm = costePorKm;
 	}
+
+	public List<Viaje> viajesPorProyecto(Long idProyecto) {
+		return viajes.viajesPorProyecto(idProyecto);
+	}
+
+	public Viaje findOneViaje(Long idViaje) {
+		// TODO Auto-generated method stub
+		return viajes.findOne(idViaje);
+	}
+
+	public void editar(Viaje viaje, Long idViaje) {
+		Viaje viajeEditar = this.viajes.getOne(idViaje);
+		viajeEditar.setDietaID(viaje.getDietaID());
+		viajeEditar.setFecha(viaje.getFecha());
+		viajeEditar.setFechaFin(viaje.getFechaFin());
+		viajeEditar.setFechaInicio(viaje.getFechaInicio());
+		viajeEditar.setGastos(viaje.getGastos());
+		viajeEditar.setImporteDieta(viaje.getImporteDieta());
+		viajeEditar.setInvestigador(viaje.getInvestigador());
+		viajeEditar.setInvitado(viaje.getInvitado());
+		viajeEditar.setItinerario(viaje.getItinerario());
+		viajeEditar.setMiembroProyecto(viaje.isMiembroProyecto());
+		viajeEditar.setNumDietas(viaje.getNumDietas());
+		viajeEditar.setNumOrden(viaje.getNumOrden());
+		viajeEditar.setObjetoDesplazamiento(viaje.getObjetoDesplazamiento());
+		viajeEditar.setObservaciones(viaje.getObservaciones());
+		viajeEditar.setPagarA(viaje.getPagarA());
+		viajeEditar.setProyecto(viaje.getProyecto());
+		viajes.save(viajeEditar);
+	}
 	
 	
 }

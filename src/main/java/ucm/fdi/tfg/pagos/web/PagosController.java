@@ -44,7 +44,9 @@ public class PagosController {
 		this.proyectosManager = gestorManager;
 		this.users = users;
 	}
-		
+	
+
+	
 	@RequestMapping(value = "/proyectos/{idProyecto}/altaPago", method = RequestMethod.GET)
 	public ModelAndView pagoform(@PathVariable(value="idProyecto") Long idProyecto) {
 		
