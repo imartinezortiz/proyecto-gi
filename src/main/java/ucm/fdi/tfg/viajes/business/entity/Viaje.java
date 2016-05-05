@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.viajes.business.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -13,6 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.entity.Investigador;
@@ -26,8 +32,12 @@ public class Viaje {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //va incrementando id
 	private Long id;
 	
-	private String numOrden;	
-	private String fecha;	
+	private String numOrden;
+	
+	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
+	@DateTimeFormat(iso = ISO.DATE)
+	@NotNull(message="Introduce una fecha")
+	private LocalDate fecha;
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	private Proyecto proyecto;
@@ -40,8 +50,17 @@ public class Viaje {
 	
 	private String objetoDesplazamiento;
 	private String itinerario;
-	private String fechaInicio;
-	private String fechaFin;
+	
+	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
+	@DateTimeFormat(iso = ISO.DATE)
+	@NotNull(message="Introduce una fecha")
+	private LocalDate fechaInicio;
+	
+	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
+	@DateTimeFormat(iso = ISO.DATE)
+	@NotNull(message="Introduce una fecha")
+	private LocalDate fechaFin;
+	
 	
 	
 // ----------- JUSTIFICACION GASTOS -----------------------------------
@@ -67,6 +86,7 @@ public class Viaje {
 	public Viaje(){
 		this.miembroProyecto = true;
 		this.gastos = new ArrayList<GastoViaje>();
+		this.fecha = LocalDate.now();
 		
 	}
 	
@@ -75,6 +95,7 @@ public class Viaje {
 		this.miembroProyecto = true;
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<GastoViaje>();
+		this.fecha = LocalDate.now();
 	}
 
 	
@@ -108,7 +129,6 @@ public class Viaje {
 		this.dietaID = dietaID;
 	}
 
-
 	
 
 	public String getPagarA() {
@@ -127,19 +147,19 @@ public class Viaje {
 		this.observaciones = observaciones;
 	}	
 	
-	public String getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(String fechaInicio) {
+	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public String getFechaFin() {
+	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(String fechaFin) {
+	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 	
@@ -224,11 +244,11 @@ public class Viaje {
 		this.numOrden = numOrden;
 	}
 
-	public String getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

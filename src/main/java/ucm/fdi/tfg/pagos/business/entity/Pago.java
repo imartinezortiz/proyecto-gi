@@ -2,6 +2,7 @@ package ucm.fdi.tfg.pagos.business.entity;
 
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -20,7 +21,10 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
@@ -36,8 +40,10 @@ public class Pago {
 	@NotEmpty(message="Campo vacio")
 	private String numOrden;
 	
-	@NotEmpty(message="Campo vacio")
-	private String fecha;
+	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
+	@DateTimeFormat(iso = ISO.DATE)
+	@NotNull(message="Introduce una fecha")
+	private LocalDate fecha;
 	
 	@NotEmpty(message="Campo vacio")
 	private String iban;
@@ -71,7 +77,7 @@ public class Pago {
 	
 	public Pago (Proyecto proyecto, String numOrden,String fecha) {			
 		this.numOrden = numOrden;
-		this.fecha = fecha;
+		this.fecha = LocalDate.now();
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<Gasto>();	
 	}
@@ -132,10 +138,10 @@ public class Pago {
 	public String getNumOrden() {
 		return numOrden;
 	}
-	public String getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	
