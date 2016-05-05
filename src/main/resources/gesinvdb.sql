@@ -180,3 +180,6 @@ INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha,
 -- Inventario de proyecto 2
 INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, proyecto_id) VALUES (8, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 2);
 
+
+--Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);
+INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, `proyecto_id`) VALUES ('0', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a', '1')
