@@ -33,8 +33,6 @@ public class ProyectoController {
 		this.users = users;
 	}
 
-
-	 	
 		@RequestMapping(value = "/proyectos", method = RequestMethod.GET)
 		public ModelAndView listarProeyctos() {
 			
@@ -69,7 +67,11 @@ public class ProyectoController {
 		
 		model.put("investigadores", users.findAllUserInvestigadores());
 		model.put("nuevoProyectoDTO",  new NuevoProyectoDTO());
+		model.put("modoTitulo", "Alta");
+		model.put("modo", "crearProyecto");	
+		model.put("idProyecto", "");
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		
 		ModelAndView view = new ModelAndView("proyectos/proyectoForm", model);
 
 		return view;
@@ -83,7 +85,10 @@ public class ProyectoController {
 		if (errors.hasErrors()) {
 			view = new ModelAndView("proyectos/proyectoForm");
 			view.addObject("investigadores", users.findAllUserInvestigadores());
-			view.addObject("nuevoProyectoDTO", nuevoProyectoDTO);						
+			view.addObject("modoTitulo", "Alta");
+			view.addObject("nuevoProyectoDTO", nuevoProyectoDTO);
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+
 		} else {
 			proyectos.nuevoProyecto(nuevoProyectoDTO);
 			view = new ModelAndView("redirect:/proyectos");
@@ -96,7 +101,7 @@ public class ProyectoController {
 	public ModelAndView editProyecto(@PathVariable(value="id") Long id) {
 		
 		ModelAndView view = null;
-		view = new ModelAndView("proyectos/proyectoFormEditar");
+		view = new ModelAndView("proyectos/proyectoForm");
 		
 		Proyecto proyecto = proyectos.findProyecto(id);
 		
@@ -104,6 +109,9 @@ public class ProyectoController {
 		
 		view.addObject("investigadores", users.findAllUserInvestigadores());
 		view.addObject("nuevoProyectoDTO" ,proyectDTO);
+		view.addObject("modoTitulo", "Editar");
+		view.addObject("modo", "");	
+		view.addObject("idProyecto", "");
 		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		return view;
 	}
@@ -114,9 +122,11 @@ public class ProyectoController {
 		ModelAndView view = null;			
 		
 		if (errors.hasErrors()) {
-			view = new ModelAndView("proyectos/proyectoFormEditar");
+			view = new ModelAndView("proyectos/proyectoForm");
 			view.addObject("investigadores", users.findAllUserInvestigadores());
-			view.addObject("nuevoProyectoDTO", editarProyectoDTO);						
+			view.addObject("nuevoProyectoDTO", editarProyectoDTO);	
+			view.addObject("modoTitulo", "Editar");
+			view.addObject("modo", "");	
 		} else {
 			proyectos.editar(editarProyectoDTO);
 			view = new ModelAndView("redirect:/proyectos");

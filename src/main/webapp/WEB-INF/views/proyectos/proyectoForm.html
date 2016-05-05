@@ -5,7 +5,7 @@
 <div id="page-wrapper">
 	<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Crear Proyecto</h1>
+					<h1 class="page-header" th:text="|${modoTitulo} Proyecto|"></h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -14,7 +14,7 @@
 			<p class="panel-title">Datos Proyecto</p>
 		</div>
 		<div class="panel-body">
-			<form class="form-horizontal"  role="form" action="#" th:action="@{/crearProyecto}"
+			<form class="form-horizontal"  role="form" action="#" th:action="@{${modo}}" 
 				th:object="${nuevoProyectoDTO}" method="POST">
 			
 					<div class="form-group"
@@ -73,11 +73,10 @@
 								th:field="*{numContabilidad}" />
 								<span class="help-block" th:errors="*{numContabilidad}">[errors]</span>
 						</div>
+						<input type="hidden" th:field="*{idProyecto}" />
 						
 					</div>
-					<input type="submit" class="btn btn-lg btn-success btn-block"
-						value="Crear Proyecto" />
-				
+					<button type="submit" class="btn btn-lg btn-success btn-block" th:text="${modoTitulo}" ></button>
 				<input type="hidden" th:name="${_csrf.parameterName}"
 					th:value="${_csrf.token}" />
 			</form>
