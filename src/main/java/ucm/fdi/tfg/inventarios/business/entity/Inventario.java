@@ -48,11 +48,12 @@ public class Inventario {
 	private LocalDate fecha;
 	
 	public Inventario(){
-		
+		this.fecha = LocalDate.now();
 	}
 	
 	public Inventario(Proyecto proyecto){
 		this.proyecto = proyecto;
+		this.fecha = LocalDate.now();
 	}
 
 	public Proyecto getProyecto() {

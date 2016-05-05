@@ -64,7 +64,7 @@ INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorI
 INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (2,6);
 INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (2,7);
 
-INSERT INTO pagos(pagoId, numOrden,fecha,iban,bic,pagador,memoria,relacion, proyecto_id) VALUES (1,111,'05-04-2016','100','150','David','Memoriaaa','La relacion misma',1);
+INSERT INTO pagos(pagoId, numOrden,fecha,iban,bic,pagador,memoria,relacion, proyecto_id) VALUES (1,111,'2016-04-21','100','150','David','Memoriaaa','La relacion misma',1);
 
 INSERT INTO pago_gastos (pagoId, importe, numFactura, proveedor) VALUES (1, '100.00', '222', 'p1');
 
