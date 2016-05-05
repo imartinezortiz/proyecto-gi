@@ -155,13 +155,13 @@ public class PagosController {
 	public ModelAndView editarPagoPost(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute @Valid Pago pago, BindingResult errors, @PathVariable(value="idPago") Long idPago){
 		
 		ModelAndView view = null;	
+		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
+		
+		pago.setProyecto(proyecto);
 		
 		if(errors.hasErrors()){
 			
 			view = new ModelAndView("pagos/pagoForm");
-			Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
-	
-			pago.setProyecto(proyecto);
 	
 			Investigador inv = proyecto.getInvestigadorPrincipal();
 			
@@ -173,7 +173,6 @@ public class PagosController {
 			view.addObject("idPago", idPago);
 			
 		}else{
-			pago.setProyecto(proyectosManager.findProyecto(idProyecto));
 			pagoManager.editar(pago,idPago);	
 			view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/");
 		}
