@@ -60,8 +60,8 @@ public class PagosController {
 		
 		Pago pago = new Pago(proyecto);
 		
-		Gasto g =new Gasto();
-		pago.getGastos().add(g);
+		//Gasto g =new Gasto();
+		//pago.getGastos().add(g);
 		
 		model.put("pago", pago);
 		model.put("user", userActivo);
@@ -106,18 +106,9 @@ public class PagosController {
 		
 		
 	}
-	
-	@RequestMapping(value = "/errorPago", method = RequestMethod.GET)
-	public ModelAndView errores() {
-		
-		ModelAndView view = new ModelAndView("error");
-		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-		
-		return view;
-	}
-	
+
 	@RequestMapping(value = "/proyectos/{idProyecto}/pagos", method = RequestMethod.GET)
-	public ModelAndView listarInventarios(@PathVariable(value="idProyecto") Long idProyecto) {
+	public ModelAndView listarPagos(@PathVariable(value="idProyecto") Long idProyecto) {
 				
 		Map<String, Object> model = new HashMap<String, Object>();
 		
