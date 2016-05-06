@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.users.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -122,9 +125,10 @@ public class UserController {
 	@RequestMapping(value = "edit/administradores/{id}/", method = RequestMethod.POST)
 	public ModelAndView editarAdministradorPost(@ModelAttribute("userDTO") @Valid UserDTO  userDTO, BindingResult errors ,@PathVariable(value="id") Long id ) {
 	
-		ModelAndView view = null;			
+		ModelAndView view = null;	
 		
-		if (errors.hasErrors()) {
+		//if (errors.hasErrors()) {
+		if (errors.getErrorCount() > 2 || errorPassword(errors.getAllErrors() )) {
 			view = new ModelAndView("usuarios/userForm");
 			view.addObject("modoTitulo", "Editar");	
 			view.addObject("modo", "");
@@ -141,6 +145,19 @@ public class UserController {
 	
 	// ------------------------------------------------------- GESTORES ---------------------------------------------------------------------
 
+	
+	private boolean errorPassword(List<ObjectError> errors) {
+		  for(ObjectError e: errors) {
+		    if ( !(e instanceof FieldError) ) {
+		      return false;
+		    }
+		    String field = ((FieldError)e).getField();
+		    if ( ! "password".equals(field) || ! "nuevaPassword".equals(field)) {
+		      return false;
+		    }
+		  }
+		  return true;
+		}
 	
 	@RequestMapping(value = "/gestores", method = RequestMethod.GET)
 	public ModelAndView listarGestores() {
