@@ -118,8 +118,7 @@
 							
 								
 									<tbody id="gastos">
-										  
-										<tr id="gasto0" th:each="gasto,gastoStat : *{gastos}">
+										  <tr id="gasto0" th:each="gasto,gastoStat : *{gastos}" th:id="'gasto' + ${gastoStat.index}">
 											
 											<td class="col-md-2" th:classappend="${#fields.hasErrors('gastos[__${gastoStat.index}__].numFactura')} ? has-error">	
 												<input type="text" class="form-control"  
@@ -143,13 +142,16 @@
 											
 											
 											<td class="col-md-2">
-												<button id="btnMenos0" onclick="removeText(this.id)" class="btn btn-danger form-control"
+												<button  th:id="'btnMenos' + ${gastoStat.index}" onclick="removeText(this.id)" class="btn btn-danger form-control"
 													type="button" >-</button>
 											</td>
 
 										</tr>
 										
+										
 									</tbody>
+									
+									
 									
 
 								</table>
