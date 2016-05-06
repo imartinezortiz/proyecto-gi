@@ -76,8 +76,9 @@ public class ViajesController {
 		
 		Viaje viaje = new Viaje(proyecto);
 		
-		GastoViaje g = new GastoViaje();
-		viaje.getGastos().add(g);		
+		
+		//GastoViaje g = new GastoViaje();
+		//viaje.getGastos().add(g);		
 		
 		
 		List<Dieta> dietas = viajes.dameDietas();

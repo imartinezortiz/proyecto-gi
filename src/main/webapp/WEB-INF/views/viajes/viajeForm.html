@@ -252,7 +252,44 @@
 								
 								<tbody id="gastos">		
 								
-								
+									<tr th:each="gasto,gastoStat : *{gastos}" th:id="'gasto' + ${gastoStat.index}" >
+											
+											<td class="col-md-2" th:classappend="${#fields.hasErrors('gastos[__${gastoStat.index}__].tipo')} ? has-error">	
+												<input type="text" class="form-control"  
+													th:field="*{gastos[__${gastoStat.index}__].tipo}" readonly="readonly"/>
+																					
+												
+											</td>
+											
+											<td class="col-md-5" th:classappend="${#fields.hasErrors('gastos[__${gastoStat.index}__].descripcion')} ? has-error">
+												<input type="text"
+													class="form-control" 
+													th:field="*{gastos[__${gastoStat.index}__].descripcion}"  readonly="readonly" />
+												
+											</td>
+											
+											<td>
+											
+											</td>
+											
+											<td>
+											
+											</td>								
+											
+											
+											<td class="col-md-2"th:classappend="${#fields.hasErrors('gastos[__${gastoStat.index}__].importe')} ? has-error">
+												<input type="text"
+													class="form-control" 
+													th:field="*{gastos[__${gastoStat.index}__].importe}" readonly="readonly"/>
+												
+											</td>
+											
+																					
+											<td class="col-md-2">
+												<button th:id="'btnMenos' + ${gastoStat.index}" onclick="removeText(this.id)" class="btn btn-danger form-control"
+													type="button" >-</button>
+											</td>
+										</tr>								
 														
 								</tbody>
 								
