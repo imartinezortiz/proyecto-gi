@@ -208,8 +208,8 @@
 								</div>
 							</div>
 							
-							<label id=labelPrecioKM style="display:none" class="label label-info">Factor KM = 0.19 </label>
-							
+							<label id=labelPrecioKM style="display:none" class="label label-info" > Factor KM = 0.19 €/Km</label>
+						
 							
 						</div>
 						
@@ -231,8 +231,7 @@
 										type="button">+</button>
 								</div>
 							</div>
-						</div>
-						
+						</div>		
 						
 						
 						
@@ -336,7 +335,7 @@
 						<div class="input-group col-xs-3">							
 							<input type="text" id="gastoTotal" value=0 readonly="readonly"
 								class="form-control text-center" aria-label="Amount (to the nearest dollar)">									
-							<span class="input-group-addon">$</span> 		
+							<span class="input-group-addon">€</span> 		
 										
 						</div>
 						<span class="help-block">Gastos Totales.</span>	
@@ -377,25 +376,7 @@
 
 <div th:include="scripts"></div>
 
-<script type="text/javascript">
 
-	/*
-	*	Función que actualiza el input del importe Total acumulado de todos los gastos
-	*/
-	function actualizarImporteTotalGastos() {
-		 
-		 var acu = 0;
-		
-		 //Recorremos todos los input que contienen en su atributo name la cadena importe.
-		 $("input[name*=importe]").each(function(){
-	
-		 	acu = acu + Number($(this).val());
-		 });	
-	
-		 $('#gastoTotal').val(acu);		 
-	 } 
-	
-</script>
 
  <script type="text/javascript">
  
@@ -658,7 +639,7 @@ function redondeo(numero, decimales)
        
        var importeTotal = Number(valueSelected) * ($('#numDietas').val());
        
-       importeTotal = redondeo( importeTotal, 2)
+       importeTotal = redondeo( importeTotal, 2);
  	  
  	  $('#importeDietaTotal').val(importeTotal);
        
@@ -670,11 +651,37 @@ function redondeo(numero, decimales)
 <script >
 $('#listaDietas').change(function () {
 	    
-	actualizarImporteDietas(); 
+	actualizarImporteTotalGastos(); 
 	  
 });
 </script>
 
+<script type="text/javascript">
+
+	/*
+	*	Función que actualiza el input del importe Total acumulado de todos los gastos
+	*/
+	function actualizarImporteTotalGastos() {
+		 
+		 var acu = 0;
+		
+		 //Recorremos todos los input que contienen en su atributo name la cadena importe.
+		 $("input[name*=importe]").each(function(){	
+		 	acu = acu + Number($(this).val());
+		 });	 
+		
+		 acu = redondeo( acu, 2);
+		 
+		 $('#gastoTotal').val(acu);		 
+	 } 
+	
+</script>
+
+<script >
+$(document).ready(function(){
+    actualizarImporteDietas();
+});
+</script >
 
 </body>
 </html>
