@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation=
-	"http://java.sun.com/xml/ns/javaee 
-	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+	<!-- -->
+	<!-- Force sessions to use cookies -->
+	<!-- -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml, /WEB-INF/spring/spring-security.xml</param-value>
 	</context-param>
+	
+	<!-- -->
+	<!-- Required to enable method="PUT" in forms with 'multipart/form-data' -->
+	<!-- also using org.springframework.web.filter.HiddenHttpMethodFilter -->
+	<!-- -->
+	<filter>
+		<filter-name>MultipartFilter</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MultipartFilter</filter-name>
+		<servlet-name>appServlet</servlet-name>
+	</filter-mapping>
+	
+		<!-- -->
+	<!-- Enables the use of '_method' parameter in POST forms to allow the use 
+		of non-POST HTTP methods in HTML forms. -->
+	<!-- -->
+	<filter>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<servlet-name>Dispatcher</servlet-name>
+	</filter-mapping>
+
+	<!-- -->
+	<!-- Enables the use of PUT and PATCH HTTP methods in 'application/x-www-form-urlencoded' 
+		requests -->
+	<!-- -->
+	<filter>
+		<filter-name>HttpPutFormContentFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HttpPutFormContentFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HttpPutFormContentFilter</filter-name>
+		<servlet-name>Dispatcher</servlet-name>
+	</filter-mapping>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
@@ -48,6 +97,10 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<multipart-config>
+			<max-file-size>5242880</max-file-size><!--5MB -->
+			<max-request-size>20971520</max-request-size><!--20MB -->
+		</multipart-config>
 	</servlet>
 		
 	<servlet-mapping>

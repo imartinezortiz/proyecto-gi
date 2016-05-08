@@ -26,6 +26,8 @@
 	<context:component-scan base-package="ucm.fdi.tfg.proyecto.web"></context:component-scan>
 	<context:component-scan base-package="ucm.fdi.tfg.inventarios.web"></context:component-scan>
 	<context:component-scan base-package="ucm.fdi.tfg.viajes.web"></context:component-scan>
+	<context:component-scan base-package="ucm.fdi.tfg.fileupload.web"></context:component-scan>
+	<context:component-scan base-package="ucm.fdi.tfg.storage.web"></context:component-scan>
 	
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
@@ -63,5 +65,15 @@
 		<property name="characterEncoding" value="UTF-8" />
 		<property name="cacheTTLMs" value="1000" />
 	</bean>
+	
+	
+	<!-- -->
+	<!-- Servlet >= 3.0 file upload configuration -->
+	<!-- -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+	
+	
+	
 	
 </beans>

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:data="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/data/jpa
@@ -23,8 +26,21 @@
 	<context:component-scan base-package="ucm.fdi.tfg.investigadores.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.inventarios.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.viajes.business"/>
+	<context:component-scan base-package="ucm.fdi.tfg.fileupload.business"/>
+	<context:component-scan base-package="ucm.fdi.tfg.storage.business"/>
 	
 	
+		<!-- -->
+	<!-- Application config -->
+	<!-- -->
+	<util:properties id="storagePrefs">
+		<prop key="rootPath">WEB-INF/storage</prop>
+		<prop key="serviceURL">http://localhost:8080/springmvc-file-upload2/storage/</prop>
+	</util:properties>
+	
+	<util:properties id="examplePrefs">
+		<prop key="bucket">att</prop>
+	</util:properties>
 	
 <!-- org.thymeleaf.templateresolver.ServletContextTemplateResolver -->	
  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
@@ -48,7 +64,9 @@
     <value>ucm.fdi.tfg.pagos.business.entity</value>
     <value>ucm.fdi.tfg.proyecto.business.entity</value>
     <value>ucm.fdi.tfg.inventarios.business.entity</value>   
-    <value>ucm.fdi.tfg.viajes.business.entity</value>  
+    <value>ucm.fdi.tfg.viajes.business.entity</value> 
+    <value>ucm.fdi.tfg.fileupload.business.entity</value>  
+    <value>ucm.fdi.tfg.storage.business.entity</value>   
   </array>
   </property> 
   <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>  
@@ -95,6 +113,14 @@
 		transaction-manager-ref="transactionManager" />
 		
 	<data:repositories base-package="ucm.fdi.tfg.viajes.business.control"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager" />
+		
+	<data:repositories base-package="ucm.fdi.tfg.fileupload.business.control"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager" />
+	
+	<data:repositories base-package="ucm.fdi.tfg.storage.business.control"
 		entity-manager-factory-ref="entityManagerFactory"
 		transaction-manager-ref="transactionManager" />
 	
