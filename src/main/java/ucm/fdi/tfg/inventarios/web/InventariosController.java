@@ -173,6 +173,20 @@ public class InventariosController {
 		
 	}
 	
+	@RequestMapping(value = "/proyectos/{idProyecto}/procesar/inventarios/{idInventario}", method = RequestMethod.GET)
+	public ModelAndView procesarInventarioPost(@PathVariable(value="idProyecto") Long idProyecto , @PathVariable(value="idInventario") Long idInventario){
+		
+								
+		this.inventarios.procesar(idInventario);
+		//ModelAndView  view = new ModelAndView("inventarios/listarInventarios");	
+		
+		ModelAndView  view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/inventarios");	
+		
+		// http://localhost:8080/tfg/proyectos/1/procesar/inventarios/1/
+		
+		return view;	
+		
+	}
 	
 	
 	

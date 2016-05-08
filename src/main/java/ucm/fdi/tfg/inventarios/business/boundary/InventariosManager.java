@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ucm.fdi.tfg.inventarios.business.control.InventariosRepository;
+import ucm.fdi.tfg.inventarios.business.entity.Estado;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 
@@ -56,7 +57,18 @@ public class InventariosManager {
 		inventarioEdit.setFecha(inventario.getFecha());
 		inventarioEdit.setObservaciones(inventario.getObservaciones());
 		inventarioEdit.setProyecto(inventario.getProyecto());
+		inventarioEdit.setFase(inventario.getFase());
 		
+			
+		return this.inventarioRepository.save(inventarioEdit);
+		
+	}
+
+
+	public Inventario procesar(Long idInventario) {
+		Inventario inventarioEdit = inventarioRepository.getOne(idInventario);	
+				
+		inventarioEdit.setFase(Estado.PROCESANDO);		
 			
 		return this.inventarioRepository.save(inventarioEdit);
 		
