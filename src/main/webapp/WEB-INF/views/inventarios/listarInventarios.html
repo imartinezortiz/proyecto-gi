@@ -26,7 +26,9 @@
 											<th>Descripcion</th>
 											<th>Fecha</th>
 											<th>Observaciones</th>
-											<th>Editar</th>
+											<th>Estado</th>
+											<th>Accion</th>
+											
 										</tr>
 									</thead>
 									<tbody>
@@ -35,11 +37,13 @@
 											<td th:text="${inventario.id}"></td>											
 											<td th:text="${inventario.centro}"></td>
 											<td th:text="${inventario.descripcion}"></td>
-											<td th:text="${inventario.fecha}"></td>
+											<td th:text="${inventario.fecha}"></td>											
 											<td th:text="${inventario.observaciones}"></td>
+											<td th:text="${inventario.fase}"></td>
 											
 											<td> 
-												<a th:href="@{'edit/inventarios/{id}/' (id=${inventario.id})} ">  Editar </a>
+												<a class="btn btn-primary" th:href="@{'edit/inventarios/{id}/' (id=${inventario.id})} ">  Editar </a>
+												<a class="btn btn-warning" th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})} ">  Procesar </a>
 											</td>
 											
 										</tr>
