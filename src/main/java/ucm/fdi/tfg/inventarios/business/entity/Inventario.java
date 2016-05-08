@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,13 +49,18 @@ public class Inventario {
 	@NotNull(message="Introduce una fecha")
 	private LocalDate fecha;
 	
+	@Enumerated(EnumType.STRING)
+	private Estado fase;
+	
 	public Inventario(){
 		this.fecha = LocalDate.now();
+		this.fase= Estado.EDICION;
 	}
 	
 	public Inventario(Proyecto proyecto){
 		this.proyecto = proyecto;
 		this.fecha = LocalDate.now();
+		this.fase= Estado.EDICION;
 	}
 
 	public Proyecto getProyecto() {
@@ -106,6 +113,14 @@ public class Inventario {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Estado getFase() {
+		return fase;
+	}
+
+	public void setFase(Estado fase) {
+		this.fase = fase;
 	}
 	
 	
