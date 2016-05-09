@@ -21,7 +21,7 @@
 <body>
 	<div class="container">
 		<h1>Welcome</h1>
-		<form action="#" th:action="@{/files}" th:object="${command}"
+		<form action="#" th:action="@{adjuntos}"  th:object="${command}"
 			method="POST" enctype="multipart/form-data">
 			<div class="form-group"
 				th:classappend="${#fields.hasErrors('description')} ? has-error">

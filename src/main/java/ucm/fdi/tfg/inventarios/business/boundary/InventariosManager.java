@@ -62,4 +62,10 @@ public class InventariosManager {
 		
 	}
 
+
+	public Inventario getOne(long idInventario) {
+		// TODO Auto-generated method stub
+		return inventarioRepository.getOne(idInventario);
+	}
+
 }

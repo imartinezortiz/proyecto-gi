@@ -14,15 +14,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ucm.fdi.tfg.fileupload.business.boundary.AttachmentManager;
 import ucm.fdi.tfg.fileupload.business.boundary.NewFileCommand;
+import ucm.fdi.tfg.inventarios.business.boundary.InventariosManager;
+import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 
 @Controller
 public class FileUploadController {
 
 	private AttachmentManager manager;
+	
+	private InventariosManager inventarioManager;
 
 	@Autowired
-	public FileUploadController(AttachmentManager manager) {
+	public FileUploadController(AttachmentManager manager,InventariosManager inventarioManager) {
 		this.manager = manager;
+		this.inventarioManager = inventarioManager;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/files")
@@ -56,4 +61,42 @@ public class FileUploadController {
 		manager.deleteAttachment(id);
 		return new ModelAndView("redirect:/files");
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "proyectos/{idProyecto}/{idInventario}/adjuntos")
+	public ModelAndView filesPrueba(@PathVariable("idInventario") long idInventario) {
+		ModelAndView view = new ModelAndView("files");
+		System.out.println("entra x el controlador");
+		//view.addObject("files", manager.getAttachments());
+		view.addObject("files", inventarioManager.findOneInventario(idInventario).getAdjuntos());
+		view.addObject("command", new NewFileCommand());
+		return view;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "proyectos/{idProyecto}/{idInventario}/adjuntos")
+	public ModelAndView addAttachmentPrueba(@PathVariable("idInventario") long idInventario ,@PathVariable("idProyecto") long idProyecto, @ModelAttribute("command") @Validated NewFileCommand command,
+			BindingResult result) throws IOException {
+		
+
+		if (result.hasErrors()) {
+			ModelAndView view = new ModelAndView("files");
+			view.addObject("files", manager.getAttachments());
+			view.addObject("command", command);
+			return view;
+		}
+
+		
+		Inventario inv = inventarioManager.findOneInventario(idInventario);
+		inv.getAdjuntos().add(manager.addAttachment(command));
+		inventarioManager.save(inv);
+		return new ModelAndView("redirect:/proyectos/"+idProyecto+"/"+idInventario+"/adjuntos");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

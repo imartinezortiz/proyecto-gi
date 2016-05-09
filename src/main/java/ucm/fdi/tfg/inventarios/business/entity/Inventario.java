@@ -1,10 +1,12 @@
 package ucm.fdi.tfg.inventarios.business.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import ucm.fdi.tfg.fileupload.business.entity.Attachment;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Entity
@@ -47,8 +50,20 @@ public class Inventario {
 	@NotNull(message="Introduce una fecha")
 	private LocalDate fecha;
 	
+	@ElementCollection
+	private List<Attachment> adjuntos;
+	
+	public List<Attachment> getAdjuntos() {
+		return adjuntos;
+	}
+
+	public void setAdjuntos(List<Attachment> adjuntos) {
+		this.adjuntos = adjuntos;
+	}
+
 	public Inventario(){
 		this.fecha = LocalDate.now();
+		adjuntos = new ArrayList<Attachment>();
 	}
 	
 	public Inventario(Proyecto proyecto){
