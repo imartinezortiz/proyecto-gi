@@ -1,4 +1,4 @@
-package ucm.fdi.tfg.inventarios.business.entity;
+package ucm.fdi.tfg.investigacion.business.entity;
 
 public enum Estado {
 	
