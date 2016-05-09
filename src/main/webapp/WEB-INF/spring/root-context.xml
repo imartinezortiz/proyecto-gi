@@ -35,7 +35,7 @@
 	<!-- -->
 	<util:properties id="storagePrefs">
 		<prop key="rootPath">WEB-INF/storage</prop>
-		<prop key="serviceURL">http://localhost:8080/springmvc-file-upload2/storage/</prop>
+		<prop key="serviceURL">http://localhost:8080/tfg/storage/</prop>
 	</util:properties>
 	
 	<util:properties id="examplePrefs">
