@@ -19,6 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import ucm.fdi.tfg.investigacion.business.entity.Estado;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Entity

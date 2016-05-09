@@ -13,5 +13,8 @@ public interface InventariosRepository extends JpaRepository<Inventario, Long>{
 	
 	@Query(" SELECT I FROM Inventario I WHERE I.proyecto.id = :idProyecto")
 	public List<Inventario> inventariosPorProyecto(@Param(value = "idProyecto") Long idProyecto);
+	
+	@Query(" SELECT I FROM Inventario I WHERE I.fase = 'PROCESANDO' ")
+	public List<Inventario> inventariosProcesando();
 
 }
