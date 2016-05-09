@@ -39,7 +39,7 @@ public class UserController {
 
 	// Redirecciona al menu despues de hacer login
 	@RequestMapping(value = "/inicio", method = RequestMethod.GET)
-	public ModelAndView prueba() {
+	public ModelAndView inicio() {
 
 		ModelAndView view = new ModelAndView("menus/inicio");
 		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
