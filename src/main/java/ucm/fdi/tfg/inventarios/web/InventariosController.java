@@ -20,8 +20,6 @@ import ucm.fdi.tfg.inventarios.business.boundary.InventariosManager;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
-import ucm.fdi.tfg.users.business.boundary.NuevoInvestigadorDTO;
-import ucm.fdi.tfg.users.business.boundary.UserDTO;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
