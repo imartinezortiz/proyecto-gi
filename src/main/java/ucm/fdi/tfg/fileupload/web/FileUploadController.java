@@ -28,6 +28,7 @@ public class FileUploadController {
 	@RequestMapping(method = RequestMethod.GET, value = "/files")
 	public ModelAndView files() {
 		ModelAndView view = new ModelAndView("files");
+		System.out.println("entra x el controlador");
 		view.addObject("files", manager.getAttachments());
 		view.addObject("command", new NewFileCommand());
 		return view;
