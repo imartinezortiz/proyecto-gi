@@ -27,7 +27,9 @@
 											<th>Fecha</th>
 											<th>Observaciones</th>
 											<th>Estado</th>
+											<th>Proyecto</th>											
 											<th>Accion</th>
+											
 											
 										</tr>
 									</thead>
@@ -40,22 +42,25 @@
 											<td th:text="${inventario.fecha}"></td>											
 											<td th:text="${inventario.observaciones}"></td>
 											<td th:text="${inventario.fase}"></td>
+											<td th:text="${inventario.proyecto.id}"></td>
 											
 											<td> 
-												<a class="btn btn-primary" th:href="@{/proyectos/{idProyecto}/edit/inventarios/{id}/ (id=${inventario.id}, idProyecto=${inventario.proyecto.id})} ">  Editar </a>
+												<a class="btn btn-info glyphicon glyphicon-edit" th:href="@{/proyectos/{idProyecto}/edit/inventarios/{id}/ (id=${inventario.id}, idProyecto=${inventario.proyecto.id})} "> Editar</a>
 												<!-- <a class="btn btn-info " th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})} ">  Procesar </a>  -->
-												<a th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})}" th:data-confirm="|¿Seguro que quiere procesar el inventario ${inventario.id}? |">Procesar</a>		
+												<a class="btn btn-danger glyphicon glyphicon-send" aria-hidden="true" th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})}" th:data-confirm="|¿Seguro que quiere procesar el inventario ${inventario.id}? |"> Procesar</a>		
+																		
 											</td>											
 										</tr>
 									</tbody>
 								</table>
+								
 							</div>				
 						
 						</div>
 						</div>
 					</div>
 				</div>
-			</div>
+				</div>
 
 <div th:include="scripts"></div> 
 
