@@ -18,6 +18,7 @@ public class NuevoProyectoDTO {
 	
 	private Long investigadorId;
 	
+	@NotEmpty(message = "Mínimo un investigador")
 	private Collection<Long> investigadoresID;
 	
 	public NuevoProyectoDTO(){
