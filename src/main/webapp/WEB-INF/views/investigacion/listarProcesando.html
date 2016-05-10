@@ -45,10 +45,12 @@
 											<td th:text="${inventario.proyecto.id}"></td>
 											
 											<td> 
-												<a class="btn btn-info glyphicon glyphicon-edit" th:href="@{/proyectos/{idProyecto}/edit/inventarios/{id}/ (id=${inventario.id}, idProyecto=${inventario.proyecto.id})} "> Editar</a>
+												<a class="btn btn-info" th:href="@{/proyectos/{idProyecto}/edit/inventarios/{id}/ (id=${inventario.id}, idProyecto=${inventario.proyecto.id})} " ><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
 												<!-- <a class="btn btn-info " th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})} ">  Procesar </a>  -->
-												<a class="btn btn-danger glyphicon glyphicon-send" aria-hidden="true" th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})}" th:data-confirm="|¿Seguro que quiere procesar el inventario ${inventario.id}? |"> Procesar</a>		
-																		
+												<a class="btn btn-danger "th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})}" th:data-confirm="|¿Seguro que quiere procesar el inventario ${inventario.id}? |"><i class="glyphicon glyphicon-send" aria-hidden="true"></i> Procesar</a>		
+												
+												
+ 													 					
 											</td>											
 										</tr>
 									</tbody>
