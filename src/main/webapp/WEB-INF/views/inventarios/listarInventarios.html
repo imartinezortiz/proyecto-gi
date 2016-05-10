@@ -42,9 +42,9 @@
 											<td th:text="${inventario.fase}"></td>
 											
 											<td> 
-												<a class="btn btn-primary" th:href="@{'edit/inventarios/{id}/' (id=${inventario.id})} ">  Editar </a>
-												<a class="btn btn-warning" th:href="@{'procesando/inventarios/{id}/' (id=${inventario.id})} ">  Procesar </a>
-											</td>
+												<a th:if="${{inventario.fase}} == 'EDICION' or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="btn btn-primary" th:href="@{'edit/inventarios/{id}/' (id=${inventario.id})} ">  Editar </a>
+												<a th:if="${{inventario.fase}} == 'EDICION'"  class="btn btn-warning" th:href="@{'procesando/inventarios/{id}/' (id=${inventario.id})} ">  Procesar </a>
+											</td> 
 											
 										</tr>
 									</tbody>
