@@ -196,19 +196,21 @@
 								de transporte:</label>
 							<div class="col-md-3">
 								<select name="medios" class="form-control col-md-3" id="mediosTransporte">
-								<option value=""> --- Seleccion de Transporte --- </option>
- 							 	<option th:each="medio,rowStat : ${T(ucm.fdi.tfg.viajes.business.entity.TipoGasto).values()}" th:if="${rowStat.count} < 7"
- 							 	th:value="${{medio}}" th:text="${medio.estado}" ></option>
-								
-								</select>  
-								
+									<option value=""> --- Seleccion de Transporte --- </option>
+	 							 	<option th:each="medio,rowStat : ${T(ucm.fdi.tfg.viajes.business.entity.TipoGasto).values()}" th:if="${rowStat.count} < 7"
+	 							 	th:value="${{medio}}" th:text="${medio.estado}" ></option>								
+								</select>  								
 							</div>
-							<div class="col-md-5">
+							<div class="col-md-2">
 								<div class="col-md-2">
 									<button onclick="appendMedioTransporte()" class="btn btn-success"
 										type="button">+</button>
 								</div>
 							</div>
+							
+							<label id=labelPrecioKM style="display:none" class="label label-info" > Factor KM = 0.19 €/Km</label>
+						
+							
 						</div>
 						
 						<div class="form-group">
@@ -229,8 +231,7 @@
 										type="button">+</button>
 								</div>
 							</div>
-						</div>
-						
+						</div>		
 						
 						
 						
@@ -242,7 +243,6 @@
 									<tr>
 										<th class="col-md-2 text-center">Tipo</th>
 										<th class="col-md-4 text-center">Descripcion</th>
-										<th class="col-md-2 text-center">Factor</th>
 										<th class="col-md-2 text-center">KM</th>
 										<th class="col-md-2 text-center">Importe</th>
 										<th class="col-md-2 text-center">Eliminar</th>										
@@ -256,20 +256,15 @@
 											
 											<td class="col-md-2" th:classappend="${#fields.hasErrors('gastos[__${gastoStat.index}__].tipo')} ? has-error">	
 												<input type="text" class="form-control"  
-													th:field="*{gastos[__${gastoStat.index}__].tipo}" readonly="readonly"/>
-																					
+													th:field="*{gastos[__${gastoStat.index}__].tipo}" readonly="readonly"/>																	
 												
 											</td>
 											
 											<td class="col-md-5" th:classappend="${#fields.hasErrors('gastos[__${gastoStat.index}__].descripcion')} ? has-error">
 												<input type="text"
 													class="form-control" 
-													th:field="*{gastos[__${gastoStat.index}__].descripcion}"  readonly="readonly" />
-												
-											</td>
-											
-											<td>
-											
+													th:field="*{gastos[__${gastoStat.index}__].descripcion}"  readonly="readonly" />												
+										
 											</td>
 											
 											<td>
@@ -340,7 +335,7 @@
 						<div class="input-group col-xs-3">							
 							<input type="text" id="gastoTotal" value=0 readonly="readonly"
 								class="form-control text-center" aria-label="Amount (to the nearest dollar)">									
-							<span class="input-group-addon">$</span> 		
+							<span class="input-group-addon">€</span> 		
 										
 						</div>
 						<span class="help-block">Gastos Totales.</span>	
@@ -384,25 +379,7 @@
 
 <div th:include="scripts"></div>
 
-<script type="text/javascript">
 
-	/*
-	*	Función que actualiza el input del importe Total acumulado de todos los gastos
-	*/
-	function actualizarImporteTotalGastos() {
-		 
-		 var acu = 0;
-		
-		 //Recorremos todos los input que contienen en su atributo name la cadena importe.
-		 $("input[name*=importe]").each(function(){
-	
-		 	acu = acu + Number($(this).val());
-		 });	
-	
-		 $('#gastoTotal').val(acu);		 
-	 } 
-	
-</script>
 
  <script type="text/javascript">
  
@@ -500,13 +477,13 @@ function calcularImporte(input){
 			var auximporte = $('<td class="col-md-2"></td>');
 			
 			//Campos no significativos para la entity
-			var auxFactor;
+			//var auxFactor;
 			var auxKM;
 			
 			var importe; 
 			
 			
-				auxFactor = $('<td class="col-md-2"></td>');
+				//auxFactor = $('<td class="col-md-2"></td>');
 				auxKM = $('<td class="col-md-2"></td>');
 				importe = $(
 				'<input type="text" class="form-control col-md-2 text-center" onchange="actualizarImporteTotalGastos()"/> ').attr('name', 'gastos[' + count + '].importe');
@@ -536,7 +513,7 @@ function calcularImporte(input){
 			$(nuevoGasto).append(auxDescripcion);
 			
 			//Campos no significativos
-			$(nuevoGasto).append(auxFactor);
+			//$(nuevoGasto).append(auxFactor);
 			$(nuevoGasto).append(auxKM);
 			
 			$(nuevoGasto).append(auximporte);
@@ -577,15 +554,16 @@ function calcularImporte(input){
 			var auximporte = $('<td class="col-md-2"></td>');
 			
 			//Campos no significativos para la entity
-			var auxFactor;
+			//var auxFactor;
 			var auxKM;
 			
 			var importe; 
 			
 			if ($('#mediosTransporte').val() == "COCHE"){
-				auxFactor = $('<td class="col-md-2"></td>');				
-				auxFactorTD = $('<input type="text" name="factor" readonly="readonly" class="form-control text-center" />').attr('value', 0.19);
-				$(auxFactor).append(auxFactorTD);
+				//auxFactor = $('<td class="col-md-2"></td>');				
+				//auxFactorTD = $('<input type="text" name="factor" readonly="readonly" class="form-control text-center" />').attr('value', 0.19);
+				//$(auxFactor).append(auxFactorTD);
+				$('#labelPrecioKM').show();	
 				auxKM = $('<td class="col-md-2"></td>');
 				auxKMTD = $('<input type="text" class="form-control text-center" onchange="calcularImporte(this)"/>').attr('name', 'km'+count);
 				$(auxKM).append(auxKMTD);
@@ -593,7 +571,7 @@ function calcularImporte(input){
 				importe = $('<input type="text" class="form-control col-md-2 text-center" readonly="readonly"  onchange="actualizarImporteTotalGastos()" /> ').attr({'name': 'gastos[' + count + '].importe', 'id': 'km'+count});
 			}
 			else {
-				auxFactor = $('<td class="col-md-2"></td>');
+				//auxFactor = $('<td class="col-md-2"></td>');
 				auxKM = $('<td class="col-md-2"></td>');
 				importe = $(
 				'<input type="text" class="form-control col-md-2 text-center" onchange="actualizarImporteTotalGastos()"/> ').attr('name', 'gastos[' + count + '].importe');
@@ -625,7 +603,7 @@ function calcularImporte(input){
 			$(nuevoGasto).append(auxDescripcion);
 			
 			//Campos no significativos
-			$(nuevoGasto).append(auxFactor);
+			//$(nuevoGasto).append(auxFactor);
 			$(nuevoGasto).append(auxKM);
 			
 			$(nuevoGasto).append(auximporte);
@@ -664,7 +642,7 @@ function redondeo(numero, decimales)
        
        var importeTotal = Number(valueSelected) * ($('#numDietas').val());
        
-       importeTotal = redondeo( importeTotal, 2)
+       importeTotal = redondeo( importeTotal, 2);
  	  
  	  $('#importeDietaTotal').val(importeTotal);
        
@@ -676,11 +654,37 @@ function redondeo(numero, decimales)
 <script >
 $('#listaDietas').change(function () {
 	    
-	actualizarImporteDietas(); 
+	actualizarImporteTotalGastos(); 
 	  
 });
 </script>
 
+<script type="text/javascript">
+
+	/*
+	*	Función que actualiza el input del importe Total acumulado de todos los gastos
+	*/
+	function actualizarImporteTotalGastos() {
+		 
+		 var acu = 0;
+		
+		 //Recorremos todos los input que contienen en su atributo name la cadena importe.
+		 $("input[name*=importe]").each(function(){	
+		 	acu = acu + Number($(this).val());
+		 });	 
+		
+		 acu = redondeo( acu, 2);
+		 
+		 $('#gastoTotal').val(acu);		 
+	 } 
+	
+</script>
+
+<script >
+$(document).ready(function(){
+    actualizarImporteDietas();
+});
+</script >
 
 </body>
 </html>

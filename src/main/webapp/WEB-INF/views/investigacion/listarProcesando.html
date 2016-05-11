@@ -5,7 +5,7 @@
 <div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Inventarios</h1>
+					<h1 class="page-header">Pendientes de Procesar</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">Listado de Inventarios</div>
+						<div class="panel-heading">Listado de Inventarios pendientes de Procesar</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="dataTable_wrapper">
@@ -27,12 +27,14 @@
 											<th>Fecha</th>
 											<th>Observaciones</th>
 											<th>Estado</th>
+											<th>Proyecto</th>											
 											<th>Accion</th>
+											
 											
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="inventario : ${inventariosPorProyecto}">
+										<tr th:each="inventario : ${inventariosProcesando}">
 											
 											<td th:text="${inventario.id}"></td>											
 											<td th:text="${inventario.centro}"></td>
@@ -40,38 +42,36 @@
 											<td th:text="${inventario.fecha}"></td>											
 											<td th:text="${inventario.observaciones}"></td>
 											<td th:text="${inventario.fase}"></td>
+											<td th:text="${inventario.proyecto.id}"></td>
 											
 											<td> 
-												<a class="btn btn-info" th:if="${{inventario.fase}} == 'EDICION' or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"  th:href="@{'edit/inventarios/{id}/' (id=${inventario.id})} "><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
-												<a class="btn btn-warning " th:if="${{inventario.fase}} == 'EDICION'"  th:href="@{'procesando/inventarios/{id}/' (id=${inventario.id})} " th:data-confirm="|¿Seguro que quiere enviar a procesar el inventario ${inventario.id}? |" ><i class="glyphicon glyphicon glyphicon-share-alt " aria-hidden="true"></i> Enviar</a>
-											</td> 
-											
+												<a class="btn btn-info" th:href="@{/proyectos/{idProyecto}/edit/inventarios/{id}/ (id=${inventario.id}, idProyecto=${inventario.proyecto.id})} " ><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
+												<!-- <a class="btn btn-info " th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})} ">  Procesar </a>  -->
+												<a class="btn btn-danger "th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})}" th:data-confirm="|¿Seguro que quiere procesar el inventario ${inventario.id}? |"><i class="glyphicon glyphicon-send" aria-hidden="true"></i> Procesar</a>		
+												
+												
+ 													 					
+											</td>											
 										</tr>
 									</tbody>
 								</table>
-							</div>
-							<div class="col-md-12">
-						<form role="form" action="#"  th:action="@{altaInventario}"  method="GET">
-							<button class="btn btn-success" type="submit">Añadir Inventario</button>
-						</form>
+								
+							</div>				
 						
-									
 						</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	
+				</div>
 
-<div th:include="scripts"></div>
+<div th:include="scripts"></div> 
 
 <script type="text/javascript">
 $(document).ready(function() {
 	$('a[data-confirm]').click(function(ev) {
 		var href = $(this).attr('href');
 		if (!$('#dataConfirmModal').length) {
-			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true" ><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"></button><h4 class="modal-title">Información</h4></div><div class="modal-body"> <p th:text=" |¿Está seguro de procesar el inventario  ?| " > </p> </div><div class="modal-footer"><button class="btn" data-dismiss="modal" >Cancel</button><a class="btn btn-warning " id="dataConfirmOK">OK</a></div></div></div></div>');
+			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true" ><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"></button><h4 class="modal-title">Información</h4></div><div class="modal-body"> <p th:text=" |¿Está seguro de procesar el inventario  ?| " > </p> </div><div class="modal-footer"><button class="btn" data-dismiss="modal" >Cancel</button><a class="btn btn-danger " id="dataConfirmOK">OK</a></div></div></div></div>');
 		} 
 		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
 		$('#dataConfirmOK').attr('href', href);
@@ -81,6 +81,7 @@ $(document).ready(function() {
 });
 
 </script>
+
 </body>
 </html>
 

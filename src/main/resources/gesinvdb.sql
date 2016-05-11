@@ -170,15 +170,15 @@ INSERT INTO dietas (pais,importe) VALUES ('Resto del mundo','40.87');
 
 
 --Insertamos inventarios de prueba para el proyecto 1 (Primer Proyecto);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, proyecto_id) VALUES (1, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, proyecto_id) VALUES (2, 'autor2', 'c2', 'des2', '2016-04-21', 'obs2', 1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, proyecto_id) VALUES (3, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, proyecto_id) VALUES (4, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, proyecto_id) VALUES (5, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, proyecto_id) VALUES (6, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, proyecto_id) VALUES (7, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (1, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'EDICION',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (2, 'autor2', 'c2', 'des2', '2016-04-21', 'obs2', 'EDICION',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (3, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'EDICION',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (4, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'PROCESANDO',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (5, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'PROCESANDO',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (6, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'PROCESANDO',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (7, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'PROCESANDO',1);
 -- Inventario de proyecto 2
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, proyecto_id) VALUES (8, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 2);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (8, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1','EDICION', 2);
 
 
 --Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);

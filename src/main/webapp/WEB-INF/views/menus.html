@@ -156,6 +156,12 @@
 							</ul>
 
 						</li>
+						
+						<li
+							th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}">
+							<a th:href="@{/investigacion}"><i class="fa fa-edit fa-fw"></i> Investigación<span
+								class="fa arrow"></span></a>
+						</li>
 
 					</ul>
 

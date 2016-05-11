@@ -3,40 +3,21 @@ DUDAS:
 	Cosas Pendientes:
 								
 			*VIAJES: 
-				- Validar VIAJES
-				- DIETAS (Iván)
-				- Quitar javascript puro
-				- Editar Viajes				
+				- Validar VIAJES								
 				
-			* Validar constraseñas (que sean iguales al hacer un alta) 			
+			* Validar constraseñas (que sean iguales al hacer un alta). Falta tenerlo controlado en el Controller. 			
 						
-			*[Pagos-gastos] Al validar un bigdecimal cuando se mete una cadena salta exception y coge "message". Mirar como cambiar ese mensaje en Spring.
-			
-			* Quitar EAGER
-			
-			* Cambiar a plural URLs: proyectos/1/..
-			
-			* Fecha del Sistema por defecto en los form
+			*[Pagos-gastos] Al validar un bigdecimal cuando se mete una cadena salta exception y coge "message". Mirar como cambiar ese mensaje en Spring.			
 						
-			* Btn añadir tb en la vista de listar
-			
-			* Cambiar redirección cuando se da de alta viaje, inventario, pago.
-			
-			* PROYECTOS (Parametrizar Alta - Editar) 					
-			
-			* Quitar opciones q no se usan en el menu principal de la cabecera.
-			
+			* Quitar opciones q no se usan en el menu principal de la cabecera.			
 			
 			
 	Dudas:
-	
-		* USER.java : Al quitar EAGER de Collection<UserRole> roles, salta el error de Lazy!  
 			
+					
 		* Al editar un proyecto que no tenga investigadores, si no seleccionas ningun investigador, peta.
 		
-		* [PAGOS] Al añadir un Pago sin ningún gasto, lo mete en BBDD pero al listar no aparece ese Pago.
-				   
-				  Si al Editar un Pago, le añades otro gasto, al listar te aparecen 2 Pagos pero en la BBDD no se duplican
+		*¿Donde se mete la clase Enum Estado?
 				
 			
 			

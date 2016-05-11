@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import ucm.fdi.tfg.fileupload.business.entity.Attachment;
+import ucm.fdi.tfg.investigacion.business.entity.Estado;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Entity
@@ -51,6 +54,9 @@ public class Inventario {
 	@NotNull(message="Introduce una fecha")
 	private LocalDate fecha;
 	
+	@Enumerated(EnumType.STRING)
+	private Estado fase;
+	
 	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<Attachment> adjuntos;
 	
@@ -65,11 +71,13 @@ public class Inventario {
 	public Inventario(){
 		this.fecha = LocalDate.now();
 		adjuntos = new ArrayList<Attachment>();
+		this.fase= Estado.EDICION;
 	}
 	
 	public Inventario(Proyecto proyecto){
 		this.proyecto = proyecto;
 		this.fecha = LocalDate.now();
+		this.fase= Estado.EDICION;
 	}
 
 	public Proyecto getProyecto() {
@@ -122,6 +130,14 @@ public class Inventario {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Estado getFase() {
+		return fase;
+	}
+
+	public void setFase(Estado fase) {
+		this.fase = fase;
 	}
 	
 	
