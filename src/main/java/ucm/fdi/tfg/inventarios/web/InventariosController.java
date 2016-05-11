@@ -171,7 +171,7 @@ public class InventariosController {
 		
 	}
 	
-	@RequestMapping(value = "/proyectos/{idProyecto}/procesando/inventarios/{idInventario}", method = RequestMethod.GET)
+	@RequestMapping(value = "/proyectos/{idProyecto}/procesando/inventarios/{idInventario}", method = RequestMethod.POST)
 	public ModelAndView procesandoInventario(@PathVariable(value="idProyecto") Long idProyecto , @PathVariable(value="idInventario") Long idInventario){
 		
 								
