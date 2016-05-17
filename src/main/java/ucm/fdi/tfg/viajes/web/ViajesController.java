@@ -184,7 +184,32 @@ public class ViajesController {
 				return view;
 	}
 		
+	@RequestMapping(value = "/proyectos/{idProyecto}/procesando/viajes/{idViaje}", method = RequestMethod.POST)
+	public ModelAndView procesandoViaje(@PathVariable(value="idProyecto") Long idProyecto , @PathVariable(value="idViaje") Long idViaje){
+				
+		this.viajes.procesando(idViaje);
+			
+		
+		ModelAndView  view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/viajes");	
+		
+		
+		
+		return view;	
+		
+	}
 	
+	@RequestMapping(value = "/procesar/viajes/{idViaje}", method = RequestMethod.GET)
+	public ModelAndView procesarPago(@PathVariable(value="idViaje") Long idViaje){
+		
+								
+		this.viajes.procesar(idViaje);
+				
+		ModelAndView  view = new ModelAndView("redirect:/investigacion");	
+		
+		
+		return view;	
+		
+	}		
 	
 	
 	
