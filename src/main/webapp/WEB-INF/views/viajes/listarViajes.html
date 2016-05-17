@@ -27,6 +27,8 @@
 											<th>Objeto Desplazamiento</th>
 											<th>Observaciones</th>
 											<th>Editar</th>
+											<th>Estado</th>
+											<th>Acción</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -37,9 +39,11 @@
 											<td th:text="${viaje.itinerario}"></td>
 											<td th:text="${viaje.objetoDesplazamiento}"></td>
 											<td th:text="${viaje.observaciones}"></td>
-											
+											<td th:text="${viaje.fase}"></td>
 											<td> 
 												<a th:href="@{'edit/viajes/{id}/' (id=${viaje.id})} ">  Editar </a>
+												<a class="btn btn-info" th:if="${{viaje.fase}} == 'EDICION' or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"  th:href="@{'edit/viajes/{id}/' (id=${viaje.id})} "><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
+												<a class="btn btn-warning " th:if="${viaje.fase == T(ucm.fdi.tfg.investigacion.business.entity.Estado).EDICION}"  th:href="@{'procesando/viajes/{id}/' (id=${viaje.id})} " th:data-confirm="|¿Seguro que quiere enviar a procesar el viaje ${viaje.id}? |" ><i class="glyphicon glyphicon glyphicon-share-alt " aria-hidden="true"></i> Enviar</a>
 											</td>
 											
 										</tr>
@@ -62,6 +66,27 @@
 	
 
 <div th:include="scripts"></div>
+<script type="text/javascript" th:inline="javascript">
+
+var csrf_name=/*[[${_csrf.parameterName}]]*/;
+var csrf_value=/*[[${_csrf.token}]]*/;
+
+$(document).ready(function() {
+	$('a[data-confirm]').click(function(ev) {
+		var href = $(this).attr('href');
+		if (!$('#dataConfirmModal').length) {
+			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true" ><form action="" method="POST" ><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"></button><h4 class="modal-title">Información</h4></div><div class="modal-body"> <p th:text=" |¿Está seguro de procesar el inventario  ?| " > </p> </div><div class="modal-footer"><button class="btn" data-dismiss="modal" >Cancel</button><button class="btn btn-warning " id="dataConfirmOK">OK</button></div></div></div></form></div>');
+		} 
+		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+		$('#dataConfirmModal form').attr('action', href);
+		var elem = $('<input>').attr('name', csrf_name).attr('type', 'hidden').val(csrf_value);
+		$('#dataConfirmModal form').append(elem);
+		$('#dataConfirmModal').modal({show:true});
+		return false;
+	});
+});
+
+</script>
 </body>
 </html>
 
