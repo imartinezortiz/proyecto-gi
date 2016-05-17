@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ucm.fdi.tfg.inventarios.business.entity.Inventario;
+import ucm.fdi.tfg.investigacion.business.entity.Estado;
 import ucm.fdi.tfg.pagos.business.control.PagosRepository;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 
@@ -45,7 +47,32 @@ public class PagosManager {
 		pagoEditar.setPagador(pago.getPagador());
 		pagoEditar.setProyecto(pago.getProyecto());
 		pagoEditar.setRelacion(pago.getRelacion());
+		pagoEditar.setFase(pago.getFase());
+		
 		return repositoryPago.save(pagoEditar);
+	}
+	
+	public Pago procesando(Long idPago) {
+		Pago pagoEdit = repositoryPago.getOne(idPago);	
+				
+		pagoEdit.setFase(Estado.PROCESANDO);		
+			
+		return this.repositoryPago.save(pagoEdit);
+		
+	}
+	
+	public Pago procesar(Long idPago) {
+		Pago pagoEdit = repositoryPago.getOne(idPago);	
+				
+		pagoEdit.setFase(Estado.PROCESADO);		
+			
+		return this.repositoryPago.save(pagoEdit);
+		
+	}
+	
+	public List<Pago> pagosProcesando(){
+		
+		return repositoryPago.pagosProcesando();
 	}
 	 
 	 /*

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+import ucm.fdi.tfg.investigacion.business.entity.Estado;
 import ucm.fdi.tfg.viajes.business.control.ViajesRepository;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
 import ucm.fdi.tfg.viajes.business.entity.Viaje;
@@ -68,7 +70,31 @@ public class ViajesManager {
 		viajeEditar.setObservaciones(viaje.getObservaciones());
 		viajeEditar.setPagarA(viaje.getPagarA());
 		viajeEditar.setProyecto(viaje.getProyecto());
+		viajeEditar.setFase(viaje.getFase());
 		viajes.save(viajeEditar);
+	}
+	
+	public Viaje procesando(Long idViaje) {
+		Viaje viajeEditar = viajes.getOne(idViaje);	
+				
+		viajeEditar.setFase(Estado.PROCESANDO);		
+			
+		return this.viajes.save(viajeEditar);
+		
+	}
+	
+	public Viaje procesar(Long idViaje) {
+		Viaje viajeEditar = viajes.getOne(idViaje);	
+				
+		viajeEditar.setFase(Estado.PROCESADO);		
+			
+		return this.viajes.save(viajeEditar);
+		
+	}
+	
+	public List<Viaje> inventariosProcesando(){
+		
+		return viajes.viajesProcesando();
 	}
 	
 	

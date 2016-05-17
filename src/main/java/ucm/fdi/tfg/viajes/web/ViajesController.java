@@ -1,9 +1,6 @@
 package ucm.fdi.tfg.viajes.web;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
@@ -27,7 +23,7 @@ import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
 import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
-import ucm.fdi.tfg.viajes.business.entity.GastoViaje;
+
 import ucm.fdi.tfg.viajes.business.entity.Viaje;
 
 @Controller

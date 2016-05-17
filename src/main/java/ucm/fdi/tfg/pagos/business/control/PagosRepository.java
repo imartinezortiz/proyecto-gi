@@ -17,6 +17,9 @@ public interface PagosRepository extends JpaRepository<Pago, Long> {
 	@Query(" SELECT I FROM Pago I WHERE I.proyecto.id = :idProyecto")
 	public List<Pago> pagosPorProyecto(@Param(value = "idProyecto") Long idProyecto);
 
+	@Query(" SELECT I FROM Pago I WHERE I.fase = 'PROCESANDO' ")
+	public List<Pago> pagosProcesando();
+
 
 	
 	
