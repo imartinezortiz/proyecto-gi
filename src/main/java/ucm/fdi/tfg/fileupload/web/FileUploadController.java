@@ -18,6 +18,9 @@ import ucm.fdi.tfg.fileupload.business.boundary.NewFileCommand;
 import ucm.fdi.tfg.fileupload.business.entity.Attachment;
 import ucm.fdi.tfg.inventarios.business.boundary.InventariosManager;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
+import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
+import ucm.fdi.tfg.pagos.business.entity.Pago;
+import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
 
 @Controller
 public class FileUploadController {
@@ -25,15 +28,21 @@ public class FileUploadController {
 	private AttachmentManager manager;
 	
 	private InventariosManager inventarioManager;
+	
+	private PagosManager pagoManager;
+	
+	private ViajesManager viajeManager;
 
 	@Autowired
-	public FileUploadController(AttachmentManager manager,InventariosManager inventarioManager) {
+	public FileUploadController(AttachmentManager manager,InventariosManager inventarioManager, PagosManager pagoManager,ViajesManager viajeManager) {
 		this.manager = manager;
 		this.inventarioManager = inventarioManager;
+		this.pagoManager = pagoManager;
+		this.viajeManager = viajeManager;
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "proyectos/{idProyecto}/inventario/{idInventario}/adjunto/{id}")
-	public ModelAndView deleteAttachment(@PathVariable("id") long id ,  @PathVariable("idInventario") long idInventario, @PathVariable("idProyecto") long idProyecto) {
+	public ModelAndView deleteAttachmentInventario(@PathVariable("id") long id ,  @PathVariable("idInventario") long idInventario, @PathVariable("idProyecto") long idProyecto) {
 		
 		Inventario inventario = inventarioManager.findOneInventario(idInventario);
 		
@@ -51,7 +60,7 @@ public class FileUploadController {
 
 	
 	@RequestMapping(method = RequestMethod.GET, value = "proyectos/{idProyecto}/inventario/{idInventario}/adjuntos")
-	public ModelAndView filesPrueba(@PathVariable("idInventario") long idInventario) {
+	public ModelAndView filesInventario(@PathVariable("idInventario") long idInventario) {
 		ModelAndView view = new ModelAndView("files");
 		view.addObject("files", inventarioManager.findOneInventario(idInventario).getAdjuntos());
 		view.addObject("command", new NewFileCommand());
@@ -59,7 +68,7 @@ public class FileUploadController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "proyectos/{idProyecto}/inventario/{idInventario}/adjuntos")
-	public ModelAndView addAttachmentPrueba(@PathVariable("idInventario") long idInventario ,@PathVariable("idProyecto") long idProyecto, @ModelAttribute("command") @Validated NewFileCommand command,
+	public ModelAndView addAttachmentInventario(@PathVariable("idInventario") long idInventario ,@PathVariable("idProyecto") long idProyecto, @ModelAttribute("command") @Validated NewFileCommand command,
 			BindingResult result) throws IOException {
 		
 		if (result.hasErrors()) {
@@ -74,6 +83,58 @@ public class FileUploadController {
 		inventarioManager.save(inv);
 		return new ModelAndView("redirect:/proyectos/"+idProyecto+"/inventario/"+idInventario+"/adjuntos");
 	}
+	
+	/*
+	 * PARA PAGOS
+	 * 
+	 */
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "proyectos/{idProyecto}/pago/{idPago}/adjunto/{id}")
+	public ModelAndView deleteAttachmentPago(@PathVariable("id") long id ,  @PathVariable("idPago") long idPago, @PathVariable("idProyecto") long idProyecto) {
+		
+		Pago pago = pagoManager.findOnePago(idPago);
+		
+		Iterator<Attachment> it = pago.getAdjuntos().iterator();
+		while(it.hasNext()){
+			if (it.next().getId() == id)
+				it.remove();
+		}
+		
+		pagoManager.save(pago);
+		manager.deleteAttachment(id);
+		return new ModelAndView("redirect:/proyectos/"+idProyecto+"/pago/"+idPago+"/adjuntos");
+	}
+
+	
+	@RequestMapping(method = RequestMethod.GET, value = "proyectos/{idProyecto}/pago/{idPago}/adjuntos")
+	public ModelAndView filesPruebaPago(@PathVariable("idPago") long idPago) {
+		ModelAndView view = new ModelAndView("files");
+		view.addObject("files", pagoManager.findOnePago(idPago).getAdjuntos());
+		view.addObject("command", new NewFileCommand());
+		return view;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "proyectos/{idProyecto}/pago/{idPago}/adjuntos")
+	public ModelAndView addAttachmentPruebaPago(@PathVariable("idPago") long idPago ,@PathVariable("idProyecto") long idProyecto, @ModelAttribute("command") @Validated NewFileCommand command,
+			BindingResult result) throws IOException {
+		
+		if (result.hasErrors()) {
+			ModelAndView view = new ModelAndView("files");
+			view.addObject("files", manager.getAttachments());
+			view.addObject("command", command);
+			return view;
+		}
+
+		Pago pago = pagoManager.findOnePago(idPago);
+		pago.getAdjuntos().add(manager.addAttachment(command));
+		pagoManager.save(pago);
+		return new ModelAndView("redirect:/proyectos/"+idProyecto+"/pago/"+idPago+"/adjuntos");
+	}
+	
+	/*
+	 * PARA VIAJES
+	 * 
+	 */
 	
 	
 	

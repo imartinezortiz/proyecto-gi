@@ -5,7 +5,9 @@ package ucm.fdi.tfg.pagos.business.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -14,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -25,6 +28,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import ucm.fdi.tfg.fileupload.business.entity.Attachment;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Entity
@@ -67,8 +71,14 @@ public class Pago {
 	@CollectionTable(name="PAGO_GASTOS", joinColumns=@JoinColumn(name="pagoId"),  uniqueConstraints=@UniqueConstraint(columnNames={"pagoId", "numFactura"}))  
 	private Collection<Gasto> gastos;
 	
+	@OneToMany(cascade = CascadeType.REMOVE)
+	private List<Attachment> adjuntos;
+	
+	
+	
 	Pago() {
-		this.gastos = new ArrayList<Gasto>();	
+		this.gastos = new ArrayList<Gasto>();
+		adjuntos = new ArrayList<Attachment>();
 	}
 	public Pago(Proyecto proyecto) {
 		this(proyecto, "","");
@@ -79,6 +89,14 @@ public class Pago {
 		this.fecha = LocalDate.now();
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<Gasto>();	
+	}
+	
+	public List<Attachment> getAdjuntos() {
+		return adjuntos;
+	}
+
+	public void setAdjuntos(List<Attachment> adjuntos) {
+		this.adjuntos = adjuntos;
 	}
 
 	
