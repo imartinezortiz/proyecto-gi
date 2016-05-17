@@ -172,17 +172,17 @@ INSERT INTO dietas (pais,importe) VALUES ('Resto del mundo','40.87');
 
 
 --Insertamos inventarios de prueba para el proyecto 1 (Primer Proyecto);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (1, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'EDICION',1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (2, 'autor2', 'c2', 'des2', '2016-04-21', 'obs2', 'EDICION',1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (3, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'EDICION',1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (4, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'PROCESANDO',1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (5, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'PROCESANDO',1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (6, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'PROCESANDO',1);
-INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (7, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1', 'PROCESANDO',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (1, 'autor1', 'c1', 'des1', '2016-02-21', 'obs1', 'EDICION',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (2, 'autor2', 'c2', 'des2', '2016-03-12', 'obs2', 'EDICION',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (3, 'autor1', 'c1', 'des1', '2016-04-23', 'obs1', 'EDICION',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (4, 'autor1', 'c1', 'des1', '2016-06-24', 'obs1', 'PROCESANDO',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (5, 'autor1', 'c1', 'des1', '2016-07-25', 'obs1', 'PROCESANDO',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (6, 'autor1', 'c1', 'des1', '2016-08-26', 'obs1', 'PROCESANDO',1);
+INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (7, 'autor1', 'c1', 'des1', '2016-09-27', 'obs1', 'PROCESANDO',1);
 -- Inventario de proyecto 2
 INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (8, 'autor1', 'c1', 'des1', '2016-04-21', 'obs1','EDICION', 2);
 
 
 --Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);
-INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, fase, `proyecto_id`) VALUES ('0', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1')
-INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, fase, `proyecto_id`) VALUES ('1', '1', '2016-06-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1')
+INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, fase, `proyecto_id`) VALUES ('1', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1')
+INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, fase, `proyecto_id`) VALUES ('2', '1', '2016-03-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1')
