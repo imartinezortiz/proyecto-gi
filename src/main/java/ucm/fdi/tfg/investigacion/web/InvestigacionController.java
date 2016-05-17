@@ -13,16 +13,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ucm.fdi.tfg.inventarios.business.boundary.InventariosManager;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
+import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
+import ucm.fdi.tfg.pagos.business.entity.Pago;
+import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
+import ucm.fdi.tfg.viajes.business.entity.Viaje;
 
 @Controller
 public class InvestigacionController {
 	
 	
 	private InventariosManager inventarios;
+	private PagosManager pagos;
+	private ViajesManager viajes;
 	
 	@Autowired
-	public InvestigacionController(InventariosManager inventarios){
+	public InvestigacionController(InventariosManager inventarios, PagosManager pagos, ViajesManager viajes){
 		this.inventarios = inventarios;
+		this.pagos = pagos;
+		this.viajes = viajes;
 	}
 	
 	@RequestMapping(value = "/investigacion", method = RequestMethod.GET)
@@ -30,11 +38,19 @@ public class InvestigacionController {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		List<Inventario> inventariosProcesando = inventarios.inventariosProcesando();
-		
-		model.put("inventariosProcesando", inventariosProcesando);
-		
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		//Tabla de inventarios
+		List<Inventario> inventariosProcesando = inventarios.inventariosProcesando();		
+		model.put("inventariosProcesando", inventariosProcesando);				
+		
+		//Tabla de pagos
+		List<Pago> pagosProcesando = pagos.pagosProcesando();
+		model.put("pagosProcesando", pagosProcesando);		
+		
+		//Tabla de viajes
+		List<Viaje> viajesProcesando = viajes.viajesProcesando();
+		model.put("viajesProcesando", viajesProcesando);	
 		
 		ModelAndView view = new ModelAndView("investigacion/listarProcesando", model);
 		

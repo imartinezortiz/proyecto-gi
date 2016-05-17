@@ -92,7 +92,7 @@ public class ViajesManager {
 		
 	}
 	
-	public List<Viaje> inventariosProcesando(){
+	public List<Viaje> viajesProcesando(){
 		
 		return viajes.viajesProcesando();
 	}
