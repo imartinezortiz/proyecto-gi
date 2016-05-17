@@ -12,6 +12,8 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,6 +31,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import ucm.fdi.tfg.fileupload.business.entity.Attachment;
+import ucm.fdi.tfg.investigacion.business.entity.Estado;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 
 @Entity
@@ -74,14 +77,17 @@ public class Pago {
 	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<Attachment> adjuntos;
 	
-	
+	@Enumerated(EnumType.STRING)
+	private Estado fase;
 	
 	Pago() {
 		this.gastos = new ArrayList<Gasto>();
 		adjuntos = new ArrayList<Attachment>();
+		this.fase= Estado.EDICION;
 	}
 	public Pago(Proyecto proyecto) {
 		this(proyecto, "","");
+		this.fase= Estado.EDICION;
 	}
 	
 	public Pago (Proyecto proyecto, String numOrden,String fecha) {			
@@ -160,6 +166,14 @@ public class Pago {
 	}
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
+	}
+	
+	public Estado getFase() {
+		return fase;
+	}
+
+	public void setFase(Estado fase) {
+		this.fase = fase;
 	}
 	
 	

@@ -10,6 +10,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import ucm.fdi.tfg.fileupload.business.entity.Attachment;
+import ucm.fdi.tfg.investigacion.business.entity.Estado;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 
@@ -88,6 +91,8 @@ public class Viaje {
 	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<Attachment> adjuntos;
 	
+	@Enumerated(EnumType.STRING)
+	private Estado fase;
 	
 
 	public Viaje(){
@@ -95,7 +100,7 @@ public class Viaje {
 		this.gastos = new ArrayList<GastoViaje>();
 		this.fecha = LocalDate.now();
 		adjuntos = new ArrayList<Attachment>();
-		
+		this.fase= Estado.EDICION;		
 	}
 	
 		
@@ -104,6 +109,7 @@ public class Viaje {
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<GastoViaje>();
 		this.fecha = LocalDate.now();
+		this.fase= Estado.EDICION;
 	}
 	
 	public List<Attachment> getAdjuntos() {
@@ -269,6 +275,14 @@ public class Viaje {
 	}
 
 
+	public Estado getFase() {
+		return fase;
+	}
+
+	public void setFase(Estado fase) {
+		this.fase = fase;
+	}
+	
 	
 
 	

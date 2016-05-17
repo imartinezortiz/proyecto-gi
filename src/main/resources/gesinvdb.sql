@@ -64,9 +64,11 @@ INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorI
 INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (2,6);
 INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (2,7);
 
-INSERT INTO pagos(pagoId, numOrden,fecha,iban,bic,pagador,memoria,relacion, proyecto_id) VALUES (1,111,'2016-04-21','100','150','David','Memoriaaa','La relacion misma',1);
+INSERT INTO pagos(pagoId, numOrden,fecha,iban,bic,pagador,memoria,relacion, fase, proyecto_id) VALUES (1,111,'2016-04-21','100','150','David','Memoriaaa','La relacion misma','PROCESANDO',1);
+INSERT INTO pagos(pagoId, numOrden,fecha,iban,bic,pagador,memoria,relacion, fase, proyecto_id) VALUES (2,111,'2016-05-25','200','250','Ivan','Memoriaaa','r2', 'EDICION',1);
 
 INSERT INTO pago_gastos (pagoId, importe, numFactura, proveedor) VALUES (1, '100.00', '222', 'p1');
+INSERT INTO pago_gastos (pagoId, importe, numFactura, proveedor) VALUES (2, '200.00', '222', 'p1');
 
 INSERT INTO dietas (pais,importe) VALUES ('España','37.40');
 INSERT INTO dietas (pais,importe) VALUES ('Alemania','59.50');
@@ -182,4 +184,5 @@ INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha,
 
 
 --Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);
-INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, `proyecto_id`) VALUES ('0', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a', '1')
+INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, fase, `proyecto_id`) VALUES ('0', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1')
+INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, fase, `proyecto_id`) VALUES ('1', '1', '2016-06-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1')
