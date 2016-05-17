@@ -22,14 +22,11 @@
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Centro</th>
-											<th>Descripcion</th>
 											<th>Fecha</th>
 											<th>Observaciones</th>
 											<th>Estado</th>
 											<th>Proyecto</th>											
-											<th>Accion</th>
-											
+											<th>Acción</th>											
 											
 										</tr>
 									</thead>
@@ -37,8 +34,6 @@
 										<tr th:each="inventario : ${inventariosProcesando}">
 											
 											<td th:text="${inventario.id}"></td>											
-											<td th:text="${inventario.centro}"></td>
-											<td th:text="${inventario.descripcion}"></td>
 											<td th:text="${inventario.fecha}"></td>											
 											<td th:text="${inventario.observaciones}"></td>
 											<td th:text="${inventario.fase}"></td>
@@ -48,9 +43,51 @@
 												<a class="btn btn-info" th:href="@{/proyectos/{idProyecto}/edit/inventarios/{id}/ (id=${inventario.id}, idProyecto=${inventario.proyecto.id})} " ><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
 												<!-- <a class="btn btn-info " th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})} ">  Procesar </a>  -->
 												<a class="btn btn-danger "th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})}" th:data-confirm="|¿Seguro que quiere procesar el inventario ${inventario.id}? |"><i class="glyphicon glyphicon-send" aria-hidden="true"></i> Procesar</a>		
-												
-												
- 													 					
+										 	</td>											
+										</tr>
+									</tbody>
+								</table>
+								
+							</div>				
+						
+						</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Listado de Pagos pendientes de Procesar</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<div class="dataTable_wrapper">
+								<table class="table table-striped table-bordered table-hover"
+									id="dataTables-example">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Fecha</th>
+											<th>Observaciones</th>
+											<th>Estado</th>
+											<th>Proyecto</th>											
+											<th>Acción</th>											
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="pago : ${pagosProcesando}">
+											
+											<td th:text="${pago.id}"></td>											
+											<td th:text="${pago.fecha}"></td>											
+											<td th:text="${pago.observaciones}"></td>
+											<td th:text="${pago.fase}"></td>
+											<td th:text="${pago.proyecto.id}"></td>
+											
+											<td> 
+												<a class="btn btn-info" th:href="@{/proyectos/{idProyecto}/edit/pagos/{id}/ (id=${pago.id}, idProyecto=${pago.proyecto.id})} " ><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
+												<!-- <a class="btn btn-info " th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})} ">  Procesar </a>  -->
+												<a class="btn btn-danger "th:href="@{'procesar/pagos/{id}/' (id=${pago.id})}" th:data-confirm="|¿Seguro que quiere procesar el pago ${pago.id}? |"><i class="glyphicon glyphicon-send" aria-hidden="true"></i> Procesar</a>			 					
 											</td>											
 										</tr>
 									</tbody>
@@ -62,6 +99,52 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Listado de Viajes pendientes de Procesar</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<div class="dataTable_wrapper">
+								<table class="table table-striped table-bordered table-hover"
+									id="dataTables-example">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Fecha</th>
+											<th>Observaciones</th>
+											<th>Estado</th>
+											<th>Proyecto</th>											
+											<th>Acción</th>											
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="viaje : ${viajesProcesando}">
+											
+											<td th:text="${viaje.id}"></td>											
+											<td th:text="${viaje.fecha}"></td>											
+											<td th:text="${viaje.observaciones}"></td>
+											<td th:text="${viaje.fase}"></td>
+											<td th:text="${viaje.proyecto.id}"></td>
+											
+											<td> 
+												<a class="btn btn-info" th:href="@{/proyectos/{idProyecto}/edit/viajes/{id}/ (id=${viaje.id}, idProyecto=${viaje.proyecto.id})} " ><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
+												<!-- <a class="btn btn-info " th:href="@{'procesar/inventarios/{id}/' (id=${inventario.id})} ">  Procesar </a>  -->
+												<a class="btn btn-danger "th:href="@{'procesar/viajes/{id}/' (id=${viaje.id})}" th:data-confirm="|¿Seguro que quiere procesar el viaje ${viaje.id}? |"><i class="glyphicon glyphicon-send" aria-hidden="true"></i> Procesar</a>		
+										 	</td>											
+										</tr>
+									</tbody>
+								</table>
+								
+							</div>				
+						
+						</div>
+						</div>
+					</div>
+				</div>
+				
 				</div>
 
 <div th:include="scripts"></div> 
@@ -71,7 +154,7 @@ $(document).ready(function() {
 	$('a[data-confirm]').click(function(ev) {
 		var href = $(this).attr('href');
 		if (!$('#dataConfirmModal').length) {
-			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true" ><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"></button><h4 class="modal-title">Información</h4></div><div class="modal-body"> <p th:text=" |¿Está seguro de procesar el inventario  ?| " > </p> </div><div class="modal-footer"><button class="btn" data-dismiss="modal" >Cancel</button><a class="btn btn-danger " id="dataConfirmOK">OK</a></div></div></div></div>');
+			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true" ><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"></button><h4 class="modal-title">Información</h4></div><div class="modal-body"> <p th:text=" |¿Está seguro de procesar  ?| " > </p> </div><div class="modal-footer"><button class="btn" data-dismiss="modal" >Cancel</button><a class="btn btn-danger " id="dataConfirmOK">OK</a></div></div></div></div>');
 		} 
 		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
 		$('#dataConfirmOK').attr('href', href);
