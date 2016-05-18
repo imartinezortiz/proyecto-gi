@@ -115,8 +115,7 @@ public class PagosController {
 		List<Pago> pagosPorProyecto = pagoManager.pagosPorProyecto(idProyecto);
 		
 		model.put("pagosPorProyecto", pagosPorProyecto);
-		model.put("idProyecto", idProyecto);
-		
+		model.put("idProyecto", idProyecto);		
 		
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 
@@ -184,21 +183,17 @@ public class PagosController {
 	@RequestMapping(value = "/proyectos/{idProyecto}/procesando/pagos/{idPago}", method = RequestMethod.POST)
 	public ModelAndView procesandoPago(@PathVariable(value="idProyecto") Long idProyecto , @PathVariable(value="idPago") Long idPago){
 				
-		this.pagoManager.procesando(idPago);
-			
+		this.pagoManager.procesando(idPago);			
 		
 		ModelAndView  view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/pagos");	
-		
-		
-		
+						
 		return view;	
 		
 	}
 	
 	@RequestMapping(value = "/procesar/pagos/{idPago}", method = RequestMethod.GET)
 	public ModelAndView procesarPago(@PathVariable(value="idPago") Long idPago){
-		
-								
+										
 		this.pagoManager.procesar(idPago);
 				
 		ModelAndView  view = new ModelAndView("redirect:/investigacion");	

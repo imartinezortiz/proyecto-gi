@@ -112,7 +112,7 @@ public class InventariosController {
 		
 		return view;
 	}
-		
+	
 	
 	@RequestMapping(value = "/proyectos/{idProyecto}/edit/inventarios/{idInventario}", method = RequestMethod.GET)
 	public ModelAndView editarInventario(@PathVariable(value="idProyecto") Long idProyecto, @PathVariable(value="idInventario") Long idInventario) {

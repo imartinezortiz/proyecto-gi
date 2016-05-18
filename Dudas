@@ -9,15 +9,10 @@ DUDAS:
 						
 			*[Pagos-gastos] Al validar un bigdecimal cuando se mete una cadena salta exception y coge "message". Mirar como cambiar ese mensaje en Spring.			
 						
-			* Quitar opciones q no se usan en el menu principal de la cabecera.			
+			* Quitar opciones q no se usan en el menu principal de la cabecera.		
 			
+				
 			
-	Dudas:
-			
-					
-		* Al editar un proyecto que no tenga investigadores, si no seleccionas ningun investigador, peta.
-		
-		*¿Donde se mete la clase Enum Estado?
 				
 			
 			

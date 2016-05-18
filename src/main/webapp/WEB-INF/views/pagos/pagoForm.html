@@ -247,6 +247,10 @@
     var urlAdjuntosPago = /*[[@{/proyectos/{idProyecto}/pago/{idPago}/adjuntos  (idProyecto=${pago.proyecto.id}, idPago=${idPago}) }]]*/ '';
     $("#adjuntos").attr('src', urlAdjuntosPago);
   }
+  else{
+	  $("#adjuntos").attr('src', "avisoAdjuntos");
+	  $("#adjuntos").height(130);	  
+  }
 </script>
 
 <script>

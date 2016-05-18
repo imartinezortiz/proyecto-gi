@@ -21,6 +21,7 @@
 									id="dataTables-example">
 									<thead>
 										<tr>
+											<th>ID</th>
 											<th>Numero de Orden</th>
 											<th>Fecha</th>
 											<th>Pagador</th>
@@ -30,6 +31,7 @@
 									</thead>
 									<tbody>
 										<tr th:each="pago : ${pagosPorProyecto}">
+											<td th:text="${pago.id}"></td>
 											<td th:text="${pago.numOrden}"></td>
 											<td th:text="${pago.fecha}"></td>
 											<td th:text="${pago.pagador}"></td>

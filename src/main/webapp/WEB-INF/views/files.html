@@ -18,32 +18,32 @@
 	    <![endif]-->
 <title>Subida de adjuntos</title>
 </head>
-<body>
+<body >
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<p class="panel-title">ADJUNTAR ARCHIVOS</p>
 			</div>
 		
-		<div class="panel-body">
+		<div class="panel-body ">
 		<form action="#" class="form-inline" th:action="@{adjuntos}"  th:object="${command}"
 			method="POST" enctype="multipart/form-data">
 			<div class="form-group"
 				th:classappend="${#fields.hasErrors('description')} ? has-error">
-				<label>Description: <textarea class="form-control"
-					placeholder="Description" th:field="*{description}"></textarea></label>
+				<label>Descripción: <textarea class="form-control"
+					placeholder="Descripción" th:field="*{description}"></textarea></label>
 				<span class="help-block"
 					th:errors="*{description}">[errors]</span>
 			</div>
 			<div class="form-group"
 				th:classappend="${#fields.hasErrors('attachment')} ? has-error">
-				<label class="lbl-info">Select the file: <input
+				<label class="lbl-info">Selecciona fichero: <input
 					type="file" class="form-control"
 					th:field="*{attachment}" /></label>
 				<span class="help-block"
 					th:errors="*{attachment}">[errors]</span>
 			
 			<button type="submit" class="btn btn-primary">
-      			<span class="glyphicon glyphicon-upload"></span> Upload
+      			<span class="glyphicon glyphicon-upload"></span> Cargar
    			</button>
    			</div>
 		</form>

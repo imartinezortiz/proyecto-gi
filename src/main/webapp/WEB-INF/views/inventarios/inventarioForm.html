@@ -132,6 +132,11 @@
     var urlAdjuntosInventario = /*[[@{/proyectos/{idProyecto}/inventario/{idInventario}/adjuntos  (idProyecto=${inventario.proyecto.id}, idInventario=${idInventario}) }]]*/ '';
     $("#adjuntos").attr('src', urlAdjuntosInventario);
   }
+  else{
+	  $("#adjuntos").attr('src', "avisoAdjuntos");
+	  $("#adjuntos").height(130);	  
+  }
+	  
 </script>
 <!-- 
 <script type="text/javascript">

@@ -392,6 +392,10 @@
     var urlAdjuntosViaje = /*[[@{/proyectos/{idProyecto}/viaje/{idViaje}/adjuntos  (idProyecto=${viaje.proyecto.id}, idViaje=${idViaje}) }]]*/ '';
     $("#adjuntos").attr('src', urlAdjuntosViaje);
   }
+  else{
+	  $("#adjuntos").attr('src', "avisoAdjuntos");
+	  $("#adjuntos").height(130);	  
+  }
 </script>
 
 

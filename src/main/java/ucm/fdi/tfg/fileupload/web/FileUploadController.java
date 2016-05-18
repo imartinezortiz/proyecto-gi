@@ -180,6 +180,14 @@ public class FileUploadController {
 	}
 	
 	
+	@RequestMapping("/proyectos/{idProyecto}/avisoAdjuntos")
+	public String avisoAdjuntos() {
+			return "avisoAdjuntos";
+	}
+				
+	
+	
+		
 	
 	
 	
