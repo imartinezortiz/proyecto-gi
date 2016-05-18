@@ -43,7 +43,7 @@
 							<div class="col-md-10">
 								<select class="form-control col-md-10" th:field="*{investigadorId}">
 								<option th:each="investigador : ${investigadores}"
-									th:value="${investigador.id}" th:text="${investigador.nombre}">Investigadores</option>
+									th:value="${investigador.id}" th:text="|${investigador.nombre} ${investigador.apellidos}|">Investigadores</option>
 								</select>
 							</div>
 					</div>
