@@ -18,6 +18,7 @@
 
 	<!-- Excluir resources (como css)de SpringSecurity   -->
 	<http pattern="/resources/**" security="none" />
+	<http pattern="/webjars/**" security="none" />
 	
 	
 
