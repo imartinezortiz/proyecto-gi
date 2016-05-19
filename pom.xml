@@ -250,6 +250,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>proyecto-gi</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
