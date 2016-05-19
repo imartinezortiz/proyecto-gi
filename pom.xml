@@ -266,7 +266,14 @@
 			<artifactId>usertype.extended</artifactId>
 			<version>4.0.0.GA</version>
 		</dependency>
-
+		
+		<!-- Solución para poder utilizar log4j2 con Hibernate 4.3 -->
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.2.0.Final</version>
+		</dependency>
+		
 		<!-- -->
 		<!-- Spring Data JPA -->
 		<!-- -->
