@@ -43,13 +43,18 @@
 	</util:properties>
 	
 <!-- org.thymeleaf.templateresolver.ServletContextTemplateResolver -->	
- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
-  <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-  <property name="url"
-   value="jdbc:mysql://localhost:3306/gesinvdb" />
-  <property name="username" value="david" />
-  <property name="password" value="david123" />
- </bean>
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/gesinvdb" />
+		<property name="username" value="david" />
+		<property name="password" value="david123" />
+		<property name="connectionProperties">
+		    <props>
+		        <prop key="useUnicode">yes</prop>
+		        <prop key="characterEncoding">UTF-8</prop>
+		    </props>
+		</property>
+	</bean>
  
   <!-- Hibernate + EntityManagerFactory configuration -->
 
@@ -72,11 +77,10 @@
   <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>  
   <property name="jpaProperties">
   <props>
-    <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
     <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-    <prop key="hibernate.show_sql">true</prop>
-    <prop key="hibernate.hbm2ddl.import_files">gesinvdb.sql</prop>
-    
+    <prop key="hibernate.hbm2ddl.import_files_sql_extractor">com.pragmasphere.hibernate.CustomSqlExtractor</prop>
+    <prop key="hibernate.hbm2ddl.import_files">/gesinvdb.sql</prop>
+    <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
    </props>
   </property>
  </bean>
