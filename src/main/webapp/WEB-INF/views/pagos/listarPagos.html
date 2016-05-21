@@ -39,7 +39,7 @@
 
 											<td> 
 												<!-- <a th:href="@{'edit/pagos/{id}/' (id=${pago.id})} ">  Editar </a>  -->
-												<a class="btn btn-info" th:if="${{pago.fase}} == 'EDICION' or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"  th:href="@{'edit/pagos/{id}/' (id=${pago.id})} "><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
+												<a class="btn btn-info" th:if="${{pago.fase}} == 'EDICION' or ${#authorization.expression('hasRole(''ROLE_GESTOR'')')}"  th:href="@{'edit/pagos/{id}/' (id=${pago.id})} "><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
 												<a class="btn btn-warning " th:if="${pago.fase == T(ucm.fdi.tfg.investigacion.business.entity.Estado).EDICION}"  th:href="@{'procesando/pagos/{id}/' (id=${pago.id})} " th:data-confirm="|¿Seguro que quiere enviar a procesar el pago ${pago.id}? |" ><i class="glyphicon glyphicon glyphicon-share-alt " aria-hidden="true"></i> Enviar</a>
 											</td>
 										</tr>

@@ -40,7 +40,7 @@
 											<td th:text="${viaje.observaciones}"></td>
 											<td th:text="${viaje.fase}"></td>
 											<td> 												
-												<a class="btn btn-info" th:if="${{viaje.fase}} == 'EDICION' or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"  th:href="@{'edit/viajes/{id}/' (id=${viaje.id})} "><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
+												<a class="btn btn-info" th:if="${{viaje.fase}} == 'EDICION' or ${#authorization.expression('hasRole(''ROLE_GESTOR'')')}"  th:href="@{'edit/viajes/{id}/' (id=${viaje.id})} "><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
 												<a class="btn btn-warning " th:if="${viaje.fase == T(ucm.fdi.tfg.investigacion.business.entity.Estado).EDICION}"  th:href="@{'procesando/viajes/{id}/' (id=${viaje.id})} " th:data-confirm="|¿Seguro que quiere enviar a procesar el viaje ${viaje.id}? |" ><i class="glyphicon glyphicon glyphicon-share-alt " aria-hidden="true"></i> Enviar</a>
 											</td>
 											

@@ -42,7 +42,7 @@
 											<td th:text="${inventario.fase}"></td>
 											
 											<td> 
-												<a class="btn btn-info" th:if="${{inventario.fase}} == 'EDICION' or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"  th:href="@{'edit/inventarios/{id}/' (id=${inventario.id})} "><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
+												<a class="btn btn-info" th:if="${{inventario.fase}} == 'EDICION' or ${#authorization.expression('hasRole(''ROLE_GESTOR'')')}"  th:href="@{'edit/inventarios/{id}/' (id=${inventario.id})} "><i class="glyphicon glyphicon-edit" aria-hidden="true"></i> Editar</a>
 												<a class="btn btn-warning " th:if="${inventario.fase == T(ucm.fdi.tfg.investigacion.business.entity.Estado).EDICION}"  th:href="@{'procesando/inventarios/{id}/' (id=${inventario.id})} " th:data-confirm="|¿Seguro que quiere enviar a procesar el inventario ${inventario.id}? |" ><i class="glyphicon glyphicon glyphicon-share-alt " aria-hidden="true"></i> Enviar</a>
 											</td> 
 											

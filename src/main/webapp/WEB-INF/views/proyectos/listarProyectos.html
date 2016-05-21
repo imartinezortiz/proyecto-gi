@@ -50,7 +50,7 @@
 									</tbody>
 								</table>
 							</div>
-					<div class="col-md-12">
+					<div class="col-md-12" th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}">
 						<form role="form" action="#"  th:action="@{/crearProyecto}"  method="GET">
 							<button class="btn btn-success" type="submit">Añadir Proyecto</button>
 						</form>

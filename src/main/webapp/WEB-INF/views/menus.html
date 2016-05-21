@@ -135,14 +135,13 @@
 
 						</li>
 
-						<li
-							th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}">
+						<li	th:if="${#authorization.expression('hasRole(''ROLE_INVESTIGADOR'')')}">
 							<a href="#"><i class="fa fa-folder-open fa-fw"></i> Proyectos<span
 								class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li>
 									<a th:href="@{/proyectos}">Listar Proyectos</a> 
-									<a th:href="@{/crearProyecto}" >Crear Proyecto </a> 
+									<a th:href="@{/crearProyecto}" th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}" >Crear Proyecto </a> 
 								</li>
 							</ul>
 
