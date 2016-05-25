@@ -44,7 +44,7 @@
 											<td th:text="${proyecto.numContabilidad}"></td>
 											<td th:text="${proyecto.investigadores.size()}"></td>
 											<td> 
-												<a th:href="@{'edit/proyectos/{id}/' (id=${proyecto.id})} ">  Editar </a>
+												<a th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}" th:href="@{'edit/proyectos/{id}/' (id=${proyecto.id})} ">  Editar </a>
 											</td>
 										</tr>
 									</tbody>
