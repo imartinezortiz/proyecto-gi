@@ -135,11 +135,11 @@ public class UserManager implements UserDetailsService{
 	}
 	
 	public List<User> findAllAdministradores() {
-		return repositoryUser.DameDatosUser("ROLE_ADMIN");
+		return repositoryUser.DameDatosUser(new UserRole("ROLE_ADMIN"));
 	}
 	
 	public List<User> findAllGestores() {
-		return repositoryUser.DameDatosUser("ROLE_GESTOR");
+		return repositoryUser.DameDatosUser(new UserRole("ROLE_GESTOR"));
 	}
 
 

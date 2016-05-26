@@ -1,5 +1,3 @@
-SET character_set_client = utf8;
-
 INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (1, b'0', b'0', 'Rico Valverde', b'0', 'drv@gmail.com', b'1', 'David', '$2a$10$//HU8yTgOoLrZX6z9cgXhuR/IJki.BtS/ZM4Pr8s/zBDCFIT.I3P6', '607606620', 'root');
 INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (2, b'0', b'0', 'Nieto Cobo', b'0', 'email2@gmail.com', b'1', 'David', '$2a$10$n9v06bDngTF/33M9sPdRTeJQjWwTm4pJWqhbGaMYSDumEnXy.T2.G', '612357854', 'administrador');
 INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (3, b'0', b'0', 'Sánchez Torquemada', b'0', 'email3@gmail.com', b'1', 'Julio', '$2a$10$tfVFydVKjyHlRWJ/aDZKq.t5Hf/xGA.XwrMS5ZGgF5wFHUDwhPdxG', '683123654', 'gestor');
@@ -171,7 +169,7 @@ INSERT INTO dietas (pais,importe) VALUES ('Zimbawe','39.07');
 INSERT INTO dietas (pais,importe) VALUES ('Resto del mundo','40.87');
 
 
---Insertamos inventarios de prueba para el proyecto 1 (Primer Proyecto);
+-- Insertamos inventarios de prueba para el proyecto 1 (Primer Proyecto);
 INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (1, 'autor1', 'Matemáticas', 'des1', '2016-02-21', 'obs1', 'EDICION',1);
 INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (2, 'autor2', 'Físicas', 'des2', '2016-03-12', 'obs2', 'EDICION',1);
 INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (3, 'autor1', 'Matemáticas', 'des1', '2016-04-23', 'obs3', 'EDICION',1);
@@ -183,6 +181,6 @@ INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha,
 INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha, observaciones, fase, proyecto_id) VALUES (8, 'autor1', 'Informática', 'des1', '2016-04-21', 'obs8','EDICION', 2);
 
 
---Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);
-INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, fase, `proyecto_id`) VALUES ('1', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1')
-INSERT INTO `viajes` (`viajeId`, `dietaID`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, fase, `proyecto_id`) VALUES ('2', '1', '2016-03-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1')
+-- Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);
+INSERT INTO viajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('1', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1');
+INSERT INTO viajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('2', '1', '2016-03-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1');

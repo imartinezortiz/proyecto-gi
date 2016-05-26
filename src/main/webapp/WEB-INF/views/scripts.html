@@ -1,53 +1,51 @@
-<!-- jQuery -->
-	<script
-		src="../../resources/bower_components/jquery/dist/jquery.min.js"
-		data-th-src="@{/resources/bower_components/jquery/dist/jquery.min.js}">
-		
-	</script>
+	<!-- jQuery -->
+	<script src="//cdn.jsdelivr.net/webjars/org.webjars/jquery/2.1.4/jquery.min.js"
+		th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script
-		src="../../resources/bower_components/bootstrap/dist/js/bootstrap.min.js"
-		data-th-src="@{/resources/bower_components/bootstrap/dist/js/bootstrap.min.js}">
-		
-	</script>
+		src="//cdn.jsdelivr.net/webjars/org.webjars/bootstrap/3.3.5/js/bootstrap.min.js"
+		th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script
-		src="../../resources/bower_components/metisMenu/dist/metisMenu.min.js"
-		data-th-src="@{/resources/bower_components/metisMenu/dist/metisMenu.min.js}">
+		src="//cdn.jsdelivr.net/webjars/org.webjars.bower/metisMenu/2.5.0/dist/metisMenu.min.js"
+		th:src="@{/webjars/metisMenu/2.5.0/dist/metisMenu.min.js}"></script>
 		
-	</script>
-
 	<!-- Custom Theme JavaScript -->
-	<script src="../../resources/dist/js/sb-admin-2.js"
-		data-th-src="@{/resources/dist/js/sb-admin-2.js}">
+	<script
+		src="//cdn.jsdelivr.net/webjars/org.webjars/startbootstrap-sb-admin-2/1.0.8/js/sb-admin-2.js"
+		th:src="@{/webjars/startbootstrap-sb-admin-2/1.0.8/js/sb-admin-2.js}"></script>
 		
-	</script>
-
 	<!-- DataTables JavaScript -->
 	<script
-		src="../../resources/bower_components/datatables/media/js/jquery.dataTables.min.js"
-		data-th-src="@{/resources/bower_components/datatables/media/js/jquery.dataTables.min.js}" >
-	</script>
+		src="//cdn.jsdelivr.net/webjars/org.webjars/datatables/1.10.11/js/jquery.dataTables.min.js"
+		th:src="@{/webjars/datatables/1.10.11/js/jquery.dataTables.min.js}"></script>
 	<script
-		src="../../resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js}"
-		data-th-src="@{/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js}" >
-		</script>
-	<!-- Custom Theme JavaScript -->
-	<script 
-		src="../../resources/dist/js/sb-admin-2.js}"
-    	data-th-src="@{/resources/dist/js/sb-admin-2.js}">
-	</script>
+		src="//cdn.jsdelivr.net/webjars/org.webjars/datatables/1.10.11/js/dataTables.bootstrap.min.js"
+		th:src="@{/webjars/datatables/1.10.11/js/dataTables.bootstrap.min.js}"></script>
+		
+	<script
+		src="//cdn.jsdelivr.net/webjars/org.webjars.bower/datatables.net-responsive/2.0.2/js/dataTables.responsive.min.js"
+		th:src="@{/webjars/datatables.net-responsive/2.0.2/js/dataTables.responsive.min.js}"></script>
+	<script
+		src="//cdn.jsdelivr.net/webjars/org.webjars.bower/datatables.net-responsive/2.0.2/js/dataTables.responsive.min.js"
+		th:src="@{/webjars/datatables.net-responsive-bs/2.0.2/js/responsive.bootstrap.js}"></script>
+		
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
+	<script th:inline="javascript">
+	
+	function inicializaTabla(selector) {
+        $(selector).DataTable({
+        	'responsive': true,
+        	 'language': {
+        		 'url': /*[[@{/webjars/datatables-plugins/1.10.11-2/i18n/Spanish.json}]]*/ '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
+        	 },
+        	 'pagingType': 'simple'
+        });	
+	}
     $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-        	responsive: true,
-        	 "language": {
-                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        	 }
-        });
+		inicializaTabla('#dataTables-example');
     });
     </script>
     
