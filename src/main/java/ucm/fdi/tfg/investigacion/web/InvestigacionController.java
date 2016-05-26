@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,9 @@ public class InvestigacionController {
 		this.viajes = viajes;
 	}
 	
+	
 	@RequestMapping(value = "/investigacion", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_GESTOR')")
 	public ModelAndView listarProcesando() {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
