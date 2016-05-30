@@ -99,13 +99,17 @@ public class PagosController {
 			
 		}else{
 			pago.setProyecto(proyectosManager.findProyecto(idProyecto));
-			pagoManager.save(pago);	
-			view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/");
+			Pago pagoGuardado = pagoManager.save(pago);	
+			Long idPago = pagoGuardado.getId();
+			view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/edit/pagos/"+idPago+"/");
 		}
 		return view;
 		
 		
 	}
+	
+	
+
 
 	@RequestMapping(value = "/proyectos/{idProyecto}/pagos", method = RequestMethod.GET)
 	public ModelAndView listarPagos(@PathVariable(value="idProyecto") Long idProyecto) {

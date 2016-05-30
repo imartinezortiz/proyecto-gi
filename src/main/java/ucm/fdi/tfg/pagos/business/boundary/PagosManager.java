@@ -24,8 +24,8 @@ public class PagosManager {
 		 
 	 }
 	 
-	 public void save(Pago pago){	
-		repositoryPago.save(pago);
+	 public Pago save(Pago pago){	
+		return repositoryPago.save(pago);
 	}
 
 	public List<Pago> pagosPorProyecto(Long idProyecto) {

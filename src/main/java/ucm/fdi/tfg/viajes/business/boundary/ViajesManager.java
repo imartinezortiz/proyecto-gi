@@ -27,8 +27,8 @@ public class ViajesManager {
 		this.viajes=viajes;
 	}
 	
-	public void save(Viaje viaje){	
-		 viajes.save(viaje);
+	public Viaje save(Viaje viaje){	
+		return viajes.save(viaje);
 	}
 	
 	public List<Dieta> dameDietas(){

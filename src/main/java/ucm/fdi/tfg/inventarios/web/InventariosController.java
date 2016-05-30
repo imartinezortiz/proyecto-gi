@@ -89,8 +89,9 @@ public class InventariosController {
 			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 						
 		}else{
-			inventarios.nuevoInventario(idProyecto, inventario);
-			view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/");
+			Inventario inventarioGuardado = inventarios.nuevoInventario(idProyecto, inventario);
+			Long idInventario = inventarioGuardado.getId();
+			view = new ModelAndView("redirect:/proyectos/"+idProyecto+"/edit/inventarios/"+idInventario);
 			
 		}
 		return view;			

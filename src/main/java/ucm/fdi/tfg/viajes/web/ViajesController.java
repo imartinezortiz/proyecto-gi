@@ -105,8 +105,9 @@ public class ViajesController {
 	public String addViaje(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute Viaje viaje, BindingResult errors){
 	
 		viaje.setProyecto(proyectosManager.findProyecto(idProyecto));
-		viajes.save(viaje);
-		return "redirect:/inicio";
+		Viaje viajeGuardado = viajes.save(viaje);
+		Long idViaje = viajeGuardado.getId();
+		return "redirect:/proyectos/"+idProyecto+"/edit/viajes/"+idViaje+"/";
 		
 	}
 	
@@ -155,7 +156,6 @@ public class ViajesController {
 					
 					view = new ModelAndView("viajes/viajeForm");
 					
-			
 					Investigador inv = proyecto.getInvestigadorPrincipal();
 						
 					List<Dieta> dietas = viajes.dameDietas();
@@ -200,12 +200,10 @@ public class ViajesController {
 	
 	@RequestMapping(value = "/procesar/viajes/{idViaje}", method = RequestMethod.GET)
 	public ModelAndView procesarPago(@PathVariable(value="idViaje") Long idViaje){
-		
 								
 		this.viajes.procesar(idViaje);
 				
 		ModelAndView  view = new ModelAndView("redirect:/investigacion");	
-		
 		
 		return view;	
 		
