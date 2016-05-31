@@ -72,13 +72,6 @@
 										</div>
 								</div>
 								<div class="form-group">
-								<label class="control-label col-md-2" for="user.telefono">Teléfono:</label>
-								<div class="col-md-10">
-									<input class="form-control" type="text"
-										th:field="${user.telefono}" readonly="readonly" />
-										</div>
-								</div>
-								<div class="form-group">
 								<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.departamento">Departamento:</label>
 								<div class="col-md-10">
 									<input class="form-control" type="text"
@@ -86,14 +79,31 @@
 								</div>
 								</div>
 								<div class="form-group">
-								<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.centro">Centro:</label>
-								<div class="col-md-10">
-									<input class="form-control" type="text"
+									<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.centro">Centro:</label>
+									<div class="col-md-10">
+										<input class="form-control" type="text" 
 										th:value="*{proyecto.investigadorPrincipal.centro}"
 										readonly="readonly" />
+									</div>
 								</div>
+								<div class="form-group">
+								<label class="control-label col-md-2" for="user.telefono">Teléfono:</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text"
+										th:field="${user.telefono}" readonly="readonly" />
+										</div>
 								</div>
-							</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" for="user.email">Email</label>
+									<div class="col-md-10">
+										<input class="form-control" th:field="${user.email}" type="text"
+											readonly="readonly" />
+									</div>
+								</div>
+
+
+					</div>
 						</div>
 
 
