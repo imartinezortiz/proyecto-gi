@@ -28,7 +28,7 @@
 					 th:object=${inventario} method="POST">
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('fecha')} ? has-error">
-					<label class="control-label col-md-1" for="fecha">Fecha:</label>
+					<label class="control-label col-md-2" for="fecha">Fecha:</label>
 					<div class="col-md-3">
 						<input class="form-control" th:field="*{fecha}" type="date" /> <span
 							class="help-block" th:errors="*{fecha}">[errors]</span>
