@@ -2,8 +2,10 @@ package ucm.fdi.tfg.proyecto.business.boundary;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -84,12 +86,20 @@ public class ProyectosManager {
 		Iterator<UserRole> it =  coleccionRoles.iterator();
 		
 		while(it.hasNext()){			
-			if (it.next().getRole().toString().equals("ROLE_GESTOR"))	//new UserRole("ROLE_ADMIN")		
+			if (it.next().getRole().toString().equals("ROLE_GESTOR"))		
 				return proyectos.findAll();
-		}			
-		//Si es investigador sólo se devuelve los proyectos en los que es principal o participa				
-		return proyectos.proyectoPorInvestigador(user.getId());
+		}
 		
+		//Si es investigador sólo se devuelve los proyectos en los que es principal o participa		
+		List<Proyecto> list1 = proyectos.proyectosPorInvestigadorParticipante(user.getId());
+		List<Proyecto> list2 = proyectos.proyectosPorInvestigadorPrincipal(user.getId());
+		
+		Set<Proyecto> newSet = new HashSet<>(list1);
+		newSet.addAll(list2);
+		
+		List<Proyecto> proyectosPorinvestigador = new ArrayList<Proyecto>(newSet);
+		
+		return proyectosPorinvestigador;
 	}
 	
 	public void deleteProyect(Long idProyecto){
