@@ -17,7 +17,7 @@ import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
-import ucm.fdi.tfg.viajes.business.entity.Viaje;
+import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 @Controller
 public class InvestigacionController {
@@ -52,7 +52,7 @@ public class InvestigacionController {
 		model.put("pagosProcesando", pagosProcesando);		
 		
 		//Tabla de viajes
-		List<Viaje> viajesProcesando = viajes.viajesProcesando();
+		List<JustificacionViaje> viajesProcesando = viajes.viajesProcesando();
 		model.put("viajesProcesando", viajesProcesando);	
 		
 		ModelAndView view = new ModelAndView("investigacion/listarProcesando", model);

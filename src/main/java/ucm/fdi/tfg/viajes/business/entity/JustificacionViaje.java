@@ -31,8 +31,8 @@ import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 
 @Entity
-@Table(name="viajes")
-public class Viaje {
+@Table(name="justificacionViajes")
+public class JustificacionViaje {
 	
 	@Id
 	@Column(name="viajeId")
@@ -95,7 +95,7 @@ public class Viaje {
 	private Estado fase;
 	
 
-	public Viaje(){
+	public JustificacionViaje(){
 		this.miembroProyecto = true;
 		this.gastos = new ArrayList<GastoViaje>();
 		this.fecha = LocalDate.now();
@@ -104,7 +104,7 @@ public class Viaje {
 	}
 	
 		
-	public Viaje(Proyecto proyecto) {
+	public JustificacionViaje(Proyecto proyecto) {
 		this.miembroProyecto = true;
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<GastoViaje>();
