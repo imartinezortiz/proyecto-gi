@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ucm.fdi.tfg.viajes.business.control.ViajesRepository;
+import ucm.fdi.tfg.viajes.business.control.JustificacionViajeRepository;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
 import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionViajeEnum;
 import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
@@ -16,12 +16,12 @@ import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 @Transactional
 public class ViajesManager {
 
-	private ViajesRepository viajes;
+	private JustificacionViajeRepository viajes;
 	
 	private BigDecimal costePorKm;
 
 	@Autowired
-	public ViajesManager (ViajesRepository viajes){
+	public ViajesManager (JustificacionViajeRepository viajes){
 		this.costePorKm = new BigDecimal(0.19);
 		this.viajes=viajes;
 	}

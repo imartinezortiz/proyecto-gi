@@ -10,7 +10,7 @@ import ucm.fdi.tfg.viajes.business.entity.Dieta;
 import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 
-public interface ViajesRepository extends JpaRepository<JustificacionViaje, Long>{
+public interface JustificacionViajeRepository extends JpaRepository<JustificacionViaje, Long>{
 
 	@Query("SELECT D FROM Dieta D") 
 	public List<Dieta> DameDietas();
