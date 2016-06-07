@@ -67,8 +67,12 @@
 						th:classappend="${#fields.hasErrors('departamento')} ? has-error">
 						<label class="control-label col-md-2" for="departamento">Departamento:</label>
 						<div class="col-md-10">
-							<input class="form-control col-md-10" th:field="*{departamento}"
-								id="departamento" type="text" /> <span class="help-block"
+							<select class="form-control col-md-10" th:field="*{departamento}"
+								id="departamento" >
+								<option th:each="departamento : ${departamentos}"
+									th:value="${departamento.id}" th:text="${departamento.nombre}">Departamento 1</option>
+								
+							</select> <span class="help-block"
 								th:errors="*{departamento}">[errors]</span>
 						</div>
 					</div>
@@ -77,8 +81,12 @@
 						th:classappend="${#fields.hasErrors('centro')} ? has-error">
 						<label class="control-label col-md-2" for="centro">Centro:</label>
 						<div class="col-md-10">
-							<input class="form-control col-md-10" th:field="*{centro}"
-								id="centro" type="text" /> <span class="help-block"
+							<select class="form-control col-md-10" th:field="*{centro}"
+								id="centro" >
+								<option th:each="centro : ${centros}"
+									th:value="${centro.id}" th:text="${centro.nombre}">Centro 1</option>
+								
+							</select> <span class="help-block"
 								th:errors="*{centro}">[errors]</span>
 						</div>
 					</div>

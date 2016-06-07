@@ -1,11 +1,15 @@
 package ucm.fdi.tfg.users.business.boundary;
 
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.ScriptAssert;
+
+import ucm.fdi.tfg.centros.business.entity.Centro;
+import ucm.fdi.tfg.departamentos.business.entity.Departamento;
 
 @ScriptAssert(lang="javascript",script="(_this.password!=null)?  _this.password.equals(_this.nuevaPassword) : false",message="Los 2 passwords deben ser iguales")
 public class NuevoInvestigadorDTO {
@@ -36,11 +40,11 @@ public class NuevoInvestigadorDTO {
 	String nuevaPassword;
 	
 	//Atributos para Investigador
-	@NotEmpty(message = "Campo vacio") 
-	String departamento;	
+	@NotNull(message = "Campo vacio") 
+	Departamento departamento;	
 	
-	@NotEmpty(message = "Campo vacio") 
-	String centro;		
+	@NotNull(message = "Campo vacio") 
+	Centro centro;		
 	
 	
 	public String getNombre() {
@@ -61,10 +65,10 @@ public class NuevoInvestigadorDTO {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public String getDepartamento() {
+	public Departamento getDepartamento() {
 		return departamento;
 	}
-	public void setDepartamento(String departamento) {
+	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
 	public String getEmail() {
@@ -73,10 +77,10 @@ public class NuevoInvestigadorDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getCentro() {
+	public Centro getCentro() {
 		return centro;
 	}
-	public void setCentro(String centro) {
+	public void setCentro(Centro centro) {
 		this.centro = centro;
 	}
 	public String getPassword() {

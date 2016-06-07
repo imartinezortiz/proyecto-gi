@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ucm.fdi.tfg.proyecto.business.boundary.NuevoProyectoDTO;
-import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
+import ucm.fdi.tfg.centros.business.boundary.CentrosManager;
+import ucm.fdi.tfg.departamentos.business.boundary.DepartamentosManager;
 import ucm.fdi.tfg.users.business.boundary.NuevoInvestigadorDTO;
 import ucm.fdi.tfg.users.business.boundary.UserDTO;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
@@ -31,10 +31,16 @@ import ucm.fdi.tfg.users.business.entity.User;
 public class UserController {
 
 	private UserManager users;
+	
+	private CentrosManager centros;
 
+	private DepartamentosManager departamentos;
+	
 	@Autowired
-	public UserController(UserManager userManager) {
+	public UserController(UserManager userManager, CentrosManager centros, DepartamentosManager departamentos) {
 		this.users = userManager;
+		this.centros = centros;
+		this.departamentos = departamentos;
 	}
 
 	// Redirecciona al menu despues de hacer login
@@ -274,6 +280,8 @@ public class UserController {
 		model.put("modo", "altaInvestigador");
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		model.put("nuevoInvestigadorDTO", new NuevoInvestigadorDTO());
+		model.put("centros", centros.getAll());
+		model.put("departamentos", departamentos.getAll());
 		
 		ModelAndView view = new ModelAndView("usuarios/investigadorForm", model);
 		
