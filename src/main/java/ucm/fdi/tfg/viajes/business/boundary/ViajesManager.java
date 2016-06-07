@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import ucm.fdi.tfg.investigacion.business.entity.Estado;
 import ucm.fdi.tfg.viajes.business.control.ViajesRepository;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
+import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionViajeEnum;
 import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 @Service
@@ -77,7 +76,7 @@ public class ViajesManager {
 	public JustificacionViaje procesando(Long idViaje) {
 		JustificacionViaje viajeEditar = viajes.getOne(idViaje);	
 				
-		viajeEditar.setFase(Estado.PROCESANDO);		
+		viajeEditar.setFase(EstadoJustificacionViajeEnum.PROCESANDO);		
 			
 		return this.viajes.save(viajeEditar);
 		
@@ -86,7 +85,7 @@ public class ViajesManager {
 	public JustificacionViaje procesar(Long idViaje) {
 		JustificacionViaje viajeEditar = viajes.getOne(idViaje);	
 				
-		viajeEditar.setFase(Estado.PROCESADO);		
+		viajeEditar.setFase(EstadoJustificacionViajeEnum.PROCESADO);		
 			
 		return this.viajes.save(viajeEditar);
 		
