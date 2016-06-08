@@ -28,6 +28,7 @@
 											<th>Referencia</th>
 											<th>Numero de Contabilidad</th>
 											<th>Numero de Investigadores</th>
+											<th>Duracion</th>
 											<th>Editar</th>
 
 										</tr>
@@ -43,6 +44,7 @@
 											<td th:text="${proyecto.referencia}"></td>
 											<td th:text="${proyecto.numContabilidad}"></td>
 											<td th:text="${proyecto.investigadores.size()}"></td>
+											<td th:text="${proyecto.duracion}"></td>
 											<td> 
 												<a th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}" th:href="@{'edit/proyectos/{id}/' (id=${proyecto.id})} ">  Editar </a>
 											</td>
