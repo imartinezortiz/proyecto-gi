@@ -49,6 +49,30 @@ public class Proyecto {
 	@JoinColumn(name="unidadGestora", nullable=false)
 	private UnidadGestora unidadGestora;
 	
+	public UnidadGestora getUnidadGestora() {
+		return unidadGestora;
+	}
+
+	public void setUnidadGestora(UnidadGestora unidadGestora) {
+		this.unidadGestora = unidadGestora;
+	}
+
+	public LocalDate getFechaComienzo() {
+		return fechaComienzo;
+	}
+
+	public void setFechaComienzo(LocalDate fechaComienzo) {
+		this.fechaComienzo = fechaComienzo;
+	}
+
+	public int getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(nullable=false)
