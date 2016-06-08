@@ -7,27 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import ucm.fdi.tfg.investigacion.business.entity.Estado;
-import ucm.fdi.tfg.viajes.business.control.ViajesRepository;
+import ucm.fdi.tfg.viajes.business.control.JustificacionViajeRepository;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
-import ucm.fdi.tfg.viajes.business.entity.Viaje;
+import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionViajeEnum;
+import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 @Service
 @Transactional
 public class ViajesManager {
 
-	private ViajesRepository viajes;
+	private JustificacionViajeRepository viajes;
 	
 	private BigDecimal costePorKm;
 
 	@Autowired
-	public ViajesManager (ViajesRepository viajes){
+	public ViajesManager (JustificacionViajeRepository viajes){
 		this.costePorKm = new BigDecimal(0.19);
 		this.viajes=viajes;
 	}
 	
-	public Viaje save(Viaje viaje){	
+	public JustificacionViaje save(JustificacionViaje viaje){	
 		return viajes.save(viaje);
 	}
 	
@@ -43,17 +42,17 @@ public class ViajesManager {
 		this.costePorKm = costePorKm;
 	}
 
-	public List<Viaje> viajesPorProyecto(Long idProyecto) {
+	public List<JustificacionViaje> viajesPorProyecto(Long idProyecto) {
 		return viajes.viajesPorProyecto(idProyecto);
 	}
 
-	public Viaje findOneViaje(Long idViaje) {
+	public JustificacionViaje findOneViaje(Long idViaje) {
 		// TODO Auto-generated method stub
 		return viajes.findOne(idViaje);
 	}
 
-	public void editar(Viaje viaje, Long idViaje) {
-		Viaje viajeEditar = this.viajes.getOne(idViaje);
+	public void editar(JustificacionViaje viaje, Long idViaje) {
+		JustificacionViaje viajeEditar = this.viajes.getOne(idViaje);
 		viajeEditar.setDietaID(viaje.getDietaID());
 		viajeEditar.setFecha(viaje.getFecha());
 		viajeEditar.setFechaFin(viaje.getFechaFin());
@@ -74,25 +73,25 @@ public class ViajesManager {
 		viajes.save(viajeEditar);
 	}
 	
-	public Viaje procesando(Long idViaje) {
-		Viaje viajeEditar = viajes.getOne(idViaje);	
+	public JustificacionViaje procesando(Long idViaje) {
+		JustificacionViaje viajeEditar = viajes.getOne(idViaje);	
 				
-		viajeEditar.setFase(Estado.PROCESANDO);		
+		viajeEditar.setFase(EstadoJustificacionViajeEnum.PROCESANDO);		
 			
 		return this.viajes.save(viajeEditar);
 		
 	}
 	
-	public Viaje procesar(Long idViaje) {
-		Viaje viajeEditar = viajes.getOne(idViaje);	
+	public JustificacionViaje procesar(Long idViaje) {
+		JustificacionViaje viajeEditar = viajes.getOne(idViaje);	
 				
-		viajeEditar.setFase(Estado.PROCESADO);		
+		viajeEditar.setFase(EstadoJustificacionViajeEnum.PROCESADO);		
 			
 		return this.viajes.save(viajeEditar);
 		
 	}
 	
-	public List<Viaje> viajesProcesando(){
+	public List<JustificacionViaje> viajesProcesando(){
 		
 		return viajes.viajesProcesando();
 	}

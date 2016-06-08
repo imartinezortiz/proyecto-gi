@@ -28,6 +28,9 @@
 	<context:component-scan base-package="ucm.fdi.tfg.viajes.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.fileupload.business"/>
 	<context:component-scan base-package="ucm.fdi.tfg.storage.business"/>
+	<context:component-scan base-package="ucm.fdi.tfg.centros.business"/>
+	<context:component-scan base-package="ucm.fdi.tfg.departamentos.business"/>
+	<context:component-scan base-package="ucm.fdi.tfg.unidadesGestoras.business"/>
 	
 	
 		<!-- -->
@@ -72,6 +75,9 @@
     <value>ucm.fdi.tfg.viajes.business.entity</value> 
     <value>ucm.fdi.tfg.fileupload.business.entity</value>  
     <value>ucm.fdi.tfg.storage.business.entity</value>   
+    <value>ucm.fdi.tfg.centros.business.entity</value>   
+    <value>ucm.fdi.tfg.departamentos.business.entity</value>   
+    <value>ucm.fdi.tfg.unidadesGestoras.business.entity</value>   
   </array>
   </property> 
   <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>  
@@ -128,6 +134,17 @@
 		entity-manager-factory-ref="entityManagerFactory"
 		transaction-manager-ref="transactionManager" />
 	
+	<data:repositories base-package="ucm.fdi.tfg.centros.business.control"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager" />
+	
+	<data:repositories base-package="ucm.fdi.tfg.departamentos.business.control"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager" />
+	
+	<data:repositories base-package="ucm.fdi.tfg.unidadesGestoras.business.control"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager" />	
 </beans>
 
 

@@ -24,10 +24,10 @@ import ucm.fdi.tfg.users.business.entity.User;
 import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
 
-import ucm.fdi.tfg.viajes.business.entity.Viaje;
+import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 @Controller
-public class ViajesController {
+public class JustificacionViajesController {
 
 
 	private UserManager users ;
@@ -35,7 +35,7 @@ public class ViajesController {
 	private ProyectosManager proyectosManager;
 	
 	@Autowired
-	public ViajesController (UserManager users, ViajesManager viajes,ProyectosManager proyectosManager){
+	public JustificacionViajesController (UserManager users, ViajesManager viajes,ProyectosManager proyectosManager){
 		this.users=users;
 		this.viajes=viajes;
 		this.proyectosManager =  proyectosManager;
@@ -46,7 +46,7 @@ public class ViajesController {
 				
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		List<Viaje> viajesPorProyecto = viajes.viajesPorProyecto(idProyecto);
+		List<JustificacionViaje> viajesPorProyecto = viajes.viajesPorProyecto(idProyecto);
 		
 		model.put("viajesPorProyecto", viajesPorProyecto);
 		model.put("idProyecto", idProyecto);
@@ -70,7 +70,7 @@ public class ViajesController {
 		
 		User userInvestigadorPrincipal = users.findOneUser(inv.getId());
 		
-		Viaje viaje = new Viaje(proyecto);
+		JustificacionViaje viaje = new JustificacionViaje(proyecto);
 		
 		
 		//GastoViaje g = new GastoViaje();
@@ -102,10 +102,10 @@ public class ViajesController {
 	}
 	
 	@RequestMapping(value = "/proyectos/{idProyecto}/altaViaje", method = RequestMethod.POST)
-	public String addViaje(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute Viaje viaje, BindingResult errors){
+	public String addViaje(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute JustificacionViaje viaje, BindingResult errors){
 	
 		viaje.setProyecto(proyectosManager.findProyecto(idProyecto));
-		Viaje viajeGuardado = viajes.save(viaje);
+		JustificacionViaje viajeGuardado = viajes.save(viaje);
 		Long idViaje = viajeGuardado.getId();
 		return "redirect:/proyectos/"+idProyecto+"/edit/viajes/"+idViaje+"/";
 		
@@ -123,7 +123,7 @@ public class ViajesController {
 		
 		view.addObject("user", userActivo); 
 		
-		Viaje viaje = this.viajes.findOneViaje(idViaje);	
+		JustificacionViaje viaje = this.viajes.findOneViaje(idViaje);	
 		
 		
 		List<Dieta> dietas = viajes.dameDietas();
@@ -145,7 +145,7 @@ public class ViajesController {
 	}
 				
 	@RequestMapping(value = "/proyectos/{idProyecto}/edit/viajes/{idViaje}", method = RequestMethod.POST)
-	public ModelAndView editarViajePost(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute @Valid Viaje viaje, BindingResult errors, @PathVariable(value="idViaje") Long idViaje){
+	public ModelAndView editarViajePost(@PathVariable(value="idProyecto") Long idProyecto ,@ModelAttribute @Valid JustificacionViaje viaje, BindingResult errors, @PathVariable(value="idViaje") Long idViaje){
 				ModelAndView view = null;	
 				
 				Proyecto proyecto = proyectosManager.findProyecto(idProyecto);

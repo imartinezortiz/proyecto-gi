@@ -1,11 +1,12 @@
 package ucm.fdi.tfg.proyecto.business.entity;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import ucm.fdi.tfg.unidadesGestoras.business.entity.UnidadGestora;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 
 @Entity
@@ -39,6 +45,17 @@ public class Proyecto {
 
 	private String numContabilidad;	
 	
+	@ManyToOne
+	@JoinColumn(name="unidadGestora", nullable=false)
+	private UnidadGestora unidadGestora;
+	
+	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(nullable=false)
+	private LocalDate fechaComienzo;
+	
+	@Column(nullable=false)
+	private int duracion;
 	
 	public Proyecto(){
 		investigadores =  new ArrayList<Investigador>();

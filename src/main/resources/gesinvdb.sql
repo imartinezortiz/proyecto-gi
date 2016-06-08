@@ -37,25 +37,39 @@ INSERT INTO user_roles (usersId, role) VALUES(7, 'ROLE_USER');
 INSERT INTO user_roles (usersId, role) VALUES(8, 'ROLE_INVESTIGADOR');
 INSERT INTO user_roles (usersId, role) VALUES(8, 'ROLE_USER');
 
-INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (4, 'Informática', 'Sistemas Informáticos y Computación');
-INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (5, 'Matemáticas', 'Análisis Matemático');
-INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (6, 'Físicas', 'Óptica');
-INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (7, 'Informática', 'Inteligencia Artificial');
-INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (8, 'Estadística', 'Economía Financiera y Contabilidad');
 
+-- Departamentos
+INSERT INTO departamento(id, nombre) VALUES ( 1, 'Sistemas Informáticos y Computación');
+INSERT INTO departamento(id, nombre) VALUES ( 2, 'Inteligencia Artificial');
+INSERT INTO departamento(id, nombre) VALUES ( 3, 'Análisis Matemático');
+INSERT INTO departamento(id, nombre) VALUES ( 4, 'Óptica');
+INSERT INTO departamento(id, nombre) VALUES ( 5, 'Economía Financiera y Contabilidad');
 
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (1, '150', 'CM1101', 'Primer Proyecto', 4);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (2, '200', 'D43', 'Segundo Proyecto', 5);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (3, '250', 'MAT2010', 'Tercer Proyecto', 6);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (4, '300', 'MAT2009', 'Cuarto Proyecto', 7);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (5, '350', 'GR35', 'Quinto Proyecto', 8);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (6, '400', 'GR58', 'Sexto Proyecto', 4);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (7, '450', 'IMCs', 'Septimo Proyecto', 5);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (8, '500', 'Avanade', 'Octavo Proyecto', 6);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (9, '550', 'GTI', 'Noveno Proyecto', 7);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (10, '600', 'Repsol', 'Decimo Proyecto', 8);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (11, '650', 'Campsa', 'Onceavo Proyecto', 4);
-INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID) VALUES (12, '700', 'Petronor', 'Doceavo Proyecto', 5);
+-- Centros
+INSERT INTO centro(id, nombre) VALUES (1, 'Informática');
+INSERT INTO centro(id, nombre) VALUES (2, 'Matemáticas');
+INSERT INTO centro(id, nombre) VALUES (3, 'Físicas');
+
+INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (4, 1, 1);
+INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (5, 2, 3);
+INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (6, 3, 4);
+INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (7, 1, 2);
+INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (8, 2, 5);
+
+INSERT INTO unidadgestora (id, nombre) VALUES (1, 'Fundación General UCM');
+
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (1, '150', 'CM1101', 'Primer Proyecto', 4, 1, DATE '2009-10-11', 12);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (2, '200', 'D43', 'Segundo Proyecto', 5, 1, DATE '2010-11-11', 14);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (3, '250', 'MAT2010', 'Tercer Proyecto', 6, 1, DATE '2015-10-11', 24);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (4, '300', 'MAT2009', 'Cuarto Proyecto', 7, 1, DATE '2009-10-11', 12);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (5, '350', 'GR35', 'Quinto Proyecto', 8, 1, DATE '2009-10-11', 12);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (6, '400', 'GR58', 'Sexto Proyecto', 4, 1, DATE '2009-10-11', 12);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (7, '450', 'IMCs', 'Septimo Proyecto', 5, 1, DATE '2009-10-11', 12);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (8, '500', 'Avanade', 'Octavo Proyecto', 6, 1, DATE '2009-10-11', 12);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (9, '550', 'GTI', 'Noveno Proyecto', 7, 1, DATE '2009-10-11', 12);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (10, '600', 'Repsol', 'Decimo Proyecto', 8, 1, DATE '2009-10-11', 12);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (11, '650', 'Campsa', 'Onceavo Proyecto', 4, 1, DATE '2009-10-11', 12);
+INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (12, '700', 'Petronor', 'Doceavo Proyecto', 5, 1, DATE '2009-10-11', 12);
 
 INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (1,4);
 INSERT INTO proyectos_investigadores (proyectos_id, investigadores_investigadorId) VALUES (1,5);
@@ -183,5 +197,5 @@ INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha,
 
 
 -- Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);
-INSERT INTO viajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('1', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1');
-INSERT INTO viajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('2', '1', '2016-03-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1');
+INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('1', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1');
+INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('2', '1', '2016-03-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1');

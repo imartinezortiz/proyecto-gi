@@ -21,7 +21,7 @@ import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
-import ucm.fdi.tfg.viajes.business.entity.Viaje;
+import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 @Controller
 public class FileUploadController {
@@ -140,7 +140,7 @@ public class FileUploadController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "proyectos/{idProyecto}/viaje/{idViaje}/adjunto/{id}")
 	public ModelAndView deleteAttachmentViaje(@PathVariable("id") long id ,  @PathVariable("idViaje") long idViaje, @PathVariable("idProyecto") long idProyecto) {
 		
-		Viaje viaje = viajeManager.findOneViaje(idViaje);
+		JustificacionViaje viaje = viajeManager.findOneViaje(idViaje);
 		
 		Iterator<Attachment> it = viaje.getAdjuntos().iterator();
 		while(it.hasNext()){
@@ -173,7 +173,7 @@ public class FileUploadController {
 			return view;
 		}
 
-		Viaje viaje = viajeManager.findOneViaje(idViaje);
+		JustificacionViaje viaje = viajeManager.findOneViaje(idViaje);
 		viaje.getAdjuntos().add(manager.addAttachment(command));
 		viajeManager.save(viaje);
 		return new ModelAndView("redirect:/proyectos/"+idProyecto+"/viaje/"+idViaje+"/adjuntos");
