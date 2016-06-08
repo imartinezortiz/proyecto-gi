@@ -2,7 +2,7 @@ package ucm.fdi.tfg.viajes.business.entity;
 
 public enum EstadoJustificacionViajeEnum {
 	
-	EDICION("Edición"), PROCESANDO("Procesando"), PROCESADO("Procesado");
+	EDICION("Edición"), PENDIENTE_FIRMA_INVESTIGADOR_PRINCIPAL("Pendiente Firma Investigador Principal"), PROCESANDO("Procesando"), PROCESADO("Procesado");
 	
 	private String estado;
 	

@@ -5,8 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -16,11 +18,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapKeyEnumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.MapKeyType;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -28,6 +32,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import ucm.fdi.tfg.fileupload.business.entity.Attachment;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.entity.Investigador;
+import ucm.fdi.tfg.viajes.business.entity.ComisionServicio.EstadoComisionServicioEnum;
 
 @Entity
 @Table(name="justificacionViajes")
@@ -93,6 +98,13 @@ public class JustificacionViaje {
 	@Enumerated(EnumType.STRING)
 	private EstadoJustificacionViajeEnum fase;
 	
+	@ElementCollection
+	@CollectionTable(name="justificacionViajes_vbs")
+	@MapKeyEnumerated(EnumType.STRING)
+	@MapKeyType(@Type(type="string"))
+	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
+	@DateTimeFormat(iso = ISO.DATE)
+	private Map<EstadoComisionServicioEnum, LocalDate> vbs;
 
 	public JustificacionViaje(){
 		this.miembroProyecto = true;
