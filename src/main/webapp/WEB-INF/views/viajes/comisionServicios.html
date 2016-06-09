@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+
+<div th:include="menus"></div>
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header"
+				th:text="|SOLICITUD COMISIÓN DE SERVICIOS|">
+			</h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p class="panel-title">Introduzca datos de la solicitud</p>
+		</div>
+
+		<div class="panel-body">
+
+			<form class="form-horizontal" role="form" action="#" method="POST">
+				<!--  th:action="@{'/proyectos/{idProyecto}/{modo}/{idComision}'  (idProyecto=*{proyecto.id} , modo=${modo}, idComision=${idComision})}"
+				th:object="${viaje}"--> 
+
+				<!----------------------------------------------------- INVESTIGADOR PRINCIPAL----------------------------------------------------------->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="panel-title">Datos Investigador Principal</p>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="control-label col-md-2" >Nombre</label>
+							<div class="col-md-10">
+								<input class="form-control" 
+									type="text" readonly="readonly" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" >Apellidos</label>
+							<div class="col-md-10">
+								<input class="form-control" 
+									type="text" readonly="readonly" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2">Departamento</label>
+							<div class="col-md-10">
+								<input class="form-control" type="text" readonly="readonly" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2"
+								for="proyecto.investigadorPrincipal.centro">Centro</label>
+							<div class="col-md-10">
+								<input class="form-control"
+									type="text" readonly="readonly" />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="panel-title">Objeto de la Comisión de Servicio</p>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="control-label col-md-2" for="itinerario">Itinerario:</label>
+							<div class="col-md-10">
+								<input class="form-control" type="text" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="itinerario">Gastos de Inscripción:</label>
+							<div class="col-md-10">
+								<input class="form-control"  type="text" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-2" for="objetoDesplazamiento">Especificar objeto
+								del desplazamiento:</label>
+							<div class="col-md-10">
+								<textarea class="form-control"> </textarea>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-2" for="mediosTransporte">Medio
+								de transporte principal:</label>
+							<div class="col-md-3">
+								<select name="medios" class="form-control col-md-3"
+									id="mediosTransporte">
+									<option value="">--- Seleccion de Transporte ---</option>
+									<option
+										th:each="medio,rowStat : ${T(ucm.fdi.tfg.viajes.business.entity.TransportesEnum).values()}"
+										th:if="${rowStat.count} < 7" th:value="${{medio}}"
+										th:text="${medio.estado}"></option>
+								</select>
+							</div>
+						</div>
+						
+								<div class="form-group">
+							<label class="control-label col-md-2">Fecha Inicio:</label>
+							<div class="col-md-3">
+								<input type="date" class="form-control"
+									 placeholder="Fecha Inicio" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-2">Fecha Finalización:</label>
+							<div class="col-md-3">
+								<input type="date" class="form-control"
+									 placeholder="Fecha Finalización" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-2" for="objetoDesplazamiento">Observaciones
+								:</label>
+							<div class="col-md-10">
+								<textarea class="form-control"
+									> </textarea>
+							</div>
+						</div>
+						
+				</div>
+						
+						</div>
+						<button type="submit" class="btn btn-lg btn-success btn-block" > Alta </button>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+						
+						
+						</form>
+
+
+				</div>
+				
+				</div>
+				
+				</div>
+		
+</body>
+</html>
