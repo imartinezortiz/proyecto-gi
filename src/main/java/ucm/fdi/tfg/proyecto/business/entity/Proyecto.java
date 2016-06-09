@@ -49,41 +49,23 @@ public class Proyecto {
 	@JoinColumn(name="unidadGestora", nullable=false)
 	private UnidadGestora unidadGestora;
 	
+
+	
+
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private LocalDate fechaComienzo;
 	
-	@Column(nullable=false)
-	private int duracion;
+	//@Column(nullable=false)
+	private int duracion;  
+
 	
 	public Proyecto(){
 		investigadores =  new ArrayList<Investigador>();
 	}
 	
-	public UnidadGestora getUnidadGestora() {
-		return unidadGestora;
-	}
-
-	public void setUnidadGestora(UnidadGestora unidadGestora) {
-		this.unidadGestora = unidadGestora;
-	}
-
-	public LocalDate getFechaComienzo() {
-		return fechaComienzo;
-	}
-
-	public void setFechaComienzo(LocalDate fechaComienzo) {
-		this.fechaComienzo = fechaComienzo;
-	}
-
-	public int getDuracion() {
-		return duracion;
-	}
-
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
-	}
+	
 	
 	public void setId(Long id) {
 		this.id = id;
@@ -132,6 +114,31 @@ public class Proyecto {
 	public void setNumContabilidad(String numContabilidad) {
 		this.numContabilidad = numContabilidad;
 	}
+	
+	public UnidadGestora getUnidadGestora() {
+		return unidadGestora;
+	}
+
+	public void setUnidadGestora(UnidadGestora unidadGestora) {
+		this.unidadGestora = unidadGestora;
+	}
+	
+	public LocalDate getFechaComienzo() {
+		return fechaComienzo;
+	}
+
+	public void setFechaComienzo(LocalDate fechaComienzo) {
+		this.fechaComienzo = fechaComienzo;
+	}
+
+	public int getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
 	
 
 }
