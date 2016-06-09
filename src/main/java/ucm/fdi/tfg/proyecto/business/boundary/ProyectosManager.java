@@ -56,6 +56,7 @@ public class ProyectosManager {
 			proyecto.getInvestigadores().add(users.getInvestigador(it.next()));
 		}
 
+		proyecto.setUnidadGestora(proyectoDTO.getUnidadGestora());
 		proyecto.setTitulo(proyectoDTO.getTitulo());
 		proyecto.setReferencia(proyectoDTO.getReferencia());
 		proyecto.setNumContabilidad(proyectoDTO.getNumContabilidad());

@@ -48,8 +48,24 @@
 							</div>
 					</div>
 					
-					<div class="form-group" th:classappend="${#fields.hasErrors('investigadoresID')} ? has-error">
-						<label class="control-label col-md-2" for="investigadores">
+						<div class="form-group">
+						<label class="control-label col-md-2" for="unidadGestora">
+							Unidad Gestora:</label>
+							<div class="col-md-10">
+								<select class="form-control col-md-10" th:field="*{unidadGestora}">
+								<option th:each="unidadGestora : ${unidadesGestoras}"
+									th:value="${unidadGestora.id}" th:text="${unidadGestora.nombre}">Unidad Gestora</option>
+								</select>
+							</div>
+					</div>
+
+	
+
+
+
+
+				<div class="form-group" th:classappend="${#fields.hasErrors('investigadoresID')} ? has-error">
+						<label class="control-label col-md-2" for="investigadoresID">
 							Investigadores:</label>
 							<div class="col-md-10">
 								<select class="form-control col-md-10"

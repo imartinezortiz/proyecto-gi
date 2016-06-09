@@ -58,6 +58,9 @@ INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (8, 2, 5
 
 -- Unidades Gestoras
 INSERT INTO unidadgestora (id, nombre) VALUES (1, 'Fundación General UCM');
+INSERT INTO unidadgestora (id, nombre) VALUES (2, 'Fundación General Politécnica');
+INSERT INTO unidadgestora (id, nombre) VALUES (3, 'Fundación General Carlos III');
+INSERT INTO unidadgestora (id, nombre) VALUES (4, 'Fundación General Autonoma');
 
 INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (1, '150', 'CM1101', 'Primer Proyecto', 4, 1, DATE '2009-10-11', 12);
 INSERT INTO proyectos (id, numContabilidad, referencia, titulo, investigadorID, unidadGestora, fechaComienzo, duracion) VALUES (2, '200', 'D43', 'Segundo Proyecto', 5, 1, DATE '2010-11-11', 14);
