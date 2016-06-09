@@ -56,6 +56,7 @@ INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (6, 3, 4
 INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (7, 1, 2);
 INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (8, 2, 5);
 
+-- Unidades Gestoras
 INSERT INTO unidadgestora (id, nombre) VALUES (1, 'Fundación General UCM');
 INSERT INTO unidadgestora (id, nombre) VALUES (2, 'Fundación General Politécnica');
 INSERT INTO unidadgestora (id, nombre) VALUES (3, 'Fundación General Carlos III');

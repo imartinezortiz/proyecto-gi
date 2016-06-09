@@ -49,6 +49,7 @@ public class Proyecto {
 	@JoinColumn(name="unidadGestora", nullable=false)
 	private UnidadGestora unidadGestora;
 	
+
 	
 
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
@@ -58,10 +59,13 @@ public class Proyecto {
 	
 	//@Column(nullable=false)
 	private int duracion;  
+
 	
 	public Proyecto(){
 		investigadores =  new ArrayList<Investigador>();
 	}
+	
+	
 	
 	public void setId(Long id) {
 		this.id = id;
