@@ -50,8 +50,6 @@ public class Proyecto {
 	private UnidadGestora unidadGestora;
 	
 
-	
-
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
 	//@Column(nullable=false)

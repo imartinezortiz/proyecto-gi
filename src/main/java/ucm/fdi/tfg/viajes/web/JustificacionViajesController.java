@@ -25,6 +25,7 @@ import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
 
 import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
+import ucm.fdi.tfg.viajes.business.entity.PermisoAusencia;
 
 @Controller
 public class JustificacionViajesController {
@@ -41,6 +42,7 @@ public class JustificacionViajesController {
 		this.proyectosManager =  proyectosManager;
 	}
 	
+	
 	@RequestMapping(value = "/proyectos/{idProyecto}/viajes", method = RequestMethod.GET)
 	public ModelAndView listarViajes(@PathVariable(value="idProyecto") Long idProyecto) {
 				
@@ -55,6 +57,34 @@ public class JustificacionViajesController {
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 
 		ModelAndView view = new ModelAndView("viajes/listarViajes", model);
+		
+		return view;
+	}
+	
+	
+	@RequestMapping(value = "/proyectos/{idProyecto}/altaPermisoAusenciaViaje", method = RequestMethod.GET)
+	public ModelAndView permisoAusenciaViajeform(@PathVariable(value="idProyecto") Long idProyecto) {
+	Map<String, Object> model = new HashMap<String, Object>();
+		
+		//Cogemos el proyecto  que vamos a pintar en el Pago
+		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
+		
+		Investigador inv = proyecto.getInvestigadorPrincipal();
+		
+		User userInvestigadorPrincipal = users.findOneUser(inv.getId());
+		
+		PermisoAusencia permisoAusencia = new PermisoAusencia(proyecto);
+		
+			
+		model.put("modoTitulo", "Alta");
+		model.put("modo", "altaPermisoAusenciaViaje");	
+		
+		model.put("permisoAusencia", permisoAusencia);
+		model.put("user", userInvestigadorPrincipal);
+				
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+
+		ModelAndView view = new ModelAndView("viajes/permisoAusenciaViajeForm", model);
 		
 		return view;
 	}
