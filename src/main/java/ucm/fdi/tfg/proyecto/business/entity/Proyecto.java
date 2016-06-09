@@ -49,6 +49,18 @@ public class Proyecto {
 	@JoinColumn(name="unidadGestora", nullable=false)
 	private UnidadGestora unidadGestora;
 	
+	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(nullable=false)
+	private LocalDate fechaComienzo;
+	
+	@Column(nullable=false)
+	private int duracion;
+	
+	public Proyecto(){
+		investigadores =  new ArrayList<Investigador>();
+	}
+	
 	public UnidadGestora getUnidadGestora() {
 		return unidadGestora;
 	}
@@ -71,18 +83,6 @@ public class Proyecto {
 
 	public void setDuracion(int duracion) {
 		this.duracion = duracion;
-	}
-
-	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(nullable=false)
-	private LocalDate fechaComienzo;
-	
-	@Column(nullable=false)
-	private int duracion;
-	
-	public Proyecto(){
-		investigadores =  new ArrayList<Investigador>();
 	}
 	
 	public void setId(Long id) {
