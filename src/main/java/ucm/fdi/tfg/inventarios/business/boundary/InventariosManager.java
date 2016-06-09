@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ucm.fdi.tfg.inventarios.business.control.InventariosRepository;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
-import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionViajeEnum;
+import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionEnum;
 
 @Service
 @Transactional
@@ -68,7 +68,7 @@ public class InventariosManager {
 	public Inventario procesando(Long idInventario) {
 		Inventario inventarioEdit = inventarioRepository.getOne(idInventario);	
 				
-		inventarioEdit.setFase(EstadoJustificacionViajeEnum.PROCESANDO);		
+		inventarioEdit.setFase(EstadoJustificacionEnum.PROCESANDO);		
 			
 		return this.inventarioRepository.save(inventarioEdit);
 		
@@ -77,7 +77,7 @@ public class InventariosManager {
 	public Inventario procesar(Long idInventario) {
 		Inventario inventarioEdit = inventarioRepository.getOne(idInventario);	
 				
-		inventarioEdit.setFase(EstadoJustificacionViajeEnum.PROCESADO);		
+		inventarioEdit.setFase(EstadoJustificacionEnum.PROCESADO);		
 			
 		return this.inventarioRepository.save(inventarioEdit);
 		

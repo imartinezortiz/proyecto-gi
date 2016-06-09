@@ -32,7 +32,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import ucm.fdi.tfg.fileupload.business.entity.Attachment;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.entity.Investigador;
-import ucm.fdi.tfg.viajes.business.entity.ComisionServicio.EstadoComisionServicioEnum;
 
 @Entity
 @Table(name="justificacionViajes")
@@ -96,7 +95,7 @@ public class JustificacionViaje {
 	private List<Attachment> adjuntos;
 	
 	@Enumerated(EnumType.STRING)
-	private EstadoJustificacionViajeEnum fase;
+	private EstadoJustificacionEnum fase;
 	
 	@ElementCollection
 	@CollectionTable(name="justificacionViajes_vbs")
@@ -111,7 +110,7 @@ public class JustificacionViaje {
 		this.gastos = new ArrayList<GastoViaje>();
 		this.fecha = LocalDate.now();
 		adjuntos = new ArrayList<Attachment>();
-		this.fase= EstadoJustificacionViajeEnum.EDICION;		
+		this.fase= EstadoJustificacionEnum.EDICION;		
 	}
 	
 		
@@ -120,7 +119,7 @@ public class JustificacionViaje {
 		this.proyecto = proyecto;
 		this.gastos = new ArrayList<GastoViaje>();
 		this.fecha = LocalDate.now();
-		this.fase= EstadoJustificacionViajeEnum.EDICION;
+		this.fase= EstadoJustificacionEnum.EDICION;
 	}
 	
 	public List<Attachment> getAdjuntos() {
@@ -286,11 +285,11 @@ public class JustificacionViaje {
 	}
 
 
-	public EstadoJustificacionViajeEnum getFase() {
+	public EstadoJustificacionEnum getFase() {
 		return fase;
 	}
 
-	public void setFase(EstadoJustificacionViajeEnum fase) {
+	public void setFase(EstadoJustificacionEnum fase) {
 		this.fase = fase;
 	}
 	

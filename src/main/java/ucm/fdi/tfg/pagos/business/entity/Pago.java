@@ -32,7 +32,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import ucm.fdi.tfg.fileupload.business.entity.Attachment;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
-import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionViajeEnum;
+import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionEnum;
 
 @Entity
 @Table(name="PAGOS")
@@ -78,16 +78,16 @@ public class Pago {
 	private List<Attachment> adjuntos;
 	
 	@Enumerated(EnumType.STRING)
-	private EstadoJustificacionViajeEnum fase;
+	private EstadoJustificacionEnum fase;
 	
 	Pago() {
 		this.gastos = new ArrayList<Gasto>();
 		adjuntos = new ArrayList<Attachment>();
-		this.fase= EstadoJustificacionViajeEnum.EDICION;
+		this.fase= EstadoJustificacionEnum.EDICION;
 	}
 	public Pago(Proyecto proyecto) {
 		this(proyecto, "","");
-		this.fase= EstadoJustificacionViajeEnum.EDICION;
+		this.fase= EstadoJustificacionEnum.EDICION;
 	}
 	
 	public Pago (Proyecto proyecto, String numOrden,String fecha) {			
@@ -168,11 +168,11 @@ public class Pago {
 		this.fecha = fecha;
 	}
 	
-	public EstadoJustificacionViajeEnum getFase() {
+	public EstadoJustificacionEnum getFase() {
 		return fase;
 	}
 
-	public void setFase(EstadoJustificacionViajeEnum fase) {
+	public void setFase(EstadoJustificacionEnum fase) {
 		this.fase = fase;
 	}
 	

@@ -23,7 +23,6 @@ import ucm.fdi.tfg.users.business.entity.Investigador;
 
 @Entity
 public class PermisoAusencia {
-	enum EstadoPermisoAusenciaEnum { EDICION, PENDIENTE_FIRMA_DPTO, PENDIENTE_FIRMA_CENTRO, FIN}
 	@Id
 	@GeneratedValue
 	private Long id;

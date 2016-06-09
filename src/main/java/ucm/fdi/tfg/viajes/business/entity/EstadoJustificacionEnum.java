@@ -1,12 +1,12 @@
 package ucm.fdi.tfg.viajes.business.entity;
 
-public enum EstadoJustificacionViajeEnum {
+public enum EstadoJustificacionEnum {
 	
 	EDICION("Edición"), PENDIENTE_FIRMA_INVESTIGADOR_PRINCIPAL("Pendiente Firma Investigador Principal"), PROCESANDO("Procesando"), PROCESADO("Procesado");
 	
 	private String estado;
 	
-	private EstadoJustificacionViajeEnum (String estado){
+	private EstadoJustificacionEnum (String estado){
 		this.setEstado(estado);
 	}
 	

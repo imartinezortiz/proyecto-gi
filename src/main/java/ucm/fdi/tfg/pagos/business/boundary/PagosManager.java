@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 import ucm.fdi.tfg.pagos.business.control.PagosRepository;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
-import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionViajeEnum;
+import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionEnum;
 
 
 @Service
@@ -55,7 +55,7 @@ public class PagosManager {
 	public Pago procesando(Long idPago) {
 		Pago pagoEdit = repositoryPago.getOne(idPago);	
 				
-		pagoEdit.setFase(EstadoJustificacionViajeEnum.PROCESANDO);		
+		pagoEdit.setFase(EstadoJustificacionEnum.PROCESANDO);		
 			
 		return this.repositoryPago.save(pagoEdit);
 		
@@ -64,7 +64,7 @@ public class PagosManager {
 	public Pago procesar(Long idPago) {
 		Pago pagoEdit = repositoryPago.getOne(idPago);	
 				
-		pagoEdit.setFase(EstadoJustificacionViajeEnum.PROCESADO);		
+		pagoEdit.setFase(EstadoJustificacionEnum.PROCESADO);		
 			
 		return this.repositoryPago.save(pagoEdit);
 		

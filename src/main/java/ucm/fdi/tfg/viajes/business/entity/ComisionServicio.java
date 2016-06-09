@@ -22,10 +22,6 @@ import ucm.fdi.tfg.users.business.entity.Investigador;
 @Entity
 public class ComisionServicio {
 
-	enum TransportesEnum {AVION, TREN, BUS, TAXIS, VEHICULO_OFICIAL, VEHICULO_PROPIO, OTROS }
-	
-	enum EstadoComisionServicioEnum { EDICION, PENDIENTE_FIRMA_INV_PRINCIPAL, PENDIENTE_FIRMA_DPTO, PENDIENTE_FIRMA_RRHH_CENTRO, PENDIENTE_FIRMA_UNIDAD_GESTORA, PENDIENTE_FIRMA_CENTRO, FIN}
-
 	@Id
 	@GeneratedValue
 	private Long id;

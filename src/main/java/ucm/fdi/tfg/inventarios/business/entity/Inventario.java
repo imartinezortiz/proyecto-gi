@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import ucm.fdi.tfg.fileupload.business.entity.Attachment;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
-import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionViajeEnum;
+import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionEnum;
 
 @Entity
 @Table(name="Inventarios")
@@ -55,7 +55,7 @@ public class Inventario {
 	private LocalDate fecha;
 	
 	@Enumerated(EnumType.STRING)
-	private EstadoJustificacionViajeEnum fase;
+	private EstadoJustificacionEnum fase;
 	
 	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<Attachment> adjuntos;
@@ -71,13 +71,13 @@ public class Inventario {
 	public Inventario(){
 		this.fecha = LocalDate.now();
 		adjuntos = new ArrayList<Attachment>();
-		this.fase= EstadoJustificacionViajeEnum.EDICION;
+		this.fase= EstadoJustificacionEnum.EDICION;
 	}
 	
 	public Inventario(Proyecto proyecto){
 		this.proyecto = proyecto;
 		this.fecha = LocalDate.now();
-		this.fase= EstadoJustificacionViajeEnum.EDICION;
+		this.fase= EstadoJustificacionEnum.EDICION;
 	}
 
 	public Proyecto getProyecto() {
@@ -132,11 +132,11 @@ public class Inventario {
 		return id;
 	}
 
-	public EstadoJustificacionViajeEnum getFase() {
+	public EstadoJustificacionEnum getFase() {
 		return fase;
 	}
 
-	public void setFase(EstadoJustificacionViajeEnum fase) {
+	public void setFase(EstadoJustificacionEnum fase) {
 		this.fase = fase;
 	}
 	

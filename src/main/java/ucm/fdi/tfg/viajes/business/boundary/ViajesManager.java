@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ucm.fdi.tfg.viajes.business.control.JustificacionViajeRepository;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
-import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionViajeEnum;
+import ucm.fdi.tfg.viajes.business.entity.EstadoJustificacionEnum;
 import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 @Service
@@ -76,7 +76,7 @@ public class ViajesManager {
 	public JustificacionViaje procesando(Long idViaje) {
 		JustificacionViaje viajeEditar = viajes.getOne(idViaje);	
 				
-		viajeEditar.setFase(EstadoJustificacionViajeEnum.PROCESANDO);		
+		viajeEditar.setFase(EstadoJustificacionEnum.PROCESANDO);		
 			
 		return this.viajes.save(viajeEditar);
 		
@@ -85,7 +85,7 @@ public class ViajesManager {
 	public JustificacionViaje procesar(Long idViaje) {
 		JustificacionViaje viajeEditar = viajes.getOne(idViaje);	
 				
-		viajeEditar.setFase(EstadoJustificacionViajeEnum.PROCESADO);		
+		viajeEditar.setFase(EstadoJustificacionEnum.PROCESADO);		
 			
 		return this.viajes.save(viajeEditar);
 		
