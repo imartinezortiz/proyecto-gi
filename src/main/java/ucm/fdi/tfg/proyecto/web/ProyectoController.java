@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import ucm.fdi.tfg.proyecto.business.boundary.NuevoProyectoDTO;
 import ucm.fdi.tfg.proyecto.business.boundary.ProyectosManager;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
+import ucm.fdi.tfg.unidadesGestoras.business.boundary.UnidadesGestorasManager;
+import ucm.fdi.tfg.unidadesGestoras.business.control.UnidadGestoraRepository;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
 
 
@@ -26,11 +28,13 @@ public class ProyectoController {
 	
 	private ProyectosManager proyectos;
 	private UserManager users;
+	private UnidadesGestorasManager unidadesGestoras;
 
 	@Autowired
-	public ProyectoController(ProyectosManager proyectos, UserManager users) {
+	public ProyectoController(ProyectosManager proyectos, UserManager users, UnidadesGestorasManager unidadesGestoras) {
 		this.proyectos = proyectos;
 		this.users = users;
+		this.unidadesGestoras = unidadesGestoras;
 	}
 
 		@RequestMapping(value = "/proyectos", method = RequestMethod.GET)
@@ -66,6 +70,7 @@ public class ProyectoController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		
 		model.put("investigadores", users.findAllUserInvestigadores());
+		model.put("unidadesGestoras", unidadesGestoras.findAll());
 		model.put("nuevoProyectoDTO",  new NuevoProyectoDTO());
 		model.put("modoTitulo", "Alta");
 		model.put("modo", "crearProyecto");	
@@ -85,6 +90,7 @@ public class ProyectoController {
 		if (errors.hasErrors()) {
 			view = new ModelAndView("proyectos/proyectoForm");
 			view.addObject("investigadores", users.findAllUserInvestigadores());
+			view.addObject("unidadesGestoras", unidadesGestoras.findAll());
 			view.addObject("modoTitulo", "Alta");
 			view.addObject("nuevoProyectoDTO", nuevoProyectoDTO);
 			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
@@ -108,6 +114,7 @@ public class ProyectoController {
 		NuevoProyectoDTO proyectDTO = proyectos.proyectoAproyectoDTO(proyecto);
 		
 		view.addObject("investigadores", users.findAllUserInvestigadores());
+		view.addObject("unidadesGestoras", unidadesGestoras.findAll());
 		view.addObject("nuevoProyectoDTO" ,proyectDTO);
 		view.addObject("modoTitulo", "Editar");
 		view.addObject("modo", "");	
@@ -124,6 +131,7 @@ public class ProyectoController {
 		if (errors.hasErrors()) {
 			view = new ModelAndView("proyectos/proyectoForm");
 			view.addObject("investigadores", users.findAllUserInvestigadores());
+			view.addObject("unidadesGestoras", unidadesGestoras.findAll());
 			view.addObject("nuevoProyectoDTO", editarProyectoDTO);	
 			view.addObject("modoTitulo", "Editar");
 			view.addObject("modo", "");	

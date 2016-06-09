@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import ucm.fdi.tfg.unidadesGestoras.business.entity.UnidadGestora;
+
 
 public class NuevoProyectoDTO {
 	
@@ -21,6 +23,16 @@ public class NuevoProyectoDTO {
 	@NotEmpty(message = "Mínimo un investigador")
 	private Collection<Long> investigadoresID;
 	
+	private UnidadGestora unidadGestora;
+	
+	public UnidadGestora getUnidadGestora() {
+		return unidadGestora;
+	}
+
+	public void setUnidadGestora(UnidadGestora unidadGestora) {
+		this.unidadGestora = unidadGestora;
+	}
+
 	public NuevoProyectoDTO(){
 		investigadoresID = new ArrayList<Long>();
 	}

@@ -18,8 +18,8 @@ public class UnidadGestora {
 	
 	private String nombre;
 	
-	@OneToMany
-	private Collection<User> responsables;
+	//@OneToMany
+	//private Collection<User> responsables;
 
 	public String getNombre() {
 		return nombre;
@@ -32,6 +32,7 @@ public class UnidadGestora {
 	public Long getId() {
 		return id;
 	}
+	
 	
 	
 }
