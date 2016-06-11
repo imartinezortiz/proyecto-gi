@@ -37,7 +37,7 @@ public class Investigador {
 	@ManyToMany(mappedBy="investigadores")
 	private Collection<Proyecto> proyectos;
 	
-	Investigador() {
+	public Investigador() {
 
 	}
 
