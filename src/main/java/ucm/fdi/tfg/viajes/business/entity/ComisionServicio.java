@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.viajes.business.entity;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.Column;
@@ -14,6 +15,9 @@ import javax.persistence.MapKeyEnumerated;
 
 import org.hibernate.annotations.MapKeyType;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.slf4j.Logger;
+import org.slf4j.Marker;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -39,6 +43,7 @@ public class ComisionServicio {
 	
 	private boolean gastosInscripcion;
 	
+	@NotEmpty
 	private String observaciones;
 	
 	private TransportesEnum transportePrincipal;
@@ -46,14 +51,14 @@ public class ComisionServicio {
 	
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private LocalDate inicio;
 	
 	
 
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private LocalDate fin;
 	
 
@@ -65,6 +70,11 @@ public class ComisionServicio {
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
 	private Map<EstadoComisionServicioEnum, LocalDate> vbs;
+	
+	public ComisionServicio(){
+		vbs = new HashMap<EstadoComisionServicioEnum, LocalDate>();
+	}
+	
 	
 	public ComisionServicio(Proyecto proyecto, Investigador interesado) {
 		this.proyecto = proyecto;

@@ -41,12 +41,12 @@ public class PermisoAusencia {
 	
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private LocalDate desde;
 	
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private LocalDate hasta;
 	
 	private boolean afectaDodencia;
@@ -76,6 +76,10 @@ public class PermisoAusencia {
 		this.fase= EstadoJustificacionEnum.EDICION;
 	}
 	*/
+	
+	public PermisoAusencia(){
+		
+	}
 	
 	public PermisoAusencia(Proyecto proyecto){		
 		this.proyecto = proyecto;
