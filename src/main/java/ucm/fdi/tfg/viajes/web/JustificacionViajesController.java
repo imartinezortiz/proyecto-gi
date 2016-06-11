@@ -61,34 +61,6 @@ public class JustificacionViajesController {
 		return view;
 	}
 	
-	
-	@RequestMapping(value = "/proyectos/{idProyecto}/altaPermisoAusenciaViaje", method = RequestMethod.GET)
-	public ModelAndView permisoAusenciaViajeform(@PathVariable(value="idProyecto") Long idProyecto) {
-	Map<String, Object> model = new HashMap<String, Object>();
-		
-		//Cogemos el proyecto  que vamos a pintar en el Pago
-		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
-		
-		Investigador inv = proyecto.getInvestigadorPrincipal();
-		
-		User userInvestigadorPrincipal = users.findOneUser(inv.getId());
-		
-		PermisoAusencia permisoAusencia = new PermisoAusencia(proyecto);
-		
-			
-		model.put("modoTitulo", "Alta");
-		model.put("modo", "altaPermisoAusenciaViaje");	
-		
-		model.put("permisoAusencia", permisoAusencia);
-		model.put("user", userInvestigadorPrincipal);
-				
-		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
-
-		ModelAndView view = new ModelAndView("viajes/permisoAusenciaViajeForm", model);
-		
-		return view;
-	}
-	
 	@RequestMapping(value = "/proyectos/{idProyecto}/altaViaje", method = RequestMethod.GET)
 	public ModelAndView viajeform(@PathVariable(value="idProyecto") Long idProyecto) {
 	Map<String, Object> model = new HashMap<String, Object>();
