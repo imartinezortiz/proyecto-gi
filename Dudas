@@ -9,7 +9,13 @@ DUDAS:
 						
 			*[Pagos-gastos] Al validar un bigdecimal cuando se mete una cadena salta exception y coge "message". Mirar como cambiar ese mensaje en Spring.			
 						
-			* Quitar opciones q no se usan en el menu principal de la cabecera.		
+			* Quitar opciones q no se usan en el menu principal de la cabecera.	
+			
+	Dudas Proyecto Verano:
+	
+			* Si se registra un usuario, y crea una peticionAusencia o ComisionServicio, el formulario	
+			  se rellena con los datos del usuario logueado. Si se registra un root x ejm q no tiene centro/dpto
+			  casca. Donde se controla?
 			
 				
 			
