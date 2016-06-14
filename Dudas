@@ -16,8 +16,17 @@ DUDAS:
 			* Si se registra un usuario, y crea una peticionAusencia o ComisionServicio, el formulario	
 			  se rellena con los datos del usuario logueado. Si se registra un root x ejm q no tiene centro/dpto
 			  casca. Donde se controla?
+			  
+			  De moento se queda asi. Ivan va a mirar lo del sudo.
 			
+	Reunion hangout:
+	
+			* Viajes pendientes en el menu de la izq. Segun quien se conecte, aparecerá una tabla con los viajes y la accion VB.
+	  		  Aparecerán los viajes que le corresponda a cada ROL según el estado en el q se encuentre el viaje. 
 				
+			* Los ROLES Dpto Unidad gestora y decano, solo tendran en el menu los Viajes pendientes.
+			
+			* A los investigadores añadir el menu Autorizaciones Pendientes. Como submenu Permisos Ausencia , Comision servicio ...
 			
 				
 			
