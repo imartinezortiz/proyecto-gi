@@ -2,7 +2,7 @@ package ucm.fdi.tfg.viajes.business.entity;
 
 public enum EstadoPermisoAusenciaEnum {
 		
-	 EDICION("Edición"), PENDIENTE_FIRMA_DPTO("Pendiente Firma Dpto"), PENDIENTE_FIRMA_CENTRO("Pendiente Firma Centro"), FIN("Fin");
+	 EDICION("Edición"), PENDIENTE_FIRMA_DPTO("Pendiente Firma Dpto"), PENDIENTE_FIRMA_CENTRO("Pendiente Firma Centro"), ACEPTADO("Aceptado"), RECHAZADO("Rechazado");
 	
 	private String estado;
 	
