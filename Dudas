@@ -21,14 +21,27 @@ DUDAS:
 			
 	Reunion hangout:
 	
-			* Viajes pendientes en el menu de la izq. Segun quien se conecte, aparecerá una tabla con los viajes y la accion VB.
+			* Autorizaciones Pendientes en el menu de la izq. Segun quien se conecte, aparecerá una tabla con los viajes y la accion VB.
 	  		  Aparecerán los viajes que le corresponda a cada ROL según el estado en el q se encuentre el viaje. 
 				
-			* Los ROLES Dpto Unidad gestora y decano, solo tendran en el menu los Viajes pendientes.
+			* Añadir nuevos roles.(por ejemplo un decano ) 
 			
-			* A los investigadores añadir el menu Autorizaciones Pendientes. Como submenu Permisos Ausencia , Comision servicio ...
+			* Los ROLES Director Dpto, Unidad gestora y decano, solo verán el menu Autorizaciones Pendientes.
+			
+			* Al menu Autorizaciones Pendientes. Como submenu Permisos Ausencia , Comision servicio ...
+			
+			* no tienen acceso los investigadores
+			
+			* En listar Viajes tendrán que aparecer los 3 
+			
+			* El último formulario sólo tiene sentido si tiene comisión de servicio (si genera gasto).
+				 En caso de no generar gasto, ¿Sólo pasa por los 3 estados y fuera?
 			
 				
+			* Si genera gasto tenemos 2 opciones: 
+				1) Se crea una comisión de servicio vacía con campos que arrastramos del formulario Permiso Ausencia.(da igual que no hayan firmado). 
+				2) MEJOR: Una vez que desde el menú nuevo "Autorizaciones Pendientes" se haya llegado al último estado. En listar viajes deberá aparecer un 
+					botón si el estado es "ACEPTADO" que no lleve al formulario de Comisión de Servicio.
 			
 			
 		
