@@ -133,7 +133,7 @@ public class JustificacionViajesController {
 		
 		view.addObject("investigadoresAsignadosAproyecto", investigadoresAsignadosAproyecto);
 		
-		view.addObject(viaje);
+		view.addObject("viaje" , viaje);
 		
 		view.addObject("dietas", dietas);
 		view.addObject("importePrecioKm", viajes.getCostePorKm());
