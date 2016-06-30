@@ -75,8 +75,8 @@ public class ComisionServicioController {
 	}
 	
 	@RequestMapping(value = "/proyectos/{idProyecto}/altaComisionServicio", method = RequestMethod.POST)
-	public ModelAndView añadirComisionServiciopost(@PathVariable(value="idProyecto") Long idProyecto, @ModelAttribute ("comisionServicio") /*@Valid */ComisionServicio comisionServicio, BindingResult errors){
-		
+	public ModelAndView añadirComisionServicioPost(@PathVariable(value="idProyecto") Long idProyecto, @ModelAttribute ("comisionServicio") /*@Valid */ComisionServicio comisionServicio, BindingResult errors){
+
 		ModelAndView view = null;	
 		
 		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
