@@ -1,5 +1,7 @@
 package ucm.fdi.tfg.viajes.web;
 
+import java.time.LocalDate;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +24,7 @@ import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
 import ucm.fdi.tfg.viajes.business.boundary.ComisionServicioManager;
 import ucm.fdi.tfg.viajes.business.entity.ComisionServicio;
+import ucm.fdi.tfg.viajes.business.entity.EstadoComisionServicioEnum;
 import ucm.fdi.tfg.viajes.business.entity.PermisoAusencia;
 
 @Controller
@@ -72,7 +75,7 @@ public class ComisionServicioController {
 	}
 	
 	@RequestMapping(value = "/proyectos/{idProyecto}/altaComisionServicio", method = RequestMethod.POST)
-	public ModelAndView añadirComisionServiciopost(@PathVariable(value="idProyecto") Long idProyecto, @ModelAttribute ("comisionServicio") @Valid ComisionServicio comisionServicio, BindingResult errors){
+	public ModelAndView añadirComisionServiciopost(@PathVariable(value="idProyecto") Long idProyecto, @ModelAttribute ("comisionServicio") /*@Valid */ComisionServicio comisionServicio, BindingResult errors){
 		
 		ModelAndView view = null;	
 		
@@ -84,10 +87,10 @@ public class ComisionServicioController {
 		if(errors.hasErrors()){
 			view = new ModelAndView("viajes/comisionServiciosForm");
 			
-			
-			
 			comisionServicio.setProyecto(proyecto);
-
+			
+			System.out.println("Entra x aqui si hay errores");
+			
 			view.addObject("user",user);
 			view.addObject("modoTitulo", "Alta");
 			view.addObject("modo", "altaComisionServicio");	
@@ -97,12 +100,20 @@ public class ComisionServicioController {
 			view.addObject("comisionServicio", comisionServicio);
 			
 		}else{
+			System.out.println("Entra x aqui si NO errores");
 			Investigador interesado = users.findInvestigador(user.getId());
 
 			comisionServicio.setInteresado(interesado);
 			comisionServicio.setProyecto(proyecto);
+			Map<String, LocalDate> vbs = comisionServicio.getVbs();
+			//vbs = comisionServicio.getVbs();
+			
+			vbs.put(comisionServicio.getEstado().toString(), LocalDate.now());
+			
+			comisionServicio.setVbs(vbs);
+			
 			comision.add(comisionServicio);
-			view = new ModelAndView("redirect:/proyectos/{idProyecto}/altaViaje");
+			view = new ModelAndView("redirect:/proyectos");
 		}
 		
 		return view;

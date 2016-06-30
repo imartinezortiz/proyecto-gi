@@ -44,6 +44,9 @@ DUDAS:
 					botón si el estado es "ACEPTADO" que no lleve al formulario de Comisión de Servicio.
 			
 			
-		
+		Dudas Despues de Reunion
+			* private Map<EstadoComisionServicioEnum, LocalDate> vbs;   Funciona si lo cambio por String. 
+			 	Con EstadoComisionServicioEnum da error JUSTO al insertar ComisionServicio a la bbdd.
+			
 				
 	

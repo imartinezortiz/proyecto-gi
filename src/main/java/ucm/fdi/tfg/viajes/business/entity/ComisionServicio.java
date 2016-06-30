@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.viajes.business.entity;
 
 import java.time.LocalDate;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -61,18 +63,22 @@ public class ComisionServicio {
 	//@Column(nullable=false)
 	private LocalDate fin;
 	
-
+	@Enumerated(EnumType.STRING)
 	private EstadoComisionServicioEnum estado;
+	
 	
 	@ElementCollection
 	@MapKeyEnumerated(EnumType.STRING)
+	//Influye en el LocalDate
 	@MapKeyType(@Type(type="string"))
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Map<EstadoComisionServicioEnum, LocalDate> vbs;
+    private Map<String, LocalDate> vbs;
+  //private Map<EstadoComisionServicioEnum, LocalDate> vbs;
 	
 	public ComisionServicio(){
-		vbs = new HashMap<EstadoComisionServicioEnum, LocalDate>();
+		this.estado = EstadoComisionServicioEnum.EDICION;
+		vbs = new HashMap<String, LocalDate>();
 	}
 	
 	
@@ -80,7 +86,7 @@ public class ComisionServicio {
 		this.proyecto = proyecto;
 		this.estado = EstadoComisionServicioEnum.EDICION;
 		this.interesado = interesado;
-	
+		this.vbs = new HashMap<String, LocalDate>();
 	}
 
 	public Long getId() {
@@ -155,11 +161,11 @@ public class ComisionServicio {
 		this.estado = estado;
 	}
 
-	public Map<EstadoComisionServicioEnum, LocalDate> getVbs() {
+	public Map<String, LocalDate> getVbs() {
 		return vbs;
 	}
 
-	public void setVbs(Map<EstadoComisionServicioEnum, LocalDate> vbs) {
+	public void setVbs(Map<String, LocalDate> vbs) {
 		this.vbs = vbs;
 	}
 	
