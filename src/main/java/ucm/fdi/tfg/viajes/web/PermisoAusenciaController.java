@@ -45,21 +45,20 @@ public class PermisoAusenciaController {
 	public ModelAndView permisoAusenciaViajeform(@PathVariable(value="idProyecto") Long idProyecto) {
 	Map<String, Object> model = new HashMap<String, Object>();
 		
-		//Cogemos el proyecto  que vamos a pintar en el Pago
+		
 		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
 		
-		Investigador inv = proyecto.getInvestigadorPrincipal();
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
 		
-		User userInvestigadorPrincipal = users.findOneUser(inv.getId());
+		Investigador interesado = users.findInvestigador(user.getId());		
 		
-		PermisoAusencia permisoAusencia = new PermisoAusencia(proyecto);
-		
-			
+		PermisoAusencia permisoAusencia = new PermisoAusencia(proyecto,interesado);
+					
 		model.put("modoTitulo", "Alta");
 		model.put("modo", "altaPermisoAusencia");	
 		
 		model.put("permisoAusencia", permisoAusencia);
-		model.put("user", userInvestigadorPrincipal);
+		model.put("user", user);
 				
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 
@@ -69,20 +68,40 @@ public class PermisoAusenciaController {
 	}
 	
 	@RequestMapping(value = "/proyectos/{idProyecto}/altaPermisoAusencia", method = RequestMethod.POST)
-	public ModelAndView añadirPermisoAusenciapost(@ModelAttribute ("permisoAusencia") PermisoAusencia permisoAusencia, BindingResult errors){
+	public ModelAndView añadirPermisoAusenciaPost(@PathVariable(value="idProyecto") Long idProyecto, @ModelAttribute ("permisoAusencia") PermisoAusencia permisoAusencia, BindingResult errors){
 		
 		ModelAndView view = null;	
 		
-	/*	if(errors.hasErrors()){
-			view = new ModelAndView("viajes/permisoAusenciaForm");
+		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
+		
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		
+		if(errors.hasErrors()){
+			view = new ModelAndView("viajes/comisionServiciosForm");
+									
+			permisoAusencia.setProyecto(proyecto);
+
+			view.addObject("user",user);
+			view.addObject("modoTitulo", "Alta");
+			view.addObject("modo", "PermisoAusencia");	
+			//Para el nombre en la cabecera
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 			
-		}else{*/
+			view.addObject("comisionServicio", permisoAusencia);
+			
+		}else{
+			Investigador interesado = users.findInvestigador(user.getId());
+
+			permisoAusencia.setInteresado(interesado);
+			permisoAusencia.setProyecto(proyecto);
 			permisos.add(permisoAusencia);
+			//view = new ModelAndView("redirect:/proyectos/{idProyecto}/altaViaje");
 			view = new ModelAndView("redirect:/proyectos/{idProyecto}/altaComisionServicio");
-		//}
+		}
 		
 		return view;
-		
+				
 		
 	}
 	

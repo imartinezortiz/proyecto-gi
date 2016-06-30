@@ -47,15 +47,15 @@
 								</div>
 								
 								<div class="form-group">
-									<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.departamento">Departamento</label>
+									<label class="control-label col-md-2" for="interesado.departamento.nombre">Departamento</label>
 									<div class="col-md-10">
-										<input class="form-control" th:value="*{proyecto.investigadorPrincipal.departamento.nombre}" type="text"readonly="readonly" />
+										<input class="form-control" th:value="*{interesado.departamento.nombre}" type="text"readonly="readonly" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-md-2" for="proyecto.investigadorPrincipal.centro">Centro</label>
+									<label class="control-label col-md-2" for="interesado.centro.nombre">Centro</label>
 									<div class="col-md-10">
-										<input class="form-control" th:value="*{proyecto.investigadorPrincipal.centro.nombre}" type="text" readonly="readonly"/>
+										<input class="form-control" th:value="*{interesado.centro.nombre}" type="text" readonly="readonly"/>
 									</div>								
 								</div>
 								<div class="form-group">
@@ -124,6 +124,79 @@
 									th:field="*{otrasActividades}" type="text"
 									 />
 							</div>
+						</div>
+						
+						
+						
+						
+						<div class="panel-body">
+							<div  class="form-group">
+									<label class="control-label col-md-2" for="sustituciones">Afecta a docencia: </label>
+									<div class="col-md-5">
+										<button onclick="appendText()" class="btn btn-success"	type="button" id="btnMas0" >+</button>		
+									</div>	
+								</div>	
+						
+							<table class="table table-bordered ">
+								<thead>
+									<tr>
+										<th class="col-md-2 text-center">Asignatura</th>
+										<th class="col-md-1 text-center">Clase</th>
+										<th class="col-md-2 text-center">Sustituto</th>
+										<th class="col-md-2 text-center">Será recuperada</th>
+										<th class="col-md-1 text-center">Añadir</th>		
+										<th class="col-md-1 text-center">Eliminar</th>									
+									</tr>
+								</thead>
+								
+								<tbody id="gastos">		
+								
+									<tr th:each="gasto,gastoStat : *{sustituciones}" th:id="'gasto' + ${gastoStat.index}" >
+											
+											<td class="col-md-2" th:classappend="${#fields.hasErrors('sustituciones[__${gastoStat.index}__].asignatura')} ? has-error">	
+												<input type="text" class="form-control"  
+													th:field="*{sustituciones[__${gastoStat.index}__].asignatura}" readonly="readonly"/>																	
+												
+											</td>
+											
+											<td class="col-md-5" th:classappend="${#fields.hasErrors('sustituciones[__${gastoStat.index}__].esclase')} ? has-error">
+												<input type="text"
+													class="form-control" 
+													th:field="*{sustituciones[__${gastoStat.index}__].esclase}"  readonly="readonly" />												
+										
+											</td>
+																					
+											
+											<td class="col-md-2"th:classappend="${#fields.hasErrors('sustituciones[__${gastoStat.index}__].dia')} ? has-error">
+												<input type="text"
+													class="form-control" 
+													th:field="*{sustituciones[__${gastoStat.index}__].dia}" readonly="readonly"/>
+												
+											</td>
+											
+											<td class="col-md-2"th:classappend="${#fields.hasErrors('sustituciones[__${gastoStat.index}__].sustituto')} ? has-error">
+												<input type="text"
+													class="form-control" 
+													th:field="*{sustituciones[__${gastoStat.index}__].sustituto}" readonly="readonly"/>
+												
+											</td>
+											
+											<td class="col-md-2">
+												<button th:id="'btnMenos' + ${gastoStat.index}" onclick="removeText(this.id)" class="btn btn-success form-control"
+													type="button" >+</button>
+											</td>
+																					
+											<td class="col-md-2">
+												<button th:id="'btnMenos' + ${gastoStat.index}" onclick="removeText(this.id)" class="btn btn-danger form-control"
+													type="button" >-</button>
+											</td>
+										</tr>								
+														
+								</tbody>										
+								
+								
+							</table>
+
 						</div>
 
 					</div>

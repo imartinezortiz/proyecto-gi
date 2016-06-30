@@ -21,27 +21,31 @@ DUDAS:
 			
 	Reunion hangout:
 	
-			* Autorizaciones Pendientes en el menu de la izq. Segun quien se conecte, aparecerá una tabla con los viajes y la accion VB.
-	  		  Aparecerán los viajes que le corresponda a cada ROL según el estado en el q se encuentre el viaje. 
+			* Autorizaciones Pendientes en el menu de la izq con submenu Permisos Ausencia , Comision servicio. 
+			  Segun quien se conecte, aparecerá una tabla con el listado de Permisos Ausencia y Comision servicio y la accion VB.
+	  		  Aparecerán los Permisos Ausencia y Comision servicio que le corresponda a cada ROL según el estado en el q se encuentre el viaje. 
 				
 			* Añadir nuevos roles.(por ejemplo un decano ) 
 			
 			* Los ROLES Director Dpto, Unidad gestora y decano, solo verán el menu Autorizaciones Pendientes.
 			
-			* Al menu Autorizaciones Pendientes. Como submenu Permisos Ausencia , Comision servicio ...
+			* Los investigadores rasos si intentan acceder a Autorizaciones Pendientes le saldrá un aviso de que no tienen permisos (un InvPrincipal sí)
 			
-			* no tienen acceso los investigadores
-			
-			* En listar Viajes tendrán que aparecer los 3 
+			* En listar Viajes tendrán que aparecer los 3 (Permisos Ausencia , Comision servicio y Justificación Viaje). Lo de enviar a Procesar
+				sólo aparecerá para justificación Viajes.
 			
 			* El último formulario sólo tiene sentido si tiene comisión de servicio (si genera gasto).
 				 En caso de no generar gasto, ¿Sólo pasa por los 3 estados y fuera?
-			
+				 ¿Y en este caso que pasa con enviar a procesar? ¿??????			
 				
 			* Si genera gasto tenemos 2 opciones: 
 				1) Se crea una comisión de servicio vacía con campos que arrastramos del formulario Permiso Ausencia.(da igual que no hayan firmado). 
+				
 				2) MEJOR: Una vez que desde el menú nuevo "Autorizaciones Pendientes" se haya llegado al último estado. En listar viajes deberá aparecer un 
-					botón si el estado es "ACEPTADO" que no lleve al formulario de Comisión de Servicio.
+					botón si el estado es "ACEPTADO" que nos lleve al formulario de Comisión de Servicio.
+					
+			
+			
 			
 			
 		Dudas Despues de Reunion

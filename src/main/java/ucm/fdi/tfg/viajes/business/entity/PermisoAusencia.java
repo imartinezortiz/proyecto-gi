@@ -67,26 +67,18 @@ public class PermisoAusencia {
 	
 	private boolean generaGasto;
 	
-	/*
-	public JustificacionViaje(Proyecto proyecto) {
-		this.miembroProyecto = true;
-		this.proyecto = proyecto;
-		this.gastos = new ArrayList<GastoViaje>();
-		this.fecha = LocalDate.now();
-		this.fase= EstadoJustificacionEnum.EDICION;
-	}
-	*/
 	
 	public PermisoAusencia(){
 		
 	}
-	
-	public PermisoAusencia(Proyecto proyecto){		
+		
+	public PermisoAusencia(Proyecto proyecto, Investigador interesado) {
 		this.proyecto = proyecto;
-		this.estado = EstadoPermisoAusenciaEnum.EDICION;		
+		this.interesado = interesado;
+		this.estado = EstadoPermisoAusenciaEnum.EDICION;	
+				
 	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
