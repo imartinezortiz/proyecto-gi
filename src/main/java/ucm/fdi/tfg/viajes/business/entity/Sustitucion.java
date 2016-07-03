@@ -1,5 +1,6 @@
 package ucm.fdi.tfg.viajes.business.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Embeddable;
@@ -14,6 +15,11 @@ public class Sustitucion {
 	private LocalDate dia;
 	
 	private String sustituto;
+	
+	
+	public Sustitucion(){
+		this(null, null, null,null);
+	}
 	
 	public Sustitucion (String asignatura, Boolean esClase, LocalDate dia, String sustituto){		
 		this.asignatura = asignatura;

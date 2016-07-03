@@ -115,23 +115,10 @@
 									placeholder="Fecha Llegada" />
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-2"
-								for=" proyecto.numContabilidad">Otras Actividades</label>
-							<div class="col-md-10">
-								<input class="form-control"
-									th:field="*{otrasActividades}" type="text"
-									 />
-							</div>
-						</div>
-						
-						
-						
 						
 						<div class="panel-body">
 							<div  class="form-group">
-									<label class="control-label col-md-2" for="sustituciones">Afecta a docencia: </label>
+									<label class="control-label col-md-2" for="sustituciones">La ausencia afecta a docencia: </label>
 									<div class="col-md-5">
 										<button onclick="appendText()" class="btn btn-success"	type="button" id="btnMas0" >+</button>		
 									</div>	
@@ -141,11 +128,10 @@
 								<thead>
 									<tr>
 										<th class="col-md-2 text-center">Asignatura</th>
-										<th class="col-md-1 text-center">Clase</th>
+										<th class="col-md-2 text-center">Clase</th>
 										<th class="col-md-2 text-center">Sustituto</th>
 										<th class="col-md-2 text-center">Será recuperada</th>
-										<th class="col-md-1 text-center">Añadir</th>		
-										<th class="col-md-1 text-center">Eliminar</th>									
+										<th class="col-md-1 text-center">-</th>									
 									</tr>
 								</thead>
 								
@@ -180,12 +166,7 @@
 													th:field="*{sustituciones[__${gastoStat.index}__].sustituto}" readonly="readonly"/>
 												
 											</td>
-											
-											<td class="col-md-2">
-												<button th:id="'btnMenos' + ${gastoStat.index}" onclick="removeText(this.id)" class="btn btn-success form-control"
-													type="button" >+</button>
-											</td>
-																					
+																																
 											<td class="col-md-2">
 												<button th:id="'btnMenos' + ${gastoStat.index}" onclick="removeText(this.id)" class="btn btn-danger form-control"
 													type="button" >-</button>
@@ -197,6 +178,23 @@
 								
 							</table>
 
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-2"
+								for=" proyecto.numContabilidad">La ausencia afecta a otras actividades</label>
+							<div class="col-md-10">
+								<input class="form-control"
+									th:field="*{otrasActividades}" type="text"
+									 />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-2">Genera Gasto:</label>
+							<div class="col-md-2">
+								<input style="min-height: 33px;" type="checkbox" class="checkbox" th:field="*{generaGasto}"/>
+							</div>
 						</div>
 
 					</div>
@@ -223,5 +221,92 @@
 	
 <div th:include="scripts"></div>
 
+<script>
+	function appendText() {
+		// Create text with DOM
+
+		var count = $('#gastos tr').length;
+		var nuevoGasto = $('<tr></tr>');
+		var auxAsignatura = $('<td class="col-md-2"></td>');
+		var auxClase = $('<td class="col-md-2" style="text-align:center;" ></td>');
+		var auxSustituto = $('<td class="col-md-2"></td>');
+		var auxDia = $('<td class="col-md-2"></td>');
+		
+		//botones
+		//var auxbtnMas = $('<td class="col-md-2"></td>');
+		var auxbtnMenos = $('<td class="col-md-1"></td>');
+
+		var asignatura = $(
+				'<input type="text" class="form-control col-md-2" />').attr('name', 'sustituciones[' + count + '].asignatura');
+		var esClase = $(
+				'<input type="checkbox" />').attr('name', 'sustituciones[' + count + '].esClase');
+		var sustituto = $(
+				'<input type="text" class="form-control col-md-2"/> ').attr('name', 'sustituciones[' + count + '].sustituto');
+		
+		var dia = $('<input type="date"  class="form-control col-md-2"/> ').attr('name', 'sustituciones[' + count + '].dia');
+			
+		var btnMenos = $('<button onclick="removeText(this.id)" class="btn btn-danger form-control" type="button">-</button>').attr('id', 'btnMenos' + count );
+		
+		
+		$(auxAsignatura).append(asignatura);
+		$(auxClase).append(esClase);
+		$(auxSustituto).append(sustituto);
+		$(auxDia).append(dia);
+		
+		//botones
+		//$(auxbtnMas).append(btnMas);
+		$(auxbtnMenos).append(btnMenos);
+		
+
+		$(nuevoGasto).append(auxAsignatura);
+		$(nuevoGasto).append(auxClase);
+		$(nuevoGasto).append(auxSustituto);
+		$(nuevoGasto).append(auxDia);
+		
+		//botones
+		//$(nuevoGasto).append(auxbtnMas);
+		$(nuevoGasto).append(auxbtnMenos);
+		
+		//idNuevo
+		$(nuevoGasto).attr('id', 'gasto' + count);
+		
+		$('#gastos').append(nuevoGasto);
+	}
+</script>
+
+<script type="text/javascript">
+ 
+ function removeText(idBotonMenos) {
+		
+		var totalGastos = $('#gastos tr').length;	
+		
+		//La posicion 8 del id guarda el numero de gasto
+		var numGasto = idBotonMenos.charAt(8);
+		
+		//Se pasa a numero
+		var posCambio = Number(numGasto) + 1; 
+		
+		//Elimino tr
+		$('#gasto'+numGasto).remove();
+		
+		//A partir del tr eliminado, renombro names e ids
+		for (posCambio; posCambio < totalGastos; posCambio++){ 
+			
+			//Disminuye en uno el name
+			document.getElementsByName('sustituciones['+posCambio+'].asignatura')[0].setAttribute('name','sustituciones['+(posCambio-1)+'].asignatura');
+			document.getElementsByName('sustituciones['+posCambio+'].esClase')[0].setAttribute('name','sustituciones['+(posCambio-1)+'].esClase');
+			document.getElementsByName('sustituciones['+posCambio+'].sustituto')[0].setAttribute('name','sustituciones['+(posCambio-1)+'].sustituto');
+			document.getElementsByName('sustituciones['+posCambio+'].dia')[0].setAttribute('name','sustituciones['+(posCambio-1)+'].dia');
+			
+			//Disminuye en uno el id de los botones
+			document.getElementById('btnMenos'+posCambio).setAttribute('id','btnMenos'+(posCambio-1));
+			
+			//Disminuye en uno el id del tr
+			document.getElementById('gasto'+posCambio).setAttribute('id','gasto'+(posCambio-1));				
+		}	
+		
+		
+	}
+ </script>
 </body>
 </html>

@@ -2,13 +2,15 @@ package ucm.fdi.tfg.viajes.business.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -56,6 +58,7 @@ public class PermisoAusencia {
 
 	private String otrasActividades;
 	
+	@Enumerated(EnumType.STRING)
 	private EstadoPermisoAusenciaEnum estado;
 	
 	@ElementCollection
@@ -63,20 +66,23 @@ public class PermisoAusencia {
 	@MapKeyType(@Type(type="string"))
 	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Map<EstadoPermisoAusenciaEnum, LocalDate> vbs;
+	private Map<String, LocalDate> vbs;
 	
 	private boolean generaGasto;
 	
 	
 	public PermisoAusencia(){
-		
+		this.estado = EstadoPermisoAusenciaEnum.EDICION;
+		this.sustituciones = new ArrayList<Sustitucion>();
+		vbs = new HashMap<String, LocalDate>();				
 	}
 		
 	public PermisoAusencia(Proyecto proyecto, Investigador interesado) {
 		this.proyecto = proyecto;
 		this.interesado = interesado;
 		this.estado = EstadoPermisoAusenciaEnum.EDICION;	
-				
+		vbs = new HashMap<String, LocalDate>();
+		this.sustituciones = new ArrayList<Sustitucion>();
 	}
 
 	public Long getId() {
@@ -167,11 +173,11 @@ public class PermisoAusencia {
 		this.estado = estado;
 	}
 
-	public Map<EstadoPermisoAusenciaEnum, LocalDate> getVbs() {
+	public Map<String, LocalDate> getVbs() {
 		return vbs;
 	}
 
-	public void setVbs(Map<EstadoPermisoAusenciaEnum, LocalDate> vbs) {
+	public void setVbs(Map<String, LocalDate> vbs) {
 		this.vbs = vbs;
 	}
 
