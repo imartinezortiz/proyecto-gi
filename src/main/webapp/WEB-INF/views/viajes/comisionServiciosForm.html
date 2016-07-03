@@ -94,7 +94,7 @@
 								de transporte principal:</label>
 							<div class="col-md-3">
 								<select name="medios" class="form-control col-md-3"
-									id="mediosTransporte">
+									id="mediosTransporte" th:field="*{transportePrincipal}">
 									<option value="">--- Seleccion de Transporte ---</option>
 									<option
 										th:each="medio,rowStat : ${T(ucm.fdi.tfg.viajes.business.entity.TransportesEnum).values()}"
