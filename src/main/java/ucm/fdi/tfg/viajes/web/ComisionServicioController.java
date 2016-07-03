@@ -105,8 +105,6 @@ public class ComisionServicioController {
 		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
 		
 		model.put("user", user);
-		
-		//model.put("interesado", interesado);
 
 		ModelAndView view = new ModelAndView("viajes/comisionServiciosForm", model);
 		
