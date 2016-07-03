@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ucm.fdi.tfg.viajes.business.control.ComisionSerivicioRepository;
 import ucm.fdi.tfg.viajes.business.entity.ComisionServicio;
+import ucm.fdi.tfg.viajes.business.entity.EstadoComisionServicioEnum;
 
 @Service
 @Transactional
@@ -27,5 +28,9 @@ public class ComisionServicioManager {
 	
 	public List<ComisionServicio> findAll(){
 		return comisionServicioRepo.findAll();
+	}
+	
+	public List<ComisionServicio> findByEstado(EstadoComisionServicioEnum estado){
+		return comisionServicioRepo.findByestado(estado);
 	}
 }
