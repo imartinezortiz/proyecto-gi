@@ -1,6 +1,8 @@
 package ucm.fdi.tfg.viajes.web;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +24,7 @@ import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
+import ucm.fdi.tfg.users.business.entity.UserRole;
 import ucm.fdi.tfg.viajes.business.boundary.ComisionServicioManager;
 import ucm.fdi.tfg.viajes.business.entity.ComisionServicio;
 import ucm.fdi.tfg.viajes.business.entity.EstadoComisionServicioEnum;
@@ -42,6 +45,42 @@ public class ComisionServicioController {
 		this.users =users;
 		this.comision = comision;
 	}
+	
+	@RequestMapping(value = "/comisionServicio", method = RequestMethod.GET)
+	public ModelAndView listarProeyctos() {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		Collection<UserRole> roles = user.getRoles();
+		
+		for (UserRole rol : roles){
+			if (rol.getRole().equals("ROLE_DECANO")){
+				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO));
+			    break;
+			}
+			else if (rol.getRole().equals("ROLE_UNIDAD_GESTORA")){
+				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_UNIDAD_GESTORA));
+				break;
+			}
+			else if (rol.getRole().equals("ROLE_DEPARTAMENTO")){
+				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DPTO));
+				break;
+			}
+			else if (rol.getRole().equals("ROLE_INVESTIGADOR")){
+				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.EDICION));
+				break;
+			}
+		}
+		
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+
+		ModelAndView view = new ModelAndView("viajes/listarComisionesServicio", model);
+
+		return view;
+	}
+	
 	
 	@RequestMapping(value = "/proyectos/{idProyecto}/altaComisionServicio", method = RequestMethod.GET)
 	public ModelAndView ComisionServicioform(@PathVariable(value="idProyecto") Long idProyecto) {
@@ -100,13 +139,11 @@ public class ComisionServicioController {
 			view.addObject("comisionServicio", comisionServicio);
 			
 		}else{
-			System.out.println("Entra x aqui si NO errores");
 			Investigador interesado = users.findInvestigador(user.getId());
 
 			comisionServicio.setInteresado(interesado);
 			comisionServicio.setProyecto(proyecto);
 			Map<String, LocalDate> vbs = comisionServicio.getVbs();
-			//vbs = comisionServicio.getVbs();
 			
 			vbs.put(comisionServicio.getEstado().toString(), LocalDate.now());
 			
@@ -117,8 +154,8 @@ public class ComisionServicioController {
 		}
 		
 		return view;
-		
-		
 	}
+	
+	
 	
 }
