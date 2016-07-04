@@ -37,4 +37,9 @@ public class PermisoAusenciaManager {
 		return permisoAusenciaRepo.findByEstado(estado);
 	}
 
+	public PermisoAusencia findOnePermiso(Long idPermiso) {
+		
+		return permisoAusenciaRepo.findOne(idPermiso);
+	}
+
 }

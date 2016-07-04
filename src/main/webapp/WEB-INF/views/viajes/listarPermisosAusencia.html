@@ -40,7 +40,7 @@
 											<td th:text="${permiso.generaGasto}"></td>
 											<td th:text="${permiso.estado}"></td>
 											<td>
-																								
+												<a class="btn btn-info" th:href="@{'verDetalle/permisoAusencias/{id}/' (id=${permiso.id})} "><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Ver</a> 												
 											</td>
 										</tr>
 									</tbody>

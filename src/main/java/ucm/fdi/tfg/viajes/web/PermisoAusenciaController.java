@@ -140,4 +140,23 @@ public class PermisoAusenciaController {
 		
 	}
 	
+	@RequestMapping(value = "verDetalle/permisoAusencias/{idPermiso}/", method = RequestMethod.GET)
+	public ModelAndView verDetallePermisoAusencia(@PathVariable(value="idPermiso") Long idPermiso) {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		PermisoAusencia permisoAusencia = this.permisos.findOnePermiso(idPermiso);
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();	
+		
+		model.put("permisoAusencia", permisoAusencia);
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		model.put("user", user);
+
+		ModelAndView view = new ModelAndView("viajes/verDetallePermisoAusencia", model);
+
+		return view;
+		
+	}
+
+	
 }
