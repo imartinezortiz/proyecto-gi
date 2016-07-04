@@ -29,7 +29,7 @@
 											<th>Gastos Inscripcion</th>
 											<th>Transporte Principal</th>
 											<th>Estado</th>
-											<th>VB</th>
+											<th>Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -40,7 +40,7 @@
 											<td th:text="${comision.transportePrincipal.estado}"></td>
 											<td th:text="${comision.estado}"></td>
 											<td> 
-												<a  th:href="@{'edit/proyectos/{id}/' (id=${comision.id})} ">  Editar </a>
+											  <a class="col-md-12 btn btn-outline btn-success" th:href="@{'cambioEstado/comisionServicio/{id}' (id=${comision.id})} " th:data-confirm="|¿Seguro que quiere dar el visto bueno a la comision  ${comision.id}? |"> <i class="fa fa-check" > </i> VB </a>	
 											</td>
 										</tr>
 									</tbody>
@@ -54,5 +54,28 @@
 	
 
 <div th:include="scripts"></div>
+<script type="text/javascript" th:inline="javascript">
+
+var csrf_name=/*[[${_csrf.parameterName}]]*/;
+var csrf_value=/*[[${_csrf.token}]]*/;
+
+$(document).ready(function() {
+	$('a[data-confirm]').click(function(ev) {
+		var href = $(this).attr('href');
+		if (!$('#dataConfirmModal').length) {
+			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true" ><form action="" method="GET" ><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"></button><h4 class="modal-title">Información</h4></div><div class="modal-body"> <p th:text=" |¿Está seguro de dar el visto bueno a la comision?| " > </p> </div><div class="modal-footer"><button class="btn" data-dismiss="modal" >Cancel</button><button class="btn btn-warning " id="dataConfirmOK">OK</button></div></div></div></form></div>');
+		} 
+		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+		$('#dataConfirmModal form').attr('action', href);
+		var elem = $('<input>').attr('name', csrf_name).attr('type', 'hidden').val(csrf_value);
+		$('#dataConfirmModal form').append(elem);
+		$('#dataConfirmModal').modal({show:true});
+		return false;
+	});
+});
+
+</script>
+
+
 </body>
 </html>
