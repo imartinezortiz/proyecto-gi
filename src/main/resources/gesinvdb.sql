@@ -212,3 +212,7 @@ INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha,
 -- Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);
 INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('1', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1');
 INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('2', '1', '2016-03-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1');
+
+-- Insertamos Permiso Ausencia de prueba para el proyecto 1
+INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(1, b'0', '2016-07-06', 'EDICION', b'1', '2016-07-10', 'Barcelona', 'Congreso Argis-Server', 'Charla FDI', 4, 1);
