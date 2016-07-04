@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ucm.fdi.tfg.viajes.business.control.ComisionSerivicioRepository;
 import ucm.fdi.tfg.viajes.business.control.PermisoAusenciaRepository;
 import ucm.fdi.tfg.viajes.business.entity.ComisionServicio;
+import ucm.fdi.tfg.viajes.business.entity.EstadoPermisoAusenciaEnum;
 import ucm.fdi.tfg.viajes.business.entity.PermisoAusencia;
 
 @Service
@@ -29,6 +30,11 @@ public class PermisoAusenciaManager {
 	
 	public List<PermisoAusencia> findAll(){
 		return permisoAusenciaRepo.findAll();
+	}
+
+	public List<PermisoAusencia> findByEstado(EstadoPermisoAusenciaEnum estado) {
+		
+		return permisoAusenciaRepo.findByEstado(estado);
 	}
 
 }

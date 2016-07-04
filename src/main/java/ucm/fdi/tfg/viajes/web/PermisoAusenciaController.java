@@ -1,5 +1,6 @@
 package ucm.fdi.tfg.viajes.web;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,8 +21,11 @@ import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
+import ucm.fdi.tfg.users.business.entity.UserRole;
 import ucm.fdi.tfg.viajes.business.boundary.PermisoAusenciaManager;
 import ucm.fdi.tfg.viajes.business.entity.ComisionServicio;
+import ucm.fdi.tfg.viajes.business.entity.EstadoComisionServicioEnum;
+import ucm.fdi.tfg.viajes.business.entity.EstadoPermisoAusenciaEnum;
 import ucm.fdi.tfg.viajes.business.entity.PermisoAusencia;
 
 @Controller
@@ -38,6 +42,37 @@ public class PermisoAusenciaController {
 		this.proyectosManager = proyectosManager;
 		this.users =users;
 		this.permisos = permisos;
+	}
+	
+	@RequestMapping(value = "/permisoAusencia", method = RequestMethod.GET)
+	public ModelAndView listarPermisosAusencia() {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		Collection<UserRole> roles = user.getRoles();
+		
+		for (UserRole rol : roles){
+			if (rol.getRole().equals("ROLE_DECANO")){
+				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_CENTRO));
+			    break;
+			}
+			else if (rol.getRole().equals("ROLE_DEPARTAMENTO")){
+				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DPTO));
+				break;
+			}
+			else if (rol.getRole().equals("ROLE_INVESTIGADOR")){
+				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.EDICION));
+				break;
+			}
+		}
+		
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+
+		ModelAndView view = new ModelAndView("viajes/listarPermisosAusencia", model);
+
+		return view;
 	}
 
 	

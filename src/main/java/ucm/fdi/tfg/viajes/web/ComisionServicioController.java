@@ -47,7 +47,7 @@ public class ComisionServicioController {
 	}
 	
 	@RequestMapping(value = "/comisionServicio", method = RequestMethod.GET)
-	public ModelAndView listarProeyctos() {
+	public ModelAndView listarComisionesServicio() {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
