@@ -7,14 +7,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyEnumerated;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.MapKeyType;
 import org.hibernate.annotations.Type;
@@ -28,7 +33,7 @@ import ucm.fdi.tfg.users.business.entity.Investigador;
 public class PermisoAusencia {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne
@@ -54,7 +59,7 @@ public class PermisoAusencia {
 	private boolean afectaDodencia;
 	
 	@ElementCollection
-	private List<Sustitucion> sustituciones;
+	private Collection<Sustitucion> sustituciones;
 
 	private String otrasActividades;
 	
@@ -149,11 +154,11 @@ public class PermisoAusencia {
 		this.afectaDodencia = afectaDodencia;
 	}
 
-	public List<Sustitucion> getSustituciones() {
+	public Collection<Sustitucion> getSustituciones() {
 		return sustituciones;
 	}
 
-	public void setSustituciones(List<Sustitucion> sustituciones) {
+	public void setSustituciones(Collection<Sustitucion> sustituciones) {
 		this.sustituciones = sustituciones;
 	}
 

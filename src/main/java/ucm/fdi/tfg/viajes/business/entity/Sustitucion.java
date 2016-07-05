@@ -4,6 +4,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+import org.springframework.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Embeddable
 public class Sustitucion {
@@ -12,13 +18,15 @@ public class Sustitucion {
 	
 	private boolean esClase;
 	
+	@Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDate")
+	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate dia;
 	
 	private String sustituto;
 	
 	
 	public Sustitucion(){
-		this(null, null, null,null);
+		this(null, Boolean.FALSE, LocalDate.now(),null);
 	}
 	
 	public Sustitucion (String asignatura, Boolean esClase, LocalDate dia, String sustituto){		
@@ -60,13 +68,5 @@ public class Sustitucion {
 		this.sustituto = sustituto;
 	}
 
-	public String getRecuperacion() {
-		return recuperacion;
-	}
 
-	public void setRecuperacion(String recuperacion) {
-		this.recuperacion = recuperacion;
-	}
-
-	private String recuperacion;
 }
