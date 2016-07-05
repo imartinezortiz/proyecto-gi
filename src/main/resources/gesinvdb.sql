@@ -216,3 +216,7 @@ INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio,
 -- Insertamos Permiso Ausencia de prueba para el proyecto 1
 INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
 (1, b'0', '2016-07-06', 'EDICION', b'1', '2016-07-10', 'Barcelona', 'Congreso Argis-Server', 'Charla FDI', 4, 1);
+
+INSERT INTO `permisoausencia_sustituciones` (`PermisoAusencia_id`, `asignatura`, `dia`, `esClase`, `sustituto`) VALUES
+(1, 'AW', '2016-07-18', b'1', 'Manuel Apodaca'),
+(1, 'IS', '2016-07-19', b'1', 'Antonio Navarro');
