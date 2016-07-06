@@ -42,28 +42,28 @@ public class ComisionServicioManager {
 	public ComisionServicio cambiarEstado(Long idComision, User user) {
 		ComisionServicio comision = comisionServicioRepo.getOne(idComision);
 		
-		Map<String, LocalDate> vbs = comision.getVbs();
+		Map<EstadoComisionServicioEnum, LocalDate> vbs = comision.getVbs();
 		Collection<UserRole> roles = user.getRoles();
 		
 		for (UserRole rol : roles){
 			if (rol.getRole().equals("ROLE_DECANO")){
-					comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO);
-					vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO.toString(), LocalDate.now());
+					comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO);
+					vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO, LocalDate.now());
 			    break;
 			}
 			else if (rol.getRole().equals("ROLE_UNIDAD_GESTORA")){
-				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO);
-				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO.toString(), LocalDate.now());
+				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO);
+				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO, LocalDate.now());
 				break;
 			}
 			else if (rol.getRole().equals("ROLE_DEPARTAMENTO")){
-				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO);
-				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO.toString(), LocalDate.now());
+				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO);
+				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO, LocalDate.now());
 				break;
 			}
 			else if (rol.getRole().equals("ROLE_INVESTIGADOR")){
-				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO);
-				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO.toString(), LocalDate.now());
+				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO);
+				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO, LocalDate.now());
 				break;
 			}
 		}

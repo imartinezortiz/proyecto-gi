@@ -40,11 +40,19 @@ INSERT INTO user_roles (usersId, role) VALUES(7, 'ROLE_USER');
 INSERT INTO user_roles (usersId, role) VALUES(8, 'ROLE_INVESTIGADOR');
 INSERT INTO user_roles (usersId, role) VALUES(8, 'ROLE_USER');
 
-INSERT INTO user_roles (usersId, role) VALUES(9, 'ROLE_DECANO');
-INSERT INTO user_roles (usersId, role) VALUES(9, 'ROLE_USER');
+
+
+INSERT INTO user_roles (usersId, role) VALUES(11, 'ROLE_DIR_DEPARTAMENTO');
+INSERT INTO user_roles (usersId, role) VALUES(11, 'ROLE_USER');
+
+INSERT INTO user_roles (usersId, role) VALUES(12, 'ROLE_RRHH_CENTRO');
+INSERT INTO user_roles (usersId, role) VALUES(12, 'ROLE_USER');
 
 INSERT INTO user_roles (usersId, role) VALUES(10, 'ROLE_UNIDAD_GESTORA');
 INSERT INTO user_roles (usersId, role) VALUES(10, 'ROLE_USER');
+
+INSERT INTO user_roles (usersId, role) VALUES(9, 'ROLE_DECANO');
+INSERT INTO user_roles (usersId, role) VALUES(9, 'ROLE_USER');
 
 
 -- Departamentos

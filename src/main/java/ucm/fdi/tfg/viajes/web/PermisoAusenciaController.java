@@ -55,7 +55,7 @@ public class PermisoAusenciaController {
 		
 		for (UserRole rol : roles){
 			if (rol.getRole().equals("ROLE_DECANO")){
-				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_CENTRO));
+				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO));
 			    break;
 			}
 			else if (rol.getRole().equals("ROLE_DEPARTAMENTO")){

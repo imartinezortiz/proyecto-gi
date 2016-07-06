@@ -56,8 +56,8 @@ public class ComisionServicioController {
 		Collection<UserRole> roles = user.getRoles();
 		
 		for (UserRole rol : roles){
-			if (rol.getRole().equals("ROLE_DECANO")){
-				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_CENTRO));
+			if ("ROLE_DECANO".equals(rol.getRole())){
+				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO));
 			    break;
 			}
 			else if (rol.getRole().equals("ROLE_UNIDAD_GESTORA")){
