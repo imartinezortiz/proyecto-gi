@@ -26,10 +26,10 @@ public class Sustitucion {
 	
 	
 	public Sustitucion(){
-		this(null, Boolean.FALSE, LocalDate.now(),null);
+		this(null, false, LocalDate.now(),null);
 	}
 	
-	public Sustitucion (String asignatura, Boolean esClase, LocalDate dia, String sustituto){		
+	public Sustitucion (String asignatura, boolean esClase, LocalDate dia, String sustituto){		
 		this.asignatura = asignatura;
 		this.esClase = esClase;
 		this.dia = dia;
