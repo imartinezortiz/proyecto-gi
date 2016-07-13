@@ -16,7 +16,7 @@ import ucm.fdi.tfg.inventarios.business.boundary.InventariosManager;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
-import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
+import ucm.fdi.tfg.viajes.business.boundary.JustificacionViajesManager;
 import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 @Controller
@@ -25,10 +25,10 @@ public class InvestigacionController {
 	
 	private InventariosManager inventarios;
 	private PagosManager pagos;
-	private ViajesManager viajes;
+	private JustificacionViajesManager viajes;
 	
 	@Autowired
-	public InvestigacionController(InventariosManager inventarios, PagosManager pagos, ViajesManager viajes){
+	public InvestigacionController(InventariosManager inventarios, PagosManager pagos, JustificacionViajesManager viajes){
 		this.inventarios = inventarios;
 		this.pagos = pagos;
 		this.viajes = viajes;

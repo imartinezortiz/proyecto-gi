@@ -20,7 +20,7 @@ import ucm.fdi.tfg.inventarios.business.boundary.InventariosManager;
 import ucm.fdi.tfg.inventarios.business.entity.Inventario;
 import ucm.fdi.tfg.pagos.business.boundary.PagosManager;
 import ucm.fdi.tfg.pagos.business.entity.Pago;
-import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
+import ucm.fdi.tfg.viajes.business.boundary.JustificacionViajesManager;
 import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 @Controller
@@ -32,10 +32,10 @@ public class FileUploadController {
 	
 	private PagosManager pagoManager;
 	
-	private ViajesManager viajeManager;
+	private JustificacionViajesManager viajeManager;
 
 	@Autowired
-	public FileUploadController(AttachmentManager manager,InventariosManager inventarioManager, PagosManager pagoManager,ViajesManager viajeManager) {
+	public FileUploadController(AttachmentManager manager,InventariosManager inventarioManager, PagosManager pagoManager,JustificacionViajesManager viajeManager) {
 		this.manager = manager;
 		this.inventarioManager = inventarioManager;
 		this.pagoManager = pagoManager;

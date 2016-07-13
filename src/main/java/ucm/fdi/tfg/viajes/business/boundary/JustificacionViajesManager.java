@@ -14,14 +14,14 @@ import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 
 @Service
 @Transactional
-public class ViajesManager {
+public class JustificacionViajesManager {
 
 	private JustificacionViajeRepository viajes;
 	
 	private BigDecimal costePorKm;
 
 	@Autowired
-	public ViajesManager (JustificacionViajeRepository viajes){
+	public JustificacionViajesManager (JustificacionViajeRepository viajes){
 		this.costePorKm = new BigDecimal(0.19);
 		this.viajes=viajes;
 	}
@@ -42,9 +42,9 @@ public class ViajesManager {
 		this.costePorKm = costePorKm;
 	}
 
-	public List<JustificacionViaje> viajesPorProyecto(Long idProyecto) {
+	public List<JustificacionViaje> justificacionesViajesPorProyecto(Long idProyecto) {
 		return viajes.viajesPorProyecto(idProyecto);
-	}
+	}	
 
 	public JustificacionViaje findOneViaje(Long idViaje) {
 		// TODO Auto-generated method stub
