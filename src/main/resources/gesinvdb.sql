@@ -26,6 +26,7 @@ INSERT INTO user_roles (usersId, role) VALUES(3, 'ROLE_USER');
 INSERT INTO user_roles (usersId, role) VALUES(3, 'ROLE_INVESTIGADOR');
 
 INSERT INTO user_roles (usersId, role) VALUES(4, 'ROLE_INVESTIGADOR');
+INSERT INTO user_roles (usersId, role) VALUES(4, 'ROLE_USER');
 
 
 INSERT INTO user_roles (usersId, role) VALUES(5, 'ROLE_INVESTIGADOR');

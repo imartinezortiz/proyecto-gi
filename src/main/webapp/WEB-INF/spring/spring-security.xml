@@ -14,9 +14,11 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<global-method-security pre-post-annotations="enabled">
+	<!-- 
 		<expression-handler ref="expressionHandler" />
-	</global-method-security>
+	</global-method-security>  -->
+	
+	<global-method-security pre-post-annotations="enabled"/> 
 
 	<!-- Excluir resources (como css)de SpringSecurity   -->
 	<http pattern="/resources/**" security="none" />
@@ -66,17 +68,21 @@
 		</authentication-provider>
 	</authentication-manager>
 	
+		<beans:bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</beans:bean>
+
+	
+</beans:beans>
+	
+	<!-- 
 	<beans:bean id="expressionHandler"
 		class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
-		<!-- To use hasPermission() in expressions, configure a PermissionEvaluator -->
+		
 		<beans:property name="permissionEvaluator" ref="permissionEvaluator" />
 		<beans:property name="roleHierarchy" ref="roleHierarchy" />
 	</beans:bean>
 	
-	<beans:bean id="passwordEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-	</beans:bean>
-
 	<beans:bean id="roleVoter"
 		class="org.springframework.security.access.vote.RoleHierarchyVoter">
 		<beans:constructor-arg ref="roleHierarchy" />
@@ -91,4 +97,4 @@
 			</beans:value>
 		</beans:property>
 	</beans:bean>
-</beans:beans>
+	 -->
