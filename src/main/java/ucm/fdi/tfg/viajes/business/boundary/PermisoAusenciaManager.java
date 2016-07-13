@@ -10,6 +10,7 @@ import ucm.fdi.tfg.viajes.business.control.ComisionSerivicioRepository;
 import ucm.fdi.tfg.viajes.business.control.PermisoAusenciaRepository;
 import ucm.fdi.tfg.viajes.business.entity.ComisionServicio;
 import ucm.fdi.tfg.viajes.business.entity.EstadoPermisoAusenciaEnum;
+import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 import ucm.fdi.tfg.viajes.business.entity.PermisoAusencia;
 
 @Service
@@ -41,5 +42,10 @@ public class PermisoAusenciaManager {
 		
 		return permisoAusenciaRepo.findOne(idPermiso);
 	}
+	
+	public List<PermisoAusencia> permisosAusenciaPorProyecto(Long idProyecto) {
+		return permisoAusenciaRepo.permisosAusenciaPorProyecto(idProyecto);
+	}	
+
 
 }

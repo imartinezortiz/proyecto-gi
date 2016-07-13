@@ -21,7 +21,8 @@ import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
-import ucm.fdi.tfg.viajes.business.boundary.ViajesManager;
+import ucm.fdi.tfg.viajes.business.boundary.JustificacionViajesManager;
+import ucm.fdi.tfg.viajes.business.boundary.PermisoAusenciaManager;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
 
 import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
@@ -32,14 +33,16 @@ public class JustificacionViajesController {
 
 
 	private UserManager users ;
-	private ViajesManager viajes;
+	private JustificacionViajesManager viajes;
+	private PermisoAusenciaManager permisos;
 	private ProyectosManager proyectosManager;
 	
 	@Autowired
-	public JustificacionViajesController (UserManager users, ViajesManager viajes,ProyectosManager proyectosManager){
+	public JustificacionViajesController (UserManager users, JustificacionViajesManager viajes,ProyectosManager proyectosManager, PermisoAusenciaManager permisos){
 		this.users=users;
 		this.viajes=viajes;
 		this.proyectosManager =  proyectosManager;
+		this.permisos = permisos;
 	}
 	
 	
@@ -48,9 +51,12 @@ public class JustificacionViajesController {
 				
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		List<JustificacionViaje> viajesPorProyecto = viajes.viajesPorProyecto(idProyecto);
+		List<JustificacionViaje> justificacionesViajesPorProyecto = viajes.justificacionesViajesPorProyecto(idProyecto);
 		
-		model.put("viajesPorProyecto", viajesPorProyecto);
+		List<PermisoAusencia> permisosAusenciaPorProyecto = permisos.permisosAusenciaPorProyecto(idProyecto);
+		
+		model.put("justificacionesViajesPorProyecto", justificacionesViajesPorProyecto);
+		model.put("permisosAusenciaPorProyecto", permisosAusenciaPorProyecto);
 		model.put("idProyecto", idProyecto);
 		
 		
