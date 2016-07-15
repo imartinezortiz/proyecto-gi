@@ -237,3 +237,25 @@ INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `gener
 INSERT INTO `permisoausencia_sustituciones` (`PermisoAusencia_id`, `asignatura`, `dia`, `esClase`, `sustituto`) VALUES
 (1, 'AW', '2016-07-18', b'1', 'Manuel Apodaca'),
 (1, 'IS', '2016-07-19', b'1', 'Antonio Navarro');
+
+-- Insertamos Comisiones de Servicio de prueba para el proyecto 1
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(1, 'EDICION', '2016-07-30', b'1', '2016-07-31', 'Sevilla', 'Congreso Bootstrap', '-', '0', '4', '1');
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(2, 'PENDIENTE_FIRMA_INV_PRINCIPAL', '2016-07-30', b'1', '2016-07-31', 'Jaén', 'Congreso Hacking', '-', '1', '4', '1');
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(3, 'PENDIENTE_FIRMA_DPTO', '2016-07-30', b'1', '2016-07-31', 'Madrid', 'Curso AJAX y Javascript', '-', '2', '4', '1');
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(4, 'PENDIENTE_FIRMA_RRHH_CENTRO', '2016-07-30', b'1', '2016-07-31', 'Talavera', 'Curso Spring', '-', '3', '4', '1');
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(5, 'PENDIENTE_FIRMA_RRHH_CENTRO', '2016-07-30', b'1', '2016-07-31', 'Francia', 'Curso Hibernate', '-', '4', '4', '1');
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(6, 'PENDIENTE_FIRMA_DECANO', '2016-07-30', b'1', '2016-07-31', 'Polonia', 'Curso .NET', '-', '3', '4', '1');
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(7, 'ACEPTADO', '2016-07-30', b'1', '2016-07-31', 'EEUU', 'Curso Java EE', '-', '2', '4', '1');
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(8, 'RECHAZADO', '2016-07-30', b'1', '2016-07-31', 'Italia', 'Curso HTML5', '-', '2', '4', '1');
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(9, 'PENDIENTE_FIRMA_DECANO', '2016-07-30', b'1', '2016-07-31', 'Alemania', 'Curso Argis-Server', '-', '1', '4', '1');
+INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(10, 'ACEPTADO', '2016-07-30', b'0', '2016-07-31', 'Turquía', 'Curso Jquery', '-', '1', '4', '1');
