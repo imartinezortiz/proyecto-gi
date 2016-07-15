@@ -40,6 +40,8 @@
 											<td>
 												<!-- <a class="btn btn-info" th:href="@{'verDetalle/permisoAusencias/{id}/' (id=${permiso.id})} "><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Ver</a> 												
 												 -->
+												<a class="btn btn-warning" th:if="${{permiso.estado}} == 'ACEPTADO' and ${permiso.generaGasto != false} or ${#authorization.expression('hasRole(''ROLE_GESTOR'')')} "  th:href="@{'/proyectos/{idProyecto}/altaComisionServicio' (idProyecto=${permiso.proyecto.id})} "><i class="glyphicon glyphicon glyphicon-share-alt " aria-hidden="true"></i> Añadir Comisión</a>
+												 
 												 
 											</td>
 										</tr>
@@ -47,9 +49,7 @@
 								</table>
 							</div>
 							<div class="col-md-12">
-								<form role="form" action="#"  th:action="@{altaPermisoAusencia}"  method="GET">
-									<button class="btn btn-success" type="submit">Añadir Permiso Ausencia</button>
-								</form>							
+								<a class="btn btn-success "  th:href="@{altaPermisoAusencia}">Añadir Permiso Ausencia</a>							
 							</div>
 						</div>
 					</div>
@@ -90,10 +90,8 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="col-md-12">
-								<form role="form" action="#"  th:action="@{altaViaje}"  method="GET">
-									<button class="btn btn-success" type="submit">Añadir Viaje</button>
-								</form>							
+							<div class="col-md-12">								
+								<a class="btn btn-success "  th:href="@{altaViaje}">Añadir Justificación Viaje</a>														
 							</div>
 						</div>
 						</div>
