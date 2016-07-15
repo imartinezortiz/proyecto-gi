@@ -132,7 +132,8 @@ public class PermisoAusenciaController {
 			permisoAusencia.setProyecto(proyecto);
 			permisos.add(permisoAusencia);
 			//view = new ModelAndView("redirect:/proyectos/{idProyecto}/altaViaje");
-			view = new ModelAndView("redirect:/proyectos/{idProyecto}/altaComisionServicio");
+			//view = new ModelAndView("redirect:/proyectos/{idProyecto}/altaComisionServicio");
+			view = new ModelAndView (("redirect:/proyectos/{idProyecto}/viajes"));
 		}
 		
 		return view;
