@@ -225,6 +225,14 @@ INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio,
 -- Insertamos Permiso Ausencia de prueba para el proyecto 1
 INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
 (1, b'0', '2016-07-06', 'EDICION', b'1', '2016-07-10', 'Barcelona', 'Congreso Argis-Server', 'Charla FDI', 4, 1);
+INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(2, b'0', '2016-07-07', 'PENDIENTE_FIRMA_DPTO', b'1', '2016-07-11', 'Madrid', 'Congreso Github', '-', 4, 1);
+INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(3, b'0', '2016-07-08', 'PENDIENTE_FIRMA_DECANO', b'1', '2016-08-12', 'Valencia', 'Congreso Spring', '-', 4, 1);
+INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(4, b'0', '2016-07-09', 'ACEPTADO', b'1', '2016-09-10', 'Sevilla', 'Congreso Bootstrap', '-', 4, 1);
+INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
+(5, b'0', '2016-07-09', 'ACEPTADO', b'0', '2016-09-10', 'Toledo', 'Congreso Ciberseguridad', '-', 4, 1);
 
 INSERT INTO `permisoausencia_sustituciones` (`PermisoAusencia_id`, `asignatura`, `dia`, `esClase`, `sustituto`) VALUES
 (1, 'AW', '2016-07-18', b'1', 'Manuel Apodaca'),
