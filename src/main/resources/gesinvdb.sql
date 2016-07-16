@@ -221,6 +221,8 @@ INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha,
 -- Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);
 INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('1', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1');
 INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('2', '1', '2016-03-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1');
+INSERT INTO `gesinvdb`.`justificacionviajes` (`viajeId`, `dietaID`, `fase`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, `proyecto_id`)
+VALUES (3, '1', 'EDICION', '2016-07-16', '2016-07-23', '2016-07-22', '448.80', '5', '', 'EEUU', b'1', '12', '123', 'Curso Java EE', '-', 'ES9121000418450200051332', '1');
 
 -- Insertamos Permiso Ausencia de prueba para el proyecto 1
 INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
@@ -252,7 +254,7 @@ INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscrip
 INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
 (6, 'PENDIENTE_FIRMA_DECANO', '2016-07-30', b'1', '2016-07-31', 'Polonia', 'Curso .NET', '-', '3', '4', '1');
 INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
-(7, 'ACEPTADO', '2016-07-30', b'1', '2016-07-31', 'EEUU', 'Curso Java EE', '-', '2', '4', '1');
+(7, 'ACEPTADO', '2016-07-30', b'1', '2016-07-31', 'EEUU', 'Curso Java EE', '-', '0', '4', '1');
 INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
 (8, 'RECHAZADO', '2016-07-30', b'1', '2016-07-31', 'Italia', 'Curso HTML5', '-', '2', '4', '1');
 INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES

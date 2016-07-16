@@ -21,8 +21,10 @@ import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
 import ucm.fdi.tfg.users.business.boundary.UserManager;
 import ucm.fdi.tfg.users.business.entity.Investigador;
 import ucm.fdi.tfg.users.business.entity.User;
+import ucm.fdi.tfg.viajes.business.boundary.ComisionServicioManager;
 import ucm.fdi.tfg.viajes.business.boundary.JustificacionViajesManager;
 import ucm.fdi.tfg.viajes.business.boundary.PermisoAusenciaManager;
+import ucm.fdi.tfg.viajes.business.entity.ComisionServicio;
 import ucm.fdi.tfg.viajes.business.entity.Dieta;
 
 import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
@@ -35,14 +37,16 @@ public class JustificacionViajesController {
 	private UserManager users ;
 	private JustificacionViajesManager viajes;
 	private PermisoAusenciaManager permisos;
+	private ComisionServicioManager comisiones;
 	private ProyectosManager proyectosManager;
 	
 	@Autowired
-	public JustificacionViajesController (UserManager users, JustificacionViajesManager viajes,ProyectosManager proyectosManager, PermisoAusenciaManager permisos){
+	public JustificacionViajesController (UserManager users, JustificacionViajesManager viajes,ProyectosManager proyectosManager, PermisoAusenciaManager permisos, ComisionServicioManager comisiones){
 		this.users=users;
 		this.viajes=viajes;
 		this.proyectosManager =  proyectosManager;
 		this.permisos = permisos;
+		this.comisiones = comisiones;
 	}
 	
 	
@@ -55,8 +59,11 @@ public class JustificacionViajesController {
 		
 		List<PermisoAusencia> permisosAusenciaPorProyecto = permisos.permisosAusenciaPorProyecto(idProyecto);
 		
+		List<ComisionServicio> comisionesServicio = comisiones.comisionesServicioPorProyecto(idProyecto);
+		
 		model.put("justificacionesViajesPorProyecto", justificacionesViajesPorProyecto);
 		model.put("permisosAusenciaPorProyecto", permisosAusenciaPorProyecto);
+		model.put("comisionesServicio", comisionesServicio);
 		model.put("idProyecto", idProyecto);
 		
 		
