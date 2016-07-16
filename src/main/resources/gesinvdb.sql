@@ -235,10 +235,15 @@ INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `gener
 (4, b'0', '2016-07-09', 'ACEPTADO', b'1', '2016-09-10', 'Sevilla', 'Congreso Bootstrap', '-', 4, 1);
 INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
 (5, b'0', '2016-07-09', 'ACEPTADO', b'0', '2016-09-10', 'Toledo', 'Congreso Ciberseguridad', '-', 4, 1);
+INSERT INTO `gesinvdb`.`permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) 
+VALUES (6, b'0', '2016-07-24', 'EDICION', b'1', '2016-07-22', 'Madrid', 'Curso SQL Server', '-', '4', '1');
 
 INSERT INTO `permisoausencia_sustituciones` (`PermisoAusencia_id`, `asignatura`, `dia`, `esClase`, `sustituto`) VALUES
 (1, 'AW', '2016-07-18', b'1', 'Manuel Apodaca'),
 (1, 'IS', '2016-07-19', b'1', 'Antonio Navarro');
+
+INSERT INTO `gesinvdb`.`permisoausencia_vbs` (`PermisoAusencia_id`, `vbs`, `vbs_KEY`) VALUES ('1', '2016-07-16', 'Edición');
+INSERT INTO `gesinvdb`.`permisoausencia_vbs` (`PermisoAusencia_id`, `vbs`, `vbs_KEY`) VALUES ('6', '2016-07-16', 'Edición');
 
 -- Insertamos Comisiones de Servicio de prueba para el proyecto 1
 INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
