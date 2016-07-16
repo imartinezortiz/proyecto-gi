@@ -1,4 +1,4 @@
-DUDAS:
+﻿DUDAS:
 
 	Cosas Pendientes:
 								
@@ -51,6 +51,25 @@ DUDAS:
 		Dudas Despues de Reunion
 			* private Map<EstadoComisionServicioEnum, LocalDate> vbs;   Funciona si lo cambio por String. 
 			 	Con EstadoComisionServicioEnum da error JUSTO al insertar ComisionServicio a la bbdd.
+			
+			
+		Pendientes: 
+
+			* Queda añadir la funcionalidad de los vistos buenos para Permiso Ausencia y hacerlo bien para Comision Servicio:
+				No olvidar que había que añadir que Investigador heredase de Usuario para lo de las querys que apuntamos en la hoja.
+
+			* En listar Viajes , añadir editar para permisos y comisiones.
+
+			* Los roles jerarquicos
+
+			* Al darle añadir comision o justificación desde el Listar Viajes quizá sería mejor pasarle el id del permiso ausencia para
+			poder tener el itinerario, motivos, fechas en estos formularios y no tener que meterlos otra vez a mano.
+
+		Dudas:
+			
+			* Controlar que sólo se pueda dar de alta una comision y una justificación cuando se pulsa al botón desde el listado no?.
+			  ¿Como? ¿Con un estado nuevo? ¿Con un bolean?
+			
 			
 				
 	
