@@ -266,3 +266,6 @@ INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscrip
 (9, 'PENDIENTE_FIRMA_DECANO', '2016-07-30', b'1', '2016-07-31', 'Alemania', 'Curso Argis-Server', '-', '1', '4', '1');
 INSERT INTO `gesinvdb`.`comisionservicio` (`id`, `estado`, `fin`, `gastosInscripcion`, `inicio`, `itinerario`, `objetoDesplazamiento`, `observaciones`, `transportePrincipal`, `interesado_investigadorId`, `proyecto_id`) VALUES
 (10, 'ACEPTADO', '2016-07-30', b'0', '2016-07-31', 'Turquía', 'Curso Jquery', '-', '1', '4', '1');
+
+
+INSERT INTO `gesinvdb`.`comisionservicio_vbs` (`ComisionServicio_id`, `vbs`, `vbs_KEY`) VALUES ('1', '2016-07-16', 'Edición');
