@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+
+
+
+<div th:include="menus"></div>
+
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Detalle Comision Servicio </h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<div class="panel-body">
+
+		<div class="panel panel-default">
+
+			<div class="panel-heading">
+				<p class="panel-title">Datos del Solicitante</p>
+			</div>
+
+			<div class="panel-body">				
+					<label class="control-label col-md-2" for="user.nombre">Nombre:</label>					
+					<p class="col-md-10" th:text="${user.nombre}" />
+				
+					<label class="control-label col-md-2" for="user.apellidos">Apellidos:</label>
+					<p class="col-md-10"  th:text="${user.apellidos}"/>					
+					
+					<label class="control-label col-md-2" for="interesado.departamento.nombre">Departamento:</label>
+					<p class="col-md-10"  th:text="${comisionServicio.interesado.departamento.nombre}"/>
+					
+					<label class="control-label col-md-2" for="interesado.centro.nombre">Centro:</label>
+					<p class="col-md-10"  th:text="${comisionServicio.interesado.centro.nombre}"/>
+					
+					<label class="control-label col-md-2" for="user.telefono">Teléfono:</label>
+					<p class="col-md-10"  th:text="${user.telefono}"/>
+					
+					<label class="control-label col-md-2" for="user.email">Email:</label>
+					<p class="col-md-10"  th:text="${user.email}"/>					
+			</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">Estados</p>
+			</div>
+			<div class="panel-body">
+				<table class="table table-bordered ">
+					<thead>
+						<tr>
+							<th class="col-md-2 text-center">ESTADO</th>
+							<th class="col-md-2 text-center">Fecha</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="vbs : ${comisionServicio.vbs}">
+							<td th:text="${vbs.key}"></td>
+							<td th:text="${vbs.value}"></td>
+						</tr>
+					</tbody>
+				</table>		
+
+			</div>
+		</div>
+
+			<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">Datos de la comisión que solicita</p>
+			</div>
+			<div class="panel-body">
+								
+				<label class="control-label col-md-2" for="comisionServicio.proyecto.titulo">Proyecto:</label>					
+				<p class="col-md-10" th:text="${comisionServicio.proyecto.titulo}"/>
+				
+				<label class="control-label col-md-2" for="comisionServicio.objetoDesplazamiento">Motivo:</label>					
+				<p class="col-md-10" th:text="${comisionServicio.objetoDesplazamiento}"/>
+				
+				<label class="control-label col-md-2" for="comisionServicio.itinerario">Itinerario:</label>					
+				<p class="col-md-10" th:text="${comisionServicio.itinerario}"/>				
+				
+				<label class="control-label col-md-2" for="comisionServicio.inicio">Desde:</label>					
+				<p class="col-md-10" th:text="${comisionServicio.inicio}"/>
+				
+				<label class="control-label col-md-2" for="comisionServicio.fin">Hasta:</label>					
+				<p class="col-md-10" th:text="${comisionServicio.fin}"/>				
+				
+				<label class="control-label col-md-2" for="comisionServicio.observaciones">Observaciones:</label>					
+				<p class="col-md-10" th:text="${comisionServicio.observaciones}"/>	
+						
+				<label class="control-label col-md-3" for="comisionServicio.transportePrincipal">Transporte Principal:</label>					
+				<p class="col-md-9" th:text="${comisionServicio.transportePrincipal}"/>			
+				
+				<label class="control-label col-md-3" for="comisionServicio.gastosInscripcion">Gastos Inscripcion:</label>
+				<p class="col-md-8"  th:text="${comisionServicio.gastosInscripcion != false} ? SÍ : NO"/>		
+											
+								
+			</div>
+
+
+		</div>
+
+	</div>
+
+
+
+
+</div>
+
+
+<div th:include="scripts"></div>
+
+</body>
+</html>

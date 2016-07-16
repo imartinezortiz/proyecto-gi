@@ -169,6 +169,23 @@ public class ComisionServicioController {
 		return view;
 	}
 	
-	
+	@RequestMapping(value = "verDetalle/comisionServicios/{idComision}/", method = RequestMethod.GET)
+	public ModelAndView verDetalleComisionServicio(@PathVariable(value="idComision") Long idComision) {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		ComisionServicio comisionServicio = this.comision.findOneComision(idComision);
+		
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();	
+		
+		model.put("comisionServicio", comisionServicio);
+		model.put("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		model.put("user", user);
+
+		ModelAndView view = new ModelAndView("viajes/verDetalleComisionServicio", model);
+
+		return view;
+		
+	}
 	
 }

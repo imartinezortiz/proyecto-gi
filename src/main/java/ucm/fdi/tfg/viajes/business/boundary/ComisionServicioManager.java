@@ -78,4 +78,9 @@ public class ComisionServicioManager {
 	public List<ComisionServicio> comisionesServicioPorProyecto(Long idProyecto) {		
 		return comisionServicioRepo.comisionesServicioPorProyecto(idProyecto);
 	}
+
+	public ComisionServicio findOneComision(Long idComision) {
+		
+		return this.comisionServicioRepo.findOne(idComision);
+	}
 }
