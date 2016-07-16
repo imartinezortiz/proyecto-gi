@@ -47,8 +47,33 @@
 					<p class="col-md-10"  th:text="${user.email}"/>					
 			</div>
 		</div>
-
+		
 		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="panel-title">Estados</p>
+			</div>
+			<div class="panel-body">
+				<table class="table table-bordered ">
+					<thead>
+						<tr>
+							<th class="col-md-2 text-center">ESTADO</th>
+							<th class="col-md-2 text-center">Fecha</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="vbs : ${permisoAusencia.vbs}">
+							<td th:text="${vbs.key}"></td>
+							<td th:text="${vbs.value}"></td>
+						</tr>
+					</tbody>
+				</table>	
+	
+
+			</div>
+		</div>
+
+			<div class="panel panel-default">
 			<div class="panel-heading">
 				<p class="panel-title">Datos del permiso que solicita</p>
 			</div>
