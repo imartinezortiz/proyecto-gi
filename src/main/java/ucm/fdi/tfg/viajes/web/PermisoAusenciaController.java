@@ -113,7 +113,7 @@ public class PermisoAusenciaController {
 		
 		
 		if(errors.hasErrors()){
-			view = new ModelAndView("viajes/comisionServiciosForm");
+			view = new ModelAndView("viajes/permisoAusenciaForm");
 									
 			permisoAusencia.setProyecto(proyecto);
 
