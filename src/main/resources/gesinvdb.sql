@@ -8,7 +8,8 @@ INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentials
 INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (8, b'0', b'0', 'Rebollo Fernández', b'0', '8@gmail.com', b'1', 'Marcos', '$2a$10$aY8xNKxmWpuU7Iu632pYpeuYJYOSYYzOvGBEkAuqAqp1XtA0afuJW', '650099888', 'invMarcos');
 INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (9, b'0', b'0', 'Mozos', b'0', 'danienlmozos@gmail.com', b'1', 'Daniel', '$2a$10$aY8xNKxmWpuU7Iu632pYpeuYJYOSYYzOvGBEkAuqAqp1XtA0afuJW', '652314557', 'decano');
 INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (10, b'0', b'0', 'UG', b'0', 'unidadGestora@gmail.com', b'1', 'Unidad Gestora', '$2a$10$aY8xNKxmWpuU7Iu632pYpeuYJYOSYYzOvGBEkAuqAqp1XtA0afuJW', '699887745', 'ug');
-
+INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (11, b'0', b'0', 'Informatica', b'0', 'dptoInformatica@gmail.com', b'1', 'DPTO Inteligencia Artificial', '$2a$10$aY8xNKxmWpuU7Iu632pYpeuYJYOSYYzOvGBEkAuqAqp1XtA0afuJW', '699887745', 'ia');
+INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (12, b'0', b'0', 'RRHH', b'0', 'rrhh@gmail.com', b'1', 'RRHH Centro', '$2a$10$aY8xNKxmWpuU7Iu632pYpeuYJYOSYYzOvGBEkAuqAqp1XtA0afuJW', '699887745', 'rrhh');
 
 
 INSERT INTO user_roles (usersId, role) VALUES (1, 'ROLE_ADMIN');
