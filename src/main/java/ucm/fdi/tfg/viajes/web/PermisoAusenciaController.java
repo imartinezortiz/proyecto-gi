@@ -54,16 +54,16 @@ public class PermisoAusenciaController {
 		Collection<UserRole> roles = user.getRoles();
 		
 		for (UserRole rol : roles){
-			if (rol.getRole().equals("ROLE_DECANO")){
-				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO));
+			if ("ROLE_DECANO".equals(rol.getRole())){
+				model.put("comisionesServicio", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO));
 			    break;
 			}
-			else if (rol.getRole().equals("ROLE_DEPARTAMENTO")){
-				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DPTO));
+			else if ("ROLE_DEPARTAMENTO".equals(rol.getRole())){
+				model.put("comisionesServicio", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DPTO));
 				break;
 			}
-			else if (rol.getRole().equals("ROLE_INVESTIGADOR")){
-				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.EDICION));
+			else if ("ROLE_INVESTIGADOR".equals(rol.getRole())){
+				model.put("comisionesServicio", permisos.findByEstado(EstadoPermisoAusenciaEnum.EDICION));
 				break;
 			}
 		}

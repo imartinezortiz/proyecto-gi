@@ -60,16 +60,20 @@ public class ComisionServicioController {
 				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO));
 			    break;
 			}
-			else if (rol.getRole().equals("ROLE_UNIDAD_GESTORA")){
+			else if ("ROLE_UNIDAD_GESTORA".equals(rol.getRole())){
 				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_UNIDAD_GESTORA));
 				break;
 			}
-			else if (rol.getRole().equals("ROLE_DEPARTAMENTO")){
+			else if ("ROLE_DEPARTAMENTO".equals(rol.getRole())){
 				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DPTO));
 				break;
 			}
-			else if (rol.getRole().equals("ROLE_INVESTIGADOR")){
+			else if ("ROLE_INVESTIGADOR".equals(rol.getRole())){
 				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.EDICION));
+				break;
+			}
+			else if ("ROLE_RRHH_CENTRO".equals(rol.getRole())){
+				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_RRHH_CENTRO));
 				break;
 			}
 		}
