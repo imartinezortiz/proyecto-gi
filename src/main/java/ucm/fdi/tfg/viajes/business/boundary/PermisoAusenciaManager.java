@@ -61,21 +61,22 @@ public class PermisoAusenciaManager {
 		Collection<UserRole> roles = user.getRoles();
 		
 		for (UserRole rol : roles){
-			if (rol.getRole().equals("ROLE_DECANO")){
-				permiso.setEstado(EstadoPermisoAusenciaEnum.ACEPTADO);
-					vbs.put(EstadoComisionServicioEnum.ACEPTADO.toString(), LocalDate.now());
-			    break;
-			}
+			if (rol.getRole().equals("ROLE_INVESTIGADOR")){
+					permiso.setEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DPTO);
+					vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DPTO.toString(), LocalDate.now());
+					break;
+				}
 			else if (rol.getRole().equals("ROLE_DIR_DEPARTAMENTO")){
 				permiso.setEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO);
 				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
 				break;
 			}
-			else if (rol.getRole().equals("ROLE_INVESTIGADOR")){
-				permiso.setEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DPTO);
-				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DPTO.toString(), LocalDate.now());
-				break;
+			else if (rol.getRole().equals("ROLE_DECANO")){
+				permiso.setEstado(EstadoPermisoAusenciaEnum.ACEPTADO);
+					vbs.put(EstadoComisionServicioEnum.ACEPTADO.toString(), LocalDate.now());
+			    break;
 			}
+		
 		}
 		
 		

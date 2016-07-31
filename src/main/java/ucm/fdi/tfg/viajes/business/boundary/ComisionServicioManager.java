@@ -46,25 +46,30 @@ public class ComisionServicioManager {
 		Collection<UserRole> roles = user.getRoles();
 		
 		for (UserRole rol : roles){
-			if (rol.getRole().equals("ROLE_DECANO")){
-					comision.setEstado(EstadoComisionServicioEnum.ACEPTADO);
-					vbs.put(EstadoComisionServicioEnum.ACEPTADO.toString(), LocalDate.now());
-			    break;
+			if (rol.getRole().equals("ROLE_INVESTIGADOR")){
+				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DPTO);
+				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DPTO.toString(), LocalDate.now());
+				break;
+			}
+			else if (rol.getRole().equals("ROLE_DIR_DEPARTAMENTO")){
+				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_RRHH_CENTRO);
+				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_RRHH_CENTRO.toString(), LocalDate.now());
+				break;
+			}
+			else if (rol.getRole().equals("ROLE_RRHH_CENTRO")){
+				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_UNIDAD_GESTORA);
+				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_UNIDAD_GESTORA.toString(), LocalDate.now());
+				break;
 			}
 			else if (rol.getRole().equals("ROLE_UNIDAD_GESTORA")){
 				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO);
 				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
 				break;
 			}
-			else if (rol.getRole().equals("ROLE_DIR_DEPARTAMENTO")){
-				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO);
-				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
-				break;
-			}
-			else if (rol.getRole().equals("ROLE_INVESTIGADOR")){
-				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO);
-				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
-				break;
+			else if (rol.getRole().equals("ROLE_DECANO")){
+					comision.setEstado(EstadoComisionServicioEnum.ACEPTADO);
+					vbs.put(EstadoComisionServicioEnum.ACEPTADO.toString(), LocalDate.now());
+			    break;
 			}
 		}
 		
