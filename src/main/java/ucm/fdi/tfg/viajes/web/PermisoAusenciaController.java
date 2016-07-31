@@ -158,6 +158,19 @@ public class PermisoAusenciaController {
 		return view;
 		
 	}
+	
+	@RequestMapping(value = "cambioEstado/permisoAusencia/{id}", method = RequestMethod.GET)
+	public ModelAndView cambioEstado(@PathVariable(value="id") Long idComision){
+		
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		permisos.cambiarEstado(idComision,user);
+		
+		ModelAndView  view = new ModelAndView("redirect:/permisoAusencia");
+		
+		return view;
+		
+	}
 
 	
 }

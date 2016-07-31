@@ -1,6 +1,7 @@
 package ucm.fdi.tfg.viajes.business.boundary;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ucm.fdi.tfg.viajes.business.control.ComisionSerivicioRepository;
+import ucm.fdi.tfg.users.business.entity.User;
+import ucm.fdi.tfg.users.business.entity.UserRole;
 import ucm.fdi.tfg.viajes.business.control.PermisoAusenciaRepository;
-import ucm.fdi.tfg.viajes.business.entity.ComisionServicio;
 import ucm.fdi.tfg.viajes.business.entity.EstadoComisionServicioEnum;
 import ucm.fdi.tfg.viajes.business.entity.EstadoPermisoAusenciaEnum;
-import ucm.fdi.tfg.viajes.business.entity.JustificacionViaje;
 import ucm.fdi.tfg.viajes.business.entity.PermisoAusencia;
 
 @Service
@@ -53,6 +53,37 @@ public class PermisoAusenciaManager {
 	public List<PermisoAusencia> permisosAusenciaPorProyecto(Long idProyecto) {
 		return permisoAusenciaRepo.permisosAusenciaPorProyecto(idProyecto);
 	}	
+	
+	public PermisoAusencia cambiarEstado(Long idComision, User user) {
+		PermisoAusencia permiso = permisoAusenciaRepo.getOne(idComision);
+		
+		Map<String, LocalDate> vbs = permiso.getVbs();
+		Collection<UserRole> roles = user.getRoles();
+		
+		for (UserRole rol : roles){
+			if (rol.getRole().equals("ROLE_DECANO")){
+				permiso.setEstado(EstadoPermisoAusenciaEnum.ACEPTADO);
+					vbs.put(EstadoComisionServicioEnum.ACEPTADO.toString(), LocalDate.now());
+			    break;
+			}
+			else if (rol.getRole().equals("ROLE_DEPARTAMENTO")){
+				permiso.setEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO);
+				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
+				break;
+			}
+			else if (rol.getRole().equals("ROLE_INVESTIGADOR")){
+				permiso.setEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO);
+				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
+				break;
+			}
+		}
+		
+		
+		
+		return permisoAusenciaRepo.save(permiso);
+		
+		
+	}
 
 
 }
