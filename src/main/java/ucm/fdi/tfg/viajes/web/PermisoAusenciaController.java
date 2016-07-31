@@ -55,15 +55,15 @@ public class PermisoAusenciaController {
 		
 		for (UserRole rol : roles){
 			if ("ROLE_DECANO".equals(rol.getRole())){
-				model.put("comisionesServicio", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO));
+				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO));
 			    break;
 			}
-			else if ("ROLE_DEPARTAMENTO".equals(rol.getRole())){
-				model.put("comisionesServicio", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DPTO));
+			else if ("ROLE_DIR_DEPARTAMENTO".equals(rol.getRole())){
+				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DPTO));
 				break;
 			}
 			else if ("ROLE_INVESTIGADOR".equals(rol.getRole())){
-				model.put("comisionesServicio", permisos.findByEstado(EstadoPermisoAusenciaEnum.EDICION));
+				model.put("permisosAusencia", permisos.findByEstado(EstadoPermisoAusenciaEnum.EDICION));
 				break;
 			}
 		}

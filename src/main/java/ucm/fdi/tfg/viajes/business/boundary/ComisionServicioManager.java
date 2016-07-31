@@ -56,7 +56,7 @@ public class ComisionServicioManager {
 				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
 				break;
 			}
-			else if (rol.getRole().equals("ROLE_DEPARTAMENTO")){
+			else if (rol.getRole().equals("ROLE_DIR_DEPARTAMENTO")){
 				comision.setEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO);
 				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
 				break;

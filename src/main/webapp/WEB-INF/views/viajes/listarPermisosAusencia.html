@@ -40,6 +40,7 @@
 											<td th:text="${permiso.generaGasto}"></td>
 											<td th:text="${permiso.estado}"></td>
 											<td>
+											    <a class="btn btn-outline btn-success" th:href="@{'cambioEstado/permisoAusencia/{id}' (id=${permiso.id})} " th:data-confirm="|¿Seguro que quiere dar el visto bueno al permiso  ${permiso.id}? |"> <i class="fa fa-check" > </i> VB </a>	
 												<a class="btn btn-info" th:href="@{'verDetalle/permisoAusencias/{id}/' (id=${permiso.id})} "><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Ver</a> 												
 											</td>
 										</tr>

@@ -64,7 +64,7 @@ public class ComisionServicioController {
 				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_UNIDAD_GESTORA));
 				break;
 			}
-			else if ("ROLE_DEPARTAMENTO".equals(rol.getRole())){
+			else if ("ROLE_DIR_DEPARTAMENTO".equals(rol.getRole())){
 				model.put("comisionesServicio", comision.findByEstado(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DPTO));
 				break;
 			}
