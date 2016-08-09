@@ -24,4 +24,9 @@ public class CentrosManager {
 	public List<Centro> getAll() {
 		return repository.findAll();
 	}
+
+	public Centro nuevoCentro(Centro nuevoCentro) {
+		return	repository.save(nuevoCentro);	
+	}
+
 }

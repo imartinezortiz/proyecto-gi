@@ -10,6 +10,7 @@ INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentials
 INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (10, b'0', b'0', 'UG', b'0', 'unidadGestora@gmail.com', b'1', 'Unidad Gestora', '$2a$10$aY8xNKxmWpuU7Iu632pYpeuYJYOSYYzOvGBEkAuqAqp1XtA0afuJW', '699887745', 'ug');
 INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (11, b'0', b'0', 'Informatica', b'0', 'dptoInformatica@gmail.com', b'1', 'DPTO Inteligencia Artificial', '$2a$10$aY8xNKxmWpuU7Iu632pYpeuYJYOSYYzOvGBEkAuqAqp1XtA0afuJW', '699887745', 'ia');
 INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (12, b'0', b'0', 'RRHH', b'0', 'rrhh@gmail.com', b'1', 'RRHH Centro', '$2a$10$aY8xNKxmWpuU7Iu632pYpeuYJYOSYYzOvGBEkAuqAqp1XtA0afuJW', '699887745', 'rrhh');
+INSERT INTO users (usersId,accountExpired, accountLocked, apellidos, credentialsExpired,email,enabled, nombre, password, telefono, username) VALUES (13, b'0', b'0', 'Gerente', b'0', 'gerente@gmail.com', b'1', 'Gerente Centro', '$2a$10$aY8xNKxmWpuU7Iu632pYpeuYJYOSYYzOvGBEkAuqAqp1XtA0afuJW', '699887745', 'David Gerente');
 
 
 INSERT INTO user_roles (usersId, role) VALUES (1, 'ROLE_ADMIN');
@@ -42,7 +43,11 @@ INSERT INTO user_roles (usersId, role) VALUES(7, 'ROLE_USER');
 INSERT INTO user_roles (usersId, role) VALUES(8, 'ROLE_INVESTIGADOR');
 INSERT INTO user_roles (usersId, role) VALUES(8, 'ROLE_USER');
 
+INSERT INTO user_roles (usersId, role) VALUES(9, 'ROLE_DECANO');
+INSERT INTO user_roles (usersId, role) VALUES(9, 'ROLE_USER');
 
+INSERT INTO user_roles (usersId, role) VALUES(10, 'ROLE_UNIDAD_GESTORA');
+INSERT INTO user_roles (usersId, role) VALUES(10, 'ROLE_USER');
 
 INSERT INTO user_roles (usersId, role) VALUES(11, 'ROLE_DIR_DEPARTAMENTO');
 INSERT INTO user_roles (usersId, role) VALUES(11, 'ROLE_USER');
@@ -50,11 +55,14 @@ INSERT INTO user_roles (usersId, role) VALUES(11, 'ROLE_USER');
 INSERT INTO user_roles (usersId, role) VALUES(12, 'ROLE_RRHH_CENTRO');
 INSERT INTO user_roles (usersId, role) VALUES(12, 'ROLE_USER');
 
-INSERT INTO user_roles (usersId, role) VALUES(10, 'ROLE_UNIDAD_GESTORA');
-INSERT INTO user_roles (usersId, role) VALUES(10, 'ROLE_USER');
+INSERT INTO user_roles (usersId, role) VALUES(13, 'ROLE_GERENTE');
+INSERT INTO user_roles (usersId, role) VALUES(13, 'ROLE_USER');
 
-INSERT INTO user_roles (usersId, role) VALUES(9, 'ROLE_DECANO');
-INSERT INTO user_roles (usersId, role) VALUES(9, 'ROLE_USER');
+
+
+
+
+
 
 
 -- Departamentos
@@ -65,9 +73,9 @@ INSERT INTO departamento(id, nombre) VALUES ( 4, 'Óptica');
 INSERT INTO departamento(id, nombre) VALUES ( 5, 'Economía Financiera y Contabilidad');
 
 -- Centros
-INSERT INTO centro(id, nombre) VALUES (1, 'Informática');
-INSERT INTO centro(id, nombre) VALUES (2, 'Matemáticas');
-INSERT INTO centro(id, nombre) VALUES (3, 'Físicas');
+INSERT INTO centro(id, nombre, gerente_usersId, decano_usersId, recursosHumanos_usersId) VALUES (1, 'Informática' , 13, 9, 12);
+INSERT INTO centro(id, nombre, gerente_usersId, decano_usersId, recursosHumanos_usersId) VALUES (2, 'Matemáticas', 13, 9, 12);
+INSERT INTO centro(id, nombre, gerente_usersId, decano_usersId, recursosHumanos_usersId) VALUES (3, 'Físicas', 13, 9, 12);
 
 INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (4, 1, 1);
 INSERT INTO investigadores (investigadorId,centro, departamento) VALUES (5, 2, 3);
