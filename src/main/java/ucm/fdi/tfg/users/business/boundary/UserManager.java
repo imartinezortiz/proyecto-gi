@@ -141,6 +141,18 @@ public class UserManager implements UserDetailsService{
 	public List<User> findAllGestores() {
 		return repositoryUser.DameDatosUser(new UserRole("ROLE_GESTOR"));
 	}
+	
+	public List<User> findAllDecanos() {
+		return repositoryUser.DameDatosUser(new UserRole("ROLE_DECANO"));
+	}
+	
+	public List<User> findAllRRHH() {
+		return repositoryUser.DameDatosUser(new UserRole("ROLE_RRHH_CENTRO"));
+	}
+	
+	public List<User> findAllGerentes() {
+		return repositoryUser.DameDatosUser(new UserRole("ROLE_GERENTE"));
+	}
 
 
 	public User findOneUser(Long id) {
