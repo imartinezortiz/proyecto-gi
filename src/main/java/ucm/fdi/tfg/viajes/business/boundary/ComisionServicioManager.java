@@ -14,6 +14,8 @@ import ucm.fdi.tfg.users.business.entity.UserRole;
 import ucm.fdi.tfg.viajes.business.control.ComisionSerivicioRepository;
 import ucm.fdi.tfg.viajes.business.entity.ComisionServicio;
 import ucm.fdi.tfg.viajes.business.entity.EstadoComisionServicioEnum;
+import ucm.fdi.tfg.viajes.business.entity.EstadoPermisoAusenciaEnum;
+import ucm.fdi.tfg.viajes.business.entity.PermisoAusencia;
 
 @Service
 @Transactional
@@ -87,5 +89,18 @@ public class ComisionServicioManager {
 	public ComisionServicio findOneComision(Long idComision) {
 		
 		return this.comisionServicioRepo.findOne(idComision);
+	}
+
+	public ComisionServicio rechazarComision(Long idComision) {
+		
+		ComisionServicio  comision = comisionServicioRepo.getOne(idComision);
+		
+		Map<String, LocalDate> vbs = comision.getVbs();
+		
+		vbs.put(EstadoComisionServicioEnum.RECHAZADO.toString(), LocalDate.now());
+		comision.setEstado(EstadoComisionServicioEnum.RECHAZADO);
+		
+		return comisionServicioRepo.save(comision);
+		
 	}
 }

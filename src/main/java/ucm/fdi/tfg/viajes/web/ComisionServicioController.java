@@ -85,7 +85,7 @@ public class ComisionServicioController {
 		return view;
 	}
 	
-	@RequestMapping(value = "cambioEstado/comisionServicio/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "cambioEstado/comisionServicio/{id}", method = RequestMethod.POST)
 	public ModelAndView cambioEstado(@PathVariable(value="id") Long idComision){
 		
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -190,6 +190,18 @@ public class ComisionServicioController {
 
 		return view;
 		
+	}
+	
+	@RequestMapping(value = "rechazar/comisionServicio/{id}", method = RequestMethod.POST)
+	public ModelAndView rechazarComisionServicio(@PathVariable(value="id") Long idComision){
+	
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		comision.rechazarComision(idComision);
+		
+		ModelAndView  view = new ModelAndView("redirect:/comisionServicio");
+		
+		return view;
 	}
 	
 }

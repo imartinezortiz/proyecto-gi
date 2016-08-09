@@ -63,17 +63,17 @@ public class PermisoAusenciaManager {
 		for (UserRole rol : roles){
 			if (rol.getRole().equals("ROLE_INVESTIGADOR")){
 					permiso.setEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DPTO);
-					vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DPTO.toString(), LocalDate.now());
+					vbs.put(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DPTO.toString(), LocalDate.now());
 					break;
 				}
 			else if (rol.getRole().equals("ROLE_DIR_DEPARTAMENTO")){
 				permiso.setEstado(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO);
-				vbs.put(EstadoComisionServicioEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
+				vbs.put(EstadoPermisoAusenciaEnum.PENDIENTE_FIRMA_DECANO.toString(), LocalDate.now());
 				break;
 			}
 			else if (rol.getRole().equals("ROLE_DECANO")){
 				permiso.setEstado(EstadoPermisoAusenciaEnum.ACEPTADO);
-					vbs.put(EstadoComisionServicioEnum.ACEPTADO.toString(), LocalDate.now());
+					vbs.put(EstadoPermisoAusenciaEnum.ACEPTADO.toString(), LocalDate.now());
 			    break;
 			}
 		
@@ -85,6 +85,20 @@ public class PermisoAusenciaManager {
 		
 		
 	}
+	
+	public PermisoAusencia rechazarPermiso(Long idComision) {
+		
+		PermisoAusencia permiso = permisoAusenciaRepo.getOne(idComision);		
+		
+		Map<String, LocalDate> vbs = permiso.getVbs();
+		
+		vbs.put(EstadoPermisoAusenciaEnum.RECHAZADO.toString(), LocalDate.now());
+		permiso.setEstado(EstadoPermisoAusenciaEnum.RECHAZADO);
+		
+		return permisoAusenciaRepo.save(permiso);
+		
+	}
+	
 
 
 }

@@ -159,7 +159,7 @@ public class PermisoAusenciaController {
 		
 	}
 	
-	@RequestMapping(value = "cambioEstado/permisoAusencia/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "cambioEstado/permisoAusencia/{id}", method = RequestMethod.POST)
 	public ModelAndView cambioEstado(@PathVariable(value="id") Long idComision){
 		
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -170,6 +170,18 @@ public class PermisoAusenciaController {
 		
 		return view;
 		
+	}
+	
+	@RequestMapping(value = "rechazar/permisoAusencia/{id}", method = RequestMethod.POST)
+	public ModelAndView rechazarPermisoAusencia(@PathVariable(value="id") Long idComision){
+	
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		permisos.rechazarPermiso(idComision);
+		
+		ModelAndView  view = new ModelAndView("redirect:/permisoAusencia");
+		
+		return view;
 	}
 
 	

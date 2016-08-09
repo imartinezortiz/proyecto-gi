@@ -40,8 +40,10 @@
 											<td th:text="${permiso.generaGasto}"></td>
 											<td th:text="${permiso.estado}"></td>
 											<td>
-											    <a class="btn btn-outline btn-success" th:href="@{'cambioEstado/permisoAusencia/{id}' (id=${permiso.id})} " th:data-confirm="|¿Seguro que quiere dar el visto bueno al permiso  ${permiso.id}? |"> <i class="fa fa-check" > </i> VB </a>	
+											    <a class="btn btn-outline btn-success" th:href="@{'cambioEstado/permisoAusencia/{id}' (id=${permiso.id})} " th:data-confirm="|¿Seguro que quiere dar el visto bueno al permiso ausencia ${permiso.id}? |"> <i class="fa fa-check" > </i> VB </a>
+											    <a class="btn btn-outline btn-danger" th:href="@{'rechazar/permisoAusencia/{id}' (id=${permiso.id})} " th:data-confirm="|¿Seguro que quiere rechazar el permiso ausencia ${permiso.id}? |"> <i class="fa fa-check" > </i> Rechazar </a>	
 												<a class="btn btn-info" th:href="@{'verDetalle/permisoAusencias/{id}/' (id=${permiso.id})} "><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Ver</a> 												
+												
 											</td>
 										</tr>
 									</tbody>
@@ -55,5 +57,26 @@
 	
 
 <div th:include="scripts"></div>
+<script type="text/javascript" th:inline="javascript">
+
+var csrf_name=/*[[${_csrf.parameterName}]]*/;
+var csrf_value=/*[[${_csrf.token}]]*/;
+
+$(document).ready(function() {
+	$('a[data-confirm]').click(function(ev) {
+		var href = $(this).attr('href');
+		if (!$('#dataConfirmModal').length) {
+			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true" ><form action="" method="POST" ><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"></button><h4 class="modal-title">Información</h4></div><div class="modal-body"> <p th:text=" |¿Está seguro de dar el visto bueno a la comision?| " > </p> </div><div class="modal-footer"><button class="btn" data-dismiss="modal" >Cancel</button><button class="btn btn-warning " id="dataConfirmOK">OK</button></div></div></div></form></div>');
+		} 
+		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+		$('#dataConfirmModal form').attr('action', href);
+		var elem = $('<input>').attr('name', csrf_name).attr('type', 'hidden').val(csrf_value);
+		$('#dataConfirmModal form').append(elem);
+		$('#dataConfirmModal').modal({show:true});
+		return false;
+	});
+});
+
+</script>
 </body>
 </html>
