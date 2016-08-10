@@ -153,6 +153,10 @@ public class UserManager implements UserDetailsService{
 	public List<User> findAllGerentes() {
 		return repositoryUser.DameDatosUser(new UserRole("ROLE_GERENTE"));
 	}
+	
+	public List<User> findAllDirectorDepartamentos() {
+		return repositoryUser.DameDatosUser(new UserRole("ROLE_DIR_DEPARTAMENTO"));
+	}
 
 
 	public User findOneUser(Long id) {

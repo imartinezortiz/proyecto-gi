@@ -143,6 +143,18 @@
 							</ul>
 
 						</li>
+						
+						<li	th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}">
+							<a href="#"><i class="fa fa-folder-open fa-fw"></i> Departamentos<span
+								class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a th:href="@{/departamentos}">Listar Departamentos</a> 
+									<a th:href="@{/crearDepartamento}" th:if="${#authorization.expression('hasRole(''ROLE_GESTOR'')')}" >Crear Departamento </a> 
+								</li>
+							</ul>
+
+						</li>
 
 						<li	th:if="${#authorization.expression('hasRole(''ROLE_INVESTIGADOR'')')}">
 							<a href="#"><i class="fa fa-folder-open fa-fw"></i> Proyectos<span

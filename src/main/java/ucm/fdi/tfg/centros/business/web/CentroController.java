@@ -35,7 +35,7 @@ public class CentroController {
 	
 	
 	@RequestMapping(value = "/centros", method = RequestMethod.GET)
-	public ModelAndView listarProeyctos() {
+	public ModelAndView listarCentros() {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
