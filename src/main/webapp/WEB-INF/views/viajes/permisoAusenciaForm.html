@@ -24,7 +24,7 @@
 					<p class="panel-title">Introduzca valores Permiso Ausencia</p>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal" role="form"  th:action="@{/proyectos/{idProyecto}/{modoaux}/{idPermisoAusencia}  (idProyecto=*{proyecto.id}, modoaux=${modo}, idPermisoAusencia=${idPermisoAusencia} ) }"
+					<form class="form-horizontal" role="form"  th:action="@{/proyectos/{idProyecto}/{modoaux}/{idPermiso}  (idProyecto=*{proyecto.id}, modoaux=${modo}, idPermiso=${idPermiso} ) }"
 					 th:object=${permisoAusencia} method="POST">				
 							
 						<div class="panel panel-default">
@@ -148,7 +148,7 @@
 											<td class="col-md-5" th:classappend="${#fields.hasErrors('sustituciones[__${gastoStat.index}__].esClase')} ? has-error">
 												<input type="text"
 													class="form-control" 
-													th:field="*{sustituciones[__${gastoStat.index}__].esclase}"  readonly="readonly" />												
+													th:field="*{sustituciones[__${gastoStat.index}__].esClase}"  readonly="readonly" />												
 										
 											</td>
 																					

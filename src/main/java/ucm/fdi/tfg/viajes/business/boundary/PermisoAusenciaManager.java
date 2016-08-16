@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ucm.fdi.tfg.pagos.business.entity.Pago;
 import ucm.fdi.tfg.users.business.entity.User;
 import ucm.fdi.tfg.users.business.entity.UserRole;
 import ucm.fdi.tfg.viajes.business.control.PermisoAusenciaRepository;
@@ -34,6 +35,25 @@ public class PermisoAusenciaManager {
 		vbs.put(EstadoPermisoAusenciaEnum.EDICION.toString(), LocalDate.now());		
 		peticionAusencia.setVbs(vbs);
 		return permisoAusenciaRepo.save(peticionAusencia);
+	}
+	
+	public PermisoAusencia editar(PermisoAusencia permiso, Long idPermiso) {
+		PermisoAusencia permisoEditar = permisoAusenciaRepo.getOne(idPermiso);
+		
+		permisoEditar.setAfectaDodencia(permiso.isAfectaDodencia());
+		permisoEditar.setDesde(permiso.getDesde());
+		permisoEditar.setEstado(permiso.getEstado());
+		permisoEditar.setGeneraGasto(permiso.isGeneraGasto());
+		permisoEditar.setHasta(permiso.getHasta());
+		permisoEditar.setInteresado(permiso.getInteresado());
+		permisoEditar.setLugar(permiso.getLugar());
+		permisoEditar.setMotivo(permiso.getMotivo());
+		permisoEditar.setOtrasActividades(permiso.getOtrasActividades());
+		permisoEditar.setProyecto(permiso.getProyecto());
+		permisoEditar.setSustituciones(permiso.getSustituciones());
+		permisoEditar.setVbs(permiso.getVbs());
+		
+		return permisoAusenciaRepo.save(permisoEditar);
 	}
 	
 	public List<PermisoAusencia> findAll(){
