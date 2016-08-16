@@ -31,7 +31,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import ucm.fdi.tfg.fileupload.business.entity.Attachment;
 import ucm.fdi.tfg.proyecto.business.entity.Proyecto;
-import ucm.fdi.tfg.users.business.entity.Investigador;
 
 @Entity
 @Table(name="justificacionViajes")

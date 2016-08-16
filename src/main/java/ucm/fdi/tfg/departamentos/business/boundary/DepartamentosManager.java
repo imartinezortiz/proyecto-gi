@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ucm.fdi.tfg.centros.business.entity.Centro;
 import ucm.fdi.tfg.departamentos.business.control.DepartamentoRepository;
 import ucm.fdi.tfg.departamentos.business.entity.Departamento;
 
@@ -23,5 +24,9 @@ public class DepartamentosManager {
 	
 	public List<Departamento> getAll() {
 		return this.repository.findAll();
+	}
+	
+	public Departamento nuevoDepartamento(Departamento nuevoDepartamento) {
+		return	repository.save(nuevoDepartamento);	
 	}
 }

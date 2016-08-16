@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import ucm.fdi.tfg.users.business.entity.User;
 
 @Entity
@@ -14,7 +16,7 @@ public class Departamento {
 	@GeneratedValue
 	private Long id;
 	
-	
+	@NotEmpty(message = "Campo vacío")
 	private String nombre;
 	
 	@ManyToOne

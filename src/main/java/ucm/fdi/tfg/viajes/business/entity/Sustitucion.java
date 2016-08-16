@@ -1,13 +1,9 @@
 package ucm.fdi.tfg.viajes.business.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.Type;
-import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
