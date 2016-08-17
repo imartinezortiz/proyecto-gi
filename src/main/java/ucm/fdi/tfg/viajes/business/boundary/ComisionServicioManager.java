@@ -103,4 +103,22 @@ public class ComisionServicioManager {
 		return comisionServicioRepo.save(comision);
 		
 	}
+
+	public ComisionServicio editar(ComisionServicio comision, Long idComision) {
+		
+		ComisionServicio  comisionEditar = comisionServicioRepo.getOne(idComision);
+		
+		comisionEditar.setEstado(comision.getEstado());
+		comisionEditar.setFin(comision.getFin());
+		comisionEditar.setGastosInscripcion(comision.isGastosInscripcion());
+		comisionEditar.setInteresado(comision.getInteresado());
+		comisionEditar.setItinerario(comision.getItinerario());
+		comisionEditar.setObjetoDesplazamiento(comision.getObjetoDesplazamiento());
+		comisionEditar.setTransportePrincipal(comision.getTransportePrincipal());
+		comisionEditar.setVbs(comision.getVbs());
+		
+		
+		return comisionServicioRepo.save(comisionEditar);
+		
+	}
 }

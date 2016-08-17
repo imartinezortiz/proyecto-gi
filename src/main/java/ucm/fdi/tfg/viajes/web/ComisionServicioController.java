@@ -204,4 +204,71 @@ public class ComisionServicioController {
 		return view;
 	}
 	
+	
+	
+	@RequestMapping(value = "/proyectos/{idProyecto}/edit/comisiones/{idComision}/", method = RequestMethod.GET)
+	public ModelAndView editarComision(@PathVariable(value="idProyecto") Long idProyecto, @PathVariable(value="idComision") Long idComision) {
+			
+		ModelAndView view = new ModelAndView("viajes/comisionServiciosForm");
+		
+		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
+		
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
+		
+		Investigador interesado = users.findInvestigador(user.getId());		
+		
+		ComisionServicio comisionServicio = comision.findOneComision(idComision);
+		
+		view.addObject("modoTitulo", "Editar");
+		view.addObject("modo", "edit/comisiones");	
+		
+		view.addObject("comisionServicio", comisionServicio);
+		
+		//Para el nombre en la cabecera
+		view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		view.addObject("user", user);
+		
+		return view;
+	
+	}
+
+	@RequestMapping(value = "/proyectos/{idProyecto}/edit/comisiones/{idComision}", method = RequestMethod.POST)
+	public ModelAndView editarComisionPost(@PathVariable(value = "idProyecto") Long idProyecto,
+			@ModelAttribute("comisionServicio") ComisionServicio comisionServicio, BindingResult errors,
+			@PathVariable(value = "idComision") Long idComision) {
+
+		ModelAndView view = null;
+
+		Proyecto proyecto = proyectosManager.findProyecto(idProyecto);
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (errors.hasErrors()) {
+			view = new ModelAndView("viajes/comisionServiciosForm");
+
+			comisionServicio.setProyecto(proyecto);
+
+			view.addObject("user", user);
+			view.addObject("modoTitulo", "Editar");
+			view.addObject("modo", "edit/comisiones");
+			// Para el nombre en la cabecera
+			view.addObject("usuario", SecurityContextHolder.getContext().getAuthentication().getName());
+
+			view.addObject("comisionServicio", comisionServicio);
+
+		} else {
+			Investigador interesado = users.findInvestigador(user.getId());
+
+			comisionServicio.setInteresado(interesado);
+			comisionServicio.setProyecto(proyecto);
+			comision.editar(comisionServicio,idComision );
+			
+			view = new ModelAndView(("redirect:/proyectos/{idProyecto}/viajes"));
+		}
+
+		return view;
+	}
+	
+	
 }
