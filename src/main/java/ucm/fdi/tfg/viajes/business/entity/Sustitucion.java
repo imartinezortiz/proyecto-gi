@@ -27,7 +27,7 @@ public class Sustitucion {
 	
 	public Sustitucion (String asignatura, boolean esClase, LocalDate dia, String sustituto){		
 		this.asignatura = asignatura;
-		this.esClase = esClase;
+		this.setEsClase(esClase);
 		this.dia = dia;
 		this.sustituto = sustituto;		
 	}
@@ -40,13 +40,7 @@ public class Sustitucion {
 		this.asignatura = asignatura;
 	}
 
-	public boolean isEsClase() {
-		return esClase;
-	}
-
-	public void setEsClase(boolean esClase) {
-		this.esClase = esClase;
-	}
+	
 
 	public LocalDate getDia() {
 		return dia;
@@ -62,6 +56,14 @@ public class Sustitucion {
 
 	public void setSustituto(String sustituto) {
 		this.sustituto = sustituto;
+	}
+
+	public boolean getEsClase() {
+		return esClase;
+	}
+
+	public void setEsClase(boolean esClase) {
+		this.esClase = esClase;
 	}
 
 

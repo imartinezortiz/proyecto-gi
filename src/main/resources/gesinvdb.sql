@@ -68,11 +68,6 @@ INSERT INTO user_roles (usersId, role) VALUES(15, 'ROLE_USER');
 
 
 
-
-
-
-
-
 -- Departamentos
 INSERT INTO departamento(id, nombre, director_usersId) VALUES ( 1, 'Sistemas Informáticos y Computación', 14);
 INSERT INTO departamento(id, nombre, director_usersId) VALUES ( 2, 'Inteligencia Artificial',15);
@@ -236,10 +231,12 @@ INSERT INTO inventarios (inventarioId, autorizacion, centro, descripcion, fecha,
 
 
 -- Insertamos viajes de prueba para el proyecto 1 (Primer Proyecto);
-INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('1', '1', '2016-05-18', '2016-05-22', '2016-05-20', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'EDICION','1');
-INSERT INTO justificacionviajes (viajeId, dietaID, fecha, fechaFin, fechaInicio, importeDietaTotal, investigador, invitado, itinerario, miembroProyecto, numDietas, numOrden, objetoDesplazamiento, observaciones, pagarA, fase, proyecto_id) VALUES ('2', '1', '2016-03-20', '2016-06-22', '2016-06-24', '112.20', '4', '', 'a', b'1', '3', 'a', 'a', 'a', 'a',  'PROCESANDO','1');
 INSERT INTO `gesinvdb`.`justificacionviajes` (`viajeId`, `dietaID`, `fase`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, `proyecto_id`)
-VALUES (3, '1', 'EDICION', '2016-07-16', '2016-07-23', '2016-07-22', '448.80', '5', '', 'EEUU', b'1', '12', '123', 'Curso Java EE', '-', 'ES9121000418450200051332', '1');
+VALUES (1, '1', 'EDICION', '2016-07-16', '2016-07-23', '2016-07-22', '448.80', '5', '', 'EEUU', b'1', '12', '123', 'Curso Java EE', '-', 'ES9121000418450200051332', '1');
+INSERT INTO `gesinvdb`.`justificacionviajes` (`viajeId`, `dietaID`, `fase`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, `proyecto_id`)
+VALUES (2, '1', 'EDICION', '2016-07-16', '2016-07-23', '2016-07-22', '448.80', '5', '', 'España', b'1', '12', '4645', 'Curso Office 2015', '-', 'ES9121000418450200051332', '1');
+INSERT INTO `gesinvdb`.`justificacionviajes` (`viajeId`, `dietaID`, `fase`, `fecha`, `fechaFin`, `fechaInicio`, `importeDietaTotal`, `investigador`, `invitado`, `itinerario`, `miembroProyecto`, `numDietas`, `numOrden`, `objetoDesplazamiento`, `observaciones`, `pagarA`, `proyecto_id`)
+VALUES (3, '1', 'PROCESANDO', '2016-07-16', '2016-07-23', '2016-07-22', '448.80', '5', '', 'Berlin', b'1', '12', '16546', 'Curso DOJO', '-', 'ES9121000418450200051332', '1');
 
 -- Insertamos Permiso Ausencia de prueba para el proyecto 1
 INSERT INTO `permisoausencia` (`id`, `afectaDodencia`, `desde`, `estado`, `generaGasto`, `hasta`, `lugar`, `motivo`, `otrasActividades`, `interesado_investigadorId`, `proyecto_id`) VALUES
